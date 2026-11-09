@@ -1,0 +1,24 @@
+========================================================================================================
+RL EXPERIMENTS — trials=15; seed quality (Greedy vs RL-argmax) and Hybrid with/without RL seeds
+========================================================================================================
+Province/Scenario             grp        Greedy      RL  valid G/R   Hybrid   Hyb+RL  p(RL>H)   ms H  ms HR
+phuket/S1_Short_Budget        train       142.1   142.3      15/15    156.5    156.5   0.5340    605    648
+phuket/S2_Medium_Standard     train       236.6   236.5      15/15    255.1    254.7   0.9633    926    962
+phuket/S3_Long_Premium        train       328.6   327.8      15/15    350.1    350.6   0.3046   1774   1624
+phuket/H1_4d_12k              held-out    194.0   193.6      15/15    206.4    206.4   0.5624    753    838
+phuket/H2_6d_30k              held-out    292.0   290.5      15/15    304.3    304.1   0.8258   1397   1251
+chiangmai/S1_Short_Budget     train       140.4   147.9      15/15    150.7    150.7   0.4300    642    675
+chiangmai/S2_Medium_Standard  train       234.1   239.7      15/15    247.4    247.5   0.1551   1115   1260
+chiangmai/S3_Long_Premium     train       331.2   337.2      15/15    342.8    343.0   0.0205   1507   1573
+chiangmai/H1_4d_12k           held-out    187.0   194.9      15/15    199.2    199.2   0.4068    925    980
+chiangmai/H2_6d_30k           held-out    283.8   291.2      15/15    295.2    295.0   0.8512   1258   1372
+krabi/S1_Short_Budget         train       133.2   132.8      15/15    141.0    141.3   0.1741    563    612
+krabi/S2_Medium_Standard      train       221.0   221.6      15/15    231.2    231.3   0.3188    993    976
+krabi/S3_Long_Premium         train       285.1   309.6      15/15    320.6    320.4   0.6351   1391   1362
+krabi/H1_4d_12k               held-out    178.2   179.9      15/15    186.6    186.4   0.7053    767    802
+krabi/H2_6d_30k               held-out    252.5   266.2      15/15    276.8    276.3   0.9680   1221   1217
+samui/S1_Short_Budget         train       138.5   140.6      15/15    148.3    148.1   0.8455    645    657
+samui/S2_Medium_Standard      train       222.8   226.7      15/15    243.4    243.5   0.3530   1050   1064
+samui/S3_Long_Premium         train       328.3   321.3      15/15    334.7    334.5   0.8349   1373   1518
+samui/H1_4d_12k               held-out    178.4   182.0      15/15    196.5    196.4   0.8273    836    885
+samui/H2_6d_30k               held-out    282.5   273.1      15/15    289.1    289.1   0.4875   1189   1238

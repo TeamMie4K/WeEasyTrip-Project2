@@ -1,0 +1,316 @@
+================================================================================================
+PREFERENCE EXPERIMENTS — Hybrid+Div, S2 (5 days, 15,000 THB), trials=15
+================================================================================================
+Province   Condition    avoided#  liked%   score  Δscore%  valid  meals  p(score)  p(liked)
+phuket     baseline         5.53    37.7   254.3      0.0  15/15  15/15       nan       nan
+phuket     avoid            0.00    49.3   249.8     -1.8  15/15  15/15    0.0007       nan
+phuket     like             4.60    48.7   253.6     -0.3  15/15  15/15    0.0076    0.0004
+phuket     like+avoid       0.00    58.0   250.4     -1.6  15/15  15/15    0.0007    0.0003
+chiangmai  baseline        10.00    26.0   245.1      0.0  15/15  15/15       nan       nan
+chiangmai  avoid            0.00    68.0   235.7     -3.8  15/15  15/15    0.0007       nan
+chiangmai  like             6.53    54.7   241.1     -1.6  15/15  15/15    0.0007    0.0003
+chiangmai  like+avoid       0.00    75.0   234.9     -4.2  15/15  15/15    0.0007    0.0001
+krabi      baseline         6.13    34.7   230.5      0.0  15/15  15/15       nan       nan
+krabi      avoid            0.00    50.7   228.5     -0.9  15/15  15/15    0.0012       nan
+krabi      like             4.20    55.0   230.5      0.0  15/15  15/15    0.9721    0.0003
+krabi      like+avoid       0.00    61.0   228.6     -0.8  15/15  15/15    0.0008    0.0003
+samui      baseline         6.13    25.0   237.3      0.0  15/15  15/15       nan       nan
+samui      avoid            0.00    48.3   229.4     -3.3  15/15  15/15    0.0007       nan
+samui      like             5.00    50.0   235.5     -0.8  15/15  15/15    0.0007    0.0001
+samui      like+avoid       0.00    52.0   229.2     -3.4  15/15  15/15    0.0006    0.0002
+bangkok    baseline        10.33    23.3   259.3      0.0  15/15  15/15       nan       nan
+bangkok    avoid            0.00    53.7   246.0     -5.1  15/15  15/15    0.0007       nan
+bangkok    like             9.13    39.7   256.3     -1.1  15/15  15/15    0.0008    0.0003
+bangkok    like+avoid       0.00    74.7   243.3     -6.1  15/15  15/15    0.0007    0.0002
+chonburi   baseline         8.67    23.7   229.3      0.0  15/15  15/15       nan       nan
+chonburi   avoid            0.00    51.0   221.7     -3.3  15/15  15/15    0.0007       nan
+chonburi   like             6.67    43.7   227.6     -0.7  15/15  15/15    0.0012    0.0003
+chonburi   like+avoid       0.00    58.0   221.5     -3.4  15/15  15/15    0.0006    0.0003
+prachuapkhirikhanbaseline         5.27    37.7   217.2      0.0  15/15  15/15       nan       nan
+prachuapkhirikhanavoid            0.00    54.2   199.3     -8.2  15/15  15/15    0.0007       nan
+prachuapkhirikhanlike             5.40    40.0   217.1     -0.0  15/15  15/15    0.5520    0.0041
+prachuapkhirikhanlike+avoid       0.00    55.0   201.9     -7.0  15/15  15/15    0.0006    0.0003
+ayutthaya  baseline        14.80     0.0   241.0      0.0  15/15  15/15       nan       nan
+ayutthaya  avoid            0.00     0.0   231.7     -3.8  15/15  15/15    0.0006       nan
+ayutthaya  like            14.80     0.0   241.0      0.0  15/15  15/15       nan       nan
+ayutthaya  like+avoid       0.00     0.0   231.7     -3.8  15/15  15/15    0.0006       nan
+kanchanaburibaseline        10.00    15.0   223.5      0.0  15/15  15/15       nan       nan
+kanchanaburiavoid            0.00    15.0   218.3     -2.4  15/15  15/15    0.0006       nan
+kanchanaburilike            10.07    15.0   223.7      0.1  15/15  15/15    0.2890       nan
+kanchanaburilike+avoid       0.00    15.0   218.2     -2.4  15/15  15/15    0.0007       nan
+phangnga   baseline         6.73    38.0   216.7      0.0  15/15  15/15       nan       nan
+phangnga   avoid            0.00    43.7   217.2      0.2  15/15  15/15    0.0478       nan
+phangnga   like             6.33    40.0   216.6     -0.0  15/15  15/15    0.7543    0.0072
+phangnga   like+avoid       0.00    45.3   217.6      0.4  15/15  15/15    0.0043    0.0002
+chiangrai  baseline        11.00    23.7   233.5      0.0  15/15  15/15       nan       nan
+chiangrai  avoid            0.00    69.7   224.2     -4.0  15/15  15/15    0.0006       nan
+chiangrai  like             7.87    46.3   231.7     -0.8  15/15  15/15    0.0007    0.0003
+chiangrai  like+avoid       0.00    74.3   224.2     -4.0  15/15  15/15    0.0006    0.0003
+suratthani baseline        11.53    25.3   222.8      0.0  15/15  15/15       nan       nan
+suratthani avoid            0.00    60.0   147.6    -33.7  15/15  15/15    0.0007       nan
+suratthani like            11.00    27.7   223.2      0.2  15/15  15/15    0.0217    0.0098
+suratthani like+avoid       0.00    60.0   147.4    -33.8  15/15  15/15    0.0007    0.0001
+nakhonratchasimabaseline        13.93     5.0   226.2      0.0  15/15  15/15       nan       nan
+nakhonratchasimaavoid            0.00    11.1   142.1    -37.2  15/15  15/15    0.0007       nan
+nakhonratchasimalike            14.07     5.0   226.3      0.0  15/15  15/15    0.7335       nan
+nakhonratchasimalike+avoid       0.00    11.1   142.1    -37.2  15/15  15/15    0.0007    0.0001
+khonkaen   baseline        13.67     5.0   232.3      0.0  15/15  15/15       nan       nan
+khonkaen   avoid            0.00    10.0   225.5     -2.9  15/15  15/15    0.0006       nan
+khonkaen   like            13.47     6.7   232.7      0.1  15/15  15/15    0.0556    0.0127
+khonkaen   like+avoid       0.00    10.0   225.6     -2.9  15/15  15/15    0.0006    0.0001
+udonthani  baseline        11.27    15.0   222.9      0.0  15/15  15/15       nan       nan
+udonthani  avoid            0.00    25.0   162.3    -27.2  15/15  15/15    0.0006       nan
+udonthani  like            11.53    15.0   223.0      0.0  15/15  15/15    0.2850       nan
+udonthani  like+avoid       0.00    25.0   162.2    -27.2  15/15  15/15    0.0007    0.0001
+phetchaburibaseline         9.13    16.7   225.9      0.0  15/15  15/15       nan       nan
+phetchaburiavoid            0.00    33.3   160.2    -29.1  15/15  15/15    0.0007       nan
+phetchaburilike             8.73    20.0   225.6     -0.1  15/15  15/15    0.2855    0.0019
+phetchaburilike+avoid       0.00    33.3   160.1    -29.1  15/15  15/15    0.0007    0.0002
+rayong     baseline         4.07    32.3   220.3      0.0  15/15  15/15       nan       nan
+rayong     avoid            0.00    40.0   218.9     -0.6  15/15  15/15    0.0007       nan
+rayong     like             3.53    40.0   219.9     -0.2  15/15  15/15    0.0960    0.0002
+rayong     like+avoid       0.00    40.0   218.7     -0.7  15/15  15/15    0.0008    0.0002
+sukhothai  baseline         9.47     8.0   237.2      0.0  15/15  15/15       nan       nan
+sukhothai  avoid            0.00    25.0   234.8     -1.0  15/15  15/15    0.0006       nan
+sukhothai  like             8.53    25.0   233.9     -1.4  15/15  15/15    0.0001    0.0002
+sukhothai  like+avoid       0.00    25.0   234.8     -1.0  15/15  15/15    0.0006    0.0002
+phitsanulokbaseline        11.00    20.0   223.6      0.0  15/15  15/15       nan       nan
+phitsanulokavoid            0.00    36.4   155.3    -30.6  15/15  15/15    0.0006       nan
+phitsanuloklike            11.00    20.0   223.6      0.0  15/15  15/15    0.7206       nan
+phitsanuloklike+avoid       0.00    36.4   155.3    -30.6  15/15  15/15    0.0006    0.0001
+songkhla   baseline        12.80    10.0   227.5      0.0  15/15  15/15       nan       nan
+songkhla   avoid            0.00    25.0   192.5    -15.4  15/15  15/15    0.0006       nan
+songkhla   like            11.20    20.0   226.7     -0.3  15/15  15/15    0.0015    0.0002
+songkhla   like+avoid       0.00    25.0   192.5    -15.4  15/15  15/15    0.0006    0.0002
+ubonratchathanibaseline        10.93    19.3   228.0      0.0  15/15  15/15       nan       nan
+ubonratchathaniavoid            0.00    40.0   183.1    -19.7  15/15  15/15    0.0007       nan
+ubonratchathanilike            10.00    26.0   227.5     -0.2  15/15  15/15    0.0477    0.0006
+ubonratchathanilike+avoid       0.00    40.0   183.1    -19.7  15/15  15/15    0.0006    0.0002
+nan        baseline        14.73     0.0   229.9      0.0  15/15  15/15       nan       nan
+nan        avoid            0.00     8.3   163.1    -29.1  15/15  15/15    0.0006       nan
+nan        like            14.87     0.0   229.9     -0.0  15/15  15/15    0.3441       nan
+nan        like+avoid       0.00     8.3   163.2    -29.0  15/15  15/15    0.0006    0.0001
+lampang    baseline        11.20    19.0   230.3      0.0  15/15  15/15       nan       nan
+lampang    avoid            0.00    61.1   173.4    -24.7  14/15  15/15    0.0007       nan
+lampang    like            10.00    26.0   229.6     -0.3  15/15  15/15    0.1205    0.0010
+lampang    like+avoid       0.00    61.5   174.6    -24.2  15/15  15/15    0.0006    0.0003
+chanthaburibaseline         9.87     9.7   225.4      0.0  15/15  15/15       nan       nan
+chanthaburiavoid            0.00    20.0   225.1     -0.1  15/15  15/15    0.0786       nan
+chanthaburilike             8.87    18.7   225.5      0.0  15/15  15/15    0.9320    0.0004
+chanthaburilike+avoid       0.00    20.0   225.1     -0.1  15/15  15/15    0.0746    0.0003
+phayao     baseline         9.53    27.3   217.3      0.0  15/15  15/15       nan       nan
+phayao     avoid            0.00    33.8   214.0     -1.5  15/15  15/15    0.0007       nan
+phayao     like             9.40    27.7   217.3      0.0  15/15  15/15    0.7001    0.3527
+phayao     like+avoid       0.00    33.7   214.5     -1.3  15/15  15/15    0.0006    0.0005
+mukdahan   baseline        10.27    19.3   221.7      0.0  15/15  15/15       nan       nan
+mukdahan   avoid            0.00    46.7   184.0    -17.0  15/15  15/15    0.0006       nan
+mukdahan   like             9.40    25.3   221.3     -0.2  15/15  15/15    0.0031    0.0005
+mukdahan   like+avoid       0.00    46.7   184.1    -17.0  15/15  15/15    0.0006    0.0002
+roiet      baseline        13.40     5.0   222.9      0.0  15/15  15/15       nan       nan
+roiet      avoid            0.00    14.3   126.3    -43.3  15/15  15/15    0.0006       nan
+roiet      like            13.27     5.0   222.8     -0.0  15/15  15/15    0.3173       nan
+roiet      like+avoid       0.00    14.3   126.3    -43.3  15/15  15/15    0.0006    0.0001
+nongkhai   baseline         9.80    25.3   234.4      0.0  15/15  15/15       nan       nan
+nongkhai   avoid            0.00    50.0   228.5     -2.5  15/15  15/15    0.0006       nan
+nongkhai   like             6.40    44.0   233.9     -0.2  15/15  15/15    0.0030    0.0002
+nongkhai   like+avoid       0.00    56.0   228.5     -2.5  15/15  15/15    0.0006    0.0003
+lamphun    baseline        11.80    11.8   222.1      0.0  15/15  15/15       nan       nan
+lamphun    avoid            0.00    22.4   170.9    -23.0  15/15  15/15    0.0001       nan
+lamphun    like            11.33    11.8   216.6     -2.4  15/15  15/15    0.0555    0.1523
+lamphun    like+avoid       0.00    21.5   167.8    -24.4  15/15  15/15    0.0001    0.0003
+nonthaburi baseline        13.13    13.7   237.5      0.0  15/15  15/15       nan       nan
+nonthaburi avoid            0.00    45.0   221.1     -6.9  15/15  15/15    0.0007       nan
+nonthaburi like            11.87    26.3   235.6     -0.8  15/15  15/15    0.0018    0.0003
+nonthaburi like+avoid       0.00    45.0   220.9     -7.0  15/15  15/15    0.0007    0.0002
+phetchabun baseline         7.47    37.3   219.1      0.0  15/15  15/15       nan       nan
+phetchabun avoid            0.00    59.7   209.7     -4.3  15/15  15/15    0.0001       nan
+phetchabun like             6.87    44.3   219.6      0.2  15/15  15/15    0.1025    0.0016
+phetchabun like+avoid       0.00    56.1   206.1     -5.9  15/15  15/15    0.0001    0.0003
+lopburi    baseline        10.73    13.3   222.6      0.0  15/15  15/15       nan       nan
+lopburi    avoid            0.00    15.1   217.5     -2.3  15/15  15/15    0.0007       nan
+lopburi    like            10.80    15.0   222.3     -0.1  15/15  15/15    0.2941    0.0127
+lopburi    like+avoid       0.00    15.1   217.4     -2.3  15/15  15/15    0.0006    0.0098
+samutprakanbaseline        12.00    12.7   237.4      0.0  15/15  15/15       nan       nan
+samutprakanavoid            0.00    20.0   224.2     -5.5  15/15  15/15    0.0007       nan
+samutprakanlike            10.87    20.0   236.8     -0.3  15/15  15/15    0.0826    0.0005
+samutprakanlike+avoid       0.00    20.0   224.4     -5.5  15/15  15/15    0.0007    0.0005
+samutsongkhrambaseline        11.60    13.7   229.6      0.0  15/15  15/15       nan       nan
+samutsongkhramavoid            0.00    17.6   196.5    -14.4  15/15  15/15    0.0007       nan
+samutsongkhramlike            11.27    14.7   229.2     -0.2  15/15  15/15    0.1301    0.0416
+samutsongkhramlike+avoid       0.00    17.6   196.4    -14.4  15/15  15/15    0.0007    0.0002
+saraburi   baseline         8.53    23.3   217.3      0.0  15/15  15/15       nan       nan
+saraburi   avoid            0.00    26.3   216.9     -0.2  15/15  15/15    0.1484       nan
+saraburi   like             8.20    27.3   217.9      0.3  15/15  15/15    0.0935    0.0025
+saraburi   like+avoid       0.00    26.8   216.4     -0.4  15/15  15/15    0.1765    0.0029
+trat       baseline         9.27    14.7   216.3      0.0  15/15  15/15       nan       nan
+trat       avoid            0.00    33.3   160.1    -26.0  15/15  15/15    0.0006       nan
+trat       like             9.60    15.3   216.5      0.1  15/15  15/15    0.1538    0.2887
+trat       like+avoid       0.00    33.3   160.0    -26.0  15/15  15/15    0.0006    0.0001
+nakhonsithammaratbaseline        11.33     8.3   220.0      0.0  15/15  15/15       nan       nan
+nakhonsithammaratavoid            0.00    13.3   182.8    -16.9  15/15  15/15    0.0007       nan
+nakhonsithammaratlike            10.80     9.3   220.2      0.1  15/15  15/15    0.2020    0.0899
+nakhonsithammaratlike+avoid       0.00    13.3   183.0    -16.8  15/15  15/15    0.0006    0.0002
+trang      baseline        12.40     9.3   219.8      0.0  15/15  15/15       nan       nan
+trang      avoid            0.00    20.0   148.3    -32.5  15/15  15/15    0.0006       nan
+trang      like            12.13    10.0   219.9      0.0  15/15  15/15    0.8586    0.0786
+trang      like+avoid       0.00    20.0   148.2    -32.6  15/15  15/15    0.0006    0.0001
+maehongson baseline         9.33    33.7   222.1      0.0  15/15  15/15       nan       nan
+maehongson avoid            0.00    66.7   159.3    -28.3  15/15  15/15    0.0007       nan
+maehongson like             8.27    40.0   222.3      0.1  15/15  15/15    0.5267    0.0003
+maehongson like+avoid       0.00    66.7   159.3    -28.3  15/15  15/15    0.0006    0.0002
+loei       baseline        14.00    15.0   216.8      0.0  15/15  15/15       nan       nan
+loei       avoid            0.00    50.0   117.8    -45.7  15/15  15/15    0.0006       nan
+loei       like            14.00    15.0   216.9      0.1  15/15  15/15    0.4695       nan
+loei       like+avoid       0.00    50.0   117.8    -45.7  15/15  15/15    0.0006    0.0001
+phrae      baseline        12.47    10.0   223.0      0.0  15/15  15/15       nan       nan
+phrae      avoid            0.00    40.0   183.2    -17.9  15/15  15/15    0.0006       nan
+phrae      like            11.33    18.0   222.9     -0.1  15/15  15/15    0.5300    0.0007
+phrae      like+avoid       0.00    40.0   183.3    -17.8  15/15  15/15    0.0006    0.0003
+uttaradit  baseline        11.20    19.0   221.5      0.0  15/15  15/15       nan       nan
+uttaradit  avoid            0.00    50.0   173.3    -21.8  15/15  15/15    0.0007       nan
+uttaradit  like             9.60    27.3   220.5     -0.5  15/15  15/15    0.0013    0.0003
+uttaradit  like+avoid       0.00    50.0   173.4    -21.7  15/15  15/15    0.0006    0.0002
+kalasin    baseline        11.60    15.0   218.9      0.0  15/15  15/15       nan       nan
+kalasin    avoid            0.00    30.0   147.9    -32.4  15/15  15/15    0.0006       nan
+kalasin    like            11.80    15.0   218.8     -0.0  15/15  15/15    0.9095       nan
+kalasin    like+avoid       0.00    30.0   147.9    -32.4  15/15  15/15    0.0006    0.0001
+buriram    baseline        15.00     0.0   217.7      0.0  15/15  15/15       nan       nan
+buriram    avoid            0.00     0.0   110.5    -49.3  15/15  15/15    0.0006       nan
+buriram    like            15.00     0.0   217.7      0.0  15/15  15/15       nan       nan
+buriram    like+avoid       0.00     0.0   110.5    -49.3  15/15  15/15    0.0006       nan
+yasothon   baseline        19.00     0.0   215.1      0.0  15/15  15/15       nan       nan
+yasothon   avoid            0.00     0.0    79.9    -62.9  15/15  15/15    0.0003       nan
+yasothon   like            19.00     0.0   215.1      0.0  15/15  15/15       nan       nan
+yasothon   like+avoid       0.00     0.0    79.9    -62.9  15/15  15/15    0.0003       nan
+sisaket    baseline        15.53     5.0   217.9      0.0  15/15  15/15       nan       nan
+sisaket    avoid            0.00    20.0   108.0    -50.4  15/15  15/15    0.0006       nan
+sisaket    like            15.53     5.0   217.9      0.0  15/15  15/15       nan       nan
+sisaket    like+avoid       0.00    20.0   108.1    -50.4  15/15  15/15    0.0005    0.0001
+sakonnakhonbaseline         9.93    28.3   219.4      0.0  15/15  15/15       nan       nan
+sakonnakhonavoid            0.00    58.3   160.7    -26.8  15/15  15/15    0.0007       nan
+sakonnakhonlike             9.80    31.7   220.0      0.3  15/15  15/15    0.0554    0.0041
+sakonnakhonlike+avoid       0.00    58.3   160.6    -26.8  15/15  15/15    0.0006    0.0002
+surin      baseline        12.00    15.0   221.0      0.0  15/15  15/15       nan       nan
+surin      avoid            0.00    37.5   133.6    -39.5  15/15  15/15    0.0007       nan
+surin      like            12.00    15.0   220.9     -0.0  15/15  15/15    0.8067       nan
+surin      like+avoid       0.00    37.5   133.6    -39.5  15/15  15/15    0.0007    0.0001
+nongbualamphubaseline         9.33    18.0   223.1      0.0  15/15  15/15       nan       nan
+nongbualamphuavoid            0.00    30.8   168.3    -24.6  15/15  15/15    0.0001       nan
+nongbualamphulike             9.33    20.0   223.3      0.1  15/15  15/15    0.1578    0.0072
+nongbualamphulike+avoid       0.00    30.8   168.1    -24.7  15/15  15/15    0.0006    0.0002
+kamphaengphetbaseline        10.73     0.0   228.5      0.0  15/15  15/15       nan       nan
+kamphaengphetavoid            0.00     0.0   226.6     -0.8  15/15  15/15    0.0006       nan
+kamphaengphetlike            10.73     0.0   228.5      0.0  15/15  15/15       nan       nan
+kamphaengphetlike+avoid       0.00     0.0   226.6     -0.8  15/15  15/15    0.0006       nan
+chainat    baseline        14.00     5.0   222.2      0.0  15/15  15/15       nan       nan
+chainat    avoid            0.00    16.7   114.1    -48.7  15/15  15/15    0.0006       nan
+chainat    like            14.00     5.0   222.4      0.1  15/15  15/15    0.1111       nan
+chainat    like+avoid       0.00    16.7   114.1    -48.7  15/15  15/15    0.0006    0.0001
+nakhonnayokbaseline        10.73    19.7   222.2      0.0  15/15  15/15       nan       nan
+nakhonnayokavoid            0.00    25.2   215.8     -2.9  15/15  15/15    0.0007       nan
+nakhonnayoklike             9.73    24.7   222.7      0.2  15/15  15/15    0.1181    0.0008
+nakhonnayoklike+avoid       0.00    25.4   212.3     -4.5  15/15  15/15    0.0007    0.0006
+nakhonpathombaseline        12.87     4.7   233.5      0.0  15/15  15/15       nan       nan
+nakhonpathomavoid            0.00     7.7   173.3    -25.8  15/15  15/15    0.0007       nan
+nakhonpathomlike            12.40     5.0   233.8      0.1  15/15  15/15    0.5508    0.1587
+nakhonpathomlike+avoid       0.00     7.7   173.3    -25.8  15/15  15/15    0.0007    0.0001
+nakhonsawanbaseline        15.00    10.0   219.8      0.0  15/15  15/15       nan       nan
+nakhonsawanavoid            0.00    40.0   108.1    -50.8  15/15  15/15    0.0007       nan
+nakhonsawanlike            15.00    10.0   219.9      0.1  15/15  15/15    0.8337       nan
+nakhonsawanlike+avoid       0.00    40.0   108.0    -50.9  15/15  15/15    0.0006    0.0001
+pathumthanibaseline        12.07    15.0   233.2      0.0  15/15  15/15       nan       nan
+pathumthaniavoid            0.00    15.0   222.0     -4.8  15/15  15/15    0.0007       nan
+pathumthanilike            12.20    15.0   233.1     -0.0  15/15  15/15    0.8610       nan
+pathumthanilike+avoid       0.00    15.0   221.9     -4.8  15/15  15/15    0.0006       nan
+phichit    baseline        13.40     2.7   179.9      0.0  15/15   0/15       nan       nan
+phichit    avoid            0.00    16.7    99.5    -44.7  15/15  15/15    0.0006       nan
+phichit    like            12.73     4.3   179.9      0.0  15/15   0/15    0.8585    0.0228
+phichit    like+avoid       0.00    16.7    99.5    -44.7  15/15  15/15    0.0006    0.0002
+samutsakhonbaseline        16.00     0.0   229.1      0.0  15/15  15/15       nan       nan
+samutsakhonavoid            0.00     0.0   106.1    -53.7  15/15  15/15    0.0007       nan
+samutsakhonlike            16.00     0.0   229.1      0.0  15/15  15/15       nan       nan
+samutsakhonlike+avoid       0.00     0.0   106.1    -53.7  15/15  15/15    0.0007       nan
+singburi   baseline        16.00     0.0   222.7      0.0  15/15  15/15       nan       nan
+singburi   avoid            0.00     0.0   102.1    -54.2  15/15  15/15    0.0006       nan
+singburi   like            16.00     0.0   222.7      0.0  15/15  15/15       nan       nan
+singburi   like+avoid       0.00     0.0   102.1    -54.2  15/15  15/15    0.0006       nan
+suphanburi baseline        14.27     0.3   223.1      0.0  15/15  15/15       nan       nan
+suphanburi avoid            0.00    19.0   173.8    -22.1  15/15  15/15    0.0006       nan
+suphanburi like            12.73     6.7   223.0     -0.1  15/15  15/15    0.5300    0.0005
+suphanburi like+avoid       0.00    21.1   175.8    -21.2  15/15  15/15    0.0007    0.0001
+uthaithani baseline        10.73    15.0   218.5      0.0  15/15  15/15       nan       nan
+uthaithani avoid            0.00    21.4   172.4    -21.1  15/15  15/15    0.0006       nan
+uthaithani like            10.87    15.0   218.7      0.1  15/15  15/15    0.3624       nan
+uthaithani like+avoid       0.00    21.4   172.4    -21.1  15/15  15/15    0.0006    0.0001
+chachoengsaobaseline        14.00     3.3   219.6      0.0  15/15  15/15       nan       nan
+chachoengsaoavoid            0.00     8.3   159.0    -27.6  15/15  15/15    0.0006       nan
+chachoengsaolike            13.60     5.0   219.8      0.1  15/15  15/15    0.2291    0.0127
+chachoengsaolike+avoid       0.00     8.3   158.9    -27.7  15/15  15/15    0.0006    0.0002
+prachinburibaseline        12.67    10.0   215.9      0.0  15/15  15/15       nan       nan
+prachinburiavoid            0.00    35.0   140.5    -34.9  15/15  15/15    0.0007       nan
+prachinburilike            12.53    11.3   216.1      0.1  15/15  15/15    0.2999    0.0478
+prachinburilike+avoid       0.00    35.1   141.7    -34.4  15/15  15/15    0.0001    0.0002
+sakaeo     baseline        12.80     9.0   216.0      0.0  15/15  15/15       nan       nan
+sakaeo     avoid            0.00    27.4   144.4    -33.2  15/15  15/15    0.0007       nan
+sakaeo     like            12.80    10.3   216.6      0.3  15/15  15/15    0.0078    0.0294
+sakaeo     like+avoid       0.00    29.5   146.3    -32.3  15/15  15/15    0.0006    0.0002
+tak        baseline        11.53    18.7   222.0      0.0  15/15  15/15       nan       nan
+tak        avoid            0.00    29.5   214.5     -3.4  15/15  15/15    0.0031       nan
+tak        like            10.40    21.7   222.4      0.2  15/15  15/15    0.0639    0.0052
+tak        like+avoid       0.00    30.0   217.2     -2.2  15/15  15/15    0.0006    0.0003
+ratchaburi baseline        10.73     9.3   225.3      0.0  15/15  15/15       nan       nan
+ratchaburi avoid            0.00    18.2   216.5     -3.9  15/15  15/15    0.0001       nan
+ratchaburi like             9.27    14.1   222.8     -1.1  15/15  15/15    0.0181    0.0174
+ratchaburi like+avoid       0.00    19.2   214.2     -4.9  15/15  15/15    0.0001    0.0003
+chumphon   baseline         4.40    31.7   220.1      0.0  15/15  15/15       nan       nan
+chumphon   avoid            0.00    43.3   218.7     -0.6  15/15  15/15    0.0006       nan
+chumphon   like             3.47    40.7   219.6     -0.2  15/15  15/15    0.0134    0.0002
+chumphon   like+avoid       0.00    44.3   218.7     -0.7  15/15  15/15    0.0006    0.0002
+narathiwat baseline        10.40    20.0   216.5      0.0  15/15  15/15       nan       nan
+narathiwat avoid            0.00    40.0   146.0    -32.6  15/15  15/15    0.0006       nan
+narathiwat like            10.53    20.0   216.5      0.0  15/15  15/15    0.5594       nan
+narathiwat like+avoid       0.00    40.0   146.0    -32.6  15/15  15/15    0.0006    0.0001
+phatthalungbaseline        15.00    25.0   215.5      0.0  15/15  15/15       nan       nan
+phatthalungavoid            0.00   100.0   109.4    -49.2  15/15  15/15    0.0002       nan
+phatthalunglike            15.00    25.0   215.6      0.1  15/15  15/15    0.1573       nan
+phatthalunglike+avoid       0.00   100.0   109.4    -49.2  15/15  15/15    0.0002    0.0001
+ranong     baseline         2.00    37.6   218.5      0.0  15/15  15/15       nan       nan
+ranong     avoid            0.00    31.3   218.8      0.2  15/15  15/15    0.5509       nan
+ranong     like             2.00    39.9   218.0     -0.2  15/15  15/15    0.8752    0.0169
+ranong     like+avoid       0.00    32.8   218.7      0.1  15/15  15/15    0.6374    0.9985
+satun      baseline         1.00    32.0   217.1      0.0  15/15  15/15       nan       nan
+satun      avoid            0.00    33.0   217.1     -0.0  15/15  15/15    0.8645       nan
+satun      like             1.00    38.5   217.1      0.0  15/15  15/15    0.1973    0.0007
+satun      like+avoid       0.00    38.3   217.6      0.2  15/15  15/15    0.0156    0.0010
+yala       baseline         4.40    19.3   184.2      0.0  15/15  15/15       nan       nan
+yala       avoid            0.00    26.6   152.2    -17.4  15/15  15/15    0.0007       nan
+yala       like             4.27    18.9   186.6      1.3  15/15  15/15    0.2091    0.9184
+yala       like+avoid       0.00    26.4   155.5    -15.6  15/15  15/15    0.0007    0.0003
+chaiyaphum baseline         9.60    22.3   218.7      0.0  15/15  15/15       nan       nan
+chaiyaphum avoid            0.00    51.4   175.0    -20.0  15/15  15/15    0.0007       nan
+chaiyaphum like             8.87    27.6   217.9     -0.4  15/15  15/15    0.7527    0.0026
+chaiyaphum like+avoid       0.00    53.9   176.0    -19.5  15/15  15/15    0.0001    0.0003
+nakhonphanombaseline        14.20    14.0   221.3      0.0  15/15  15/15       nan       nan
+nakhonphanomavoid            0.00    53.3   120.5    -45.5  15/15  15/15    0.0006       nan
+nakhonphanomlike            14.13    14.3   221.3      0.0  15/15  15/15    0.8443    0.3274
+nakhonphanomlike+avoid       0.00    56.2   123.8    -44.1  15/15  15/15    0.0007    0.0002
+buengkan   baseline         7.13    28.7   216.6      0.0  15/15  15/15       nan       nan
+buengkan   avoid            0.00    31.8   206.6     -4.6  15/15  15/15    0.0006       nan
+buengkan   like             6.93    30.0   216.5     -0.0  15/15  15/15    0.4939    0.0228
+buengkan   like+avoid       0.00    31.8   206.6     -4.6  15/15  15/15    0.0006    0.0002
+mahasarakhambaseline        14.00     0.0   221.8      0.0  15/15  15/15       nan       nan
+mahasarakhamavoid            0.00     0.0   156.9    -29.3  15/15  15/15    0.0007       nan
+mahasarakhamlike            14.00     0.0   221.8      0.0  15/15  15/15       nan       nan
+mahasarakhamlike+avoid       0.00     0.0   156.9    -29.3  15/15  15/15    0.0007       nan
+amnatcharoenbaseline         6.80    15.2   117.2      0.0  15/15   0/15       nan       nan
+amnatcharoenavoid            0.00    42.9    87.7    -25.1  15/15   0/15    0.0006       nan
+amnatcharoenlike             6.00    27.3   117.0     -0.2  15/15   0/15    0.3815    0.0002
+amnatcharoenlike+avoid       0.00    42.9    87.7    -25.1  15/15   0/15    0.0006    0.0002
+angthong   baseline        13.00     5.0   225.2      0.0  15/15  15/15       nan       nan
+angthong   avoid            0.00     9.1   152.5    -32.3  15/15  15/15    0.0006       nan
+angthong   like            13.07     5.0   225.4      0.1  15/15  15/15    0.1234       nan
+angthong   like+avoid       0.00     9.1   152.6    -32.2  15/15  15/15    0.0007    0.0001
+pattani    baseline        12.00    15.7   204.0      0.0  15/15  15/15       nan       nan
+pattani    avoid            0.00    50.0   118.4    -41.9  15/15  15/15    0.0005       nan
+pattani    like            12.00    14.7   202.4     -0.8  15/15  15/15    0.3948    0.8716
+pattani    like+avoid       0.00    50.0   118.4    -42.0  15/15  15/15    0.0006    0.0001

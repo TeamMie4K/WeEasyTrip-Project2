@@ -1,0 +1,28 @@
+====================================================================================================
+ILS EXPERIMENTS — trials=15
+====================================================================================================
+Province/Scenario                w    base    +ILS  gain%  valid b/i   ms b   ms i  p(ILS>b)
+phuket/S1_Short_Budget         0.0   148.5   156.5   5.38      15/15    350    656    0.0003
+phuket/S1_Short_Budget         1.5   146.7   156.7   6.85      15/15    339    647    0.0003
+phuket/S2_Medium_Standard      0.0   244.7   255.1   4.26      15/15    561    972    0.0000
+phuket/S2_Medium_Standard      1.5   243.2   254.3   4.58      15/15    585   1064    0.0003
+phuket/S3_Long_Premium         0.0   337.7   350.1   3.68      15/15   1360   1892    0.0003
+phuket/S3_Long_Premium         1.5   336.5   348.1   3.43      15/15   1357   1902    0.0003
+chiangmai/S1_Short_Budget      0.0   145.8   150.7   3.39      15/15    413    715    0.0003
+chiangmai/S1_Short_Budget      1.5   143.3   148.0   3.30      15/15    430    738    0.0000
+chiangmai/S2_Medium_Standard   0.0   239.8   247.4   3.14      15/15    679   1154    0.0000
+chiangmai/S2_Medium_Standard   1.5   237.1   245.1   3.35      15/15    692   1263    0.0003
+chiangmai/S3_Long_Premium      0.0   337.4   342.8   1.60      15/15    823   1534    0.0000
+chiangmai/S3_Long_Premium      1.5   336.6   340.3   1.08      15/15    751   1514    0.0003
+krabi/S1_Short_Budget          0.0   135.6   141.0   4.00      15/15    315    595    0.0003
+krabi/S1_Short_Budget          1.5   133.6   141.0   5.53      15/15    315    641    0.0003
+krabi/S2_Medium_Standard       0.0   224.3   231.2   3.09      15/15    491   1025    0.0003
+krabi/S2_Medium_Standard       1.5   224.0   230.5   2.91      15/15    509   1022    0.0003
+krabi/S3_Long_Premium          0.0   311.1   320.6   3.05      15/15    704   1461    0.0003
+krabi/S3_Long_Premium          1.5   309.7   320.1   3.33      15/15    704   1526    0.0000
+samui/S1_Short_Budget          0.0   143.4   148.3   3.41      15/15    335    673    0.0003
+samui/S1_Short_Budget          1.5   140.1   144.2   2.98      15/15    356    722    0.0003
+samui/S2_Medium_Standard       0.0   231.6   243.4   5.09      15/15    543   1061    0.0003
+samui/S2_Medium_Standard       1.5   227.5   237.3   4.31      15/15    564   1160    0.0000
+samui/S3_Long_Premium          0.0   327.8   334.7   2.09      15/15    705   1394    0.0003
+samui/S3_Long_Premium          1.5   326.1   328.6   0.77      15/15    651   1536    0.0032

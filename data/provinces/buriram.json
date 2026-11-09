@@ -1,0 +1,1187 @@
+{
+  "pois": [
+    {
+      "name_th": "พระบรมราชานุสาวรีย์พระบาทสมเด็จพระพุทธยอดฟ้าจุฬาโลกมหาราช",
+      "name_en": "Rama 1 Monument",
+      "category": "culture",
+      "lat": 14.986699,
+      "lng": 103.104636,
+      "score": 8.2,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P01"
+    },
+    {
+      "name_th": "ถนนคนเดิน บุรีรัมย์",
+      "name_en": "Night Market, WalkingStreet",
+      "category": "culture",
+      "lat": 14.996039,
+      "lng": 103.108263,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 960,
+      "close_min": 1320,
+      "tags": [
+        "culture"
+      ],
+      "id": "P02"
+    },
+    {
+      "name_th": "ปากปล่องภูเขาไฟ เขากระโดง",
+      "name_en": "Khao Kradong Crater",
+      "category": "culture",
+      "lat": 14.938658,
+      "lng": 103.093868,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P03"
+    },
+    {
+      "name_th": "อนุสาวรีย์รัฐธรรมนูญจังหวัดบุรีรัมย์",
+      "name_en": "อนุสาวรีย์รัฐธรรมนูญจังหวัดบุรีรัมย์",
+      "category": "culture",
+      "lat": 14.998438,
+      "lng": 103.117479,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P04"
+    },
+    {
+      "name_th": "Temporary weekly market",
+      "name_en": "Temporary weekly market",
+      "category": "culture",
+      "lat": 14.988839,
+      "lng": 103.109985,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P05"
+    },
+    {
+      "name_th": "ไลฟ์ลี่ มาร์เก็ต",
+      "name_en": "Lively market",
+      "category": "market",
+      "lat": 14.987362,
+      "lng": 103.086502,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P06"
+    },
+    {
+      "name_th": "local morning market",
+      "name_en": "local morning market",
+      "category": "market",
+      "lat": 15.003363,
+      "lng": 103.104975,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 300,
+      "close_min": 480,
+      "tags": [
+        "market"
+      ],
+      "id": "P07"
+    },
+    {
+      "name_th": "weekly temporary market",
+      "name_en": "weekly temporary market",
+      "category": "market",
+      "lat": 14.989302,
+      "lng": 103.109887,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P08"
+    },
+    {
+      "name_th": "Evening Market",
+      "name_en": "Evening Market",
+      "category": "market",
+      "lat": 14.998382,
+      "lng": 103.089706,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P09"
+    },
+    {
+      "name_th": "Guan Im Jay",
+      "name_en": "Guan Im Jay",
+      "category": "restaurant",
+      "lat": 14.633003,
+      "lng": 102.796372,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "vegetarian"
+      ],
+      "id": "P10"
+    },
+    {
+      "name_th": "ระเบียงลม",
+      "name_en": "Rabianglom",
+      "category": "restaurant",
+      "lat": 15.02913,
+      "lng": 103.148194,
+      "score": 8.1,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 420,
+      "close_min": 960,
+      "tags": [
+        "restaurant",
+        "thai",
+        "noodle"
+      ],
+      "id": "P11"
+    },
+    {
+      "name_th": "อีสานชาบูประโคนชัย",
+      "name_en": "อีสานชาบูประโคนชัย",
+      "category": "restaurant",
+      "lat": 14.603164,
+      "lng": 103.078648,
+      "score": 7.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P12"
+    },
+    {
+      "name_th": "Mader coffee - บุรีรัมย์",
+      "name_en": "Mader coffee - บุรีรัมย์",
+      "category": "restaurant",
+      "lat": 14.910898,
+      "lng": 103.074245,
+      "score": 7.8,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P13"
+    },
+    {
+      "name_th": "AERY (แอรี่) Coffee&Space Buriram",
+      "name_en": "AERY (แอรี่) Coffee&Space Buriram",
+      "category": "restaurant",
+      "lat": 14.564063,
+      "lng": 102.899665,
+      "score": 7.7,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P14"
+    },
+    {
+      "name_th": "บ้านสวนชิณท์ณภัทรหลวงแพ่งอนุสรณ์",
+      "name_en": "บ้านสวนชิณท์ณภัทรหลวงแพ่งอนุสรณ์",
+      "category": "restaurant",
+      "lat": 15.153471,
+      "lng": 102.911988,
+      "score": 7.7,
+      "cost": 80,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "restaurant",
+        "regional"
+      ],
+      "id": "P15"
+    },
+    {
+      "name_th": "เสือทอง หมูกระทะ 9 - สาขา สตึก",
+      "name_en": "เสือทอง หมูกระทะ 9 - สาขา สตึก",
+      "category": "restaurant",
+      "lat": 15.29157,
+      "lng": 103.289736,
+      "score": 7.7,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P16"
+    },
+    {
+      "name_th": "คำใหญ่",
+      "name_en": "คำใหญ่",
+      "category": "restaurant",
+      "lat": 15.297515,
+      "lng": 103.205807,
+      "score": 7.6,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop",
+        "regional"
+      ],
+      "id": "P17"
+    },
+    {
+      "name_th": "ร้านกะเตี๋ยวตายาย",
+      "name_en": "Grandma and Grandpa's Noodles",
+      "category": "restaurant",
+      "lat": 14.637726,
+      "lng": 102.794336,
+      "score": 7.5,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 540,
+      "close_min": 1020,
+      "tags": [
+        "restaurant",
+        "noodles",
+        "thai"
+      ],
+      "id": "P18"
+    },
+    {
+      "name_th": "Laanta",
+      "name_en": "Laanta",
+      "category": "restaurant",
+      "lat": 14.994587,
+      "lng": 103.099197,
+      "score": 7.4,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 930,
+      "tags": [
+        "restaurant",
+        "thai",
+        "coffee_shop"
+      ],
+      "id": "P19"
+    },
+    {
+      "name_th": "Starbucks",
+      "name_en": "Starbucks",
+      "category": "restaurant",
+      "lat": 14.97337,
+      "lng": 103.064481,
+      "score": 7.4,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 540,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P20"
+    },
+    {
+      "name_th": "Cafe@Green Restaurant",
+      "name_en": "Cafe@Green Restaurant",
+      "category": "restaurant",
+      "lat": 14.988442,
+      "lng": 103.109445,
+      "score": 7.3,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P21"
+    },
+    {
+      "name_th": "Badesee mit Gaststätte",
+      "name_en": "Thai",
+      "category": "restaurant",
+      "lat": 14.355351,
+      "lng": 103.069483,
+      "score": 7.3,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 540,
+      "close_min": 1140,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P22"
+    },
+    {
+      "name_th": "ตรูธม",
+      "name_en": "ตรูธม",
+      "category": "restaurant",
+      "lat": 14.653288,
+      "lng": 103.131703,
+      "score": 7.3,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 540,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "coffee_shop",
+        "thai"
+      ],
+      "id": "P23"
+    },
+    {
+      "name_th": "ไผ่ทองสเตชั่นสาขากระสัง - PaiTong",
+      "name_en": "ไผ่ทองสเตชั่นสาขากระสัง - PaiTong",
+      "category": "restaurant",
+      "lat": 14.973798,
+      "lng": 103.340339,
+      "score": 7.3,
+      "cost": 400,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "ice_cream",
+        "coffee_shop"
+      ],
+      "id": "P24"
+    },
+    {
+      "name_th": "Chef Plus+ Cafe and Restaurant",
+      "name_en": "Chef Plus+ Cafe and Restaurant",
+      "category": "restaurant",
+      "lat": 14.98838,
+      "lng": 103.109096,
+      "score": 7.2,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "thai",
+        "international"
+      ],
+      "id": "P25"
+    },
+    {
+      "name_th": "Dairy Queen",
+      "name_en": "Dairy Queen",
+      "category": "restaurant",
+      "lat": 14.973376,
+      "lng": 103.064318,
+      "score": 7.2,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "ice_cream",
+        "burger"
+      ],
+      "id": "P26"
+    },
+    {
+      "name_th": "Irish Bar",
+      "name_en": "Irish Bar",
+      "category": "restaurant",
+      "lat": 14.998813,
+      "lng": 103.117198,
+      "score": 7.2,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 780,
+      "close_min": 1439,
+      "tags": [
+        "restaurant",
+        "international",
+        "thai"
+      ],
+      "id": "P27"
+    },
+    {
+      "name_th": "Isaan Hut",
+      "name_en": "Isaan Hut",
+      "category": "restaurant",
+      "lat": 14.646775,
+      "lng": 102.794293,
+      "score": 7.2,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 540,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "international__& thai isaan food"
+      ],
+      "id": "P28"
+    },
+    {
+      "name_th": "Jimmy's Sports Cafe",
+      "name_en": "Jimmy's Sports Cafe",
+      "category": "restaurant",
+      "lat": 14.989726,
+      "lng": 103.092382,
+      "score": 7.2,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 540,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P29"
+    },
+    {
+      "name_th": "KFC",
+      "name_en": "KFC",
+      "category": "restaurant",
+      "lat": 14.97344,
+      "lng": 103.064565,
+      "score": 7.2,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "chicken"
+      ],
+      "id": "P30"
+    },
+    {
+      "name_th": "ข้าวแกงแม่บัวผัน",
+      "name_en": "ข้าวแกงแม่บัวผัน",
+      "category": "restaurant",
+      "lat": 14.612338,
+      "lng": 103.07932,
+      "score": 7.2,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 360,
+      "close_min": 840,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P31"
+    },
+    {
+      "name_th": "ครัวสอง 8 Take home",
+      "name_en": "ครัวสอง 8 Take home",
+      "category": "restaurant",
+      "lat": 14.629879,
+      "lng": 102.781111,
+      "score": 7.2,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P32"
+    },
+    {
+      "name_th": "ร้านก๋วยเตี๋ยวหน้าวัด&อาหารตามสั่ง",
+      "name_en": "ร้านก๋วยเตี๋ยวหน้าวัด&อาหารตามสั่ง",
+      "category": "restaurant",
+      "lat": 14.634747,
+      "lng": 102.932133,
+      "score": 7.2,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "noodle"
+      ],
+      "id": "P33"
+    },
+    {
+      "name_th": "ร้านวาริน",
+      "name_en": "ร้านวาริน",
+      "category": "restaurant",
+      "lat": 14.533183,
+      "lng": 102.94631,
+      "score": 7.2,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P34"
+    },
+    {
+      "name_th": "Black Canyon",
+      "name_en": "Black Canyon",
+      "category": "restaurant",
+      "lat": 15.227152,
+      "lng": 103.246694,
+      "score": 7.1,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P35"
+    },
+    {
+      "name_th": "คาเฟ่ อเมซอน",
+      "name_en": "Cafe Amazon",
+      "category": "restaurant",
+      "lat": 15.023172,
+      "lng": 103.14294,
+      "score": 7.1,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P36"
+    },
+    {
+      "name_th": "Mar's riverside",
+      "name_en": "Mar's riverside",
+      "category": "restaurant",
+      "lat": 14.615576,
+      "lng": 102.899651,
+      "score": 7.1,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P37"
+    },
+    {
+      "name_th": "ตรี คาเฟ่แอนด์ เรสเตอรองท์",
+      "name_en": "Tri Cafe and Restaurant",
+      "category": "restaurant",
+      "lat": 14.633795,
+      "lng": 102.78395,
+      "score": 7.1,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P38"
+    },
+    {
+      "name_th": "บ้านสวนสะออน",
+      "name_en": "บ้านสวนสะออน",
+      "category": "restaurant",
+      "lat": 14.437839,
+      "lng": 102.690597,
+      "score": 7.1,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P39"
+    },
+    {
+      "name_th": "Boston Barista",
+      "name_en": "Boston Barista",
+      "category": "restaurant",
+      "lat": 14.612522,
+      "lng": 103.082501,
+      "score": 7.0,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "tea",
+        "coffee_shop"
+      ],
+      "id": "P40"
+    },
+    {
+      "name_th": "Check inn Buriram",
+      "name_en": "Check inn Buriram",
+      "category": "restaurant",
+      "lat": 14.988228,
+      "lng": 103.087272,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P41"
+    },
+    {
+      "name_th": "Class cafe",
+      "name_en": "Class cafe",
+      "category": "restaurant",
+      "lat": 14.986374,
+      "lng": 103.083782,
+      "score": 7.0,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P42"
+    },
+    {
+      "name_th": "ข้าวต้ม24น",
+      "name_en": "KawTom 24 (Rice Soup)",
+      "category": "restaurant",
+      "lat": 14.633893,
+      "lng": 102.786809,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P43"
+    },
+    {
+      "name_th": "Lisa Coffee",
+      "name_en": "Lisa Coffee",
+      "category": "restaurant",
+      "lat": 14.413779,
+      "lng": 102.958122,
+      "score": 7.0,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P44"
+    },
+    {
+      "name_th": "Blue Mountain Fresh Coffee",
+      "name_en": "Blue Mountain Fresh Coffee",
+      "category": "restaurant",
+      "lat": 14.271279,
+      "lng": 102.715769,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P45"
+    },
+    {
+      "name_th": "Five Star",
+      "name_en": "Five Star",
+      "category": "restaurant",
+      "lat": 14.634915,
+      "lng": 102.78471,
+      "score": 6.9,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P46"
+    },
+    {
+      "name_th": "Garden Resort Restaurant",
+      "name_en": "Garden Resort Restaurant",
+      "category": "restaurant",
+      "lat": 14.416039,
+      "lng": 103.100915,
+      "score": 6.9,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "thai",
+        "western"
+      ],
+      "id": "P47"
+    },
+    {
+      "name_th": "Inthanin",
+      "name_en": "Inthanin",
+      "category": "restaurant",
+      "lat": 14.632249,
+      "lng": 102.824552,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P48"
+    },
+    {
+      "name_th": "Inthanin Cafe",
+      "name_en": "Inthanin Cafe",
+      "category": "restaurant",
+      "lat": 14.612026,
+      "lng": 103.057733,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P49"
+    },
+    {
+      "name_th": "Noodles",
+      "name_en": "Noodles",
+      "category": "restaurant",
+      "lat": 14.506514,
+      "lng": 103.099809,
+      "score": 6.9,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "noodle"
+      ],
+      "id": "P50"
+    },
+    {
+      "name_th": "Pan Thai Cafe",
+      "name_en": "Pan Thai Cafe",
+      "category": "restaurant",
+      "lat": 14.633496,
+      "lng": 102.79936,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P51"
+    },
+    {
+      "name_th": "Pearly",
+      "name_en": "Pearly",
+      "category": "restaurant",
+      "lat": 14.634547,
+      "lng": 102.745359,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P52"
+    },
+    {
+      "name_th": "Punthai Coffee",
+      "name_en": "Punthai Coffee",
+      "category": "restaurant",
+      "lat": 14.856971,
+      "lng": 103.068133,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P53"
+    },
+    {
+      "name_th": "ก๋วยเตี๋ยวไก่มะระโคกมะกอก",
+      "name_en": "ก๋วยเตี๋ยวไก่มะระโคกมะกอก",
+      "category": "restaurant",
+      "lat": 14.978165,
+      "lng": 103.146486,
+      "score": 6.9,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "noodle"
+      ],
+      "id": "P54"
+    },
+    {
+      "name_th": "วัดบ้านแสลงโทน",
+      "name_en": "Wat Ban Salaeng Thon",
+      "category": "temple",
+      "lat": 14.779403,
+      "lng": 103.055467,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P55"
+    },
+    {
+      "name_th": "วัดกลางพระอารามหลวง",
+      "name_en": "Wat Klang Phra Aram Luang",
+      "category": "temple",
+      "lat": 14.996184,
+      "lng": 103.112704,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P56"
+    },
+    {
+      "name_th": "วัดระหาน",
+      "name_en": "Wat Rahan",
+      "category": "temple",
+      "lat": 15.135373,
+      "lng": 103.19035,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P57"
+    },
+    {
+      "name_th": "วัดบ้านสนวนนอก",
+      "name_en": "Wat Ban Sanuan Nok",
+      "category": "temple",
+      "lat": 14.937146,
+      "lng": 103.182555,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P58"
+    },
+    {
+      "name_th": "วัดป่าเขาน้อย",
+      "name_en": "Wat Pa Khao Noi",
+      "category": "temple",
+      "lat": 14.929106,
+      "lng": 103.094623,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P59"
+    },
+    {
+      "name_th": "Wat Khao Kradong",
+      "name_en": "Wat Khao Kradong",
+      "category": "temple",
+      "lat": 14.940546,
+      "lng": 103.093471,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P60"
+    },
+    {
+      "name_th": "Wat Ban Nong Phet",
+      "name_en": "Wat Ban Nong Phet",
+      "category": "temple",
+      "lat": 15.053577,
+      "lng": 103.131436,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P61"
+    },
+    {
+      "name_th": "Wat Pa Burirat Pattanaram",
+      "name_en": "Wat Pa Burirat Pattanaram",
+      "category": "temple",
+      "lat": 14.996434,
+      "lng": 103.084432,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P62"
+    },
+    {
+      "name_th": "Wat Savang Arom",
+      "name_en": "Wat Savang Arom",
+      "category": "temple",
+      "lat": 14.985246,
+      "lng": 103.081129,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P63"
+    },
+    {
+      "name_th": "Wat Tham Theeraram",
+      "name_en": "Wat Tham Theeraram",
+      "category": "temple",
+      "lat": 15.006957,
+      "lng": 103.106258,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P64"
+    },
+    {
+      "name_th": "พระธาตุเจดีย์ทะเมนชัย",
+      "name_en": "พระธาตุเจดีย์ทะเมนชัย",
+      "category": "temple",
+      "lat": 15.039369,
+      "lng": 102.910754,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P65"
+    },
+    {
+      "name_th": "วัดอิสาณทะเมนชัย",
+      "name_en": "วัดอิสาณทะเมนชัย",
+      "category": "temple",
+      "lat": 15.038708,
+      "lng": 102.918726,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P66"
+    }
+  ],
+  "hotels": [
+    {
+      "name_th": "บ.มะค่า. บุรีรัมย์",
+      "name_en": "บ.มะค่า. บุรีรัมย์",
+      "lat": 15.014308,
+      "lng": 103.111858,
+      "score": 7.0,
+      "cost": 450,
+      "stars": 1,
+      "id": "H01"
+    },
+    {
+      "name_th": "Feel at Home - บุรีรัมย์",
+      "name_en": "Feel at Home - บุรีรัมย์",
+      "lat": 14.931784,
+      "lng": 103.087972,
+      "score": 7.6,
+      "cost": 600,
+      "stars": 2,
+      "id": "H02"
+    },
+    {
+      "name_th": "Laanta Guest House",
+      "name_en": "Laanta Guest House",
+      "lat": 14.994567,
+      "lng": 103.099104,
+      "score": 7.5,
+      "cost": 600,
+      "stars": 2,
+      "id": "H03"
+    },
+    {
+      "name_th": "Green@Buriram",
+      "name_en": "Green@Buriram",
+      "lat": 14.988592,
+      "lng": 103.109344,
+      "score": 8.0,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H04"
+    },
+    {
+      "name_th": "Diamond Hotel Buriram (โรงแรมไดมอนด์ บุรีรัมย์)",
+      "name_en": "Diamond Hotel Buriram (โรงแรมไดมอนด์ บุรีรัมย์)",
+      "lat": 14.970972,
+      "lng": 103.077533,
+      "score": 8.1,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H05"
+    },
+    {
+      "name_th": "Buritel",
+      "name_en": "Buritel",
+      "lat": 14.993418,
+      "lng": 103.094083,
+      "score": 8.0,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H06"
+    },
+    {
+      "name_th": "Bankaow Resort",
+      "name_en": "Ban Kaow Resort",
+      "lat": 14.915738,
+      "lng": 103.075298,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H07"
+    },
+    {
+      "name_th": "บี2บุรีรัมย์",
+      "name_en": "B2 Buriram",
+      "lat": 14.996064,
+      "lng": 103.119507,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H08"
+    },
+    {
+      "name_th": "Fortune Hotel Buriram",
+      "name_en": "Fortune Hotel Buriram",
+      "lat": 14.980258,
+      "lng": 103.0739,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H09"
+    }
+  ]
+}

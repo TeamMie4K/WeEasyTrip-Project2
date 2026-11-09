@@ -1,0 +1,3601 @@
+{
+  "trials": 15,
+  "like": [
+    "activity",
+    "viewpoint"
+  ],
+  "avoid": [
+    "temple",
+    "market"
+  ],
+  "results": {
+    "phuket": {
+      "baseline": {
+        "avoided_mean": 5.533333333333333,
+        "liked_share": 0.37666666666666665,
+        "score": 254.34,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.49333333333333335,
+        "score": 249.84,
+        "delta_pct": -1.7692852087756545,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 4.6,
+        "liked_share": 0.4866666666666667,
+        "score": 253.63333333333333,
+        "delta_pct": -0.2778433068595886,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0075738901348872375,
+        "p_liked": 0.0004030602366301852
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.58,
+        "score": 250.35333333333332,
+        "delta_pct": -1.5674556368116217,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 0.00029563251185049877
+      }
+    },
+    "chiangmai": {
+      "baseline": {
+        "avoided_mean": 10,
+        "liked_share": 0.26,
+        "score": 245.08666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6799999999999999,
+        "score": 235.66666666666666,
+        "delta_pct": -3.843538340178991,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6.533333333333333,
+        "liked_share": 0.5466666666666666,
+        "score": 241.14666666666668,
+        "delta_pct": -1.607594592389086,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": 0.0003128690666030151
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.75,
+        "score": 234.88666666666666,
+        "delta_pct": -4.161793107200181,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 0.00014370708072901643
+      }
+    },
+    "krabi": {
+      "baseline": {
+        "avoided_mean": 6.133333333333334,
+        "liked_share": 0.3466666666666667,
+        "score": 230.46,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5066666666666667,
+        "score": 228.46,
+        "delta_pct": -0.8678295582747548,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.001214807730917718,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 4.2,
+        "liked_share": 0.55,
+        "score": 230.51333333333332,
+        "delta_pct": 0.023142121553984745,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.9720656012802238,
+        "p_liked": 0.0002948650613319232
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.61,
+        "score": 228.63333333333333,
+        "delta_pct": -0.7926176632242828,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.00079744385109149,
+        "p_liked": 0.00029563251185049877
+      }
+    },
+    "samui": {
+      "baseline": {
+        "avoided_mean": 6.133333333333334,
+        "liked_share": 0.25,
+        "score": 237.26,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.48333333333333334,
+        "score": 229.41333333333333,
+        "delta_pct": -3.3072016634353303,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 5,
+        "liked_share": 0.5,
+        "score": 235.48,
+        "delta_pct": -0.7502318132007086,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 5.3755588364750274e-05
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.52,
+        "score": 229.24666666666667,
+        "delta_pct": -3.377448087892321,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.0002161554510011989
+      }
+    },
+    "bangkok": {
+      "baseline": {
+        "avoided_mean": 10.333333333333334,
+        "liked_share": 0.23333333333333334,
+        "score": 259.25333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5366666666666667,
+        "score": 246.02666666666667,
+        "delta_pct": -5.101830898991975,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.133333333333333,
+        "liked_share": 0.39666666666666667,
+        "score": 256.34,
+        "delta_pct": -1.12373997119935,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.000803313257091444,
+        "p_liked": 0.00028128656591029985
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.7466666666666667,
+        "score": 243.34666666666666,
+        "delta_pct": -6.13556881300144,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 0.0002255476738071531
+      }
+    },
+    "chonburi": {
+      "baseline": {
+        "avoided_mean": 8.666666666666666,
+        "liked_share": 0.23666666666666666,
+        "score": 229.25333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.51,
+        "score": 221.74666666666667,
+        "delta_pct": -3.274398045829938,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6.666666666666667,
+        "liked_share": 0.4366666666666667,
+        "score": 227.62666666666667,
+        "delta_pct": -0.7095498429684767,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0011953120451164644,
+        "p_liked": 0.00026814976546316635
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.58,
+        "score": 221.49333333333334,
+        "delta_pct": -3.384901709898798,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": 0.00030182209906671564
+      }
+    },
+    "prachuapkhirikhan": {
+      "baseline": {
+        "avoided_mean": 5.266666666666667,
+        "liked_share": 0.37666666666666665,
+        "score": 217.15333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5416122004357299,
+        "score": 199.27333333333334,
+        "delta_pct": -8.233813280938199,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 5.4,
+        "liked_share": 0.4,
+        "score": 217.09333333333333,
+        "delta_pct": -0.027630245909189638,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.5520074425329622,
+        "p_liked": 0.00407548579675135
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.550326797385621,
+        "score": 201.94666666666666,
+        "delta_pct": -7.002732324317692,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": 0.0002724800506139571
+      }
+    },
+    "ayutthaya": {
+      "baseline": {
+        "avoided_mean": 14.8,
+        "liked_share": 0.0,
+        "score": 240.96666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 231.69333333333333,
+        "delta_pct": -3.848388435468256,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14.8,
+        "liked_share": 0.0,
+        "score": 240.96666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 231.69333333333333,
+        "delta_pct": -3.848388435468256,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": NaN
+      }
+    },
+    "kanchanaburi": {
+      "baseline": {
+        "avoided_mean": 10,
+        "liked_share": 0.15,
+        "score": 223.54,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.15,
+        "score": 218.26,
+        "delta_pct": -2.361993379260983,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.066666666666666,
+        "liked_share": 0.15,
+        "score": 223.70666666666668,
+        "delta_pct": 0.07455787182011525,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.28903033237876297,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.15,
+        "score": 218.20666666666668,
+        "delta_pct": -2.3858518982434083,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      }
+    },
+    "phangnga": {
+      "baseline": {
+        "avoided_mean": 6.733333333333333,
+        "liked_share": 0.38,
+        "score": 216.67333333333335,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4366666666666667,
+        "score": 217.20000000000002,
+        "delta_pct": 0.2430694440171091,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.04776982928536977,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6.333333333333333,
+        "liked_share": 0.4,
+        "score": 216.62,
+        "delta_pct": -0.024614627242242546,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.7543206454321396,
+        "p_liked": 0.007152939217714824
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.45333333333333337,
+        "score": 217.56666666666666,
+        "delta_pct": 0.4122950063074905,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.004276204027205886,
+        "p_liked": 0.00023917554320093795
+      }
+    },
+    "chiangrai": {
+      "baseline": {
+        "avoided_mean": 11,
+        "liked_share": 0.23666666666666666,
+        "score": 233.50666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6966666666666667,
+        "score": 224.21333333333334,
+        "delta_pct": -3.979900645234964,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 7.866666666666666,
+        "liked_share": 0.4633333333333333,
+        "score": 231.68666666666667,
+        "delta_pct": -0.779421001541709,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 0.00028351878813536103
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.7433333333333333,
+        "score": 224.19333333333333,
+        "delta_pct": -3.988465711185976,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.00026814976546316635
+      }
+    },
+    "suratthani": {
+      "baseline": {
+        "avoided_mean": 11.533333333333333,
+        "liked_share": 0.25333333333333335,
+        "score": 222.78,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6,
+        "score": 147.6,
+        "delta_pct": -33.746296795044444,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11,
+        "liked_share": 0.27666666666666667,
+        "score": 223.20666666666668,
+        "delta_pct": 0.19151928659066186,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.02174829625833006,
+        "p_liked": 0.009815328628645334
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6,
+        "score": 147.38,
+        "delta_pct": -33.84504892719275,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 8.122042259340038e-05
+      }
+    },
+    "nakhonratchasima": {
+      "baseline": {
+        "avoided_mean": 13.933333333333334,
+        "liked_share": 0.05,
+        "score": 226.22666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.1111111111111111,
+        "score": 142.06666666666666,
+        "delta_pct": -37.20162668709849,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14.066666666666666,
+        "liked_share": 0.05,
+        "score": 226.26666666666668,
+        "delta_pct": 0.01768138150528399,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.733478055862478,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.1111111111111111,
+        "score": 142.12666666666667,
+        "delta_pct": -37.17510461484057,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "khonkaen": {
+      "baseline": {
+        "avoided_mean": 13.666666666666666,
+        "liked_share": 0.05,
+        "score": 232.32,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.1,
+        "score": 225.52666666666667,
+        "delta_pct": -2.924127640036726,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006289394206546052,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 13.466666666666667,
+        "liked_share": 0.06666666666666667,
+        "score": 232.66666666666666,
+        "delta_pct": 0.14921946740128444,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.05561050506657131,
+        "p_liked": 0.012673659338734126
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.1,
+        "score": 225.59333333333333,
+        "delta_pct": -2.8954315886134037,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006418578334382444,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "udonthani": {
+      "baseline": {
+        "avoided_mean": 11.266666666666667,
+        "liked_share": 0.15,
+        "score": 222.86666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.25,
+        "score": 162.27333333333334,
+        "delta_pct": -27.188154352378103,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.533333333333333,
+        "liked_share": 0.15,
+        "score": 222.96666666666667,
+        "delta_pct": 0.044869877355666006,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.28504940740261275,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.25,
+        "score": 162.21333333333334,
+        "delta_pct": -27.215076278791507,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "phetchaburi": {
+      "baseline": {
+        "avoided_mean": 9.133333333333333,
+        "liked_share": 0.16666666666666666,
+        "score": 225.86666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3333333333333333,
+        "score": 160.17333333333335,
+        "delta_pct": -29.085005903187717,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 8.733333333333333,
+        "liked_share": 0.2,
+        "score": 225.55333333333334,
+        "delta_pct": -0.13872491145218385,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.28552518429578655,
+        "p_liked": 0.001946208561389314
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3333333333333333,
+        "score": 160.14000000000001,
+        "delta_pct": -29.099763872491142,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 0.00023917554320093795
+      }
+    },
+    "rayong": {
+      "baseline": {
+        "avoided_mean": 4.066666666666666,
+        "liked_share": 0.3233333333333333,
+        "score": 220.28,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 218.93333333333334,
+        "delta_pct": -0.6113431390351661,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 3.533333333333333,
+        "liked_share": 0.4,
+        "score": 219.90666666666667,
+        "delta_pct": -0.1694812662671758,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.09603314386478143,
+        "p_liked": 0.0002255476738071531
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 218.74,
+        "delta_pct": -0.6991102233520937,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.00079744385109149,
+        "p_liked": 0.0002255476738071531
+      }
+    },
+    "sukhothai": {
+      "baseline": {
+        "avoided_mean": 9.466666666666667,
+        "liked_share": 0.08,
+        "score": 237.24,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.25,
+        "score": 234.82666666666665,
+        "delta_pct": -1.017253976282817,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 8.533333333333333,
+        "liked_share": 0.25,
+        "score": 233.86,
+        "delta_pct": -1.424717585567356,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": 0.0002161554510011989
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.25,
+        "score": 234.81333333333333,
+        "delta_pct": -1.0228741639970815,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": 0.0002161554510011989
+      }
+    },
+    "phitsanulok": {
+      "baseline": {
+        "avoided_mean": 11,
+        "liked_share": 0.2,
+        "score": 223.6,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.36363636363636365,
+        "score": 155.28666666666666,
+        "delta_pct": -30.551580202742993,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11,
+        "liked_share": 0.2,
+        "score": 223.62666666666667,
+        "delta_pct": 0.011926058437688208,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.720580338641448,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.36363636363636365,
+        "score": 155.26666666666668,
+        "delta_pct": -30.56052474657125,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006386112041971715,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "songkhla": {
+      "baseline": {
+        "avoided_mean": 12.8,
+        "liked_share": 0.1,
+        "score": 227.47333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.25,
+        "score": 192.54,
+        "delta_pct": -15.35711145628792,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.2,
+        "liked_share": 0.2,
+        "score": 226.7,
+        "delta_pct": -0.33996658949034636,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0015151024952083816,
+        "p_liked": 0.00023326602349477604
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.25,
+        "score": 192.51333333333332,
+        "delta_pct": -15.368834442132416,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006321520160876122,
+        "p_liked": 0.00023326602349477604
+      }
+    },
+    "ubonratchathani": {
+      "baseline": {
+        "avoided_mean": 10.933333333333334,
+        "liked_share": 0.19333333333333333,
+        "score": 227.98666666666668,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 183.09333333333333,
+        "delta_pct": -19.691210012281427,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10,
+        "liked_share": 0.26,
+        "score": 227.50666666666666,
+        "delta_pct": -0.2105386279899489,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.04771488023735121,
+        "p_liked": 0.0006223089785121674
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 183.14666666666665,
+        "delta_pct": -19.667816831393665,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006353759378356659,
+        "p_liked": 0.00023131925256084868
+      }
+    },
+    "nan": {
+      "baseline": {
+        "avoided_mean": 14.733333333333333,
+        "liked_share": 0.0,
+        "score": 229.90666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.08333333333333333,
+        "score": 163.1,
+        "delta_pct": -29.05816853215798,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.000619369408779174,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14.866666666666667,
+        "liked_share": 0.0,
+        "score": 229.85333333333332,
+        "delta_pct": -0.02319781940497956,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.344118496135312,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.08333333333333333,
+        "score": 163.15333333333334,
+        "delta_pct": -29.034970712753,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006386112041971715,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "lampang": {
+      "baseline": {
+        "avoided_mean": 11.2,
+        "liked_share": 0.19,
+        "score": 230.29999999999998,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6107226107226108,
+        "score": 173.42666666666668,
+        "delta_pct": -24.69532493848602,
+        "valid": 14,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10,
+        "liked_share": 0.26,
+        "score": 229.63333333333333,
+        "delta_pct": -0.28947749312490545,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.12054443359375,
+        "p_liked": 0.000978917897162665
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6153846153846154,
+        "score": 174.55333333333334,
+        "delta_pct": -24.206107975104928,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": 0.0002948650613319232
+      }
+    },
+    "chanthaburi": {
+      "baseline": {
+        "avoided_mean": 9.866666666666667,
+        "liked_share": 0.09666666666666666,
+        "score": 225.38,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 225.09333333333333,
+        "delta_pct": -0.12719259324991647,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.07864410975908658,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 8.866666666666667,
+        "liked_share": 0.18666666666666668,
+        "score": 225.45333333333332,
+        "delta_pct": 0.03253764013369575,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.9320111542564126,
+        "p_liked": 0.00043622442149098933
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 225.05333333333334,
+        "delta_pct": -0.1449403969592039,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.07464680491957937,
+        "p_liked": 0.00032882719765892207
+      }
+    },
+    "phayao": {
+      "baseline": {
+        "avoided_mean": 9.533333333333333,
+        "liked_share": 0.2733333333333333,
+        "score": 217.28,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.33789473684210525,
+        "score": 214.04,
+        "delta_pct": -1.4911634756995624,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.4,
+        "liked_share": 0.27666666666666667,
+        "score": 217.33333333333334,
+        "delta_pct": 0.024545900834564465,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.7000929072234297,
+        "p_liked": 0.3527284930556367
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.33666666666666667,
+        "score": 214.47333333333333,
+        "delta_pct": -1.2917280314187556,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.0005339772161581458
+      }
+    },
+    "mukdahan": {
+      "baseline": {
+        "avoided_mean": 10.266666666666667,
+        "liked_share": 0.19333333333333333,
+        "score": 221.70666666666668,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4666666666666667,
+        "score": 184.0,
+        "delta_pct": -17.00745730093818,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.4,
+        "liked_share": 0.25333333333333335,
+        "score": 221.28,
+        "delta_pct": -0.1924464758239159,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0031428846155461764,
+        "p_liked": 0.0005280076130035933
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4666666666666667,
+        "score": 184.06666666666666,
+        "delta_pct": -16.977387539090696,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": 0.00023131925256084868
+      }
+    },
+    "roiet": {
+      "baseline": {
+        "avoided_mean": 13.4,
+        "liked_share": 0.05,
+        "score": 222.85333333333332,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.14285714285714285,
+        "score": 126.31333333333333,
+        "delta_pct": -43.31997128156037,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006146224121124647,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 13.266666666666667,
+        "liked_share": 0.05,
+        "score": 222.82,
+        "delta_pct": -0.014957520641377635,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.31731050786291415,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.14285714285714285,
+        "score": 126.3,
+        "delta_pct": -43.32595428981691,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006130456955211334,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "nongkhai": {
+      "baseline": {
+        "avoided_mean": 9.8,
+        "liked_share": 0.25333333333333335,
+        "score": 234.4,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 228.49333333333334,
+        "delta_pct": -2.519908987485779,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006353759378356659,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6.4,
+        "liked_share": 0.44,
+        "score": 233.88,
+        "delta_pct": -0.22184300341297364,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0029994258912303126,
+        "p_liked": 0.0001733096755673331
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.56,
+        "score": 228.46,
+        "delta_pct": -2.5341296928327637,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006321520160876122,
+        "p_liked": 0.0002732064791285262
+      }
+    },
+    "lamphun": {
+      "baseline": {
+        "avoided_mean": 11.8,
+        "liked_share": 0.11805068226120857,
+        "score": 222.05333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.22350427350427352,
+        "score": 170.94666666666666,
+        "delta_pct": -23.015491773748053,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.333333333333334,
+        "liked_share": 0.11801169590643275,
+        "score": 216.63333333333333,
+        "delta_pct": -2.440855049837884,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.05553298081594267,
+        "p_liked": 0.15233299756951635
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.21452991452991454,
+        "score": 167.82666666666665,
+        "delta_pct": -24.42055962531525,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": 0.00031930560209858576
+      }
+    },
+    "nonthaburi": {
+      "baseline": {
+        "avoided_mean": 13.133333333333333,
+        "liked_share": 0.13666666666666666,
+        "score": 237.46666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.45,
+        "score": 221.08,
+        "delta_pct": -6.900617630544633,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.866666666666667,
+        "liked_share": 0.2633333333333333,
+        "score": 235.61333333333334,
+        "delta_pct": -0.7804604154969081,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0017815591405881395,
+        "p_liked": 0.00026814976546316635
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.45,
+        "score": 220.88666666666666,
+        "delta_pct": -6.982032565974177,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 0.0002255476738071531
+      }
+    },
+    "phetchabun": {
+      "baseline": {
+        "avoided_mean": 7.466666666666667,
+        "liked_share": 0.37333333333333335,
+        "score": 219.05333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5970310170851967,
+        "score": 209.74,
+        "delta_pct": -4.251628218394302,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0001220703125,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6.866666666666666,
+        "liked_share": 0.44333333333333336,
+        "score": 219.56666666666666,
+        "delta_pct": 0.23434171282487729,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.10247043485974937,
+        "p_liked": 0.001558047347358915
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5607585139318886,
+        "score": 206.10666666666665,
+        "delta_pct": -5.910280601375626,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": 0.00031768796891783294
+      }
+    },
+    "lopburi": {
+      "baseline": {
+        "avoided_mean": 10.733333333333333,
+        "liked_share": 0.13333333333333333,
+        "score": 222.55333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.15052631578947367,
+        "score": 217.48666666666668,
+        "delta_pct": -2.2766078542970956,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.8,
+        "liked_share": 0.15,
+        "score": 222.32666666666668,
+        "delta_pct": -0.10184824611328795,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.29406485465346055,
+        "p_liked": 0.012673659338734126
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.15052631578947367,
+        "score": 217.44,
+        "delta_pct": -2.2975766108498386,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": 0.009815328628645334
+      }
+    },
+    "samutprakan": {
+      "baseline": {
+        "avoided_mean": 12,
+        "liked_share": 0.12666666666666668,
+        "score": 237.37333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 224.22666666666666,
+        "delta_pct": -5.538392405774311,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.866666666666667,
+        "liked_share": 0.2,
+        "score": 236.76666666666665,
+        "delta_pct": -0.25557490310622505,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.08260155675359679,
+        "p_liked": 0.0004598171861514206
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 224.36,
+        "delta_pct": -5.482222097399309,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 0.0004598171861514206
+      }
+    },
+    "samutsongkhram": {
+      "baseline": {
+        "avoided_mean": 11.6,
+        "liked_share": 0.13666666666666666,
+        "score": 229.56,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.17647058823529413,
+        "score": 196.52666666666667,
+        "delta_pct": -14.389847244003018,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.266666666666667,
+        "liked_share": 0.14666666666666667,
+        "score": 229.21333333333334,
+        "delta_pct": -0.15101353313585295,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.13009440924007057,
+        "p_liked": 0.0416322583317752
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.17647058823529413,
+        "score": 196.4,
+        "delta_pct": -14.445025265725734,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 0.0001733096755673331
+      }
+    },
+    "saraburi": {
+      "baseline": {
+        "avoided_mean": 8.533333333333333,
+        "liked_share": 0.23333333333333334,
+        "score": 217.27333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2633333333333333,
+        "score": 216.90666666666667,
+        "delta_pct": -0.1687582461415763,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.14837821039623098,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 8.2,
+        "liked_share": 0.2733333333333333,
+        "score": 217.92666666666668,
+        "delta_pct": 0.3006965113068037,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.09350749035948164,
+        "p_liked": 0.002500084527981411
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2675438596491228,
+        "score": 216.42000000000002,
+        "delta_pct": -0.39274646374765637,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.17647341123194393,
+        "p_liked": 0.002943990679779778
+      }
+    },
+    "trat": {
+      "baseline": {
+        "avoided_mean": 9.266666666666667,
+        "liked_share": 0.14666666666666667,
+        "score": 216.28666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3333333333333333,
+        "score": 160.07333333333332,
+        "delta_pct": -25.990198193755205,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.000605204125698665,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.6,
+        "liked_share": 0.15333333333333332,
+        "score": 216.52666666666667,
+        "delta_pct": 0.11096384428074274,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.15383923144709824,
+        "p_liked": 0.2887343312136498
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3333333333333333,
+        "score": 160.03333333333333,
+        "delta_pct": -26.00869216780199,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006386112041971715,
+        "p_liked": 0.00014509353471142073
+      }
+    },
+    "nakhonsithammarat": {
+      "baseline": {
+        "avoided_mean": 11.333333333333334,
+        "liked_share": 0.08333333333333334,
+        "score": 219.97333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.13333333333333333,
+        "score": 182.77333333333334,
+        "delta_pct": -16.91114074433264,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.8,
+        "liked_share": 0.09333333333333334,
+        "score": 220.18666666666667,
+        "delta_pct": 0.09698145229725039,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.2020347464503962,
+        "p_liked": 0.08985624743949988
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.13333333333333333,
+        "score": 182.98,
+        "delta_pct": -16.81718996241969,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006402330973173942,
+        "p_liked": 0.00019820711303826554
+      }
+    },
+    "trang": {
+      "baseline": {
+        "avoided_mean": 12.4,
+        "liked_share": 0.09333333333333334,
+        "score": 219.82666666666665,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 148.27333333333334,
+        "delta_pct": -32.54988779038029,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006386112041971715,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.133333333333333,
+        "liked_share": 0.1,
+        "score": 219.88666666666666,
+        "delta_pct": 0.027294231819009952,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.8585862013366392,
+        "p_liked": 0.07864960352514251
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 148.20666666666668,
+        "delta_pct": -32.58021471462363,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.00011207201646585013
+      }
+    },
+    "maehongson": {
+      "baseline": {
+        "avoided_mean": 9.333333333333334,
+        "liked_share": 0.33666666666666667,
+        "score": 222.12,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6666666666666666,
+        "score": 159.25333333333333,
+        "delta_pct": -28.30301938891891,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 8.266666666666667,
+        "liked_share": 0.4,
+        "score": 222.26666666666665,
+        "delta_pct": 0.06603037397201826,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.526706246484243,
+        "p_liked": 0.00031814957062010254
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.6666666666666666,
+        "score": 159.26666666666668,
+        "delta_pct": -28.297016627648713,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006402330973173942,
+        "p_liked": 0.0002255476738071531
+      }
+    },
+    "loei": {
+      "baseline": {
+        "avoided_mean": 14,
+        "liked_share": 0.15,
+        "score": 216.78666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 117.8,
+        "delta_pct": -45.660864751829756,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14,
+        "liked_share": 0.15,
+        "score": 216.92,
+        "delta_pct": 0.06150439756442236,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.46946102218380403,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 117.78,
+        "delta_pct": -45.670090411464415,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006418578334382444,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "phrae": {
+      "baseline": {
+        "avoided_mean": 12.466666666666667,
+        "liked_share": 0.1,
+        "score": 223.04,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 183.22666666666666,
+        "delta_pct": -17.850310856049735,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.333333333333334,
+        "liked_share": 0.18,
+        "score": 222.86666666666667,
+        "delta_pct": -0.07771401243423502,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.5299552725420018,
+        "p_liked": 0.0006791898698869142
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 183.34666666666666,
+        "delta_pct": -17.796508847441416,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006305443037266362,
+        "p_liked": 0.0002688681182919149
+      }
+    },
+    "uttaradit": {
+      "baseline": {
+        "avoided_mean": 11.2,
+        "liked_share": 0.19,
+        "score": 221.51333333333335,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 173.33333333333334,
+        "delta_pct": -21.750383724079818,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.6,
+        "liked_share": 0.2733333333333333,
+        "score": 220.45333333333335,
+        "delta_pct": -0.4785264995335129,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0013290522339976572,
+        "p_liked": 0.00028426559431428834
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 173.36666666666667,
+        "delta_pct": -21.735335720949834,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.00024857620384161717
+      }
+    },
+    "kalasin": {
+      "baseline": {
+        "avoided_mean": 11.6,
+        "liked_share": 0.15,
+        "score": 218.88,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3,
+        "score": 147.9,
+        "delta_pct": -32.42872807017544,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 11.8,
+        "liked_share": 0.15,
+        "score": 218.83333333333334,
+        "delta_pct": -0.021320662768024783,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.9095246058894703,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3,
+        "score": 147.9,
+        "delta_pct": -32.42872807017544,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "buriram": {
+      "baseline": {
+        "avoided_mean": 15,
+        "liked_share": 0.0,
+        "score": 217.67333333333335,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 110.46000000000001,
+        "delta_pct": -49.254234173532204,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 15,
+        "liked_share": 0.0,
+        "score": 217.67333333333335,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 110.46000000000001,
+        "delta_pct": -49.254234173532204,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": NaN
+      }
+    },
+    "yasothon": {
+      "baseline": {
+        "avoided_mean": 19,
+        "liked_share": 0.0,
+        "score": 215.12,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 79.9,
+        "delta_pct": -62.857939754555595,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.00028741416145803287,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 19,
+        "liked_share": 0.0,
+        "score": 215.12,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 79.9,
+        "delta_pct": -62.857939754555595,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.00028741416145803287,
+        "p_liked": NaN
+      }
+    },
+    "sisaket": {
+      "baseline": {
+        "avoided_mean": 15.533333333333333,
+        "liked_share": 0.05,
+        "score": 217.92000000000002,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 108.03333333333333,
+        "delta_pct": -50.42523250122369,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0005775504027930901,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 15.533333333333333,
+        "liked_share": 0.05,
+        "score": 217.92000000000002,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2,
+        "score": 108.07333333333332,
+        "delta_pct": -50.40687714145865,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0005122841326641162,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "sakonnakhon": {
+      "baseline": {
+        "avoided_mean": 9.933333333333334,
+        "liked_share": 0.2833333333333333,
+        "score": 219.4,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5833333333333334,
+        "score": 160.68666666666667,
+        "delta_pct": -26.760862959586753,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.8,
+        "liked_share": 0.31666666666666665,
+        "score": 219.97333333333333,
+        "delta_pct": 0.2613187481008767,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0554126420593172,
+        "p_liked": 0.00414960799764038
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5833333333333334,
+        "score": 160.6,
+        "delta_pct": -26.800364630811305,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.00023917554320093795
+      }
+    },
+    "surin": {
+      "baseline": {
+        "avoided_mean": 12,
+        "liked_share": 0.15,
+        "score": 220.98666666666668,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.375,
+        "score": 133.59333333333333,
+        "delta_pct": -39.546880656449865,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12,
+        "liked_share": 0.15,
+        "score": 220.92000000000002,
+        "delta_pct": -0.030167732593216576,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.8066505834096354,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.375,
+        "score": 133.62666666666667,
+        "delta_pct": -39.53179679015326,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "nongbualamphu": {
+      "baseline": {
+        "avoided_mean": 9.333333333333334,
+        "liked_share": 0.18,
+        "score": 223.10666666666668,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3076923076923077,
+        "score": 168.29333333333332,
+        "delta_pct": -24.568218490408185,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.333333333333334,
+        "liked_share": 0.2,
+        "score": 223.32666666666665,
+        "delta_pct": 0.09860754198289477,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.1577793773989784,
+        "p_liked": 0.007152939217714824
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3076923076923077,
+        "score": 168.09333333333333,
+        "delta_pct": -24.65786171039264,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.0002161554510011989
+      }
+    },
+    "kamphaengphet": {
+      "baseline": {
+        "avoided_mean": 10.733333333333333,
+        "liked_share": 0.0,
+        "score": 228.5,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 226.57333333333332,
+        "delta_pct": -0.8431801604668169,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006146224121124647,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.733333333333333,
+        "liked_share": 0.0,
+        "score": 228.5,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 226.57333333333332,
+        "delta_pct": -0.8431801604668169,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006146224121124647,
+        "p_liked": NaN
+      }
+    },
+    "chainat": {
+      "baseline": {
+        "avoided_mean": 14,
+        "liked_share": 0.05,
+        "score": 222.22666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.16666666666666666,
+        "score": 114.07333333333332,
+        "delta_pct": -48.668026639467215,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14,
+        "liked_share": 0.05,
+        "score": 222.44666666666666,
+        "delta_pct": 0.0989980200395987,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.11111833051301406,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.16666666666666666,
+        "score": 114.08666666666666,
+        "delta_pct": -48.662026759464815,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "nakhonnayok": {
+      "baseline": {
+        "avoided_mean": 10.733333333333333,
+        "liked_share": 0.19666666666666668,
+        "score": 222.24666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2517543859649123,
+        "score": 215.79333333333332,
+        "delta_pct": -2.9036805951345417,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.733333333333333,
+        "liked_share": 0.24666666666666667,
+        "score": 222.73333333333335,
+        "delta_pct": 0.218975912649614,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.11809009276737663,
+        "p_liked": 0.0007660506977098094
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2543859649122807,
+        "score": 212.32666666666665,
+        "delta_pct": -4.463509014008467,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 0.000649205117157464
+      }
+    },
+    "nakhonpathom": {
+      "baseline": {
+        "avoided_mean": 12.866666666666667,
+        "liked_share": 0.04666666666666667,
+        "score": 233.50666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.07692307692307693,
+        "score": 173.34666666666666,
+        "delta_pct": -25.76371838063153,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.4,
+        "liked_share": 0.05,
+        "score": 233.80666666666667,
+        "delta_pct": 0.12847598926512221,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.5508255431498549,
+        "p_liked": 0.15865525393145707
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.07692307692307693,
+        "score": 173.33333333333334,
+        "delta_pct": -25.769428424598864,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": 8.122042259340038e-05
+      }
+    },
+    "nakhonsawan": {
+      "baseline": {
+        "avoided_mean": 15,
+        "liked_share": 0.1,
+        "score": 219.80666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 108.14,
+        "delta_pct": -50.80222013284402,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 15,
+        "liked_share": 0.1,
+        "score": 219.92,
+        "delta_pct": 0.0515604622243709,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.833685084844735,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 107.96666666666667,
+        "delta_pct": -50.88107731036365,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "pathumthani": {
+      "baseline": {
+        "avoided_mean": 12.066666666666666,
+        "liked_share": 0.15,
+        "score": 233.15333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.15,
+        "score": 221.95333333333332,
+        "delta_pct": -4.80370571583794,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.2,
+        "liked_share": 0.15,
+        "score": 233.1,
+        "delta_pct": -0.022874789123041347,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.8609677733759418,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.15,
+        "score": 221.86666666666667,
+        "delta_pct": -4.840877248162866,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": NaN
+      }
+    },
+    "phichit": {
+      "baseline": {
+        "avoided_mean": 13.4,
+        "liked_share": 0.027450980392156862,
+        "score": 179.87333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 0,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.16666666666666666,
+        "score": 99.5,
+        "delta_pct": -44.683295652496206,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006146224121124647,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.733333333333333,
+        "liked_share": 0.043137254901960784,
+        "score": 179.88666666666666,
+        "delta_pct": 0.007412623698151221,
+        "valid": 15,
+        "meals": 0,
+        "n": 15,
+        "p_score": 0.8584626501256489,
+        "p_liked": 0.0227501319481792
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.16666666666666666,
+        "score": 99.5,
+        "delta_pct": -44.683295652496206,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006146224121124647,
+        "p_liked": 0.0002255476738071531
+      }
+    },
+    "samutsakhon": {
+      "baseline": {
+        "avoided_mean": 16,
+        "liked_share": 0.0,
+        "score": 229.11333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 106.13333333333334,
+        "delta_pct": -53.6764919835889,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 16,
+        "liked_share": 0.0,
+        "score": 229.11333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 106.13333333333334,
+        "delta_pct": -53.6764919835889,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      }
+    },
+    "singburi": {
+      "baseline": {
+        "avoided_mean": 16,
+        "liked_share": 0.0,
+        "score": 222.74666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 102.09333333333333,
+        "delta_pct": -54.166167843888424,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.000619369408779174,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 16,
+        "liked_share": 0.0,
+        "score": 222.74666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 102.09333333333333,
+        "delta_pct": -54.166167843888424,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.000619369408779174,
+        "p_liked": NaN
+      }
+    },
+    "suphanburi": {
+      "baseline": {
+        "avoided_mean": 14.266666666666667,
+        "liked_share": 0.0033333333333333335,
+        "score": 223.10666666666668,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.1901098901098901,
+        "score": 173.83333333333334,
+        "delta_pct": -22.085101296838584,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.733333333333333,
+        "liked_share": 0.06666666666666667,
+        "score": 222.99333333333334,
+        "delta_pct": -0.05079782465786646,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.5299552725420018,
+        "p_liked": 0.0005339772161581458
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.21135531135531135,
+        "score": 175.76,
+        "delta_pct": -21.221538277654947,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 0.00014555782700712792
+      }
+    },
+    "uthaithani": {
+      "baseline": {
+        "avoided_mean": 10.733333333333333,
+        "liked_share": 0.15,
+        "score": 218.52666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.21428571428571427,
+        "score": 172.40666666666667,
+        "delta_pct": -21.104975746667073,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006402330973173942,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.866666666666667,
+        "liked_share": 0.15,
+        "score": 218.69333333333333,
+        "delta_pct": 0.07626834253637567,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.36242130901845204,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.21428571428571427,
+        "score": 172.41333333333333,
+        "delta_pct": -21.10192501296562,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006402330973173942,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "chachoengsao": {
+      "baseline": {
+        "avoided_mean": 14,
+        "liked_share": 0.03333333333333333,
+        "score": 219.64,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.08333333333333333,
+        "score": 158.95333333333335,
+        "delta_pct": -27.630061312450668,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 13.6,
+        "liked_share": 0.05,
+        "score": 219.78,
+        "delta_pct": 0.0637406665452626,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.22910188406505871,
+        "p_liked": 0.012673659338734126
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.08333333333333333,
+        "score": 158.89333333333335,
+        "delta_pct": -27.657378740970064,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006289394206546052,
+        "p_liked": 0.00019820711303826554
+      }
+    },
+    "prachinburi": {
+      "baseline": {
+        "avoided_mean": 12.666666666666666,
+        "liked_share": 0.1,
+        "score": 215.91333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3496296296296296,
+        "score": 140.49333333333334,
+        "delta_pct": -34.930682063791025,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.533333333333333,
+        "liked_share": 0.11333333333333334,
+        "score": 216.12,
+        "delta_pct": 0.09571741748232825,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.29993248596097266,
+        "p_liked": 0.0477903522728147
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3511111111111111,
+        "score": 141.66,
+        "delta_pct": -34.39034180381017,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": 0.00023196689917540181
+      }
+    },
+    "sakaeo": {
+      "baseline": {
+        "avoided_mean": 12.8,
+        "liked_share": 0.09000000000000001,
+        "score": 216.04,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2740740740740741,
+        "score": 144.42,
+        "delta_pct": -33.15126828365118,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12.8,
+        "liked_share": 0.10333333333333333,
+        "score": 216.64000000000001,
+        "delta_pct": 0.27772634697279336,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.007820623545700274,
+        "p_liked": 0.02939086067767943
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2948148148148148,
+        "score": 146.28666666666666,
+        "delta_pct": -32.28723075973585,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": 0.00017649243460590906
+      }
+    },
+    "tak": {
+      "baseline": {
+        "avoided_mean": 11.533333333333333,
+        "liked_share": 0.18666666666666668,
+        "score": 222.04666666666665,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.29523993808049537,
+        "score": 214.46666666666667,
+        "delta_pct": -3.4136968204881786,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.003118731981257134,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.4,
+        "liked_share": 0.21666666666666667,
+        "score": 222.41333333333333,
+        "delta_pct": 0.16513045305791918,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.06390828241527764,
+        "p_liked": 0.005160369442893307
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2995906432748538,
+        "score": 217.18,
+        "delta_pct": -2.1917314678596,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006483852534615971,
+        "p_liked": 0.00029717157113418
+      }
+    },
+    "ratchaburi": {
+      "baseline": {
+        "avoided_mean": 10.733333333333333,
+        "liked_share": 0.09333333333333334,
+        "score": 225.33333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.18192982456140352,
+        "score": 216.51333333333332,
+        "delta_pct": -3.914201183431962,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 9.266666666666667,
+        "liked_share": 0.14087719298245613,
+        "score": 222.84666666666666,
+        "delta_pct": -1.1035502958579935,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.01806640625,
+        "p_liked": 0.017397628901543883
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.1921832358674464,
+        "score": 214.19333333333333,
+        "delta_pct": -4.943786982248526,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": 0.0003152721518633181
+      }
+    },
+    "chumphon": {
+      "baseline": {
+        "avoided_mean": 4.4,
+        "liked_share": 0.31666666666666665,
+        "score": 220.1,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.43333333333333335,
+        "score": 218.68,
+        "delta_pct": -0.645161290322575,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 3.466666666666667,
+        "liked_share": 0.4066666666666667,
+        "score": 219.61333333333334,
+        "delta_pct": -0.22111161593214465,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.013412335855557483,
+        "p_liked": 0.00024857620384161717
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.44333333333333336,
+        "score": 218.65333333333334,
+        "delta_pct": -0.6572769953051606,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006467491225764764,
+        "p_liked": 0.0002255476738071531
+      }
+    },
+    "narathiwat": {
+      "baseline": {
+        "avoided_mean": 10.4,
+        "liked_share": 0.2,
+        "score": 216.46666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 146.00666666666666,
+        "delta_pct": -32.55004619648907,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006337625600278512,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 10.533333333333333,
+        "liked_share": 0.2,
+        "score": 216.48666666666668,
+        "delta_pct": 0.009239297813370911,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.5594105720158111,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.4,
+        "score": 145.95333333333332,
+        "delta_pct": -32.574684323991384,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006434854148379288,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "phatthalung": {
+      "baseline": {
+        "avoided_mean": 15,
+        "liked_share": 0.25,
+        "score": 215.52,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 1.0,
+        "score": 109.4,
+        "delta_pct": -49.239049740163324,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.00022491367198211633,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 15,
+        "liked_share": 0.25,
+        "score": 215.63333333333333,
+        "delta_pct": 0.05258599356594076,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.15729920705028516,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 1.0,
+        "score": 109.4,
+        "delta_pct": -49.239049740163324,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.00022491367198211633,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "ranong": {
+      "baseline": {
+        "avoided_mean": 2,
+        "liked_share": 0.3757894736842105,
+        "score": 218.50666666666666,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3133333333333333,
+        "score": 218.84666666666666,
+        "delta_pct": 0.1556016597510389,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.5508544798435477,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 2,
+        "liked_share": 0.39894736842105266,
+        "score": 218.00666666666666,
+        "delta_pct": -0.22882597022211376,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.8751691459232763,
+        "p_liked": 0.016947426762344633
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.32789473684210524,
+        "score": 218.69333333333333,
+        "delta_pct": 0.08542836221625615,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.6374349641110031,
+        "p_liked": 0.9984643223569558
+      }
+    },
+    "satun": {
+      "baseline": {
+        "avoided_mean": 1,
+        "liked_share": 0.32,
+        "score": 217.08,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.32999999999999996,
+        "score": 217.06666666666666,
+        "delta_pct": -0.006142128861871028,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.8644607895824533,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 1,
+        "liked_share": 0.38473684210526315,
+        "score": 217.10666666666665,
+        "delta_pct": 0.01228425772371587,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.19734856420656077,
+        "p_liked": 0.0006698694257094773
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.38333333333333336,
+        "score": 217.58666666666667,
+        "delta_pct": 0.23340089675081102,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.015555033520057325,
+        "p_liked": 0.000991050613121974
+      }
+    },
+    "yala": {
+      "baseline": {
+        "avoided_mean": 4.4,
+        "liked_share": 0.19281512605042017,
+        "score": 184.22,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.2657239057239057,
+        "score": 152.23333333333335,
+        "delta_pct": -17.363297506604415,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 4.266666666666667,
+        "liked_share": 0.1886484593837535,
+        "score": 186.56666666666666,
+        "delta_pct": 1.2738392501718945,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.20906210343592624,
+        "p_liked": 0.918382561121711
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.26447552447552447,
+        "score": 155.52,
+        "delta_pct": -15.579198784062529,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": 0.0003160760080438061
+      }
+    },
+    "chaiyaphum": {
+      "baseline": {
+        "avoided_mean": 9.6,
+        "liked_share": 0.22333333333333333,
+        "score": 218.67333333333332,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5143345543345543,
+        "score": 175.04666666666668,
+        "delta_pct": -19.95061126185176,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 8.866666666666667,
+        "liked_share": 0.27555555555555555,
+        "score": 217.86666666666667,
+        "delta_pct": -0.3688911923416864,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.7527138062630525,
+        "p_liked": 0.0025593219000189936
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5386131461131461,
+        "score": 175.95333333333335,
+        "delta_pct": -19.535989756409855,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 6.103515625e-05,
+        "p_liked": 0.0003201165486586971
+      }
+    },
+    "nakhonphanom": {
+      "baseline": {
+        "avoided_mean": 14.2,
+        "liked_share": 0.13999999999999999,
+        "score": 221.25333333333333,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5333333333333333,
+        "score": 120.49333333333334,
+        "delta_pct": -45.54055682776907,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006402330973173942,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14.133333333333333,
+        "liked_share": 0.14333333333333334,
+        "score": 221.31333333333333,
+        "delta_pct": 0.02711823550681072,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.8443418516786526,
+        "p_liked": 0.32736042300928847
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5619047619047619,
+        "score": 123.77333333333333,
+        "delta_pct": -44.05809328673014,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006533107814151377,
+        "p_liked": 0.0001780993973766097
+      }
+    },
+    "buengkan": {
+      "baseline": {
+        "avoided_mean": 7.133333333333334,
+        "liked_share": 0.2866666666666667,
+        "score": 216.55333333333334,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3181286549707602,
+        "score": 206.6,
+        "delta_pct": -4.596250346335013,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.000636992151797346,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6.933333333333334,
+        "liked_share": 0.3,
+        "score": 216.48666666666668,
+        "delta_pct": -0.030785333866944035,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.4938614521653477,
+        "p_liked": 0.0227501319481792
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.3181286549707602,
+        "score": 206.62666666666667,
+        "delta_pct": -4.583936212788232,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006451158437926242,
+        "p_liked": 0.00020764221034884014
+      }
+    },
+    "mahasarakham": {
+      "baseline": {
+        "avoided_mean": 14,
+        "liked_share": 0.0,
+        "score": 221.79999999999998,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 156.88666666666666,
+        "delta_pct": -29.266606552449655,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 14,
+        "liked_share": 0.0,
+        "score": 221.79999999999998,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.0,
+        "score": 156.88666666666666,
+        "delta_pct": -29.266606552449655,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006500242387180628,
+        "p_liked": NaN
+      }
+    },
+    "amnatcharoen": {
+      "baseline": {
+        "avoided_mean": 6.8,
+        "liked_share": 0.15151515151515152,
+        "score": 117.16666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 0,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.42857142857142855,
+        "score": 87.7,
+        "delta_pct": -25.149359886201992,
+        "valid": 15,
+        "meals": 0,
+        "n": 15,
+        "p_score": 0.0006386112041971715,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 6,
+        "liked_share": 0.2727272727272727,
+        "score": 116.96666666666667,
+        "delta_pct": -0.1706970128022784,
+        "valid": 15,
+        "meals": 0,
+        "n": 15,
+        "p_score": 0.38147866517500284,
+        "p_liked": 0.00019820711303826554
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.42857142857142855,
+        "score": 87.7,
+        "delta_pct": -25.149359886201992,
+        "valid": 15,
+        "meals": 0,
+        "n": 15,
+        "p_score": 0.0006386112041971715,
+        "p_liked": 0.00019820711303826554
+      }
+    },
+    "angthong": {
+      "baseline": {
+        "avoided_mean": 13,
+        "liked_share": 0.05,
+        "score": 225.16,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.09090909090909091,
+        "score": 152.54,
+        "delta_pct": -32.25262035885593,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006353759378356659,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 13.066666666666666,
+        "liked_share": 0.05,
+        "score": 225.41333333333333,
+        "delta_pct": 0.11251258364422202,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.1233702856710562,
+        "p_liked": NaN
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.09090909090909091,
+        "score": 152.56666666666666,
+        "delta_pct": -32.240776928998635,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0006516660806139112,
+        "p_liked": 5.3755588364750274e-05
+      }
+    },
+    "pattani": {
+      "baseline": {
+        "avoided_mean": 12,
+        "liked_share": 0.1568627450980392,
+        "score": 203.96666666666667,
+        "delta_pct": 0.0,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": NaN,
+        "p_liked": NaN
+      },
+      "avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 118.44,
+        "delta_pct": -41.931688184343855,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0005249022878710898,
+        "p_liked": NaN
+      },
+      "like": {
+        "avoided_mean": 12,
+        "liked_share": 0.14705882352941177,
+        "score": 202.35333333333332,
+        "delta_pct": -0.7909789181238817,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.3947786490172791,
+        "p_liked": 0.8715803710210717
+      },
+      "like+avoid": {
+        "avoided_mean": 0,
+        "liked_share": 0.5,
+        "score": 118.36,
+        "delta_pct": -41.97091027945743,
+        "valid": 15,
+        "meals": 15,
+        "n": 15,
+        "p_score": 0.0005836181854960334,
+        "p_liked": 0.00014370708072901643
+      }
+    }
+  }
+}

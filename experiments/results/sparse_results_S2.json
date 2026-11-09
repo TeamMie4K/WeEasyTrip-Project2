@@ -1,0 +1,546 @@
+{
+ "trials": 5,
+ "scenario": "S2_Medium_Standard",
+ "results": {
+  "nongbualamphu": {
+   "pois": 56,
+   "hotels": 5,
+   "restaurants": 24,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 219.5,
+     "stdev": 0.0,
+     "min": 219.5,
+     "max": 219.5
+    },
+    "time_ms": 2.5,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 43.0
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 218.44,
+     "stdev": 3.06,
+     "min": 213.3,
+     "max": 221.5
+    },
+    "time_ms": 4339.82,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 109.9
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 222.9,
+     "stdev": 0.39,
+     "min": 222.5,
+     "max": 223.5
+    },
+    "time_ms": 368.2,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 102.4
+   },
+   "hybrid_vs_ga_p": 0.005962616796508801
+  },
+  "phichit": {
+   "pois": 43,
+   "hotels": 6,
+   "restaurants": 8,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 200.9,
+     "stdev": 0.0,
+     "min": 200.9,
+     "max": 200.9
+    },
+    "time_ms": 2.0,
+    "valid": 1,
+    "meals_ok": 0,
+    "km_day": 151.6
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 201.7,
+     "stdev": 0.22,
+     "min": 201.4,
+     "max": 202.0
+    },
+    "time_ms": 3875.9,
+    "valid": 4,
+    "meals_ok": 0,
+    "km_day": 169.0
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 180.12,
+     "stdev": 0.31,
+     "min": 179.7,
+     "max": 180.4
+    },
+    "time_ms": 279.68,
+    "valid": 5,
+    "meals_ok": 0,
+    "km_day": 139.6
+   },
+   "hybrid_vs_ga_p": 0.9967739847371112
+  },
+  "lamphun": {
+   "pois": 109,
+   "hotels": 12,
+   "restaurants": 50,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 207.0,
+     "stdev": 0.0,
+     "min": 207.0,
+     "max": 207.0
+    },
+    "time_ms": 4.9,
+    "valid": 1,
+    "meals_ok": 0,
+    "km_day": 148.9
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 203.16,
+     "stdev": 6.32,
+     "min": 198.4,
+     "max": 212.6
+    },
+    "time_ms": 4039.4,
+    "valid": 5,
+    "meals_ok": 3,
+    "km_day": 197.7
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 221.44,
+     "stdev": 6.12,
+     "min": 212.4,
+     "max": 227.1
+    },
+    "time_ms": 702.18,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 173.6
+   },
+   "hybrid_vs_ga_p": 0.010588328927158311
+  },
+  "nakhonnayok": {
+   "pois": 97,
+   "hotels": 9,
+   "restaurants": 33,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 216.7,
+     "stdev": 0.0,
+     "min": 216.7,
+     "max": 216.7
+    },
+    "time_ms": 5.7,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 99.9
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 216.7,
+     "stdev": 2.96,
+     "min": 211.6,
+     "max": 218.8
+    },
+    "time_ms": 4946.2,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 153.2
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 223.78,
+     "stdev": 1.22,
+     "min": 222.5,
+     "max": 225.8
+    },
+    "time_ms": 863.28,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 127.8
+   },
+   "hybrid_vs_ga_p": 0.003968253968253968
+  },
+  "singburi": {
+   "pois": 70,
+   "hotels": 8,
+   "restaurants": 24,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 218.9,
+     "stdev": 0.0,
+     "min": 218.9,
+     "max": 218.9
+    },
+    "time_ms": 4.2,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 38.7
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 219.3,
+     "stdev": 1.53,
+     "min": 217.3,
+     "max": 221.5
+    },
+    "time_ms": 4796.82,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 92.8
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 223.04,
+     "stdev": 0.15,
+     "min": 222.9,
+     "max": 223.2
+    },
+    "time_ms": 476.68,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 41.5
+   },
+   "hybrid_vs_ga_p": 0.005833656171659693
+  },
+  "kalasin": {
+   "pois": 80,
+   "hotels": 9,
+   "restaurants": 37,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 216.7,
+     "stdev": 0.0,
+     "min": 216.7,
+     "max": 216.7
+    },
+    "time_ms": 3.3,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 50.7
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 214.74,
+     "stdev": 6.36,
+     "min": 203.4,
+     "max": 218.3
+    },
+    "time_ms": 4837.82,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 121.9
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 220.68,
+     "stdev": 0.31,
+     "min": 220.4,
+     "max": 221.1
+    },
+    "time_ms": 501.1,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 81.2
+   },
+   "hybrid_vs_ga_p": 0.005962616796508801
+  },
+  "chaiyaphum": {
+   "pois": 89,
+   "hotels": 9,
+   "restaurants": 19,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 217.0,
+     "stdev": 0.0,
+     "min": 217.0,
+     "max": 217.0
+    },
+    "time_ms": 5.8,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 153.2
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 212.4,
+     "stdev": 7.86,
+     "min": 203.8,
+     "max": 218.7
+    },
+    "time_ms": 4200.74,
+    "valid": 3,
+    "meals_ok": 5,
+    "km_day": 185.1
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 217.84,
+     "stdev": 3.21,
+     "min": 212.1,
+     "max": 219.4
+    },
+    "time_ms": 491.18,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 147.8
+   },
+   "hybrid_vs_ga_p": 0.029276315078413297
+  },
+  "loei": {
+   "pois": 72,
+   "hotels": 9,
+   "restaurants": 50,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 179.0,
+     "stdev": 0.0,
+     "min": 179.0,
+     "max": 179.0
+    },
+    "time_ms": 2.5,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 67.9
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 181.16,
+     "stdev": 5.39,
+     "min": 173.4,
+     "max": 186.4
+    },
+    "time_ms": 3377.4,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 67.6
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 216.78,
+     "stdev": 0.67,
+     "min": 216.1,
+     "max": 217.5
+    },
+    "time_ms": 364.0,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 62.1
+   },
+   "hybrid_vs_ga_p": 0.005833656171659693
+  },
+  "chiangmai+lamphun": {
+   "pois": 333,
+   "hotels": 38,
+   "restaurants": 100,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 228.3,
+     "stdev": 0.0,
+     "min": 228.3,
+     "max": 228.3
+    },
+    "time_ms": 20.5,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 41.5
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 230.22,
+     "stdev": 2.04,
+     "min": 226.6,
+     "max": 231.4
+    },
+    "time_ms": 5709.24,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 82.1
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 248.28,
+     "stdev": 0.56,
+     "min": 247.5,
+     "max": 248.8
+    },
+    "time_ms": 1349.94,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 69.3
+   },
+   "hybrid_vs_ga_p": 0.005962616796508801
+  },
+  "bangkok+nonthaburi": {
+   "pois": 390,
+   "hotels": 48,
+   "restaurants": 122,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 241.7,
+     "stdev": 0.0,
+     "min": 241.7,
+     "max": 241.7
+    },
+    "time_ms": 24.3,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 41.2
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 243.66,
+     "stdev": 2.67,
+     "min": 240.6,
+     "max": 246.8
+    },
+    "time_ms": 6075.14,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 61.0
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 264.12,
+     "stdev": 0.64,
+     "min": 263.3,
+     "max": 264.9
+    },
+    "time_ms": 1500.56,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 42.4
+   },
+   "hybrid_vs_ga_p": 0.003968253968253968
+  },
+  "phuket+phangnga": {
+   "pois": 249,
+   "hotels": 32,
+   "restaurants": 91,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 243.3,
+     "stdev": 0.0,
+     "min": 243.3,
+     "max": 243.3
+    },
+    "time_ms": 12.4,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 47.5
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 241.04,
+     "stdev": 1.2,
+     "min": 239.8,
+     "max": 242.8
+    },
+    "time_ms": 5473.3,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 73.7
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 255.88,
+     "stdev": 0.4,
+     "min": 255.5,
+     "max": 256.3
+    },
+    "time_ms": 1020.08,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 42.3
+   },
+   "hybrid_vs_ga_p": 0.005833656171659693
+  },
+  "phuket+krabi": {
+   "pois": 326,
+   "hotels": 45,
+   "restaurants": 116,
+   "Greedy": {
+    "n": 1,
+    "score": {
+     "mean": 222.0,
+     "stdev": 0.0,
+     "min": 222.0,
+     "max": 222.0
+    },
+    "time_ms": 20.1,
+    "valid": 1,
+    "meals_ok": 1,
+    "km_day": 51.8
+   },
+   "GA": {
+    "n": 5,
+    "score": {
+     "mean": 222.52,
+     "stdev": 4.07,
+     "min": 215.6,
+     "max": 225.8
+    },
+    "time_ms": 5249.82,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 81.0
+   },
+   "Hybrid": {
+    "n": 5,
+    "score": {
+     "mean": 234.02,
+     "stdev": 6.8,
+     "min": 228.6,
+     "max": 242.6
+    },
+    "time_ms": 1097.7,
+    "valid": 5,
+    "meals_ok": 5,
+    "km_day": 68.8
+   },
+   "hybrid_vs_ga_p": 0.003968253968253968
+  }
+ }
+}

@@ -1,0 +1,1838 @@
+{
+  "phuket": {
+    "name_th": "ภูเก็ต",
+    "name_en": "Phuket",
+    "bbox": [
+      7.7,
+      98.2,
+      8.2,
+      98.5
+    ],
+    "center": [
+      7.95,
+      98.37
+    ],
+    "zoom": 10,
+    "road_factor": 1.38,
+    "speed_kmh": 45.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chiangmai": {
+    "name_th": "เชียงใหม่",
+    "name_en": "Chiang Mai",
+    "bbox": [
+      18.6,
+      98.8,
+      19.0,
+      99.15
+    ],
+    "center": [
+      18.79,
+      98.98
+    ],
+    "zoom": 11,
+    "road_factor": 1.41,
+    "speed_kmh": 47.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "krabi": {
+    "name_th": "กระบี่",
+    "name_en": "Krabi",
+    "bbox": [
+      7.95,
+      98.7,
+      8.25,
+      99.1
+    ],
+    "center": [
+      8.07,
+      98.9
+    ],
+    "zoom": 11,
+    "road_factor": 1.63,
+    "speed_kmh": 42.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "samui": {
+    "name_th": "เกาะสมุย",
+    "name_en": "Koh Samui",
+    "bbox": [
+      9.37,
+      99.9,
+      9.65,
+      100.1
+    ],
+    "center": [
+      9.51,
+      100.0
+    ],
+    "zoom": 11,
+    "road_factor": 1.5,
+    "speed_kmh": 51.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "bangkok": {
+    "name_th": "กรุงเทพมหานคร",
+    "name_en": "Bangkok",
+    "bbox": [
+      13.5525,
+      100.2935,
+      13.9525,
+      100.6935
+    ],
+    "center": [
+      13.7525,
+      100.4935
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "road_factor": 1.44,
+    "speed_kmh": 46.7,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chonburi": {
+    "name_th": "ชลบุรี",
+    "name_en": "Chon Buri",
+    "bbox": [
+      13.1761,
+      100.8024,
+      13.5761,
+      101.2024
+    ],
+    "center": [
+      13.3761,
+      101.0024
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "road_factor": 1.49,
+    "speed_kmh": 59.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "prachuapkhirikhan": {
+    "name_th": "ประจวบคีรีขันธ์",
+    "name_en": "Prachuap Khiri Khan",
+    "bbox": [
+      11.6185,
+      99.5883,
+      12.0185,
+      99.9883
+    ],
+    "center": [
+      11.8185,
+      99.7883
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันตก",
+    "auto": true,
+    "road_factor": 1.35,
+    "speed_kmh": 52.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "ayutthaya": {
+    "name_th": "พระนครศรีอยุธยา",
+    "name_en": "Phra Nakhon Si Ayutthaya",
+    "bbox": [
+      14.1189,
+      100.3112,
+      14.5189,
+      100.7112
+    ],
+    "center": [
+      14.3189,
+      100.5112
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "road_factor": 1.58,
+    "speed_kmh": 51.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "kanchanaburi": {
+    "name_th": "กาญจนบุรี",
+    "name_en": "Kanchanaburi",
+    "bbox": [
+      13.8519,
+      99.2479,
+      14.2519,
+      99.6479
+    ],
+    "center": [
+      14.0519,
+      99.4479
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันตก",
+    "auto": true,
+    "road_factor": 1.4,
+    "speed_kmh": 45.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phangnga": {
+    "name_th": "พังงา",
+    "name_en": "Phang Nga",
+    "bbox": [
+      8.3058,
+      98.368,
+      8.7058,
+      98.768
+    ],
+    "center": [
+      8.5058,
+      98.568
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "road_factor": 1.74,
+    "speed_kmh": 55.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chiangrai": {
+    "name_th": "เชียงราย",
+    "name_en": "Chiang Rai",
+    "bbox": [
+      19.7121,
+      99.6417,
+      20.1121,
+      100.0417
+    ],
+    "center": [
+      19.9121,
+      99.8417
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "road_factor": 1.38,
+    "speed_kmh": 49.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "suratthani": {
+    "name_th": "สุราษฎร์ธานี",
+    "name_en": "Surat Thani",
+    "bbox": [
+      8.9001,
+      99.1295,
+      9.3001,
+      99.5295
+    ],
+    "center": [
+      9.1001,
+      99.3295
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "road_factor": 1.43,
+    "speed_kmh": 57.9,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nakhonratchasima": {
+    "name_th": "นครราชสีมา",
+    "name_en": "Nakhon Ratchasima",
+    "bbox": [
+      14.722,
+      101.9863,
+      15.122,
+      102.3863
+    ],
+    "center": [
+      14.922,
+      102.1863
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.38,
+    "speed_kmh": 53.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "khonkaen": {
+    "name_th": "ขอนแก่น",
+    "name_en": "Khon Kaen",
+    "bbox": [
+      16.223,
+      102.6388,
+      16.623,
+      103.0388
+    ],
+    "center": [
+      16.423,
+      102.8388
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.38,
+    "speed_kmh": 51.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "udonthani": {
+    "name_th": "อุดรธานี",
+    "name_en": "Udon Thani",
+    "bbox": [
+      17.1907,
+      102.5774,
+      17.5907,
+      102.9774
+    ],
+    "center": [
+      17.3907,
+      102.7774
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.28,
+    "speed_kmh": 56.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phetchaburi": {
+    "name_th": "เพชรบุรี",
+    "name_en": "Phetchaburi",
+    "bbox": [
+      12.8712,
+      99.8024,
+      13.2712,
+      100.2024
+    ],
+    "center": [
+      13.0712,
+      100.0024
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันตก",
+    "auto": true,
+    "road_factor": 1.3,
+    "speed_kmh": 54.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "rayong": {
+    "name_th": "ระยอง",
+    "name_en": "Rayong",
+    "bbox": [
+      12.5265,
+      101.2239,
+      12.9265,
+      101.6239
+    ],
+    "center": [
+      12.7265,
+      101.4239
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "road_factor": 1.2,
+    "speed_kmh": 49.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "sukhothai": {
+    "name_th": "สุโขทัย",
+    "name_en": "Sukhothai",
+    "bbox": [
+      16.8114,
+      99.6188,
+      17.2114,
+      100.0188
+    ],
+    "center": [
+      17.0114,
+      99.8188
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "road_factor": 1.27,
+    "speed_kmh": 59.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phitsanulok": {
+    "name_th": "พิษณุโลก",
+    "name_en": "Phitsanulok",
+    "bbox": [
+      16.6121,
+      100.0609,
+      17.0121,
+      100.4609
+    ],
+    "center": [
+      16.8121,
+      100.2609
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "road_factor": 1.34,
+    "speed_kmh": 54.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "songkhla": {
+    "name_th": "สงขลา",
+    "name_en": "Songkhla",
+    "bbox": [
+      6.9243,
+      100.4073,
+      7.3243,
+      100.8073
+    ],
+    "center": [
+      7.1243,
+      100.6073
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "road_factor": 1.3,
+    "speed_kmh": 57.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "ubonratchathani": {
+    "name_th": "อุบลราชธานี",
+    "name_en": "Ubon Ratchathani",
+    "bbox": [
+      15.0561,
+      104.6474,
+      15.4561,
+      105.0474
+    ],
+    "center": [
+      15.2561,
+      104.8474
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.36,
+    "speed_kmh": 56.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nan": {
+    "name_th": "น่าน",
+    "name_en": "Nan",
+    "bbox": [
+      18.665,
+      100.4596,
+      19.065,
+      100.8596
+    ],
+    "center": [
+      18.865,
+      100.6596
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "road_factor": 1.98,
+    "speed_kmh": 43.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "lampang": {
+    "name_th": "ลำปาง",
+    "name_en": "Lampang",
+    "bbox": [
+      18.1939,
+      99.332,
+      18.5939,
+      99.732
+    ],
+    "center": [
+      18.3939,
+      99.532
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "road_factor": 1.31,
+    "speed_kmh": 50.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chanthaburi": {
+    "name_th": "จันทบุรี",
+    "name_en": "Chanthaburi",
+    "bbox": [
+      12.4298,
+      101.9158,
+      12.8298,
+      102.3158
+    ],
+    "center": [
+      12.6298,
+      102.1158
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "road_factor": 1.54,
+    "speed_kmh": 54.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phayao": {
+    "name_th": "พะเยา",
+    "name_en": "Phayao",
+    "bbox": [
+      18.9507,
+      99.6374,
+      19.3507,
+      100.0374
+    ],
+    "center": [
+      19.1507,
+      99.8374
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "road_factor": 1.66,
+    "speed_kmh": 45.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "mukdahan": {
+    "name_th": "มุกดาหาร",
+    "name_en": "Mukdahan",
+    "bbox": [
+      16.3352,
+      104.5153,
+      16.7352,
+      104.9153
+    ],
+    "center": [
+      16.5352,
+      104.7153
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.92,
+    "speed_kmh": 60.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "roiet": {
+    "name_th": "ร้อยเอ็ด",
+    "name_en": "Roi Et",
+    "bbox": [
+      15.8141,
+      103.4241,
+      16.2141,
+      103.8241
+    ],
+    "center": [
+      16.0141,
+      103.6241
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.31,
+    "speed_kmh": 54.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nongkhai": {
+    "name_th": "หนองคาย",
+    "name_en": "Nong Khai",
+    "bbox": [
+      17.6445,
+      102.5701,
+      18.0445,
+      102.9701
+    ],
+    "center": [
+      17.8445,
+      102.7701
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "road_factor": 1.68,
+    "speed_kmh": 54.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "lamphun": {
+    "name_th": "ลำพูน",
+    "name_en": "Lamphun",
+    "bbox": [
+      18.3881,
+      98.8337,
+      18.7881,
+      99.2337
+    ],
+    "center": [
+      18.5881,
+      99.0337
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "area": "ลำพูน",
+    "road_factor": 1.35,
+    "speed_kmh": 57.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nonthaburi": {
+    "name_th": "นนทบุรี",
+    "name_en": "Nonthaburi",
+    "bbox": [
+      13.6538,
+      100.2941,
+      14.0538,
+      100.6941
+    ],
+    "center": [
+      13.8538,
+      100.4941
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "นนทบุรี",
+    "road_factor": 1.58,
+    "speed_kmh": 49.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phetchabun": {
+    "name_th": "เพชรบูรณ์",
+    "name_en": "Phetchabun",
+    "bbox": [
+      16.1676,
+      100.993,
+      16.5676,
+      101.393
+    ],
+    "center": [
+      16.3676,
+      101.193
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "เพชรบูรณ์",
+    "road_factor": 1.57,
+    "speed_kmh": 62.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "lopburi": {
+    "name_th": "ลพบุรี",
+    "name_en": "Lop Buri",
+    "bbox": [
+      14.5998,
+      100.4465,
+      14.9998,
+      100.8465
+    ],
+    "center": [
+      14.7998,
+      100.6465
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "ลพบุรี",
+    "road_factor": 1.34,
+    "speed_kmh": 62.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "samutprakan": {
+    "name_th": "สมุทรปราการ",
+    "name_en": "Samut Prakan",
+    "bbox": [
+      13.3768,
+      100.4281,
+      13.7768,
+      100.8281
+    ],
+    "center": [
+      13.5768,
+      100.6281
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "สมุทรปราการ",
+    "road_factor": 1.85,
+    "speed_kmh": 55.7,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "samutsongkhram": {
+    "name_th": "สมุทรสงคราม",
+    "name_en": "Samut Songkhram",
+    "bbox": [
+      13.1967,
+      99.793,
+      13.5967,
+      100.193
+    ],
+    "center": [
+      13.3967,
+      99.993
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "สมุทรสงคราม",
+    "road_factor": 1.7,
+    "speed_kmh": 42.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "saraburi": {
+    "name_th": "สระบุรี",
+    "name_en": "Saraburi",
+    "bbox": [
+      14.2984,
+      100.7204,
+      14.6984,
+      101.1204
+    ],
+    "center": [
+      14.4984,
+      100.9204
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "สระบุรี",
+    "road_factor": 1.52,
+    "speed_kmh": 52.9,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "trat": {
+    "name_th": "ตราด",
+    "name_en": "Trat",
+    "bbox": [
+      12.02,
+      102.3752,
+      12.42,
+      102.7752
+    ],
+    "center": [
+      12.22,
+      102.5752
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "area": "ตราด",
+    "road_factor": 1.67,
+    "speed_kmh": 42.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nakhonsithammarat": {
+    "name_th": "นครศรีธรรมราช",
+    "name_en": "Nakhon Si Thammarat",
+    "bbox": [
+      8.2251,
+      99.7567,
+      8.6251,
+      100.1567
+    ],
+    "center": [
+      8.4251,
+      99.9567
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "นครศรีธรรมราช",
+    "road_factor": 1.47,
+    "speed_kmh": 51.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "trang": {
+    "name_th": "ตรัง",
+    "name_en": "Trang",
+    "bbox": [
+      7.3921,
+      99.3776,
+      7.7921,
+      99.7776
+    ],
+    "center": [
+      7.5921,
+      99.5776
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "ตรัง",
+    "road_factor": 1.32,
+    "speed_kmh": 61.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "maehongson": {
+    "name_th": "แม่ฮ่องสอน",
+    "name_en": "Mae Hong Son",
+    "bbox": [
+      19.087,
+      97.7805,
+      19.487,
+      98.1805
+    ],
+    "center": [
+      19.287,
+      97.9805
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "area": "แม่ฮ่องสอน",
+    "road_factor": 1.37,
+    "speed_kmh": 45.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "loei": {
+    "name_th": "เลย",
+    "name_en": "Loei",
+    "bbox": [
+      17.3436,
+      101.5072,
+      17.7436,
+      101.9072
+    ],
+    "center": [
+      17.5436,
+      101.7072
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "เลย",
+    "road_factor": 1.41,
+    "speed_kmh": 49.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phrae": {
+    "name_th": "แพร่",
+    "name_en": "Phrae",
+    "bbox": [
+      17.884,
+      100.0894,
+      18.284,
+      100.4894
+    ],
+    "center": [
+      18.084,
+      100.2894
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "area": "แพร่",
+    "road_factor": 1.55,
+    "speed_kmh": 47.9,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "uttaradit": {
+    "name_th": "อุตรดิตถ์",
+    "name_en": "Uttaradit",
+    "bbox": [
+      17.4852,
+      100.0273,
+      17.8852,
+      100.4273
+    ],
+    "center": [
+      17.6852,
+      100.2273
+    ],
+    "zoom": 11,
+    "region": "ภาคเหนือ",
+    "auto": true,
+    "area": "อุตรดิตถ์",
+    "road_factor": 1.33,
+    "speed_kmh": 50.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "kalasin": {
+    "name_th": "กาฬสินธุ์",
+    "name_en": "Kalasin",
+    "bbox": [
+      16.3041,
+      103.3635,
+      16.7041,
+      103.7635
+    ],
+    "center": [
+      16.5041,
+      103.5635
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "กาฬสินธุ์",
+    "road_factor": 1.32,
+    "speed_kmh": 55.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "buriram": {
+    "name_th": "บุรีรัมย์",
+    "name_en": "Buri Ram",
+    "bbox": [
+      14.7483,
+      102.8549,
+      15.1483,
+      103.2549
+    ],
+    "center": [
+      14.9483,
+      103.0549
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "บุรีรัมย์",
+    "road_factor": 1.32,
+    "speed_kmh": 42.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "yasothon": {
+    "name_th": "ยโสธร",
+    "name_en": "Yasothon",
+    "bbox": [
+      15.6317,
+      103.9906,
+      16.0317,
+      104.3906
+    ],
+    "center": [
+      15.8317,
+      104.1906
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "ยโสธร",
+    "road_factor": 1.37,
+    "speed_kmh": 66.7,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "sisaket": {
+    "name_th": "ศรีสะเกษ",
+    "name_en": "Si Sa Ket",
+    "bbox": [
+      14.8994,
+      104.1735,
+      15.2994,
+      104.5735
+    ],
+    "center": [
+      15.0994,
+      104.3735
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "ศรีสะเกษ",
+    "road_factor": 1.32,
+    "speed_kmh": 51.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "sakonnakhon": {
+    "name_th": "สกลนคร",
+    "name_en": "Sakon Nakhon",
+    "bbox": [
+      16.9962,
+      103.8707,
+      17.3962,
+      104.2707
+    ],
+    "center": [
+      17.1962,
+      104.0707
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "สกลนคร",
+    "road_factor": 1.51,
+    "speed_kmh": 54.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "surin": {
+    "name_th": "สุรินทร์",
+    "name_en": "Surin",
+    "bbox": [
+      14.7144,
+      103.3432,
+      15.1144,
+      103.7432
+    ],
+    "center": [
+      14.9144,
+      103.5432
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "สุรินทร์",
+    "road_factor": 1.27,
+    "speed_kmh": 48.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nongbualamphu": {
+    "name_th": "หนองบัวลำภู",
+    "name_en": "Nong Bua Lam Phu",
+    "bbox": [
+      16.9505,
+      102.1732,
+      17.3505,
+      102.5732
+    ],
+    "center": [
+      17.1505,
+      102.3732
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "หนองบัวลำภู",
+    "road_factor": 1.38,
+    "speed_kmh": 47.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "kamphaengphet": {
+    "name_th": "กำแพงเพชร",
+    "name_en": "Kamphaeng Phet",
+    "bbox": [
+      16.2199,
+      99.3062,
+      16.6199,
+      99.7062
+    ],
+    "center": [
+      16.4199,
+      99.5062
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "กำแพงเพชร",
+    "road_factor": 1.44,
+    "speed_kmh": 50.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chainat": {
+    "name_th": "ชัยนาท",
+    "name_en": "Chai Nat",
+    "bbox": [
+      14.9894,
+      99.9153,
+      15.3894,
+      100.3153
+    ],
+    "center": [
+      15.1894,
+      100.1153
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "ชัยนาท",
+    "road_factor": 1.41,
+    "speed_kmh": 56.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nakhonnayok": {
+    "name_th": "นครนายก",
+    "name_en": "Nakhon Nayok",
+    "bbox": [
+      14.06,
+      101.0276,
+      14.46,
+      101.4276
+    ],
+    "center": [
+      14.26,
+      101.2276
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "นครนายก",
+    "road_factor": 1.95,
+    "speed_kmh": 48.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nakhonpathom": {
+    "name_th": "นครปฐม",
+    "name_en": "Nakhon Pathom",
+    "bbox": [
+      13.6108,
+      99.8473,
+      14.0108,
+      100.2473
+    ],
+    "center": [
+      13.8108,
+      100.0473
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "นครปฐม",
+    "road_factor": 1.43,
+    "speed_kmh": 55.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nakhonsawan": {
+    "name_th": "นครสวรรค์",
+    "name_en": "Nakhon Sawan",
+    "bbox": [
+      15.5045,
+      99.8873,
+      15.9045,
+      100.2873
+    ],
+    "center": [
+      15.7045,
+      100.0873
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "นครสวรรค์",
+    "road_factor": 1.32,
+    "speed_kmh": 53.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "pathumthani": {
+    "name_th": "ปทุมธานี",
+    "name_en": "Pathum Thani",
+    "bbox": [
+      13.8056,
+      100.3243,
+      14.2056,
+      100.7243
+    ],
+    "center": [
+      14.0056,
+      100.5243
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "ปทุมธานี",
+    "road_factor": 1.54,
+    "speed_kmh": 50.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phichit": {
+    "name_th": "พิจิตร",
+    "name_en": "Phichit",
+    "bbox": [
+      16.2029,
+      100.1724,
+      16.6029,
+      100.5724
+    ],
+    "center": [
+      16.4029,
+      100.3724
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "พิจิตร",
+    "road_factor": 1.33,
+    "speed_kmh": 56.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "samutsakhon": {
+    "name_th": "สมุทรสาคร",
+    "name_en": "Samut Sakhon",
+    "bbox": [
+      13.3331,
+      100.0801,
+      13.7331,
+      100.4801
+    ],
+    "center": [
+      13.5331,
+      100.2801
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "สมุทรสาคร",
+    "road_factor": 1.64,
+    "speed_kmh": 49.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "singburi": {
+    "name_th": "สิงห์บุรี",
+    "name_en": "Sing Buri",
+    "bbox": [
+      14.7065,
+      100.1822,
+      15.1065,
+      100.5822
+    ],
+    "center": [
+      14.9065,
+      100.3822
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "สิงห์บุรี",
+    "road_factor": 1.39,
+    "speed_kmh": 57.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "suphanburi": {
+    "name_th": "สุพรรณบุรี",
+    "name_en": "Suphan Buri",
+    "bbox": [
+      14.271,
+      99.8873,
+      14.671,
+      100.2873
+    ],
+    "center": [
+      14.471,
+      100.0873
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "สุพรรณบุรี",
+    "road_factor": 1.31,
+    "speed_kmh": 60.9,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "uthaithani": {
+    "name_th": "อุทัยธานี",
+    "name_en": "Uthai Thani",
+    "bbox": [
+      15.1891,
+      99.8135,
+      15.5891,
+      100.2135
+    ],
+    "center": [
+      15.3891,
+      100.0135
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "อุทัยธานี",
+    "road_factor": 1.28,
+    "speed_kmh": 54.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chachoengsao": {
+    "name_th": "ฉะเชิงเทรา",
+    "name_en": "Chachoengsao",
+    "bbox": [
+      13.4886,
+      100.8708,
+      13.8886,
+      101.2708
+    ],
+    "center": [
+      13.6886,
+      101.0708
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "area": "ฉะเชิงเทรา",
+    "road_factor": 1.4,
+    "speed_kmh": 62.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "prachinburi": {
+    "name_th": "ปราจีนบุรี",
+    "name_en": "Prachin Buri",
+    "bbox": [
+      13.9103,
+      101.1994,
+      14.3103,
+      101.5994
+    ],
+    "center": [
+      14.1103,
+      101.3994
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "area": "ปราจีนบุรี",
+    "road_factor": 1.41,
+    "speed_kmh": 66.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "sakaeo": {
+    "name_th": "สระแก้ว",
+    "name_en": "Sa Kaeo",
+    "bbox": [
+      13.7381,
+      101.8798,
+      14.1381,
+      102.2798
+    ],
+    "center": [
+      13.9381,
+      102.0798
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออก",
+    "auto": true,
+    "area": "สระแก้ว",
+    "road_factor": 1.34,
+    "speed_kmh": 52.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "tak": {
+    "name_th": "ตาก",
+    "name_en": "Tak",
+    "bbox": [
+      16.687,
+      98.9386,
+      17.087,
+      99.3386
+    ],
+    "center": [
+      16.887,
+      99.1386
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันตก",
+    "auto": true,
+    "area": "ตาก",
+    "road_factor": 1.79,
+    "speed_kmh": 55.5,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "ratchaburi": {
+    "name_th": "ราชบุรี",
+    "name_en": "Ratchaburi",
+    "bbox": [
+      13.3446,
+      99.5488,
+      13.7446,
+      99.9488
+    ],
+    "center": [
+      13.5446,
+      99.7488
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันตก",
+    "auto": true,
+    "area": "ราชบุรี",
+    "road_factor": 1.35,
+    "speed_kmh": 51.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chumphon": {
+    "name_th": "ชุมพร",
+    "name_en": "Chumphon",
+    "bbox": [
+      10.1783,
+      98.8078,
+      10.5783,
+      99.2078
+    ],
+    "center": [
+      10.3783,
+      99.0078
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "ชุมพร",
+    "road_factor": 1.41,
+    "speed_kmh": 60.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "narathiwat": {
+    "name_th": "นราธิวาส",
+    "name_en": "Narathiwat",
+    "bbox": [
+      6.2298,
+      101.6146,
+      6.6298,
+      102.0146
+    ],
+    "center": [
+      6.4298,
+      101.8146
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "นราธิวาส",
+    "road_factor": 1.41,
+    "speed_kmh": 63.6,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "phatthalung": {
+    "name_th": "พัทลุง",
+    "name_en": "Phatthalung",
+    "bbox": [
+      7.419,
+      99.8727,
+      7.819,
+      100.2727
+    ],
+    "center": [
+      7.619,
+      100.0727
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "พัทลุง",
+    "road_factor": 1.36,
+    "speed_kmh": 62.4,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "ranong": {
+    "name_th": "ระนอง",
+    "name_en": "Ranong",
+    "bbox": [
+      9.6996,
+      98.4485,
+      10.0996,
+      98.8485
+    ],
+    "center": [
+      9.8996,
+      98.6485
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "ระนอง",
+    "road_factor": 1.44,
+    "speed_kmh": 60.9,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "satun": {
+    "name_th": "สตูล",
+    "name_en": "Satun",
+    "bbox": [
+      6.4263,
+      99.8665,
+      6.8263,
+      100.2665
+    ],
+    "center": [
+      6.6263,
+      100.0665
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "สตูล",
+    "road_factor": 2.42,
+    "speed_kmh": 40.3,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "yala": {
+    "name_th": "ยะลา",
+    "name_en": "Yala",
+    "bbox": [
+      6.364,
+      101.0315,
+      6.764,
+      101.4315
+    ],
+    "center": [
+      6.564,
+      101.2315
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "ยะลา",
+    "road_factor": 1.47,
+    "speed_kmh": 60.8,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "chaiyaphum": {
+    "name_th": "ชัยภูมิ",
+    "name_en": "Chaiyaphum",
+    "bbox": [
+      15.7359,
+      101.8065,
+      16.1359,
+      102.2065
+    ],
+    "center": [
+      15.9359,
+      102.0065
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "ชัยภูมิ",
+    "road_factor": 1.56,
+    "speed_kmh": 54.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "nakhonphanom": {
+    "name_th": "นครพนม",
+    "name_en": "Nakhon Phanom",
+    "bbox": [
+      17.1095,
+      104.3451,
+      17.5095,
+      104.7451
+    ],
+    "center": [
+      17.3095,
+      104.5451
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "นครพนม",
+    "road_factor": 1.23,
+    "speed_kmh": 67.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "buengkan": {
+    "name_th": "บึงกาฬ",
+    "name_en": "Bueng Kan",
+    "bbox": [
+      18.1478,
+      103.4309,
+      18.5478,
+      103.8309
+    ],
+    "center": [
+      18.3478,
+      103.6309
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "บึงกาฬ",
+    "road_factor": 1.41,
+    "speed_kmh": 49.2,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "mahasarakham": {
+    "name_th": "มหาสารคาม",
+    "name_en": "Maha Sarakham",
+    "bbox": [
+      15.9045,
+      103.0822,
+      16.3045,
+      103.4822
+    ],
+    "center": [
+      16.1045,
+      103.2822
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "มหาสารคาม",
+    "road_factor": 1.32,
+    "speed_kmh": 61.1,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "amnatcharoen": {
+    "name_th": "อำนาจเจริญ",
+    "name_en": "Amnat Charoen",
+    "bbox": [
+      15.675,
+      104.4354,
+      16.075,
+      104.8354
+    ],
+    "center": [
+      15.875,
+      104.6354
+    ],
+    "zoom": 11,
+    "region": "ภาคตะวันออกเฉียงเหนือ",
+    "auto": true,
+    "area": "อำนาจเจริญ",
+    "road_factor": 1.41,
+    "speed_kmh": 57.7,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "angthong": {
+    "name_th": "อ่างทอง",
+    "name_en": "Ang Thong",
+    "bbox": [
+      14.3751,
+      100.2402,
+      14.7751,
+      100.6402
+    ],
+    "center": [
+      14.5751,
+      100.4402
+    ],
+    "zoom": 11,
+    "region": "ภาคกลาง",
+    "auto": true,
+    "area": "อ่างทอง",
+    "road_factor": 1.42,
+    "speed_kmh": 52.7,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  },
+  "pattani": {
+    "name_th": "ปัตตานี",
+    "name_en": "Pattani",
+    "bbox": [
+      6.6537,
+      101.0761,
+      7.0537,
+      101.4761
+    ],
+    "center": [
+      6.8537,
+      101.2761
+    ],
+    "zoom": 11,
+    "region": "ภาคใต้",
+    "auto": true,
+    "area": "ปัตตานี",
+    "road_factor": 1.45,
+    "speed_kmh": 64.0,
+    "calibration": {
+      "source": "OSRM public demo (car, free-flow)",
+      "pairs": 40
+    }
+  }
+}

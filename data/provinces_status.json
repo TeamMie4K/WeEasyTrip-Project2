@@ -1,0 +1,454 @@
+{
+  "bangkok": {
+    "state": "ready",
+    "pois": 244,
+    "hotels": 30,
+    "minutes": 78.7
+  },
+  "chonburi": {
+    "state": "ready",
+    "pois": 166,
+    "hotels": 12,
+    "minutes": 62.7
+  },
+  "prachuapkhirikhan": {
+    "state": "ready",
+    "pois": 73,
+    "hotels": 14,
+    "minutes": 67.6
+  },
+  "ayutthaya": {
+    "state": "ready",
+    "pois": 156,
+    "hotels": 19,
+    "minutes": 61.7
+  },
+  "kanchanaburi": {
+    "state": "ready",
+    "pois": 93,
+    "hotels": 16,
+    "minutes": 99.9
+  },
+  "phangnga": {
+    "state": "ready",
+    "pois": 68,
+    "hotels": 12,
+    "minutes": 83.6
+  },
+  "chiangrai": {
+    "state": "ready",
+    "pois": 152,
+    "hotels": 21,
+    "minutes": 37.4
+  },
+  "trat": {
+    "state": "ready",
+    "pois": 52,
+    "hotels": 12,
+    "sparse": true
+  },
+  "suratthani": {
+    "state": "ready",
+    "pois": 63,
+    "hotels": 18,
+    "minutes": 63.4
+  },
+  "nakhonratchasima": {
+    "state": "ready",
+    "pois": 125,
+    "hotels": 10,
+    "minutes": 97.4
+  },
+  "khonkaen": {
+    "state": "ready",
+    "pois": 155,
+    "hotels": 14,
+    "minutes": 100.4
+  },
+  "udonthani": {
+    "state": "ready",
+    "pois": 89,
+    "hotels": 10,
+    "minutes": 89.1
+  },
+  "phetchaburi": {
+    "state": "ready",
+    "pois": 60,
+    "hotels": 13,
+    "minutes": 88.8
+  },
+  "rayong": {
+    "state": "ready",
+    "pois": 87,
+    "hotels": 15,
+    "minutes": 119.3
+  },
+  "sukhothai": {
+    "state": "ready",
+    "pois": 146,
+    "hotels": 18,
+    "minutes": 71.8
+  },
+  "phitsanulok": {
+    "state": "ready",
+    "pois": 93,
+    "hotels": 15,
+    "minutes": 73.5
+  },
+  "nakhonsithammarat": {
+    "state": "ready",
+    "pois": 77,
+    "hotels": 8,
+    "sparse": true
+  },
+  "songkhla": {
+    "state": "ready",
+    "pois": 124,
+    "hotels": 19,
+    "minutes": 46.1
+  },
+  "trang": {
+    "state": "ready",
+    "pois": 62,
+    "hotels": 9,
+    "sparse": true
+  },
+  "ubonratchathani": {
+    "state": "ready",
+    "pois": 116,
+    "hotels": 10,
+    "minutes": 23.2
+  },
+  "nan": {
+    "state": "ready",
+    "pois": 108,
+    "hotels": 13,
+    "minutes": 51.7
+  },
+  "maehongson": {
+    "state": "ready",
+    "pois": 48,
+    "hotels": 13,
+    "sparse": true
+  },
+  "loei": {
+    "state": "ready",
+    "pois": 32,
+    "hotels": 9,
+    "sparse": true
+  },
+  "lampang": {
+    "state": "ready",
+    "pois": 110,
+    "hotels": 13,
+    "minutes": 92.2
+  },
+  "chanthaburi": {
+    "state": "ready",
+    "pois": 124,
+    "hotels": 14,
+    "minutes": 51.2
+  },
+  "phayao": {
+    "state": "ready",
+    "pois": 78,
+    "hotels": 12,
+    "minutes": 87.0
+  },
+  "phrae": {
+    "state": "ready",
+    "pois": 85,
+    "hotels": 8,
+    "sparse": true
+  },
+  "uttaradit": {
+    "state": "ready",
+    "pois": 98,
+    "hotels": 9,
+    "sparse": true
+  },
+  "kalasin": {
+    "state": "ready",
+    "pois": 56,
+    "hotels": 9,
+    "sparse": true
+  },
+  "buriram": {
+    "state": "ready",
+    "pois": 32,
+    "hotels": 9,
+    "sparse": true
+  },
+  "mukdahan": {
+    "state": "ready",
+    "pois": 106,
+    "hotels": 14,
+    "minutes": 38.0
+  },
+  "yasothon": {
+    "state": "ready",
+    "pois": 38,
+    "hotels": 10,
+    "sparse": true
+  },
+  "roiet": {
+    "state": "ready",
+    "pois": 62,
+    "hotels": 13,
+    "minutes": 30.4
+  },
+  "sisaket": {
+    "state": "ready",
+    "pois": 94,
+    "hotels": 6,
+    "sparse": true
+  },
+  "sakonnakhon": {
+    "state": "ready",
+    "pois": 45,
+    "hotels": 8,
+    "sparse": true
+  },
+  "surin": {
+    "state": "ready",
+    "pois": 38,
+    "hotels": 6,
+    "sparse": true
+  },
+  "nongkhai": {
+    "state": "ready",
+    "pois": 172,
+    "hotels": 19,
+    "minutes": 35.5
+  },
+  "nongbualamphu": {
+    "state": "ready",
+    "pois": 41,
+    "hotels": 5,
+    "sparse": true
+  },
+  "kamphaengphet": {
+    "state": "ready",
+    "pois": 101,
+    "hotels": 6,
+    "sparse": true
+  },
+  "chainat": {
+    "state": "ready",
+    "pois": 59,
+    "hotels": 5,
+    "sparse": true
+  },
+  "nakhonnayok": {
+    "state": "ready",
+    "pois": 74,
+    "hotels": 9,
+    "sparse": true
+  },
+  "nakhonpathom": {
+    "state": "ready",
+    "pois": 104,
+    "hotels": 7,
+    "sparse": true
+  },
+  "nakhonsawan": {
+    "state": "ready",
+    "pois": 80,
+    "hotels": 9,
+    "sparse": true
+  },
+  "lamphun": {
+    "state": "ready",
+    "pois": 66,
+    "hotels": 12,
+    "minutes": 122.9
+  },
+  "nonthaburi": {
+    "state": "ready",
+    "pois": 146,
+    "hotels": 18,
+    "minutes": 124.5
+  },
+  "pathumthani": {
+    "state": "ready",
+    "pois": 140,
+    "hotels": 6,
+    "sparse": true
+  },
+  "phichit": {
+    "state": "ready",
+    "pois": 40,
+    "hotels": 6,
+    "sparse": true
+  },
+  "phetchabun": {
+    "state": "ready",
+    "pois": 79,
+    "hotels": 14,
+    "minutes": 133.5
+  },
+  "lopburi": {
+    "state": "ready",
+    "pois": 91,
+    "hotels": 13,
+    "minutes": 148.1
+  },
+  "samutprakan": {
+    "state": "ready",
+    "pois": 159,
+    "hotels": 15,
+    "minutes": 120.2
+  },
+  "samutsongkhram": {
+    "state": "ready",
+    "pois": 61,
+    "hotels": 14,
+    "minutes": 452.0
+  },
+  "samutsakhon": {
+    "state": "ready",
+    "pois": 64,
+    "hotels": 7,
+    "sparse": true
+  },
+  "singburi": {
+    "state": "ready",
+    "pois": 59,
+    "hotels": 8,
+    "sparse": true
+  },
+  "suphanburi": {
+    "state": "ready",
+    "pois": 88,
+    "hotels": 6,
+    "sparse": true
+  },
+  "saraburi": {
+    "state": "ready",
+    "pois": 71,
+    "hotels": 10,
+    "minutes": 171.5
+  },
+  "uthaithani": {
+    "state": "ready",
+    "pois": 51,
+    "hotels": 10,
+    "sparse": true
+  },
+  "chachoengsao": {
+    "state": "ready",
+    "pois": 87,
+    "hotels": 5,
+    "sparse": true
+  },
+  "prachinburi": {
+    "state": "ready",
+    "pois": 61,
+    "hotels": 9,
+    "sparse": true
+  },
+  "sakaeo": {
+    "state": "ready",
+    "pois": 49,
+    "hotels": 8,
+    "sparse": true
+  },
+  "tak": {
+    "state": "ready",
+    "pois": 138,
+    "hotels": 6,
+    "minutes": 371.6,
+    "sparse": true
+  },
+  "ratchaburi": {
+    "state": "ready",
+    "pois": 112,
+    "hotels": 13,
+    "minutes": 261.7
+  },
+  "chumphon": {
+    "state": "ready",
+    "pois": 81,
+    "hotels": 12,
+    "minutes": 185.9
+  },
+  "narathiwat": {
+    "state": "ready",
+    "pois": 50,
+    "hotels": 7,
+    "minutes": 262.1,
+    "sparse": true
+  },
+  "phatthalung": {
+    "state": "ready",
+    "pois": 52,
+    "hotels": 13,
+    "minutes": 372.5,
+    "sparse": true
+  },
+  "ranong": {
+    "state": "ready",
+    "pois": 91,
+    "hotels": 17,
+    "minutes": 360.7
+  },
+  "satun": {
+    "state": "ready",
+    "pois": 125,
+    "hotels": 18,
+    "minutes": 119.2
+  },
+  "yala": {
+    "state": "ready",
+    "pois": 51,
+    "hotels": 7,
+    "minutes": 427.5,
+    "sparse": true
+  },
+  "chaiyaphum": {
+    "state": "ready",
+    "pois": 75,
+    "hotels": 9,
+    "minutes": 383.1,
+    "sparse": true
+  },
+  "nakhonphanom": {
+    "state": "ready",
+    "pois": 37,
+    "hotels": 6,
+    "minutes": 440.4,
+    "sparse": true
+  },
+  "buengkan": {
+    "state": "ready",
+    "pois": 47,
+    "hotels": 11,
+    "minutes": 111.1,
+    "sparse": true
+  },
+  "mahasarakham": {
+    "state": "ready",
+    "pois": 70,
+    "hotels": 9,
+    "minutes": 136.4,
+    "sparse": true
+  },
+  "amnatcharoen": {
+    "state": "ready",
+    "pois": 52,
+    "hotels": 2,
+    "sparse": true
+  },
+  "angthong": {
+    "state": "ready",
+    "pois": 92,
+    "hotels": 4,
+    "sparse": true
+  },
+  "pattani": {
+    "state": "ready",
+    "pois": 20,
+    "hotels": 6,
+    "sparse": true
+  }
+}

@@ -1,0 +1,910 @@
+{
+  "pois": [
+    {
+      "name_th": "อุทยานแห่งชาติภูสระดอกบัว",
+      "name_en": "Phu Sa Dok Bua National Park",
+      "category": "activity",
+      "lat": 16.195803,
+      "lng": 104.705128,
+      "score": 8.1,
+      "cost": 200,
+      "duration_min": 180,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P01"
+    },
+    {
+      "name_th": "จิตรกูฏ",
+      "name_en": "Chitakut",
+      "category": "culture",
+      "lat": 15.891867,
+      "lng": 104.637112,
+      "score": 7.5,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P02"
+    },
+    {
+      "name_th": "แก่งหินขัน",
+      "name_en": "Kaeng Hin Khan",
+      "category": "culture",
+      "lat": 16.128454,
+      "lng": 105.032822,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P03"
+    },
+    {
+      "name_th": "แก่งคันสูง",
+      "name_en": "Kaeng Khan Sung Rapids",
+      "category": "culture",
+      "lat": 16.178161,
+      "lng": 105.017099,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P04"
+    },
+    {
+      "name_th": "แก่งต่างหล่าง",
+      "name_en": "Kaeng Ta Lang",
+      "category": "culture",
+      "lat": 16.24276,
+      "lng": 105.008139,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P05"
+    },
+    {
+      "name_th": "ตลาดสดเทศบาลตำบล ชานุมาน",
+      "name_en": "Chanuman Feshmarket",
+      "category": "market",
+      "lat": 16.227243,
+      "lng": 105.004626,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P06"
+    },
+    {
+      "name_th": "ตลาดสดวิชิตสิน",
+      "name_en": "WichitSin Fresh Market",
+      "category": "market",
+      "lat": 15.864581,
+      "lng": 104.626699,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P07"
+    },
+    {
+      "name_th": "บ้านมีฮัก",
+      "name_en": "Baan Me Hug",
+      "category": "restaurant",
+      "lat": 15.881778,
+      "lng": 104.622638,
+      "score": 8.0,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 960,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop",
+        "thai"
+      ],
+      "id": "P08"
+    },
+    {
+      "name_th": "ไทม์มิ่ง คาเฟ่",
+      "name_en": "Timing cafe",
+      "category": "restaurant",
+      "lat": 15.736025,
+      "lng": 104.637708,
+      "score": 7.8,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P09"
+    },
+    {
+      "name_th": "ร้านอาหารบ้านปลากัด",
+      "name_en": "ร้านอาหารบ้านปลากัด",
+      "category": "restaurant",
+      "lat": 15.783573,
+      "lng": 104.639711,
+      "score": 7.7,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1230,
+      "tags": [
+        "restaurant",
+        "regional",
+        "อาหารตุามสั่ง"
+      ],
+      "id": "P10"
+    },
+    {
+      "name_th": "ดอนตาล เนื้อย่างเกาหลี",
+      "name_en": "Don Tan Korean BBQ",
+      "category": "restaurant",
+      "lat": 16.232066,
+      "lng": 105.002477,
+      "score": 7.1,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P11"
+    },
+    {
+      "name_th": "Spicy Duck",
+      "name_en": "Spicy Duck",
+      "category": "restaurant",
+      "lat": 15.68306,
+      "lng": 104.651847,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P12"
+    },
+    {
+      "name_th": "วัดอำนาจ",
+      "name_en": "Wat Amnat",
+      "category": "temple",
+      "lat": 15.682317,
+      "lng": 104.655264,
+      "score": 7.6,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P13"
+    },
+    {
+      "name_th": "วัดโพธิ์ศิลา",
+      "name_en": "Wat Pho Sila",
+      "category": "temple",
+      "lat": 15.686934,
+      "lng": 104.685237,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P14"
+    },
+    {
+      "name_th": "วัดพระเหลาเทพนิมิต",
+      "name_en": "Wat Pra Lao Thep Nimit",
+      "category": "temple",
+      "lat": 15.676857,
+      "lng": 104.854143,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P15"
+    },
+    {
+      "name_th": "วัดบ่อชะเนง",
+      "name_en": "Wat Bo Chaneng",
+      "category": "temple",
+      "lat": 15.691786,
+      "lng": 104.528148,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P16"
+    },
+    {
+      "name_th": "วัดป่าด่านเกวียนลั่น",
+      "name_en": "Wat Pa Dan Kwian Lan",
+      "category": "temple",
+      "lat": 15.942798,
+      "lng": 104.997821,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P17"
+    },
+    {
+      "name_th": "วัดพระมงคลมิ่งเมือง",
+      "name_en": "Wat Phra Mongkhon Ming Mueang",
+      "category": "temple",
+      "lat": 15.893843,
+      "lng": 104.624578,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P18"
+    },
+    {
+      "name_th": "วัดถ้ำแสงเพชร",
+      "name_en": "Wat Tham Saeng Phet",
+      "category": "temple",
+      "lat": 15.888338,
+      "lng": 104.732731,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P19"
+    },
+    {
+      "name_th": "วัดไชยาติการาม",
+      "name_en": "Wat Chaiyatikaram",
+      "category": "temple",
+      "lat": 15.730208,
+      "lng": 104.812371,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P20"
+    },
+    {
+      "name_th": "วัดพระศรีเจริญ",
+      "name_en": "Wat Pra Si Charoen",
+      "category": "temple",
+      "lat": 15.727312,
+      "lng": 104.452633,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P21"
+    },
+    {
+      "name_th": "วัดสุทธิกาวาส",
+      "name_en": "Wat Suthikawat",
+      "category": "temple",
+      "lat": 15.816549,
+      "lng": 104.903251,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P22"
+    },
+    {
+      "name_th": "วัดพระมงคลมิ่งเมือง",
+      "name_en": "Bhuddha Utthayan Temple",
+      "category": "temple",
+      "lat": 15.891584,
+      "lng": 104.622814,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P23"
+    },
+    {
+      "name_th": "วัดสำราญนิเวศ (พระอารามหลวง)",
+      "name_en": "Samrannivesh Temple",
+      "category": "temple",
+      "lat": 15.86825,
+      "lng": 104.627872,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P24"
+    },
+    {
+      "name_th": "วัดบ้านคันสูง",
+      "name_en": "Wat Ban Khan Sung",
+      "category": "temple",
+      "lat": 16.186692,
+      "lng": 105.007174,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P25"
+    },
+    {
+      "name_th": "วัดบ้านโคกนกกระเต็น",
+      "name_en": "Wat Ban Khok Nok Kraten",
+      "category": "temple",
+      "lat": 16.142475,
+      "lng": 105.020075,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P26"
+    },
+    {
+      "name_th": "วัดโนนศิลา",
+      "name_en": "Wat Non Sila",
+      "category": "temple",
+      "lat": 16.100999,
+      "lng": 105.04256,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P27"
+    },
+    {
+      "name_th": "วัดศรีสมบูรณ์",
+      "name_en": "Wat Si Sombun",
+      "category": "temple",
+      "lat": 16.234402,
+      "lng": 104.999926,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P28"
+    },
+    {
+      "name_th": "วัดศิลาราม",
+      "name_en": "Wat Sila Ram",
+      "category": "temple",
+      "lat": 16.127281,
+      "lng": 105.030578,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P29"
+    },
+    {
+      "name_th": "วัดศิริมงคล",
+      "name_en": "Wat Siri Mongkhon",
+      "category": "temple",
+      "lat": 16.162283,
+      "lng": 105.009875,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P30"
+    },
+    {
+      "name_th": "WAT BAN KHOK KAI",
+      "name_en": "WAT BAN KHOK KAI",
+      "category": "temple",
+      "lat": 15.83609,
+      "lng": 104.609159,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P31"
+    },
+    {
+      "name_th": "WAT BAN NONG KALAO",
+      "name_en": "WAT BAN NONG KALAO",
+      "category": "temple",
+      "lat": 15.752433,
+      "lng": 104.599322,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P32"
+    },
+    {
+      "name_th": "WAT BUENG NAM PHU",
+      "name_en": "WAT BUENG NAM PHU",
+      "category": "temple",
+      "lat": 15.803099,
+      "lng": 104.62309,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P33"
+    },
+    {
+      "name_th": "WAT CHUAK NAI",
+      "name_en": "WAT CHUAK NAI",
+      "category": "temple",
+      "lat": 15.817033,
+      "lng": 104.597454,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P34"
+    },
+    {
+      "name_th": "WAT KHOK SAWANG",
+      "name_en": "WAT KHOK SAWANG",
+      "category": "temple",
+      "lat": 15.840215,
+      "lng": 104.661795,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P35"
+    },
+    {
+      "name_th": "WAT LAO FAI NOI",
+      "name_en": "WAT LAO FAI NOI",
+      "category": "temple",
+      "lat": 15.74604,
+      "lng": 104.687103,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P36"
+    },
+    {
+      "name_th": "WAT NA WA",
+      "name_en": "WAT NA WA",
+      "category": "temple",
+      "lat": 15.859224,
+      "lng": 104.582755,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P37"
+    },
+    {
+      "name_th": "WAT PA ARANYA WIWEK",
+      "name_en": "WAT PA ARANYA WIWEK",
+      "category": "temple",
+      "lat": 15.820418,
+      "lng": 104.645285,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P38"
+    },
+    {
+      "name_th": "WAT PA BAN EPE",
+      "name_en": "WAT PA BAN EPE",
+      "category": "temple",
+      "lat": 15.816707,
+      "lng": 104.675116,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P39"
+    },
+    {
+      "name_th": "WAT PA KUT KHET THO",
+      "name_en": "WAT PA KUT KHET THO",
+      "category": "temple",
+      "lat": 15.755023,
+      "lng": 104.638767,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P40"
+    },
+    {
+      "name_th": "WAT PA LAD KAM",
+      "name_en": "WAT PA LAD KAM",
+      "category": "temple",
+      "lat": 15.848007,
+      "lng": 104.611368,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P41"
+    },
+    {
+      "name_th": "WAT PA PORN PRASIT",
+      "name_en": "WAT PA PORN PRASIT",
+      "category": "temple",
+      "lat": 15.749735,
+      "lng": 104.600635,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P42"
+    },
+    {
+      "name_th": "WAT PA SUKKHA WRARAM",
+      "name_en": "WAT PA SUKKHA WRARAM",
+      "category": "temple",
+      "lat": 15.82995,
+      "lng": 104.680926,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P43"
+    },
+    {
+      "name_th": "WAT PHAN WET",
+      "name_en": "WAT PHAN WET",
+      "category": "temple",
+      "lat": 15.84175,
+      "lng": 104.629985,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P44"
+    },
+    {
+      "name_th": "WAT PHANTHA WICHA",
+      "name_en": "WAT PHANTHA WICHA",
+      "category": "temple",
+      "lat": 15.820204,
+      "lng": 104.673811,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P45"
+    },
+    {
+      "name_th": "WAT PHO SRI",
+      "name_en": "WAT PHO SRI",
+      "category": "temple",
+      "lat": 15.800979,
+      "lng": 104.63763,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P46"
+    },
+    {
+      "name_th": "WAT PHON MUANG NOI NA WOEN",
+      "name_en": "WAT PHON MUANG NOI NA WOEN",
+      "category": "temple",
+      "lat": 15.674169,
+      "lng": 104.593056,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P47"
+    },
+    {
+      "name_th": "WAT SAMAKKHI",
+      "name_en": "WAT SAMAKKHI",
+      "category": "temple",
+      "lat": 15.781341,
+      "lng": 104.614601,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P48"
+    },
+    {
+      "name_th": "WAT SI BUN YUEN",
+      "name_en": "WAT SI BUN YUEN",
+      "category": "temple",
+      "lat": 15.859717,
+      "lng": 104.643352,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P49"
+    },
+    {
+      "name_th": "WAT SI BUNRUANG",
+      "name_en": "WAT SI BUNRUANG",
+      "category": "temple",
+      "lat": 15.80302,
+      "lng": 104.62899,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P50"
+    },
+    {
+      "name_th": "Wat Amphawan",
+      "name_en": "Wat Amphawan",
+      "category": "temple",
+      "lat": 15.679118,
+      "lng": 104.692795,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P51"
+    },
+    {
+      "name_th": "Wat Amphawan alt",
+      "name_en": "Wat Amphawan alt",
+      "category": "temple",
+      "lat": 15.679397,
+      "lng": 104.693062,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P52"
+    },
+    {
+      "name_th": "จุดชมวิวผาชื่นวาริน",
+      "name_en": "Pha Chuen Warin Viewpoint",
+      "category": "viewpoint",
+      "lat": 15.909869,
+      "lng": 104.792192,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P53"
+    },
+    {
+      "name_th": "จุดชมวิวภูสิงห์",
+      "name_en": "Phu Sing Viewpoint",
+      "category": "viewpoint",
+      "lat": 15.910162,
+      "lng": 104.797641,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P54"
+    },
+    {
+      "name_th": "จุดชมวิวริมโขง",
+      "name_en": "Rim Khong View Point",
+      "category": "viewpoint",
+      "lat": 16.225123,
+      "lng": 105.013976,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P55"
+    }
+  ],
+  "hotels": [
+    {
+      "name_th": "สุพัตรา รีสอร์ท",
+      "name_en": "Suphattra Resort",
+      "lat": 16.204092,
+      "lng": 105.004975,
+      "score": 7.5,
+      "cost": 600,
+      "stars": 2,
+      "id": "H01"
+    },
+    {
+      "name_th": "โรงแรมชิตสกนธ์ ฟลาวเวอร์แลนด์",
+      "name_en": "Chitsakon FlowerLand&Hotel",
+      "lat": 15.891089,
+      "lng": 104.654928,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H02"
+    }
+  ]
+}

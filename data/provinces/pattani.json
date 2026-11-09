@@ -1,0 +1,576 @@
+{
+  "pois": [
+    {
+      "name_th": "อุทยานแห่งชาติบูโด-สุไหงปาดี",
+      "name_en": "Budo-Su-ngai Padi National Park",
+      "category": "activity",
+      "lat": 6.305789,
+      "lng": 101.692328,
+      "score": 8.1,
+      "cost": 200,
+      "duration_min": 180,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P01"
+    },
+    {
+      "name_th": "อุทยานแห่งชาติน้ำตกทรายขาว",
+      "name_en": "Namtok Sai Khao National Park",
+      "category": "activity",
+      "lat": 6.598018,
+      "lng": 101.087651,
+      "score": 7.1,
+      "cost": 200,
+      "duration_min": 180,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P02"
+    },
+    {
+      "name_th": "Admiral Krom Luang Chumphon Khet Udomsak Monument",
+      "name_en": "Admiral Krom Luang Chumphon Khet Udomsak Monument",
+      "category": "culture",
+      "lat": 6.896129,
+      "lng": 101.246412,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P03"
+    },
+    {
+      "name_th": "รูปปั้นพระบิดา",
+      "name_en": "รูปปั้นพระบิดา",
+      "category": "culture",
+      "lat": 6.877816,
+      "lng": 101.236302,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P04"
+    },
+    {
+      "name_th": "Bird Watching Center, Pattani",
+      "name_en": "Bird Watching Center, Pattani",
+      "category": "culture",
+      "lat": 6.882663,
+      "lng": 101.230579,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P05"
+    },
+    {
+      "name_th": "ตลาดนัดพญาตานี",
+      "name_en": "Phayatani Night Market",
+      "category": "market",
+      "lat": 6.868523,
+      "lng": 101.274542,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P06"
+    },
+    {
+      "name_th": "Municipal Market Pattani",
+      "name_en": "Municipal Market Pattani",
+      "category": "market",
+      "lat": 6.8604,
+      "lng": 101.256511,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P07"
+    },
+    {
+      "name_th": "Public Night Market",
+      "name_en": "Public Night Market",
+      "category": "market",
+      "lat": 6.863556,
+      "lng": 101.253254,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P08"
+    },
+    {
+      "name_th": "อารีนี โภชนา",
+      "name_en": "Arinee Restaurant",
+      "category": "restaurant",
+      "lat": 6.870988,
+      "lng": 101.237915,
+      "score": 7.5,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 390,
+      "close_min": 900,
+      "tags": [
+        "restaurant",
+        "halal",
+        "regional",
+        "thai"
+      ],
+      "id": "P09"
+    },
+    {
+      "name_th": "Tone Byrdth De Bangkok",
+      "name_en": "Tone Byrdth De Bangkok",
+      "category": "restaurant",
+      "lat": 6.701912,
+      "lng": 101.619186,
+      "score": 7.0,
+      "cost": 400,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "halal",
+        "italian",
+        "thai"
+      ],
+      "id": "P10"
+    },
+    {
+      "name_th": "เอวัลล์คาเฟ่",
+      "name_en": "Eyvall Cafe",
+      "category": "restaurant",
+      "lat": 6.856129,
+      "lng": 101.251578,
+      "score": 8.2,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop",
+        "อาหาร"
+      ],
+      "id": "P11"
+    },
+    {
+      "name_th": "Floc Coff",
+      "name_en": "Floc Coff",
+      "category": "restaurant",
+      "lat": 6.700547,
+      "lng": 101.619668,
+      "score": 8.1,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 600,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P12"
+    },
+    {
+      "name_th": "Black Blood Roastery Pattani",
+      "name_en": "Black Blood Roastery Pattani",
+      "category": "restaurant",
+      "lat": 6.861331,
+      "lng": 101.246927,
+      "score": 7.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 450,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P13"
+    },
+    {
+      "name_th": "Sapakafe 36 Pattani",
+      "name_en": "Sapakafe 36 Pattani",
+      "category": "restaurant",
+      "lat": 6.86914,
+      "lng": 101.254376,
+      "score": 7.9,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 540,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P14"
+    },
+    {
+      "name_th": "FLOW Cafe & Co-working Space",
+      "name_en": "FLOW Cafe & Co-working Space",
+      "category": "restaurant",
+      "lat": 6.694065,
+      "lng": 101.619057,
+      "score": 7.8,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1200,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P15"
+    },
+    {
+      "name_th": "Fatoni Cafe",
+      "name_en": "Fatoni Cafe",
+      "category": "restaurant",
+      "lat": 6.597762,
+      "lng": 101.34336,
+      "score": 7.8,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 510,
+      "close_min": 1290,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P16"
+    },
+    {
+      "name_th": "มัทฉะ",
+      "name_en": "มัทฉะ",
+      "category": "restaurant",
+      "lat": 6.85732,
+      "lng": 101.251474,
+      "score": 7.3,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P17"
+    },
+    {
+      "name_th": "Anatomy Coffee and Bistro",
+      "name_en": "Anatomy Coffee and Bistro",
+      "category": "restaurant",
+      "lat": 6.881712,
+      "lng": 101.234662,
+      "score": 7.2,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "restaurant",
+        "coffee_shop"
+      ],
+      "id": "P18"
+    },
+    {
+      "name_th": "Fatoni Cafe & Roastery",
+      "name_en": "Fatoni Cafe & Roastery",
+      "category": "restaurant",
+      "lat": 6.597506,
+      "lng": 101.343499,
+      "score": 7.0,
+      "cost": 100,
+      "duration_min": 45,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P19"
+    },
+    {
+      "name_th": "โรงอาหาร มหาวิทยาลัยฟาฏอนี",
+      "name_en": "โรงอาหาร มหาวิทยาลัยฟาฏอนี",
+      "category": "restaurant",
+      "lat": 6.596753,
+      "lng": 101.343177,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P20"
+    },
+    {
+      "name_th": "Madam khrua seafood restaurant",
+      "name_en": "Madam khrua seafood restaurant",
+      "category": "restaurant",
+      "lat": 6.891431,
+      "lng": 101.283152,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P21"
+    },
+    {
+      "name_th": "วัดตานีนรสโมสร",
+      "name_en": "Wat Tani Narasamoson",
+      "category": "temple",
+      "lat": 6.866952,
+      "lng": 101.253756,
+      "score": 8.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P22"
+    },
+    {
+      "name_th": "วัดช้างให้ราษฎร์บูรณาราม หลวงพ่อทวด",
+      "name_en": "Wat Chang Hai Rasburanaram",
+      "category": "temple",
+      "lat": 6.668675,
+      "lng": 101.169051,
+      "score": 7.6,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P23"
+    },
+    {
+      "name_th": "วัดทรายขาว",
+      "name_en": "Wat Sai Khao",
+      "category": "temple",
+      "lat": 6.673292,
+      "lng": 101.104395,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P24"
+    },
+    {
+      "name_th": "วัดช้างไห้(ตก)",
+      "name_en": "วัดช้างไห้(ตก)",
+      "category": "temple",
+      "lat": 6.683876,
+      "lng": 101.070079,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P25"
+    },
+    {
+      "name_th": "วัดหลักเมือง",
+      "name_en": "Wat Lak Mueang",
+      "category": "temple",
+      "lat": 6.876681,
+      "lng": 101.244116,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P26"
+    },
+    {
+      "name_th": "Wat Laem Nok",
+      "name_en": "Wat Laem Nok",
+      "category": "temple",
+      "lat": 6.889314,
+      "lng": 101.281297,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P27"
+    },
+    {
+      "name_th": "Wat Mujjalinthawapiwihan, Royal Monastery",
+      "name_en": "Wat Mujjalinthawapiwihan, Royal Monastery",
+      "category": "temple",
+      "lat": 6.848209,
+      "lng": 101.179717,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P28"
+    },
+    {
+      "name_th": "Wat Nikorn Chanaram",
+      "name_en": "Wat Nikorn Chanaram",
+      "category": "temple",
+      "lat": 6.871101,
+      "lng": 101.260178,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P29"
+    },
+    {
+      "name_th": "วัดปทุมวารี",
+      "name_en": "วัดปทุมวารี",
+      "category": "temple",
+      "lat": 6.691586,
+      "lng": 101.544568,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P30"
+    },
+    {
+      "name_th": "ปลายสุดแหลมตาชี",
+      "name_en": "Ta Chee Cape",
+      "category": "viewpoint",
+      "lat": 6.935725,
+      "lng": 101.240083,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P31"
+    }
+  ],
+  "hotels": [
+    {
+      "name_th": "Mek Pattani",
+      "name_en": "Mek Pattani",
+      "lat": 6.871618,
+      "lng": 101.220805,
+      "score": 7.4,
+      "cost": 600,
+      "stars": 2,
+      "id": "H01"
+    },
+    {
+      "name_th": "C S ปัตตานี",
+      "name_en": "C S ปัตตานี",
+      "lat": 6.864152,
+      "lng": 101.233638,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H02"
+    },
+    {
+      "name_th": "Rainbow Mansion",
+      "name_en": "Rainbow Mansion",
+      "lat": 6.861218,
+      "lng": 101.245556,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H03"
+    },
+    {
+      "name_th": "The Rooms Residence",
+      "name_en": "The Rooms Residence",
+      "lat": 6.870114,
+      "lng": 101.247835,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H04"
+    },
+    {
+      "name_th": "Southern View",
+      "name_en": "Southern View",
+      "lat": 6.855265,
+      "lng": 101.216999,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H05"
+    },
+    {
+      "name_th": "โรงแรม มายการ์เด้น",
+      "name_en": "โรงแรม มายการ์เด้น",
+      "lat": 6.865058,
+      "lng": 101.24165,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H06"
+    }
+  ]
+}

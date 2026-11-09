@@ -1,0 +1,9 @@
+# Render.com Blueprint (ฟรี): เชื่อม GitHub repo แล้วเลือก "New Blueprint" — ผู้ใช้เป็นคนสมัครบัญชีและกดปุ่ม deploy เอง
+services:
+  - type: web
+    name: weeasytrip
+    runtime: docker
+    plan: free
+    envVars:
+      - key: WET_DEV_PASSWORD      # ตั้งรหัสโหมด Developer ของเซิร์ฟเวอร์จริง (อย่าใช้ค่าเริ่มต้น)
+        sync: false

@@ -1,0 +1,925 @@
+{
+  "pois": [
+    {
+      "name_th": "ทะเลหมอกอัยเยอร์เวง",
+      "name_en": "Betong Sea Cloud, Aiyerweng",
+      "category": "culture",
+      "lat": 5.977653,
+      "lng": 101.181482,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P01"
+    },
+    {
+      "name_th": "ศาลหลักเมืองยะลา",
+      "name_en": "Yala City Pillar Shrine",
+      "category": "culture",
+      "lat": 6.541175,
+      "lng": 101.280404,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P02"
+    },
+    {
+      "name_th": "หอนาฬิกา",
+      "name_en": "Clock tower",
+      "category": "culture",
+      "lat": 5.771816,
+      "lng": 101.071537,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P03"
+    },
+    {
+      "name_th": "สกายวอล์กอัยเยอร์เวง",
+      "name_en": "Skywalk",
+      "category": "culture",
+      "lat": 5.977506,
+      "lng": 101.181762,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P04"
+    },
+    {
+      "name_th": "ป้ายใต้สุดสยาม",
+      "name_en": "Historical Siam's Southernmost sign",
+      "category": "culture",
+      "lat": 5.74784,
+      "lng": 101.028651,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P05"
+    },
+    {
+      "name_th": "勿洞和平村(高振强旅游社)",
+      "name_en": "Museum of CPM History",
+      "category": "culture",
+      "lat": 5.8562,
+      "lng": 101.235649,
+      "score": 7.0,
+      "cost": 100,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P06"
+    },
+    {
+      "name_th": "โอเคเบตง",
+      "name_en": "OK Batong",
+      "category": "culture",
+      "lat": 5.795364,
+      "lng": 101.071355,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P07"
+    },
+    {
+      "name_th": "Ancient Tree",
+      "name_en": "Ancient Tree",
+      "category": "culture",
+      "lat": 6.038108,
+      "lng": 101.386752,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P08"
+    },
+    {
+      "name_th": "Batong Hightland Garden",
+      "name_en": "Batong Hightland Garden",
+      "category": "culture",
+      "lat": 5.884907,
+      "lng": 101.022124,
+      "score": 6.9,
+      "cost": 50,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P09"
+    },
+    {
+      "name_th": "Masjid Jala",
+      "name_en": "Masjid Jala",
+      "category": "culture",
+      "lat": 6.566054,
+      "lng": 101.294606,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P10"
+    },
+    {
+      "name_th": "World's largest mailbox",
+      "name_en": "World's largest mailbox",
+      "category": "culture",
+      "lat": 5.777257,
+      "lng": 101.073181,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P11"
+    },
+    {
+      "name_th": "Betong District Municipality Fresh Market",
+      "name_en": "Betong District Municipality Fresh Market",
+      "category": "market",
+      "lat": 5.77349,
+      "lng": 101.070022,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P12"
+    },
+    {
+      "name_th": "Vegetarian",
+      "name_en": "Vegetarian",
+      "category": "restaurant",
+      "lat": 5.771256,
+      "lng": 101.072609,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "vegetarian"
+      ],
+      "id": "P13"
+    },
+    {
+      "name_th": "ธนวิถี",
+      "name_en": "Thonwithi",
+      "category": "restaurant",
+      "lat": 6.553437,
+      "lng": 101.295011,
+      "score": 8.2,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 420,
+      "close_min": 690,
+      "tags": [
+        "restaurant",
+        "halal",
+        "thai"
+      ],
+      "id": "P14"
+    },
+    {
+      "name_th": "ฮาลาลฟู้ดส์",
+      "name_en": "Halal Foods",
+      "category": "restaurant",
+      "lat": 6.548924,
+      "lng": 101.285239,
+      "score": 8.1,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 360,
+      "close_min": 840,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P15"
+    },
+    {
+      "name_th": "ร้านอามานะห์ไอศกรีม",
+      "name_en": "Nasi Kaki Lembu",
+      "category": "restaurant",
+      "lat": 6.551766,
+      "lng": 101.309002,
+      "score": 8.1,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1080,
+      "tags": [
+        "restaurant",
+        "halal",
+        "thai",
+        "soup"
+      ],
+      "id": "P16"
+    },
+    {
+      "name_th": "eat.me.now-กิน.ฉัน.สิ",
+      "name_en": "eat.me.now-กิน.ฉัน.สิ",
+      "category": "restaurant",
+      "lat": 6.539824,
+      "lng": 101.287526,
+      "score": 8.1,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 600,
+      "close_min": 1170,
+      "tags": [
+        "restaurant",
+        "halal",
+        "thai",
+        "chicken"
+      ],
+      "id": "P17"
+    },
+    {
+      "name_th": "บ้านอาหาร my home ยะลา",
+      "name_en": "My Home",
+      "category": "restaurant",
+      "lat": 6.552613,
+      "lng": 101.264735,
+      "score": 7.7,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 360,
+      "close_min": 1080,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P18"
+    },
+    {
+      "name_th": "Once Eatery by ประเทือง",
+      "name_en": "Once Eatery by ประเทือง",
+      "category": "restaurant",
+      "lat": 6.556001,
+      "lng": 101.286379,
+      "score": 7.5,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 570,
+      "close_min": 1380,
+      "tags": [
+        "restaurant",
+        "halal",
+        "thai"
+      ],
+      "id": "P19"
+    },
+    {
+      "name_th": "Oxy Cafe",
+      "name_en": "Oxy Cafe",
+      "category": "restaurant",
+      "lat": 6.545097,
+      "lng": 101.294227,
+      "score": 7.5,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P20"
+    },
+    {
+      "name_th": "ข้าวซอยล้านนา",
+      "name_en": "ข้าวซอยล้านนา",
+      "category": "restaurant",
+      "lat": 6.576362,
+      "lng": 101.295996,
+      "score": 7.5,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 630,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P21"
+    },
+    {
+      "name_th": "Anna's Garden",
+      "name_en": "Anna's Garden",
+      "category": "restaurant",
+      "lat": 6.542263,
+      "lng": 101.287811,
+      "score": 7.4,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 420,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "halal",
+        "thai",
+        "coffee_shop"
+      ],
+      "id": "P22"
+    },
+    {
+      "name_th": "D'Raman",
+      "name_en": "D'Raman",
+      "category": "restaurant",
+      "lat": 6.477096,
+      "lng": 101.427191,
+      "score": 7.2,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1380,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P23"
+    },
+    {
+      "name_th": "Ayamchon",
+      "name_en": "Ayamchon",
+      "category": "restaurant",
+      "lat": 6.550899,
+      "lng": 101.279689,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "halal",
+        "korean"
+      ],
+      "id": "P24"
+    },
+    {
+      "name_th": "นั่งหน้าเตา",
+      "name_en": "นั่งหน้าเตา",
+      "category": "restaurant",
+      "lat": 6.548516,
+      "lng": 101.291819,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P25"
+    },
+    {
+      "name_th": "De Mango",
+      "name_en": "De Mango",
+      "category": "restaurant",
+      "lat": 6.533075,
+      "lng": 101.285532,
+      "score": 7.5,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1260,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P26"
+    },
+    {
+      "name_th": "ตะกงแกง",
+      "name_en": "Ta Kong Kang",
+      "category": "restaurant",
+      "lat": 6.554625,
+      "lng": 101.288757,
+      "score": 7.5,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "regional"
+      ],
+      "id": "P27"
+    },
+    {
+      "name_th": "Maki Cafe",
+      "name_en": "Maki Cafe",
+      "category": "restaurant",
+      "lat": 6.550648,
+      "lng": 101.273732,
+      "score": 7.4,
+      "cost": 400,
+      "duration_min": 60,
+      "open_min": 630,
+      "close_min": 1260,
+      "tags": [
+        "restaurant",
+        "thai",
+        "coffee_shop"
+      ],
+      "id": "P28"
+    },
+    {
+      "name_th": "ร้านนั่ง ดื่มชา ทานโรตี",
+      "name_en": "Nang' eat more roti",
+      "category": "restaurant",
+      "lat": 6.557092,
+      "lng": 101.291527,
+      "score": 7.4,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 390,
+      "close_min": 1200,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P29"
+    },
+    {
+      "name_th": "ร้านอาหารบ้านคุณชายอำเภอเบตง",
+      "name_en": "Baan Khun Chay Amphor Betong Restaurant",
+      "category": "restaurant",
+      "lat": 5.772983,
+      "lng": 101.068525,
+      "score": 7.1,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "regional",
+        "traditional"
+      ],
+      "id": "P30"
+    },
+    {
+      "name_th": "Roti De Forest",
+      "name_en": "Roti De Forest",
+      "category": "restaurant",
+      "lat": 6.535992,
+      "lng": 101.302641,
+      "score": 7.1,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P31"
+    },
+    {
+      "name_th": "Kedai Makan",
+      "name_en": "Kedai Makan",
+      "category": "restaurant",
+      "lat": 6.477128,
+      "lng": 101.425813,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P32"
+    },
+    {
+      "name_th": "Tree Bar Restaurant",
+      "name_en": "Music Bar Food",
+      "category": "restaurant",
+      "lat": 5.775981,
+      "lng": 101.066521,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P33"
+    },
+    {
+      "name_th": "อาซัน",
+      "name_en": "อาซัน",
+      "category": "restaurant",
+      "lat": 6.457623,
+      "lng": 101.342555,
+      "score": 7.0,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "halal",
+        "regional"
+      ],
+      "id": "P34"
+    },
+    {
+      "name_th": "Back Alley Restoran",
+      "name_en": "Back Alley Restoran",
+      "category": "restaurant",
+      "lat": 5.771438,
+      "lng": 101.06974,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P35"
+    },
+    {
+      "name_th": "Jung Shin",
+      "name_en": "Jung Shin",
+      "category": "restaurant",
+      "lat": 5.771589,
+      "lng": 101.069885,
+      "score": 6.9,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "chinese"
+      ],
+      "id": "P36"
+    },
+    {
+      "name_th": "Santai Budaya",
+      "name_en": "Santai Budaya",
+      "category": "restaurant",
+      "lat": 6.264841,
+      "lng": 101.272855,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P37"
+    },
+    {
+      "name_th": "TUAN KITCHEN RESTOREN",
+      "name_en": "TUAN KITCHEN RESTOREN",
+      "category": "restaurant",
+      "lat": 5.776591,
+      "lng": 101.063067,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P38"
+    },
+    {
+      "name_th": "betong chicken rice",
+      "name_en": "betong chicken rice",
+      "category": "restaurant",
+      "lat": 5.773681,
+      "lng": 101.071554,
+      "score": 6.9,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P39"
+    },
+    {
+      "name_th": "riverside restaurant betong",
+      "name_en": "riverside restaurant betong",
+      "category": "restaurant",
+      "lat": 5.77812,
+      "lng": 101.06314,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P40"
+    },
+    {
+      "name_th": "ร้านอาหาร บ่อปลานิลสายน้ำไหล",
+      "name_en": "ร้านอาหาร บ่อปลานิลสายน้ำไหล",
+      "category": "restaurant",
+      "lat": 5.867344,
+      "lng": 101.040726,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P41"
+    },
+    {
+      "name_th": "อีสาน จิ้ม-ยก",
+      "name_en": "อีสาน จิ้ม-ยก",
+      "category": "restaurant",
+      "lat": 6.555128,
+      "lng": 101.28658,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P42"
+    },
+    {
+      "name_th": "วัดตาพะเยา",
+      "name_en": "Wat Ta Phayao",
+      "category": "temple",
+      "lat": 6.03139,
+      "lng": 101.210938,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P43"
+    },
+    {
+      "name_th": "วัดเมืองยะลา",
+      "name_en": "วัดเมืองยะลา",
+      "category": "temple",
+      "lat": 6.53095,
+      "lng": 101.277951,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P44"
+    },
+    {
+      "name_th": "วัดชมภูสถิต",
+      "name_en": "วัดชมภูสถิต",
+      "category": "temple",
+      "lat": 6.586733,
+      "lng": 101.253602,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P45"
+    },
+    {
+      "name_th": "วัดเวฬุวัน",
+      "name_en": "วัดเวฬุวัน",
+      "category": "temple",
+      "lat": 6.528353,
+      "lng": 101.267315,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P46"
+    },
+    {
+      "name_th": "ทะเลหมอกอัยเยอร์เวง",
+      "name_en": "Aiyoeweng-Sea Of Mist",
+      "category": "viewpoint",
+      "lat": 5.977315,
+      "lng": 101.182236,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P47"
+    },
+    {
+      "name_th": "กระทิง",
+      "name_en": "Street Art",
+      "category": "viewpoint",
+      "lat": 5.772462,
+      "lng": 101.070641,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P48"
+    },
+    {
+      "name_th": "สะพานข้ามเขื่อนบางลาง",
+      "name_en": "สะพานข้ามเขื่อนบางลาง",
+      "category": "viewpoint",
+      "lat": 6.049453,
+      "lng": 101.198061,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P49"
+    },
+    {
+      "name_th": "Nous",
+      "name_en": "Nous",
+      "category": "restaurant",
+      "lat": 6.56515,
+      "lng": 101.295515,
+      "score": 7.3,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 540,
+      "close_min": 1140,
+      "tags": [
+        "restaurant",
+        "halal",
+        "coffee_shop"
+      ],
+      "id": "P50"
+    },
+    {
+      "name_th": "FeelDesign Coffee",
+      "name_en": "FeelDesign Coffee",
+      "category": "restaurant",
+      "lat": 6.554876,
+      "lng": 101.286856,
+      "score": 7.2,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1140,
+      "tags": [
+        "restaurant",
+        "halal"
+      ],
+      "id": "P51"
+    }
+  ],
+  "hotels": [
+    {
+      "name_th": "Penthouse Resort",
+      "name_en": "Penthouse Resort",
+      "lat": 5.775203,
+      "lng": 101.067746,
+      "score": 7.5,
+      "cost": 600,
+      "stars": 2,
+      "id": "H01"
+    },
+    {
+      "name_th": "The Linux Garden Hotel",
+      "name_en": "The Linux Garden Hotel",
+      "lat": 6.541945,
+      "lng": 101.286285,
+      "score": 8.0,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H02"
+    },
+    {
+      "name_th": "Boonrapee Residence",
+      "name_en": "Boonrapee Residence",
+      "lat": 6.548939,
+      "lng": 101.276869,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H03"
+    },
+    {
+      "name_th": "Happy Garden Cafe & Homestay",
+      "name_en": "Happy Garden Cafe & Homestay",
+      "lat": 5.77966,
+      "lng": 101.062782,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H04"
+    },
+    {
+      "name_th": "Thai Hotel -betong",
+      "name_en": "Thai Hotel -betong",
+      "lat": 5.77197,
+      "lng": 101.072281,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H05"
+    },
+    {
+      "name_th": "Fah Ung Rung Hotel",
+      "name_en": "Fah Ung Rung Hotel",
+      "lat": 5.772373,
+      "lng": 101.069669,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H06"
+    },
+    {
+      "name_th": "Sri Yala Hotel",
+      "name_en": "Sri Yala Hotel",
+      "lat": 6.558425,
+      "lng": 101.289763,
+      "score": 7.8,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H07"
+    }
+  ]
+}

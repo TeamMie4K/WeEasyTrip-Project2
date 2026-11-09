@@ -1,0 +1,1677 @@
+{
+  "pois": [
+    {
+      "name_th": "อุทยานแห่งชาติต้นสักใหญ่",
+      "name_en": "Ton Sak Yai National Park",
+      "category": "activity",
+      "lat": 17.561579,
+      "lng": 100.566896,
+      "score": 8.1,
+      "cost": 200,
+      "duration_min": 180,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P01"
+    },
+    {
+      "name_th": "อุทยานแห่งชาติลำน้ำน่าน",
+      "name_en": "Lam Nam Nan National Park",
+      "category": "activity",
+      "lat": 17.933203,
+      "lng": 100.458233,
+      "score": 8.0,
+      "cost": 200,
+      "duration_min": 180,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P02"
+    },
+    {
+      "name_th": "นวดแผนไทย",
+      "name_en": "นวดแผนไทย",
+      "category": "activity",
+      "lat": 17.645428,
+      "lng": 100.117619,
+      "score": 6.9,
+      "cost": 300,
+      "duration_min": 90,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P03"
+    },
+    {
+      "name_th": "ร้านนวด ทิพย์หัตถา",
+      "name_en": "ร้านนวด ทิพย์หัตถา",
+      "category": "activity",
+      "lat": 17.616886,
+      "lng": 100.088199,
+      "score": 6.9,
+      "cost": 300,
+      "duration_min": 90,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P04"
+    },
+    {
+      "name_th": "ร้านนวด ยุวดี",
+      "name_en": "ร้านนวด ยุวดี",
+      "category": "activity",
+      "lat": 17.616826,
+      "lng": 100.088234,
+      "score": 6.9,
+      "cost": 300,
+      "duration_min": 90,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P05"
+    },
+    {
+      "name_th": "ร้านนวด แอนนา",
+      "name_en": "ร้านนวด แอนนา",
+      "category": "activity",
+      "lat": 17.616452,
+      "lng": 100.08822,
+      "score": 6.9,
+      "cost": 300,
+      "duration_min": 90,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "activity"
+      ],
+      "id": "P06"
+    },
+    {
+      "name_th": "อนุสาวรีย์พระยาพิชัยดาบหัก",
+      "name_en": "Phraya Pichai Broken Sword Monument",
+      "category": "culture",
+      "lat": 17.629656,
+      "lng": 100.097419,
+      "score": 7.5,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P07"
+    },
+    {
+      "name_th": "บ้านเทียนหอม",
+      "name_en": "Ban TienHom",
+      "category": "culture",
+      "lat": 17.593892,
+      "lng": 100.130708,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 570,
+      "close_min": 1230,
+      "tags": [
+        "culture"
+      ],
+      "id": "P08"
+    },
+    {
+      "name_th": "บ่อเหล็กน้ำพี้",
+      "name_en": "Bo Lek Nam Phi",
+      "category": "culture",
+      "lat": 17.540504,
+      "lng": 100.299648,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 45,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P09"
+    },
+    {
+      "name_th": "อนุสาวรีย์พระศรีพนมมาศ",
+      "name_en": "Phra Si Phanom Mat Monument",
+      "category": "culture",
+      "lat": 17.652782,
+      "lng": 100.039332,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P10"
+    },
+    {
+      "name_th": "บ้านเจ้าพระยาสุรสีห์วิสิษฐศักดิ์",
+      "name_en": "Chao Phraya Surasi Wisitsak's House",
+      "category": "culture",
+      "lat": 17.653188,
+      "lng": 100.037504,
+      "score": 7.1,
+      "cost": 100,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P11"
+    },
+    {
+      "name_th": "พิพิธภัณฑ์ท้องถิ่นวัดพระแท่นศิลาอาสน์",
+      "name_en": "Wat Phra Thaen Si La At Community Museum",
+      "category": "culture",
+      "lat": 17.597699,
+      "lng": 100.044016,
+      "score": 7.1,
+      "cost": 100,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P12"
+    },
+    {
+      "name_th": "พิพิธภัณฑ์ผ้าซิ่นตีนจกเมืองลับแล",
+      "name_en": "พิพิธภัณฑ์ผ้าซิ่นตีนจกเมืองลับแล",
+      "category": "culture",
+      "lat": 17.663702,
+      "lng": 100.033707,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "culture"
+      ],
+      "id": "P13"
+    },
+    {
+      "name_th": "ตลาดเทศบาล 2",
+      "name_en": "ตลาดเทศบาล 2",
+      "category": "market",
+      "lat": 17.622657,
+      "lng": 100.099211,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P14"
+    },
+    {
+      "name_th": "ตลาดเทศบาล 3",
+      "name_en": "ตลาดเทศบาล 3",
+      "category": "market",
+      "lat": 17.622368,
+      "lng": 100.100011,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P15"
+    },
+    {
+      "name_th": "ตลาดสดเมืองทุ่งยั้ง",
+      "name_en": "Mueang Thung Yang Fresh Market",
+      "category": "market",
+      "lat": 17.600891,
+      "lng": 100.055927,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P16"
+    },
+    {
+      "name_th": "ตลาดสดเทศบาลอุตรดิตถ์",
+      "name_en": "ตลาดสดเทศบาลอุตรดิตถ์",
+      "category": "market",
+      "lat": 17.620833,
+      "lng": 100.098331,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P17"
+    },
+    {
+      "name_th": "ตลาดผลไม้นานนกกก",
+      "name_en": "Na Nok Kok Fruit Market",
+      "category": "market",
+      "lat": 17.723821,
+      "lng": 100.072572,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P18"
+    },
+    {
+      "name_th": "ตลาดสดศรีพนมมาศ",
+      "name_en": "Si Phanom Mat Fresh Market",
+      "category": "market",
+      "lat": 17.653048,
+      "lng": 100.039292,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P19"
+    },
+    {
+      "name_th": "ตลาด5",
+      "name_en": "ตลาด5",
+      "category": "market",
+      "lat": 17.63713,
+      "lng": 100.092528,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P20"
+    },
+    {
+      "name_th": "ตลาดคลองโพธิ์",
+      "name_en": "ตลาดคลองโพธิ์",
+      "category": "market",
+      "lat": 17.615702,
+      "lng": 100.092804,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P21"
+    },
+    {
+      "name_th": "ตลาดโต้รุ่ง",
+      "name_en": "ตลาดโต้รุ่ง",
+      "category": "market",
+      "lat": 17.623277,
+      "lng": 100.098044,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 1020,
+      "close_min": 1380,
+      "tags": [
+        "market"
+      ],
+      "id": "P22"
+    },
+    {
+      "name_th": "ครัวสหายซีฟู้ด",
+      "name_en": "ครัวสหายซีฟู้ด",
+      "category": "restaurant",
+      "lat": 17.654821,
+      "lng": 100.090632,
+      "score": 7.8,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P23"
+    },
+    {
+      "name_th": "เค้กไข่ไต้หวัน เบสเบค สาขาอุตรดิตถ์",
+      "name_en": "เค้กไข่ไต้หวัน เบสเบค สาขาอุตรดิตถ์",
+      "category": "restaurant",
+      "lat": 17.615038,
+      "lng": 100.089179,
+      "score": 7.5,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 540,
+      "close_min": 1200,
+      "tags": [
+        "restaurant",
+        "cake",
+        "cookies"
+      ],
+      "id": "P24"
+    },
+    {
+      "name_th": "Conner - คอนเนอร์",
+      "name_en": "Conner - คอนเนอร์",
+      "category": "restaurant",
+      "lat": 17.630255,
+      "lng": 100.088187,
+      "score": 7.4,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "pasta",
+        "international"
+      ],
+      "id": "P25"
+    },
+    {
+      "name_th": "ร้านเรือนพี่เรือนน้อง",
+      "name_en": "ร้านเรือนพี่เรือนน้อง",
+      "category": "restaurant",
+      "lat": 17.589432,
+      "lng": 100.134877,
+      "score": 7.4,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 600,
+      "close_min": 1080,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P26"
+    },
+    {
+      "name_th": "KFC",
+      "name_en": "KFC",
+      "category": "restaurant",
+      "lat": 17.636722,
+      "lng": 100.089992,
+      "score": 7.1,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "chicken"
+      ],
+      "id": "P27"
+    },
+    {
+      "name_th": "ลมเย็น",
+      "name_en": "Lomyen",
+      "category": "restaurant",
+      "lat": 17.593362,
+      "lng": 100.130431,
+      "score": 7.1,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P28"
+    },
+    {
+      "name_th": "ร้านอาหารตามสั่งข้างโรงพักวังกะพี้ อุตรดิตถ์",
+      "name_en": "ร้านอาหารตามสั่งข้างโรงพักวังกะพี้ อุตรดิตถ์",
+      "category": "restaurant",
+      "lat": 17.56566,
+      "lng": 100.112267,
+      "score": 7.1,
+      "cost": 80,
+      "duration_min": 40,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P29"
+    },
+    {
+      "name_th": "ลลลล ลำลำลับแล",
+      "name_en": "Lum Lum Lap Lae",
+      "category": "restaurant",
+      "lat": 17.658714,
+      "lng": 100.040986,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P30"
+    },
+    {
+      "name_th": "ป้าหว่างหมี่พันผัก",
+      "name_en": "Pa Wang Mi Phan Phak",
+      "category": "restaurant",
+      "lat": 17.655296,
+      "lng": 100.039725,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P31"
+    },
+    {
+      "name_th": "พาสต้า",
+      "name_en": "Pasta",
+      "category": "restaurant",
+      "lat": 17.625156,
+      "lng": 100.098604,
+      "score": 7.0,
+      "cost": 400,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "italian"
+      ],
+      "id": "P32"
+    },
+    {
+      "name_th": "ยายพิศ ก๋วยเตี๋ยวไทย",
+      "name_en": "Yai Phit Kuai Tiao Thai",
+      "category": "restaurant",
+      "lat": 17.595717,
+      "lng": 100.049125,
+      "score": 7.0,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P33"
+    },
+    {
+      "name_th": "Food Market",
+      "name_en": "Food Market",
+      "category": "restaurant",
+      "lat": 17.635541,
+      "lng": 100.094589,
+      "score": 6.9,
+      "cost": 100,
+      "duration_min": 50,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P34"
+    },
+    {
+      "name_th": "Food panda",
+      "name_en": "Food panda",
+      "category": "restaurant",
+      "lat": 17.623812,
+      "lng": 100.087681,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P35"
+    },
+    {
+      "name_th": "Hungry Bunny",
+      "name_en": "Hungry Bunny",
+      "category": "restaurant",
+      "lat": 17.639964,
+      "lng": 100.082267,
+      "score": 6.9,
+      "cost": 400,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "steak_house"
+      ],
+      "id": "P36"
+    },
+    {
+      "name_th": "Impala BAR 1990",
+      "name_en": "Impala BAR 1990",
+      "category": "restaurant",
+      "lat": 17.619135,
+      "lng": 100.11124,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P37"
+    },
+    {
+      "name_th": "LanPho Cafe",
+      "name_en": "LanPho Cafe",
+      "category": "restaurant",
+      "lat": 17.601632,
+      "lng": 100.049009,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P38"
+    },
+    {
+      "name_th": "New York Steakhouse",
+      "name_en": "New York Steakhouse",
+      "category": "restaurant",
+      "lat": 17.61038,
+      "lng": 100.085711,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P39"
+    },
+    {
+      "name_th": "Tip Restaurant",
+      "name_en": "Tip Restaurant",
+      "category": "restaurant",
+      "lat": 17.627773,
+      "lng": 100.088767,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P40"
+    },
+    {
+      "name_th": "ก๋วยเตี๋ยวข้าวมันไก่",
+      "name_en": "ก๋วยเตี๋ยวข้าวมันไก่",
+      "category": "restaurant",
+      "lat": 17.646555,
+      "lng": 100.119732,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P41"
+    },
+    {
+      "name_th": "ก๋วยเตี๋ยวเจ๊พริก",
+      "name_en": "ก๋วยเตี๋ยวเจ๊พริก",
+      "category": "restaurant",
+      "lat": 17.645849,
+      "lng": 100.118219,
+      "score": 6.9,
+      "cost": 80,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "noodle"
+      ],
+      "id": "P42"
+    },
+    {
+      "name_th": "ก๋วยเตี๋ยวเรือเป่าปาก ชามกะลา สาขาอุตรดิตถ์",
+      "name_en": "ก๋วยเตี๋ยวเรือเป่าปาก ชามกะลา สาขาอุตรดิตถ์",
+      "category": "restaurant",
+      "lat": 17.628713,
+      "lng": 100.0892,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P43"
+    },
+    {
+      "name_th": "ข้าวพันผัก Indy",
+      "name_en": "ข้าวพันผัก Indy",
+      "category": "restaurant",
+      "lat": 17.657261,
+      "lng": 100.039521,
+      "score": 6.9,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P44"
+    },
+    {
+      "name_th": "ข้าวมันไก่ศรีวัย (เกาะกลาง)",
+      "name_en": "ข้าวมันไก่ศรีวัย (เกาะกลาง)",
+      "category": "restaurant",
+      "lat": 17.629966,
+      "lng": 100.088219,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P45"
+    },
+    {
+      "name_th": "ครัวชายน้ำ",
+      "name_en": "ครัวชายน้ำ",
+      "category": "restaurant",
+      "lat": 17.64508,
+      "lng": 100.118761,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P46"
+    },
+    {
+      "name_th": "ครัวพิกุล",
+      "name_en": "ครัวพิกุล",
+      "category": "restaurant",
+      "lat": 17.611202,
+      "lng": 100.091889,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P47"
+    },
+    {
+      "name_th": "ครัวมาดามริมน่าน",
+      "name_en": "ครัวมาดามริมน่าน",
+      "category": "restaurant",
+      "lat": 17.618159,
+      "lng": 100.114101,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P48"
+    },
+    {
+      "name_th": "จุ่มนัว แจ่วฮ้อน",
+      "name_en": "จุ่มนัว แจ่วฮ้อน",
+      "category": "restaurant",
+      "lat": 17.623573,
+      "lng": 100.087123,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P49"
+    },
+    {
+      "name_th": "ชาบูอินดี้ อุตรดิตถ์",
+      "name_en": "ชาบูอินดี้ อุตรดิตถ์",
+      "category": "restaurant",
+      "lat": 17.626914,
+      "lng": 100.087862,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P50"
+    },
+    {
+      "name_th": "ท่าเสาชาบูบุฟเฟ่ต์",
+      "name_en": "ท่าเสาชาบูบุฟเฟ่ต์",
+      "category": "restaurant",
+      "lat": 17.648577,
+      "lng": 100.121603,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P51"
+    },
+    {
+      "name_th": "นวรัตร์ไก่ย่าง",
+      "name_en": "นวรัตร์ไก่ย่าง",
+      "category": "restaurant",
+      "lat": 17.621433,
+      "lng": 100.079847,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P52"
+    },
+    {
+      "name_th": "บะหมี่เกี๊ยวลำดวน",
+      "name_en": "บะหมี่เกี๊ยวลำดวน",
+      "category": "restaurant",
+      "lat": 17.62352,
+      "lng": 100.08711,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P53"
+    },
+    {
+      "name_th": "บ้านบนดอย",
+      "name_en": "บ้านบนดอย",
+      "category": "restaurant",
+      "lat": 17.656492,
+      "lng": 100.039235,
+      "score": 6.9,
+      "cost": 120,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant",
+        "thai"
+      ],
+      "id": "P54"
+    },
+    {
+      "name_th": "ฟ้าใสหมูกระทะ",
+      "name_en": "ฟ้าใสหมูกระทะ",
+      "category": "restaurant",
+      "lat": 17.609198,
+      "lng": 100.08466,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P55"
+    },
+    {
+      "name_th": "ร้านส้มตำป้าน้อย (ซอยเอื้อประเสริฐ)",
+      "name_en": "ร้านส้มตำป้าน้อย (ซอยเอื้อประเสริฐ)",
+      "category": "restaurant",
+      "lat": 17.612284,
+      "lng": 100.089815,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P56"
+    },
+    {
+      "name_th": "ร้านอาหารสุธารา",
+      "name_en": "ร้านอาหารสุธารา",
+      "category": "restaurant",
+      "lat": 17.618318,
+      "lng": 100.112989,
+      "score": 6.9,
+      "cost": 200,
+      "duration_min": 60,
+      "open_min": 660,
+      "close_min": 1320,
+      "tags": [
+        "restaurant"
+      ],
+      "id": "P57"
+    },
+    {
+      "name_th": "วัดพระบรมธาตุ (ทุ่งยั้ง)",
+      "name_en": "Wat Phra Borom That (Thung Yang)",
+      "category": "temple",
+      "lat": 17.599842,
+      "lng": 100.055614,
+      "score": 8.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P58"
+    },
+    {
+      "name_th": "วัดพระแท่นศิลาอาสน์",
+      "name_en": "Wat Phra Thaen Si La At",
+      "category": "temple",
+      "lat": 17.596701,
+      "lng": 100.044222,
+      "score": 8.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P59"
+    },
+    {
+      "name_th": "วัดพระยืนพุทธบาทยุคล",
+      "name_en": "Wat Phra Yuen Phutthabat Yukhon",
+      "category": "temple",
+      "lat": 17.598856,
+      "lng": 100.045574,
+      "score": 8.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P60"
+    },
+    {
+      "name_th": "วัดเจดีย์คีรีวิหาร",
+      "name_en": "Wat Chedi Khiri Wihan",
+      "category": "temple",
+      "lat": 17.673013,
+      "lng": 100.03363,
+      "score": 8.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P61"
+    },
+    {
+      "name_th": "วัดดอนสัก",
+      "name_en": "Wat Don Sak",
+      "category": "temple",
+      "lat": 17.660336,
+      "lng": 100.029622,
+      "score": 8.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P62"
+    },
+    {
+      "name_th": "วัดธรรมาธิปไตย",
+      "name_en": "Wat Thamma Thipatai",
+      "category": "temple",
+      "lat": 17.630401,
+      "lng": 100.103802,
+      "score": 8.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P63"
+    },
+    {
+      "name_th": "วัดม่อนปรางค์",
+      "name_en": "Wat Mon Prang",
+      "category": "temple",
+      "lat": 17.658987,
+      "lng": 100.036849,
+      "score": 7.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P64"
+    },
+    {
+      "name_th": "วัดท่าถนน",
+      "name_en": "Wat Tatanon",
+      "category": "temple",
+      "lat": 17.619478,
+      "lng": 100.098616,
+      "score": 7.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P65"
+    },
+    {
+      "name_th": "วัดท้องลับแล",
+      "name_en": "Wat Thong Laplae",
+      "category": "temple",
+      "lat": 17.6706,
+      "lng": 100.028261,
+      "score": 7.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P66"
+    },
+    {
+      "name_th": "วัดกลาง",
+      "name_en": "Wat Klang",
+      "category": "temple",
+      "lat": 17.605966,
+      "lng": 100.094404,
+      "score": 7.6,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P67"
+    },
+    {
+      "name_th": "พระวิหารหลวง",
+      "name_en": "Phra Wihan Luang",
+      "category": "temple",
+      "lat": 17.600137,
+      "lng": 100.055679,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P68"
+    },
+    {
+      "name_th": "วิหารหลวงพ่อเพชร วัดท่าถนน",
+      "name_en": "Wihan Luang Pho Phet Wat Tha Thanon",
+      "category": "temple",
+      "lat": 17.6198,
+      "lng": 100.098734,
+      "score": 7.4,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P69"
+    },
+    {
+      "name_th": "พระอุโบสถ",
+      "name_en": "Phra Ubosot",
+      "category": "temple",
+      "lat": 17.600297,
+      "lng": 100.05555,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P70"
+    },
+    {
+      "name_th": "วัดดอนไชย",
+      "name_en": "Wat Don Chai",
+      "category": "temple",
+      "lat": 17.646846,
+      "lng": 100.036281,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P71"
+    },
+    {
+      "name_th": "สำนักงานวัดพระแท่นศิลาอาสน์",
+      "name_en": "Wat Phra Thaen Sila At Office",
+      "category": "temple",
+      "lat": 17.597911,
+      "lng": 100.043403,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P72"
+    },
+    {
+      "name_th": "วัดท่าเรือวราราม",
+      "name_en": "Wat Tha Ruea Wararam",
+      "category": "temple",
+      "lat": 17.847591,
+      "lng": 100.377059,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P73"
+    },
+    {
+      "name_th": "วัดท่าถนน",
+      "name_en": "Wat Tha Thanon",
+      "category": "temple",
+      "lat": 17.61963,
+      "lng": 100.098515,
+      "score": 7.3,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P74"
+    },
+    {
+      "name_th": "60 ปี ลีเวอร์",
+      "name_en": "60 ปี ลีเวอร์",
+      "category": "temple",
+      "lat": 17.598243,
+      "lng": 100.045871,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P75"
+    },
+    {
+      "name_th": "วัดเสาหิน",
+      "name_en": "Wat Sao Hin",
+      "category": "temple",
+      "lat": 17.65038,
+      "lng": 100.040086,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P76"
+    },
+    {
+      "name_th": "วัดใหญ่ท่าเสา",
+      "name_en": "Wat Yai Tha Sao",
+      "category": "temple",
+      "lat": 17.648017,
+      "lng": 100.120153,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P77"
+    },
+    {
+      "name_th": "วิหารวัดดอนสัก",
+      "name_en": "วิหารวัดดอนสัก",
+      "category": "temple",
+      "lat": 17.6601,
+      "lng": 100.030041,
+      "score": 7.2,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P78"
+    },
+    {
+      "name_th": "พระเหลือ",
+      "name_en": "Phra Luea",
+      "category": "temple",
+      "lat": 17.662746,
+      "lng": 100.033553,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P79"
+    },
+    {
+      "name_th": "ศาลาการเปรียญ",
+      "name_en": "Sala Kan Parian",
+      "category": "temple",
+      "lat": 17.599833,
+      "lng": 100.056344,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P80"
+    },
+    {
+      "name_th": "วัดจอมคีรี",
+      "name_en": "Wat Chom Khiri",
+      "category": "temple",
+      "lat": 17.708419,
+      "lng": 100.107644,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P81"
+    },
+    {
+      "name_th": "วัดกุฎีพระฤษีทรงธรรม",
+      "name_en": "Wat Kudi Phra Ruesi Song Tham",
+      "category": "temple",
+      "lat": 17.591837,
+      "lng": 100.061348,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P82"
+    },
+    {
+      "name_th": "วัดใหม่เชียงแสน",
+      "name_en": "Wat Mai Chiang Saen",
+      "category": "temple",
+      "lat": 17.678047,
+      "lng": 100.028517,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P83"
+    },
+    {
+      "name_th": "วัดป่ายาง",
+      "name_en": "Wat Pa Yang",
+      "category": "temple",
+      "lat": 17.65727,
+      "lng": 100.044531,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P84"
+    },
+    {
+      "name_th": "วัดไผ่ล้อม",
+      "name_en": "Wat Phai Lom",
+      "category": "temple",
+      "lat": 17.593288,
+      "lng": 100.067234,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P85"
+    },
+    {
+      "name_th": "วัดพระนอนพุทธไสยาสน์",
+      "name_en": "Wat Phra Non Phuttha Saiyat",
+      "category": "temple",
+      "lat": 17.600531,
+      "lng": 100.047179,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P86"
+    },
+    {
+      "name_th": "วัดฤาษีสำราญ",
+      "name_en": "Wat Ruesi Samran",
+      "category": "temple",
+      "lat": 17.610686,
+      "lng": 100.045938,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P87"
+    },
+    {
+      "name_th": "วัดทุ่งเอี้ยง",
+      "name_en": "Wat Thung Iang",
+      "category": "temple",
+      "lat": 17.66985,
+      "lng": 100.036938,
+      "score": 7.1,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P88"
+    },
+    {
+      "name_th": "วัดอรัญญิการาม",
+      "name_en": "วัดอรัญญิการาม",
+      "category": "temple",
+      "lat": 17.638471,
+      "lng": 100.085008,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P89"
+    },
+    {
+      "name_th": "วิหาร วัดท้องลับแล",
+      "name_en": "วิหาร วัดท้องลับแล",
+      "category": "temple",
+      "lat": 17.670524,
+      "lng": 100.028019,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P90"
+    },
+    {
+      "name_th": "ศาลาการเปรียญ วัดท้องลับแล",
+      "name_en": "ศาลาการเปรียญ วัดท้องลับแล",
+      "category": "temple",
+      "lat": 17.670669,
+      "lng": 100.027687,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P91"
+    },
+    {
+      "name_th": "อุโบสถ วัดท้องลับแล",
+      "name_en": "อุโบสถ วัดท้องลับแล",
+      "category": "temple",
+      "lat": 17.670616,
+      "lng": 100.027888,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P92"
+    },
+    {
+      "name_th": "วัดท่าทอง",
+      "name_en": "วัดท่าทอง",
+      "category": "temple",
+      "lat": 17.564208,
+      "lng": 100.121128,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P93"
+    },
+    {
+      "name_th": "วัดป่ากล้วย",
+      "name_en": "วัดป่ากล้วย",
+      "category": "temple",
+      "lat": 17.62987,
+      "lng": 100.122204,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P94"
+    },
+    {
+      "name_th": "วัดป่าเซ่า",
+      "name_en": "วัดป่าเซ่า",
+      "category": "temple",
+      "lat": 17.576417,
+      "lng": 100.116857,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P95"
+    },
+    {
+      "name_th": "วัดหนองผา",
+      "name_en": "วัดหนองผา",
+      "category": "temple",
+      "lat": 17.622819,
+      "lng": 100.085913,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P96"
+    },
+    {
+      "name_th": "วัดหมอนไม้",
+      "name_en": "วัดหมอนไม้",
+      "category": "temple",
+      "lat": 17.611417,
+      "lng": 100.101994,
+      "score": 6.9,
+      "cost": 0,
+      "duration_min": 60,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "temple"
+      ],
+      "id": "P97"
+    },
+    {
+      "name_th": "จุดชมวิวเขาพรึง",
+      "name_en": "Kao Preurng view point",
+      "category": "viewpoint",
+      "lat": 17.833339,
+      "lng": 100.059739,
+      "score": 7.0,
+      "cost": 0,
+      "duration_min": 40,
+      "open_min": 480,
+      "close_min": 1080,
+      "tags": [
+        "viewpoint"
+      ],
+      "id": "P98"
+    }
+  ],
+  "hotels": [
+    {
+      "name_th": "นอนเล่นที่ลับแลโฮมสเตย์",
+      "name_en": "Noon Laen thi Lap Lae",
+      "lat": 17.645647,
+      "lng": 100.04191,
+      "score": 7.5,
+      "cost": 600,
+      "stars": 2,
+      "id": "H01"
+    },
+    {
+      "name_th": "Lapland guest house",
+      "name_en": "Lapland guest house",
+      "lat": 17.646746,
+      "lng": 100.039747,
+      "score": 7.4,
+      "cost": 600,
+      "stars": 2,
+      "id": "H02"
+    },
+    {
+      "name_th": "ສ່ຽວແຈ໊ກ",
+      "name_en": "ສ່ຽວແຈ໊ກ",
+      "lat": 17.65091,
+      "lng": 100.092673,
+      "score": 7.4,
+      "cost": 600,
+      "stars": 2,
+      "id": "H03"
+    },
+    {
+      "name_th": "Staychill Resort",
+      "name_en": "Staychill Resort",
+      "lat": 17.658602,
+      "lng": 100.175202,
+      "score": 8.0,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H04"
+    },
+    {
+      "name_th": "Araya hotel",
+      "name_en": "Araya hotel",
+      "lat": 17.637345,
+      "lng": 100.130199,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H05"
+    },
+    {
+      "name_th": "โรงแรมบัวทิพย์",
+      "name_en": "Buathip Hotel",
+      "lat": 17.631798,
+      "lng": 100.085258,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H06"
+    },
+    {
+      "name_th": "ร็อคโค โฮเทล",
+      "name_en": "Rocko hotel",
+      "lat": 17.608574,
+      "lng": 100.115145,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H07"
+    },
+    {
+      "name_th": "สุนีย์บูติคโฮเท็ล",
+      "name_en": "Sunee Boutique Hotel",
+      "lat": 17.619909,
+      "lng": 100.090688,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H08"
+    },
+    {
+      "name_th": "เดอะรูม",
+      "name_en": "The Room Hotel",
+      "lat": 17.631251,
+      "lng": 100.087856,
+      "score": 7.9,
+      "cost": 1100,
+      "stars": 3,
+      "id": "H09"
+    }
+  ]
+}

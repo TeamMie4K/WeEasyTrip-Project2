@@ -1,0 +1,13 @@
+SPARSE / CROSS-PROVINCE EXPERIMENTS — trials=10, scenario=S1_Short_Budget
+nongbualamphu	POI=56	H=5	rest=24	Greedy=152.3	GA=154.68	Hybrid=168.66	valid=10/10	p=0.0001
+phichit	POI=43	H=6	rest=8	Greedy=151.5	GA=151.89	Hybrid=162.21	valid=10/10	p=0.0001
+lamphun	POI=109	H=12	rest=50	Greedy=157.7	GA=159.33	Hybrid=164.85	valid=10/10	p=0.0001
+nakhonnayok	POI=97	H=9	rest=33	Greedy=150.9	GA=153.61	Hybrid=159.75	valid=10/10	p=0.0001
+singburi	POI=70	H=8	rest=24	Greedy=153.0	GA=154.13	Hybrid=169.63	valid=10/10	p=0.0001
+kalasin	POI=80	H=9	rest=37	Greedy=152.5	GA=149.91	Hybrid=155.56	valid=10/10	p=0.0002
+chaiyaphum	POI=89	H=9	rest=19	Greedy=122.1	GA=138.94	Hybrid=138.79	valid=10/10	p=0.2134
+loei	POI=72	H=9	rest=50	Greedy=151.3	GA=151.8	Hybrid=154.45	valid=10/10	p=0.0001
+chiangmai+lamphun	POI=333	H=38	rest=100	Greedy=165.1	GA=166.12	Hybrid=175.78	valid=10/10	p=0.0001
+bangkok+nonthaburi	POI=390	H=48	rest=122	Greedy=175.4	GA=172.22	Hybrid=187.73	valid=10/10	p=0.0001
+phuket+phangnga	POI=249	H=32	rest=91	Greedy=171.5	GA=173.22	Hybrid=182.33	valid=10/10	p=0.0001
+phuket+krabi	POI=326	H=45	rest=116	Greedy=156.1	GA=154.78	Hybrid=171.33	valid=10/10	p=0.0001
