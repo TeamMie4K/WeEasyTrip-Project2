@@ -17,7 +17,7 @@ from typing import Dict, List, Tuple
 # ค่าคงที่
 # ============================================================
 AVG_SPEED_KMH = 40
-COST_PER_KM = 10
+COST_PER_KM = 0     # ไม่นับค่าเดินทางในงบ (ผู้ใช้กำหนด: งบ = ค่าเข้าชม + ค่าอาหาร); เดิม 10 บาท/กม. ทำให้งบน้อยไปที่เที่ยวไกลกันไม่ได้
 DAY_TIME_BUDGET = 840       # 14 hours (8:00 - 22:00)
 DAY_START_MIN = 480         # 8:00
 
@@ -94,7 +94,7 @@ def travel_time_min(dist_km: float) -> float:
 
 
 def travel_cost(dist_km: float) -> float:
-    """ค่าเดินทางเป็นบาท จากระยะทาง km (อัตรา 10 บาท/km)"""
+    """ค่าเดินทางเป็นบาท จากระยะทาง km (อัตรา COST_PER_KM; ตั้งเป็น 0 = ไม่นับ)"""
     return dist_km * COST_PER_KM
 
 

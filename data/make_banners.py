@@ -4,7 +4,7 @@
 ถ้าต้องการภาพถ่ายจริง วางไฟล์ <slug>.jpg ไว้ในโฟลเดอร์เดียวกัน หน้าเว็บจะใช้ .jpg ก่อน .svg
 รัน: python data/make_banners.py
 """
-import json, os, random, math
+import json, os, random
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 OUT = os.path.join(ROOT, 'frontend', 'img', 'provinces')

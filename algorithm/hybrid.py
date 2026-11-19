@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 hybrid.py - Hybrid Algorithm: Greedy seed + GA refinement + 2-opt local search
 
@@ -201,7 +201,7 @@ def diversity_stats(chromosome: List[List[Dict]]) -> Tuple[float, int]:
     return (sum(distinct) / len(distinct) if distinct else 0.0), over
 
 
-DIST_WEIGHT = 0.03   # คะแนนที่หักต่อ km ที่ต้องขับ (แผนสมจริงขึ้น: ไม่ซิกแซกข้ามเกาะ/จังหวัด)
+DIST_WEIGHT = 0.3    # คะแนนที่หักต่อ km ที่ต้องขับ (แผนสมจริงขึ้น: ไม่ซิกแซกข้ามเกาะ/จังหวัด)
 
 
 def _fitness(chromosome: List[List[Dict]], hotel: Dict, budget: float,
@@ -372,7 +372,7 @@ def meal_fill(routes: List[List[Dict]], pois: List[Dict], hotel: Dict,
                                     DAY_TIME_BUDGET, 1e9, day_cats,
                                     'dinner', scoring_mode, relax_meal=True)
         if r:
-            dinner, d_d, arr_d = r
+            dinner, d_d, _ = r
             used_ids.add(dinner['id'])
             remaining -= travel_cost(d_d) + dinner['cost']
 
@@ -557,8 +557,39 @@ def _budget_repair(routes: List[List[Dict]], hotel: Dict, budget: float, protect
     for _ in range(60):
         if evaluate_route(routes, hotel, float('inf'))['total_cost'] <= budget:
             break
+        # ก่อนตัดสถานที่: สลับร้านอาหารเป็นร้านที่ทำให้ค่าใช้จ่ายรวม (ค่าอาหาร+ค่าเดินทาง) ลดมากที่สุด
+        # ร้านที่ไกลโรงแรมกินงบจนแผนเหลือแต่ร้านอาหาร (เช่น นครนายก งบ 2,000 บาท ไม่รวมโรงแรม)
+        if pool:
+            used = {p['id'] for day in routes for p in day}
+            rests = [p for p in pool if p['category'] == 'restaurant' and p['id'] not in used and p['id'] not in protect]
+            best = None
+            for d, day in enumerate(routes):
+                base = evaluate_route([day], hotel, float('inf'))['total_cost']
+                for i, p in enumerate(day):
+                    if p['category'] != 'restaurant' or p['id'] in protect:
+                        continue
+                    for u in rests:
+                        trial = day[:i] + [u] + day[i + 1:]
+                        ev = evaluate_route([trial], hotel, float('inf'))
+                        gain = base - ev['total_cost']
+                        if ev['valid'] and gain > 0.5 and (best is None or gain > best[0]):
+                            best = (gain, d, i, trial)
+            if best:
+                routes[best[1]] = best[3]
+                continue
         cands = [(d, i, p) for d, day in enumerate(routes) for i, p in enumerate(day)
                  if p['category'] != 'restaurant' and p['id'] not in protect]
+        if not cands:
+            break
+        # ถ้าตัดสถานที่ทั้งหมดแล้วก็ยังเกินงบ (ร้านอาหารไกลกันเกินไป) การตัดไม่ช่วยอะไร ให้คงสถานที่ไว้ ผู้ใช้จะได้แจ้งว่างบไม่พอ
+        floor = [[p for p in day if p['category'] == 'restaurant' or p['id'] in protect] for day in routes]
+        if evaluate_route(floor, hotel, float('inf'))['total_cost'] > budget:
+            break
+        # ลบเฉพาะสถานที่ที่ลบแล้วค่าใช้จ่ายรวมลดลงจริง (ค่าเข้า+ค่าเดินทาง): สถานที่ฟรีที่อยู่ระหว่างทางลบแล้วไม่ช่วยงบ
+        # และถ้าเหตุที่เกินงบคือร้านอาหารอยู่ไกล การลบสถานที่ทิ้งหมดจะได้แผนที่มีแต่ร้านอาหารและยังเกินงบอยู่ดี
+        cands = [c for c in cands
+                 if evaluate_route([routes[c[0]]], hotel, float('inf'))['total_cost']
+                 - evaluate_route([routes[c[0]][:c[1]] + routes[c[0]][c[1] + 1:]], hotel, float('inf'))['total_cost'] > 0.5]
         if not cands:
             break
         sights = [sum(1 for p in day if p['category'] != 'restaurant') for day in routes]

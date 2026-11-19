@@ -7,7 +7,7 @@ run_province_experiments.py — WeEasyTrip Project 2
 ผลลัพธ์: results/province_results.json, results/province_stats.txt
 รัน:  python run_province_experiments.py [trials]
 """
-import sys, os, time, json, random, copy, statistics
+import sys, os, time, json, random, statistics
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'algorithm'))
 from scipy import stats as st
 
@@ -112,7 +112,6 @@ def part_b():
     for prov in PROVINCES:
         for sc in SCENARIOS:
             pois, hotel, act = setup(prov, sc)
-            by_id = {p['id']: p for p in pois}
             rows = []
             for t in range(TRIALS):
                 routes, _ = run_algo('HybridDiv', pois, hotel, sc['days'], act, sc['mode'], seed=t)

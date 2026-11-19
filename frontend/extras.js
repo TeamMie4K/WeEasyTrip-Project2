@@ -239,9 +239,12 @@
         li.draggable = false; li.title = li.title || (window.WET_LANG === 'en' ? 'Drag to reorder or move to another day' : 'ลากเพื่อเรียงลำดับหรือย้ายไปวันอื่น');
         li.ondragstart = e => e.preventDefault();   // ปิด drag ของเบราว์เซอร์ (ข้อความ/รูปในการ์ด) ที่จะขัดกับการลากแบบ pointer
         li.onpointerdown = e => {
-          if (e.button !== 0 || e.pointerType === 'touch' || e.target.closest('button, a, input, select')) return;
-          e.preventDefault();
-          const sx = e.clientX, sy = e.clientY, r0 = li.getBoundingClientRect(); let started = false;
+          if (e.button !== 0 || e.target.closest('button, a, input, select')) return;
+          const touch = e.pointerType === 'touch';   // จอสัมผัส: กดค้าง 0.35 วินาทีจึงเริ่มลาก (ลากเร็วกว่านั้นคือเลื่อนหน้า)
+          if (!touch) e.preventDefault();
+          const sx = e.clientX, sy = e.clientY, r0 = li.getBoundingClientRect(); let started = false, lp = 0;
+          const noScroll = ev => { if (started && ev.cancelable) ev.preventDefault(); };   // ระหว่างลากบนจอสัมผัสไม่ให้หน้าเลื่อน
+          if (touch) document.addEventListener('touchmove', noScroll, {passive: false});
           const start = () => {
             started = true; srcKey = [d, i]; srcLi = li; offX = sx - r0.left; offY = sy - r0.top;
             gap = document.createElement('li'); gap.className = 'drop-gap'; gap.style.height = li.offsetHeight + 'px';
@@ -253,13 +256,16 @@
             corrX = g0.left - r0.left; corrY = g0.top - r0.top;   // บาง ancestor มี transform ทำให้ fixed อิงกรอบนั้น: ชดเชยส่วนต่างให้ตรงเมาส์
             li.classList.add('dragging'); li.after(gap); curUl = ul;
             const pv = li.previousElementSibling; if (pv?.classList.contains('dist-connector')) { pv.classList.add('drag-hide'); hiddenConn = pv; }
+            if (touch) { try { li.releasePointerCapture(e.pointerId); } catch (_) {} navigator.vibrate?.(15); }
           };
+          if (touch) lp = setTimeout(() => { last = {clientX: sx, clientY: sy}; start(); frame(); }, 350);
           let raf = 0, last = null;
           const frame = () => {
             raf = 0; if (!ghost || !last) return;
             ghost.style.left = (last.clientX - offX - corrX) + 'px'; ghost.style.top = (last.clientY - offY - corrY) + 'px';
             const under = document.elementFromPoint(last.clientX, last.clientY), panel = under?.closest('.day-panel'), tul = panel?.querySelector('.poi-list');
             if (!tul) return;
+            if (touch) { const ed = last.clientY < 80 ? -14 : last.clientY > innerHeight - 80 ? 14 : 0; if (ed) { scrollBy(0, ed); if (!raf) raf = requestAnimationFrame(frame); } }   // ลากชิดขอบจอ: เลื่อนหน้าอัตโนมัติ
             const cs = cards(tul); let ref = null;
             for (const c of cs) { const r = c.getBoundingClientRect(); if (last.clientY < r.top + r.height / 2) { ref = c; break; } }
             const already = gap.parentNode === tul && (ref ? gap.nextElementSibling === ref : !cs.some(c => gap.compareDocumentPosition(c) & 4));
@@ -267,11 +273,15 @@
             flip(tul, () => { if (ref) tul.insertBefore(gap, ref); else tul.appendChild(gap); }); curUl = tul;
           };
           const move = ev => {
-            if (!started) { if (Math.hypot(ev.clientX - sx, ev.clientY - sy) < 6) return; start(); }
+            if (!started) {
+              if (touch) { if (Math.hypot(ev.clientX - sx, ev.clientY - sy) > 8) clearTimeout(lp); return; }   // ขยับก่อนกดค้างครบเวลา = ผู้ใช้เลื่อนหน้า
+              if (Math.hypot(ev.clientX - sx, ev.clientY - sy) < 6) return; start();
+            }
             last = ev; if (!raf) raf = requestAnimationFrame(frame);
           };
           const up = ev => {
             document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', up); document.removeEventListener('pointercancel', up);
+            clearTimeout(lp); document.removeEventListener('touchmove', noScroll);
             if (!started) return;
             if (raf) cancelAnimationFrame(raf);
             window.addEventListener('click', ck => { ck.stopPropagation(); ck.preventDefault(); }, {capture: true, once: true});   // ไม่ให้การปล่อยเมาส์ถูกนับเป็นคลิกการ์ด
@@ -625,4 +635,45 @@
     '<span class="hist-group"><button type="button" class="reshuffle-btn export-btn hist-btn disabled" id="undoBtn" onclick="undoEdit()" title="ย้อนกลับ (Ctrl+Z)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>' +
     '<button type="button" class="reshuffle-btn export-btn hist-btn disabled" id="redoBtn" onclick="redoEdit()" title="เดินหน้า (Ctrl+Y)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button></span>' +
     '<button class="reshuffle-btn export-btn dev-only" onclick="openCompare()" title="เทียบ Greedy / GA / Hybrid บนโจทย์เดียวกัน">⇄ เทียบอัลกอริทึม</button>');
+})();
+
+
+// ---------- ปุ่มประวัติการแจ้งเตือน (ลอยมุมขวาล่าง เลื่อนตามผู้ใช้) ----------
+(function () {
+  const KEY = 'wet_notif', MAX = 50;
+  let list = [], unread = 0;
+  try { list = JSON.parse(sessionStorage.getItem(KEY) || '[]'); } catch (e) { list = []; }
+  const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(list)); } catch (e) { /* ไม่เก็บค่า */ } };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.id = 'notifBtn'; btn.className = 'notif-btn'; btn.title = 'ประวัติการแจ้งเตือน';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-badge" hidden></span>';
+  const panel = document.createElement('div');
+  panel.id = 'notifPanel'; panel.className = 'notif-panel'; panel.hidden = true;
+  panel.innerHTML = '<div class="notif-head"><b>ประวัติการแจ้งเตือน</b><button type="button" class="notif-clear">ล้างทั้งหมด</button></div><div class="notif-list"></div>';
+  document.body.append(btn, panel);
+  const badge = btn.querySelector('.notif-badge'), box = panel.querySelector('.notif-list');
+  function render() {
+    badge.hidden = !unread; badge.textContent = unread > 9 ? '9+' : unread;
+    box.innerHTML = list.length ? list.slice().reverse().map(n =>
+      `<div class="notif-item ${n.k}"><span class="notif-dot"></span><div><div class="notif-msg">${esc(n.m)}</div><div class="notif-time">${esc(n.t)}</div></div></div>`).join('')
+      : '<div class="notif-empty">ยังไม่มีการแจ้งเตือน</div>';
+  }
+  function add(msg, kind) {
+    const m = String(msg).replace(/<[^>]*>/g, '').trim();
+    if (!m || kind === 'loading') return;
+    const last = list[list.length - 1];
+    if (last && last.m === m && Date.now() - last.ts < 1500) return;   // ข้อความซ้ำติดกัน (ปุ่มถูกกดซ้ำ)
+    list.push({m, k: kind === 'error' ? 'error' : 'ok', t: new Date().toLocaleTimeString('th-TH', {hour12: false}), ts: Date.now()});
+    if (list.length > MAX) list.shift();
+    if (panel.hidden) unread++;
+    save(); render();
+  }
+  const orig = window.showToast;
+  window.showToast = function (msg, kind, duration) { try { add(msg, kind); } catch (e) { /* ประวัติพังต้องไม่ทำให้แจ้งเตือนหาย */ } return orig.apply(this, arguments); };
+  btn.addEventListener('click', e => { e.stopPropagation(); panel.hidden = !panel.hidden; if (!panel.hidden) { unread = 0; render(); } });
+  panel.querySelector('.notif-clear').addEventListener('click', () => { list = []; unread = 0; save(); render(); });
+  document.addEventListener('click', e => { if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) panel.hidden = true; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') panel.hidden = true; });
+  render();
 })();

@@ -16,8 +16,8 @@ from typing import Dict, List
 
 from utils import evaluate_route, DAY_TIME_BUDGET
 from greedy import greedy_solve
-from hybrid import (_crossover, _mutate, _slot_repair, two_opt_day, meal_fill,
-                    _time_repair, _budget_repair, diversity_stats)
+from hybrid import (_crossover, _mutate, two_opt_day, meal_fill,
+                    _time_repair, diversity_stats)
 
 
 def evaluate_objectives(routes: List[List[Dict]], hotel: Dict, budget: float) -> Dict:

@@ -20,7 +20,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from utils import load_data, evaluate_route, set_travel_profile, haversine_km
+from utils import load_data, evaluate_route, set_travel_profile, haversine_km, MAX_ATTRS
 from greedy import greedy_solve
 from genetic import genetic_solve
 from hybrid import hybrid_solve, reoptimize_solve, infeasible_locks
@@ -189,6 +189,87 @@ def make_day_details(routes_per_day, hotel, travelers=1):
             arrivals=[list(a) for a in det.get('arrivals', [])]
         ))
     return days, eval_result
+
+
+def _prioritize_sights(routes, hotel, sight_pool, rest_pool, budget_pp):
+    """จัดลำดับความสำคัญเมื่องบไม่พอ: สถานที่ท่องเที่ยวต้องครบ (MAX_ATTRS ต่อวัน) ทุกวัน ส่วนมื้ออาหารเป็นรอง
+       1) ถ้าเกินงบ ตัดร้านอาหารของวันท้ายสุดก่อน (แล้วค่อยตัดสถานที่ที่มีค่าเข้าชม)
+       2) เติมสถานที่ท่องเที่ยวที่ยังไม่ได้ใช้ (ฟรี/ถูกก่อน) จนครบทุกวันเท่าที่เวลาและเวลาเปิด-ปิดอนุญาต
+       3) ถ้างบเหลือ เติมร้านอาหารคืนให้วันแรกก่อน (ร้านที่เพิ่มระยะทางน้อยที่สุด)"""
+    from utils import evaluate_route as _ev
+    routes = [list(d) for d in routes]
+    cost = lambda: sum(p['cost'] for d in routes for p in d)
+    ok = lambda day: _ev([day], hotel, float('inf'))['valid']
+    dist = lambda day: _ev([day], hotel, float('inf'))['days_detail'][0]['distance_km'] if day else 0.0
+
+    if cost() > budget_pp:
+        # งบตึง: ถอดร้านอาหารทั้งหมดออกก่อน (ร้านเดิมมักไกลกันและกินงบ) แล้วเติมสถานที่ท่องเที่ยวให้ครบ จากนั้นค่อยเติมร้านที่ใกล้ที่สุดเท่าที่งบเหลือ
+        routes = [[p for p in day if p['category'] != 'restaurant'] for day in routes]
+        while cost() > budget_pp:
+            paid = [(p['cost'], d, i) for d, day in enumerate(routes) for i, p in enumerate(day) if p['cost'] > 0]
+            if not paid:
+                break
+            _, d, i = max(paid); routes[d].pop(i)
+
+    def add_best(d, pool, want_cat):
+        used = {p['id'] for day in routes for p in day}
+        left = budget_pp - cost()
+        base = dist(routes[d]); best = None
+        for c in pool:
+            if c['id'] in used or c['cost'] > left or (c['category'] == 'restaurant') != want_cat:
+                continue
+            for pos in range(len(routes[d]) + 1):
+                trial = routes[d][:pos] + [c] + routes[d][pos:]
+                if not ok(trial):
+                    continue
+                key = ((dist(trial) - base) + 0.1 * c['cost'], c['cost']) if want_cat else ((dist(trial) - base) - 0.1 * c['score'], c['cost'])
+                if best is None or key < best[0]:
+                    best = (key, trial)
+        if best:
+            routes[d] = best[1]
+        return best is not None
+
+    def nearer_meals(d):
+        # ร้านที่ไกลจนวันเต็มเวลาแล้วใส่ที่เที่ยวไม่ได้ (เช่น สตูลวันละ 300 กม.): สลับเป็นร้านที่ทำให้ระยะขับของวันนั้นสั้นลงมากที่สุด ถ้าราคาไม่เกินงบ
+        for _ in range(4):
+            base = dist(routes[d]); best = None
+            used = {p['id'] for day in routes for p in day}
+            for i, p in enumerate(routes[d]):
+                if p['category'] != 'restaurant':
+                    continue
+                for c in rest_pool:
+                    if c['id'] in used or cost() - p['cost'] + c['cost'] > budget_pp:
+                        continue
+                    trial = routes[d][:i] + [c] + routes[d][i + 1:]
+                    if ok(trial) and (best is None or dist(trial) < best[0]):
+                        best = (dist(trial), trial)
+            if best and best[0] < base - 1.0:
+                routes[d] = best[1]
+            else:
+                break
+
+    for d in range(len(routes)):
+        if sum(1 for p in routes[d] if p['category'] != 'restaurant') < MAX_ATTRS:
+            nearer_meals(d)
+        if sum(1 for p in routes[d] if p['category'] != 'restaurant') < MAX_ATTRS and dist(routes[d]) > 120:
+            routes[d] = []   # วันที่เต็มเวลาเพราะขับไกลมาก (ร้านและที่เที่ยวอยู่ห่างโรงแรมเป็นร้อยกิโลเมตร): ล้างแล้วสร้างวันใหม่จากสถานที่ใกล้โรงแรม
+    for d in range(len(routes)):
+        while sum(1 for p in routes[d] if p['category'] != 'restaurant') < MAX_ATTRS and add_best(d, sight_pool, False):
+            pass
+    # วันที่ยังขาดสถานที่เพราะงบหมด: ถอดร้านอาหารของวันท้ายสุด (ราคาแพงสุดก่อน) เพื่อเอางบมาเติมสถานที่ท่องเที่ยว (สถานที่ครบสำคัญกว่ามื้ออาหาร)
+    for d in range(len(routes)):
+        for _ in range(8):
+            if sum(1 for p in routes[d] if p['category'] != 'restaurant') >= MAX_ATTRS or add_best(d, sight_pool, False):
+                continue
+            cands = [(dd, i, p['cost']) for dd in range(len(routes) - 1, d - 1, -1) for i, p in enumerate(routes[dd]) if p['category'] == 'restaurant' and p['cost'] > 0]
+            if not cands:
+                break
+            dd, i, _c = max(cands, key=lambda c: (c[0], c[2]))
+            routes[dd].pop(i)
+    for d in range(len(routes)):
+        while sum(1 for p in routes[d] if p['category'] == 'restaurant') < 2 and add_best(d, rest_pool, True):
+            pass
+    return routes
 
 
 def _trim_to_budget(routes, hotel, max_activity_budget, travelers, pois):
@@ -364,6 +445,16 @@ RATE_PER_MIN = int(os.environ.get('WET_RATE_PER_MIN', '20'))
 
 
 @app.middleware('http')
+async def revalidate_static(request: Request, call_next):
+    """ไฟล์หน้าเว็บ (html/css/js) ให้เบราว์เซอร์ตรวจเวอร์ชันใหม่ทุกครั้ง (ใช้ ETag/Last-Modified ไม่โหลดซ้ำถ้าไม่เปลี่ยน)
+    ไม่งั้นแก้ CSS/JS แล้วผู้ใช้ยังเห็นของเก่าจากแคช"""
+    resp = await call_next(request)
+    if not request.url.path.startswith('/api'):
+        resp.headers['Cache-Control'] = 'no-cache'
+    return resp
+
+
+@app.middleware('http')
 async def limit_heavy(request: Request, call_next):
     if request.method == 'POST' and request.url.path in _HEAVY:
         ip = request.client.host if request.client else '?'
@@ -391,10 +482,13 @@ app.add_middleware(CORSMiddleware, allow_origins=['*'],
 # ============================================================
 # API endpoints
 # ============================================================
+BUILD = '2026-11-09-travelcost0-distw0.3-retry-mealfloor-autonohotel-sightsfirst-nocache-nearmeals-rebuilddays-dropmeals-hotelreuse'
+
+
 @app.get('/api/health')
 def health():
     """ตรวจสอบสถานะ API — คืนจำนวน POI และโรงแรมที่โหลดไว้ (ทุกจังหวัดรวมกัน)"""
-    return {'status': 'ok',
+    return {'status': 'ok', 'build': BUILD,   # เปลี่ยน BUILD ทุกครั้งที่แก้อัลกอริทึม เพื่อเช็กว่าเซิร์ฟเวอร์รันโค้ดล่าสุด
             'pois': sum(len(d['pois']) for d in DATA.values()),
             'hotels': sum(len(d['hotels']) for d in DATA.values()),
             'provinces': len(DATA)}
@@ -502,7 +596,7 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
         idx = max(0, int(len(lst) * pct) - 1)
         return lst[idx]
 
-    def make_tier_pois(score_pct, max_rest_cost=None):
+    def make_tier_pois(score_pct, max_rest_cost=None, hotel=None):
         """กรอง POI ตาม tier:
            - attr: กรองตาม score percentile
            - restaurant: กรองตาม max_rest_cost เพื่อให้ tier ต่างกันชัดเจน
@@ -524,6 +618,12 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
             extra = sorted((p for p in all_pois if p['category'] == 'restaurant' and p['id'] not in rest_ids),
                            key=lambda p: (not p.get('_diet'), p['cost']))[:need - len(chosen)]
             result += extra
+        # เพดานราคาตัดร้านใกล้โรงแรมทิ้งได้ จนต้องวิ่งไปร้านไกลซึ่งค่าเดินทางแพงกว่าส่วนต่างราคาอาหาร: คงร้านที่ใกล้โรงแรมที่สุดไว้เสมอ
+        if hotel is not None:
+            have = {p['id'] for p in result}
+            near = sorted((p for p in all_pois if p['category'] == 'restaurant' and p['id'] not in have),
+                          key=lambda p: haversine_km(hotel['lat'], hotel['lng'], p['lat'], p['lng']))[:need]
+            result += near
         return result
 
     _dist_cache = {}
@@ -531,7 +631,9 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
     def _median_dist(h):
         if h['id'] not in _dist_cache:
             ds = sorted(haversine_km(h['lat'], h['lng'], p['lat'], p['lng']) for p in all_pois if p['category'] != 'restaurant')
-            _dist_cache[h['id']] = ds[len(ds) // 2] if ds else 0.0
+            rs = sorted(haversine_km(h['lat'], h['lng'], p['lat'], p['lng']) for p in all_pois if p['category'] == 'restaurant')[:8]
+            # ระยะกลางถึงแหล่งเที่ยว + ระยะเฉลี่ยถึงร้านอาหาร 8 ร้านที่ใกล้สุด (ทุกวันต้องกิน 2 มื้อ ร้านอยู่ไกลโรงแรมทำให้ค่าเดินทางกินงบ)
+            _dist_cache[h['id']] = (ds[len(ds) // 2] if ds else 0.0) + (sum(rs) / len(rs) if rs else 0.0)
         return _dist_cache[h['id']]
 
     def find_best_hotel(max_per_night, exclude):
@@ -549,15 +651,25 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
 
     nights = max(0, req.days - 1)
     include_hotel = req.include_hotel if req.include_hotel is not None else True
+    auto_no_hotel = False
+    _min_meals = sum(sorted(p['cost'] for p in all_pois if p['category'] == 'restaurant')[:2 * req.days]) * req.travelers
+    if include_hotel and nights > 0:
+        # ที่พักถูกสุด + ค่าอาหารขั้นต่ำเกินงบ: สร้างแผนแบบไม่รวมโรงแรมให้แทน (ไม่งั้นแผนไม่มีร้านอาหารและเกินงบ)
+        if sorted_hotels[0]['cost'] * nights + _min_meals > req.budget:
+            include_hotel = False
+            auto_no_hotel = True
 
     for tier, hotel_r, total_r, mode, score_pct, max_rest_cost in tier_specs:
         if include_hotel:
             max_per_night = req.budget * hotel_r / max(nights, 1) if nights > 0 else 0
             hotel = find_best_hotel(max_per_night, picked) if nights > 0 else sorted_hotels[0]
+            if nights > 0 and hotel['cost'] * nights + _min_meals > req.budget >= sorted_hotels[0]['cost'] * nights + _min_meals:
+                hotel = sorted_hotels[0]   # โรงแรมที่ไม่ซ้ำกันแพงเกินงบ แต่โรงแรมถูกสุดยังพอ: ใช้ซ้ำได้ (ไม่งั้นระดับสูงเกินงบ)
         else:
-            # ไม่รวมโรงแรม: เลือกโรงแรมถูกสุดสำหรับ routing เท่านั้น
+            # ไม่รวมโรงแรม: ใช้โรงแรมที่อยู่ใกล้แหล่งเที่ยวที่สุดเป็นจุดเริ่ม/จบของ routing เท่านั้น (ไม่คิดค่าห้อง)
+            # เดิมเลือกโรงแรมถูกสุด ซึ่งอาจอยู่ไกลจนค่าเดินทางกินงบ แผนเหลือแต่ร้านอาหาร
             avail = [h for h in sorted_hotels if h['id'] not in picked]
-            hotel = avail[0] if avail else sorted_hotels[0]
+            hotel = min(avail or sorted_hotels, key=_median_dist)
 
         if hotel is None:
             packages.append(Package(
@@ -575,8 +687,21 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
         hotel_total = hotel['cost'] * nights if include_hotel else 0
 
         # งบสำหรับกิจกรรม
+        # ไม่รวมโรงแรม: งบทั้งหมดเป็นของกิจกรรม จึงไม่ลดงบ Budget เหลือ 40% (เดิมงบน้อยจนเหลือแต่ร้านอาหาร)
+        if not include_hotel:
+            total_r = {'Budget': 0.60, 'Standard': 0.85}.get(tier, 1.0)
         target_total = req.budget * total_r
+        if include_hotel and nights > 0 and hotel_total > req.budget * hotel_r:
+            # โรงแรมถูกสุดของจังหวัดแพงกว่าสัดส่วนที่ระดับนี้จัดไว้ งบกิจกรรมจึงเหลือน้อยจนแผนมีแต่ร้านอาหาร:
+            # รับประกันงบกิจกรรมอย่างน้อย 40% ของเงินที่เหลือหลังหักค่าโรงแรม
+            target_total = hotel_total + max(target_total - hotel_total, 0.4 * max(0.0, req.budget - hotel_total))
         budget_for_act = max(0, target_total - hotel_total) / req.travelers
+        # งบต่อคนต้องพอค่าอาหารขั้นต่ำของทริป (ร้านถูกที่สุด 2 มื้อ/วัน x 1.25) ไม่งั้นระดับ Budget ของทริปหลายคนงบไม่พอแม้แต่มื้ออาหาร
+        # อัลกอริทึมจึงทิ้งสถานที่ฟรีเกือบทั้งหมด (ผู้ใช้เห็นแผนมีแต่ร้านอาหาร) — จำกัดไม่เกินเงินที่ผู้ใช้มีจริง
+        _meal_min = sum(sorted(p['cost'] for p in all_pois if p['category'] == 'restaurant')[:2 * req.days])
+        _avail = max(0.0, req.budget - hotel_total) / req.travelers
+        budget_for_act = min(max(budget_for_act, 1.25 * _meal_min), _avail)
+        target_total = max(target_total, hotel_total + budget_for_act * req.travelers)
 
         # Dynamic restaurant cap สำหรับ quality mode:
         # ป้องกันร้านอาหารแพงกินงบหมดในทริปงบต่ำ
@@ -595,7 +720,7 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
             effective_rest_cap = max_rest_cost
 
         # กรอง POI pool ตาม tier (ทำให้แต่ละ tier ต่างกัน)
-        tier_pois = make_tier_pois(score_pct, effective_rest_cap)
+        tier_pois = make_tier_pois(score_pct, effective_rest_cap, hotel)
 
         t0 = time.time()
         if algo == 'greedy':
@@ -613,13 +738,46 @@ def create_packages(req: PackageRequest, x_dev_token: Optional[str] = Header(Non
                                          rl_theta=RL_THETA if algo == 'hybrid_rl' else None,
                                          ils=True)  # ILS: ดีขึ้นอย่างมีนัยสำคัญ 24/24 (experiments/results/ils_stats.txt)
         runtime_ms = (time.time() - t0) * 1000.0
+        if algo != 'hybrid_rl':
+            routes = _prioritize_sights(routes, hotel, sorted((p for p in tier_pois if p['category'] != 'restaurant'), key=lambda p: -p['score'])
+                                        + sorted((p for p in all_pois if p['category'] != 'restaurant' and p not in tier_pois), key=lambda p: -p['score']),
+                                        sorted((p for p in all_pois if p['category'] == 'restaurant'), key=lambda p: p['cost']), budget_for_act)
         routes = restore_originals(routes, originals)   # คะแนนที่รายงานต้องเป็นคะแนนจริง ไม่รวมตัวถ่วงความชอบ
         # ใช้ target_total เป็น cap แต่ละ tier เพื่อให้งบแตกต่างกันชัดเจน
         pkg = build_package(tier, hotel, routes, req.days,
                             req.budget, runtime_ms, req.travelers, POIS,
                             max_total_budget=target_total,
                             hotel_cost_override=hotel_total)
+        cap_total = max(0.0, req.budget - hotel_total)
+        if algo == 'hybrid':
+            # ไม่ยอมแสดงแผนที่ผิดข้อจำกัด (เช่น ถึงร้านสายเกินช่วงมื้อ) หรือเกินงบ: ลองสร้างใหม่ด้วยตัวเลือกทั้งหมด (ร้านทุกราคา) และสุ่มใหม่ สูงสุด 3 ครั้ง
+            # เลือกแผนที่ผ่านข้อจำกัดและคะแนนสูงสุด ถ้ายังไม่ผ่านใช้แผนที่ผิดน้อยที่สุด
+            def _bad(pk):
+                return (0 if pk.valid else 1, 1 if pk.total_activity_cost > cap_total * 1.05 + 1 else 0)
+            for attempt in range(3):
+                if _bad(pkg) == (0, 0):
+                    break
+                t0 = time.time()
+                random.seed(None if req.seed is None else req.seed + attempt + 1)
+                r2, _h = hybrid_solve(make_tier_pois(None, None, hotel), hotel, req.days, cap_total / req.travelers,
+                                      scoring_mode='quality', pop_size=20, generations=40, mutation_rate=0.3,
+                                      verbose=False, diversity_weight=DIVERSITY_WEIGHT, ils=True)
+                r2 = _prioritize_sights(r2, hotel, sorted((p for p in all_pois if p['category'] != 'restaurant'), key=lambda p: -p['score']),
+                                        sorted((p for p in all_pois if p['category'] == 'restaurant'), key=lambda p: p['cost']), cap_total / req.travelers)
+                r2 = restore_originals(r2, originals)
+                pkg2 = build_package(tier, hotel, r2, req.days, req.budget, runtime_ms + (time.time() - t0) * 1000.0,
+                                     req.travelers, POIS, max_total_budget=req.budget, hotel_cost_override=hotel_total)
+                if (_bad(pkg2), -pkg2.total_score) < (_bad(pkg), -pkg.total_score):
+                    pkg = pkg2
         pkg.notes = list(pref_notes)
+        if auto_no_hotel:
+            pkg.notes.append(f'งบ {req.budget:,.0f} บาท ไม่พอทั้งค่าที่พักและค่าอาหาร ระบบจึงสร้างแผนแบบไม่รวมค่าโรงแรมให้ (ที่พักถูกสุดของจังหวัดนี้ {sorted_hotels[0]["cost"]:,.0f} บาทต่อคืน) หากต้องการรวมที่พัก ลองเพิ่มงบหรือลดจำนวนวัน')
+        if _avail < 1.1 * _meal_min and hotel_total <= req.budget:
+            pkg.notes.append(f'งบต่อคน {_avail:,.0f} บาท แทบไม่พอค่าอาหารขั้นต่ำของ {req.days} วัน (ราว {_meal_min:,.0f} บาท) แผนจึงมีสถานที่ท่องเที่ยวน้อย ลองเพิ่มงบหรือลดจำนวนวัน')
+        if hotel_total > req.budget:   # ที่พักถูกสุดของจังหวัดแพงกว่างบทั้งหมด: ไม่มีเงินเหลือค่าอาหาร/ค่าเข้าชม
+            pkg.notes.append(f'งบ {req.budget:,.0f} บาท ไม่พอแม้แต่ค่าที่พัก {hotel_total:,.0f} บาท ({nights} คืน) แผนจึงไม่มีร้านอาหารและเกินงบ ลองเพิ่มงบ ลดจำนวนวัน หรือเลือก "ไม่รวมค่าโรงแรม"')
+        elif pkg.total_cost > req.budget * 1.05 + 1:
+            pkg.notes.append(f'งบ {req.budget:,.0f} บาท ไม่พอสำหรับ {req.days} วันในจังหวัดนี้ แผน{tier}มีค่าใช้จ่ายประมาณ {pkg.total_cost:,.0f} บาท ลองเพิ่มงบหรือลดจำนวนวัน')
         empty = sum(1 for d in pkg.days if not d.pois)
         if empty:   # จังหวัดข้อมูลน้อย: สถานที่ไม่พอเติมทุกวัน
             pkg.notes.append(f'จังหวัดนี้มีข้อมูลสถานที่น้อย แผน{tier}มี {empty} วันที่ไม่มีกิจกรรม ลองลดจำนวนวันหรือเลือกจังหวัดอื่น')

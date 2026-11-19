@@ -73,9 +73,6 @@ add_pois(old_restaurants, 'REST')
 
 # กำหนด ID ใหม่ให้เรียงลำดับ
 for i, p in enumerate(merged_pois):
-    cat_prefix = {'temple':'T','beach':'B','viewpoint':'V',
-                  'culture':'C','market':'M','activity':'A','restaurant':'R'}
-    prefix = cat_prefix.get(p['category'], 'P')
     p['id'] = f"P{i+1:02d}"
 
 

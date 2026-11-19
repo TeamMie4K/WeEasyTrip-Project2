@@ -21,9 +21,9 @@ import random
 import time
 import copy
 from typing import List, Dict, Tuple
-from utils import (evaluate_route, DAY_TIME_BUDGET, DAY_START_MIN)
+from utils import evaluate_route
 from greedy import greedy_solve
-from hybrid import meal_fill
+from hybrid import meal_fill, DIST_WEIGHT
 
 
 # ============================================================
@@ -76,6 +76,8 @@ def fitness(chromosome: List[List[Dict]], hotel: Dict, budget: float) -> float:
         if len(day) >= 3 and unique_cats < 2:
             penalty += 6.0
 
+    # ระยะขับรวม: ใช้ค่าถ่วงเดียวกับ Hybrid/ILS เพื่อเปรียบเทียบอย่างเท่าเทียม
+    penalty += DIST_WEIGHT * sum(d['distance_km'] for d in result['days_detail'])
     return score - penalty
 
 

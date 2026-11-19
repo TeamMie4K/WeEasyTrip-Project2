@@ -1,0 +1,404 @@
+<title>WeEasyTrip Algorithms</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: เล่าเรื่องเป็นลำดับ ปัญหา → Greedy → GA → Hybrid → ตัวเสริม → ผลวัดจริง แต่ละส่วนมีเวทีให้กดเล่นหรือเลื่อนดู */
+:root {
+  --bg: #f5f6f8; --surface: #ffffff; --surface-2: #eef0f4; --line: #d9dde5;
+  --fg: #151a24; --muted: #596273;
+  --accent: #e8590c; --accent-soft: #fde8dc;
+  --c-greedy: #64748b; --c-ga: #2563eb; --c-hybrid: #e8590c; --good: #0f9d7a; --bad: #d63a3a;
+  --font-body: 'Noto Sans Thai', system-ui, sans-serif; --font-head: 'Space Grotesk', 'Noto Sans Thai', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1218; --surface: #171d27; --surface-2: #1f2733; --line: #2c3544; --fg: #eaeef5; --muted: #98a3b6;
+  --accent: #ff8a4c; --accent-soft: #3a2418; --c-greedy: #8fa0b8; --c-ga: #6ea0ff; --c-hybrid: #ff8a4c; --good: #34d3a8; --bad: #ff7a7a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0e1218; --surface: #171d27; --surface-2: #1f2733; --line: #2c3544; --fg: #eaeef5; --muted: #98a3b6;
+  --accent: #ff8a4c; --accent-soft: #3a2418; --c-greedy: #8fa0b8; --c-ga: #6ea0ff; --c-hybrid: #ff8a4c; --good: #34d3a8; --bad: #ff7a7a; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 28px 56px; }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
+h2 { font-size: 1.55rem; } h3 { font-size: 1.05rem; }
+p { margin: 0; }
+.lead { color: var(--muted); max-width: 62ch; margin-top: 10px; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 8px; }
+nav a { color: var(--fg); text-decoration: none; border: 1px solid var(--line); background: var(--surface); padding: 5px 12px; border-radius: 999px; font-size: .85rem; }
+nav a:hover, nav a:focus-visible { border-color: var(--accent); outline: none; }
+section { margin-top: 52px; }
+.head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.tag { display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.stage { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 16px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+button { font: inherit; font-size: .85rem; cursor: pointer; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); padding: 6px 14px; border-radius: 8px; }
+button:hover { border-color: var(--accent); } button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.note { font-size: .85rem; color: var(--muted); }
+.cap { min-height: 3.3em; }
+.chips { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.chip { border: 1px dashed var(--line); border-radius: 10px; padding: 8px 6px; font-size: .76rem; min-height: 78px; display: flex; flex-direction: column; gap: 2px; transition: background .3s, border-color .3s; }
+.chip b { font-size: .72rem; color: var(--muted); font-weight: 600; }
+.chip.on { border-style: solid; border-color: var(--c-greedy); background: var(--surface-2); }
+.chip.now { border-color: var(--accent); background: var(--accent-soft); }
+.chip.meal b { color: var(--accent); }
+.cands { width: 100%; border-collapse: collapse; font-size: .82rem; font-variant-numeric: tabular-nums; }
+.cands th, .cands td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.cands th { color: var(--muted); font-weight: 600; font-size: .74rem; }
+.cands tr.win td { background: var(--accent-soft); font-weight: 600; }
+.bar { height: 8px; border-radius: 4px; background: var(--c-greedy); transition: width .5s; min-width: 2px; }
+.win .bar { background: var(--accent); }
+.scroll { overflow-x: auto; }
+.pop { display: grid; gap: 3px; }
+.ind { display: grid; grid-template-columns: 1fr 120px 46px; gap: 8px; align-items: center; font-size: .72rem; font-variant-numeric: tabular-nums; }
+.genes { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; }
+.genes i { height: 12px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--line); }
+.genes i.on { background: var(--c-ga); border-color: var(--c-ga); }
+.ind.elite .genes i.on { background: var(--accent); border-color: var(--accent); }
+.fit { height: 8px; border-radius: 4px; background: var(--c-ga); transition: width .4s; }
+.ind.elite .fit { background: var(--accent); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; } .chips { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ind { grid-template-columns: 1fr 70px 40px; } }
+svg { width: 100%; height: auto; display: block; }
+svg text { fill: var(--muted); font-family: var(--font-body); font-size: 11px; }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; }
+.steps button { text-align: left; }
+.metric { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--surface); }
+.metric b { font-family: var(--font-head); font-size: 1.5rem; display: block; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .8rem; color: var(--muted); }
+.legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; background: var(--c); }
+label.sl { display: grid; grid-template-columns: 90px 1fr 40px; gap: 8px; align-items: center; font-size: .82rem; font-variant-numeric: tabular-nums; }
+input[type=range] { accent-color: var(--accent); width: 100%; }
+.prob { display: grid; grid-template-columns: 110px 1fr 46px; gap: 8px; align-items: center; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.prob .bar { background: var(--c-ga); } .prob.pick .bar { background: var(--accent); }
+footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="tag">WeEasyTrip · Project 2</span>
+    <h1>ระบบจัดทริปคิดอย่างไร</h1>
+    <p class="lead">แผนเที่ยวหนึ่งวันมีแค่ 6 ช่อง แต่ต้องอยู่ในงบ ต้องทันเวลาเปิด-ปิด และต้องไม่ขับวนไปมา หน้านี้พาดูทีละอัลกอริทึมว่าแก้โจทย์นี้อย่างไร กดปุ่มเพื่อให้ภาพเคลื่อนไหวได้</p>
+    <nav aria-label="ข้ามไปส่วนต่าง ๆ">
+      <a href="#problem">โจทย์</a><a href="#greedy">Greedy</a><a href="#ga">GA</a><a href="#hybrid">Hybrid</a><a href="#extras">ILS · NSGA-II · RL</a><a href="#results">ผลวัดจริง</a>
+    </nav>
+    <p class="note">ป้าย <b>ตัวอย่าง</b> = จำลองขนาดเล็กเพื่ออธิบายหลักการ ป้าย <b>ผลวัดจริง</b> = ตัวเลขจากไฟล์ผลการทดลองของโครงงาน</p>
+  </header>
+
+  <section id="problem">
+    <div class="head"><span class="tag">โจทย์ B-TOPTW</span><h2>หนึ่งวัน = 6 ช่อง ภายใต้ 4 ข้อจำกัด</h2></div>
+    <div class="stage">
+      <svg viewBox="0 0 900 150" role="img" aria-label="แถบเวลาของหนึ่งวัน 08:00 ถึง 22:00 มี 6 ช่อง ช่วงมื้อกลางวัน 11:00 ถึง 14:30 และมื้อเย็น 17:00 ถึง 20:00">
+        <g id="dayline"></g>
+      </svg>
+      <div class="metrics">
+        <div class="metric"><b>≤ 4 + 2</b>สถานที่เที่ยวไม่เกิน 4 จุด บวกมื้ออาหาร 2 มื้อ</div>
+        <div class="metric"><b>8 ชม.</b>เพดานเวลาเที่ยวต่อวัน (ไม่นับมื้อและเดินทาง)</div>
+        <div class="metric"><b>งบ</b>ค่าเข้าชม + ค่าอาหาร ไม่นับค่าเดินทาง</div>
+        <div class="metric"><b>เวลาเปิด-ปิด</b>ไปถึงก่อนเปิดต้องรอ ถึงหลังปิดถือว่าผิด</div>
+      </div>
+      <p class="note">เป้าหมาย: คะแนนรวมสูงสุด (หักคะแนน 0.3 ต่อกิโลเมตรที่ต้องขับ) โดยผ่านข้อจำกัดทั้งหมด จำนวนแผนที่เป็นไปได้มากเกินกว่าจะลองทุกแบบ จึงใช้ฮิวริสติก</p>
+    </div>
+  </section>
+
+  <section id="greedy">
+    <div class="head"><span class="tag">ตัวเปรียบเทียบพื้นฐาน</span><h2>Greedy: เลือกที่คุ้มที่สุดทีละช่อง</h2>
+      <p class="lead">ในแต่ละช่องดูเฉพาะตัวเลือกที่ใช้ได้ แล้วเอาตัวที่คะแนนต่อต้นทุนสูงสุด ต้นทุนรวมค่าใช้จ่ายกับค่าปรับ 10 บาทต่อกิโลเมตร เร็วมาก แต่ไม่มองช่องถัดไป</p></div>
+    <div class="stage">
+      <span class="tag">ตัวอย่าง · 1 วันที่ภูเก็ต</span>
+      <div class="chips" id="g-chips"></div>
+      <div class="scroll"><table class="cands" id="g-table"></table></div>
+      <p class="cap" id="g-cap"></p>
+      <div class="row"><button class="primary" id="g-next">ช่องถัดไป</button><button id="g-auto">เล่นอัตโนมัติ</button><button id="g-reset">เริ่มใหม่</button></div>
+    </div>
+  </section>
+
+  <section id="ga">
+    <div class="head"><span class="tag">ค้นหาแบบวิวัฒนาการ</span><h2>GA: ผสมแผนที่ดีให้ได้แผนที่ดีกว่า</h2>
+      <p class="lead">เก็บแผนหลายแบบพร้อมกัน (ประชากร) แต่ละรุ่นคัดตัวที่ดี ผสมกัน สุ่มกลายพันธุ์ แล้วเก็บตัวที่ดีที่สุดไว้เสมอ ในระบบจริงใช้ tournament k=3 และสลับทั้งวันระหว่างพ่อแม่</p></div>
+    <div class="stage">
+      <span class="tag">ตัวอย่าง · โจทย์จำลอง 12 สถานที่ เลือกได้ไม่เกิน 4 ที่ งบ 800 บาท รันจริงอยู่ในหน้านี้</span>
+      <div class="split">
+        <div><h3>ประชากร (แถบสว่างคือที่ที่ถูกเลือก)</h3><div class="pop" id="ga-pop" style="margin-top:8px"></div></div>
+        <div><h3>คะแนนที่ดีที่สุดในแต่ละรุ่น</h3><svg viewBox="0 0 420 240" id="ga-chart" role="img" aria-label="กราฟคะแนนที่ดีที่สุดในแต่ละรุ่น เทียบกับคำตอบที่ดีที่สุดจริง"></svg></div>
+      </div>
+      <p class="cap" id="ga-cap"></p>
+      <div class="row"><button class="primary" id="ga-step">รุ่นถัดไป</button><button id="ga-auto">เล่นอัตโนมัติ</button><button id="ga-reset">เริ่มใหม่ (สุ่มใหม่)</button></div>
+    </div>
+  </section>
+
+  <section id="hybrid">
+    <div class="head"><span class="tag">อัลกอริทึมหลักของระบบ</span><h2>Hybrid: เอาข้อดีของแต่ละวิธีมาต่อกัน 7 ขั้น</h2>
+      <p class="lead">เริ่มจากแผนดี ๆ ของ Greedy ให้ GA ค้นหาให้กว้าง แล้วไล่ปรับละเอียดและซ่อมให้ผ่านข้อจำกัด กดขั้นตอนเพื่อดูว่าแต่ละขั้นทำอะไร</p></div>
+    <div class="stage">
+      <div class="steps" id="h-steps" role="tablist" aria-label="ขั้นตอนของ Hybrid"></div>
+      <div class="split">
+        <div>
+          <svg viewBox="0 0 100 100" id="h-map" role="img" aria-label="แผนที่จำลองเส้นทางหนึ่งวัน" style="background:var(--surface-2);border-radius:12px;border:1px solid var(--line);max-width:440px;margin-inline:auto"></svg>
+          <p class="note" id="h-km" style="margin-top:6px"></p>
+        </div>
+        <div><h3 id="h-title"></h3><p id="h-text" style="margin-top:8px"></p><p id="h-real" class="note" style="margin-top:10px"></p></div>
+      </div>
+      <p class="note">แผนที่เป็นตัวอย่าง 5 จุด: ขั้น 3 รัน 2-opt จริงบนจุดเหล่านี้ ส่วนขั้น 7 แสดงการแทนที่จุดหนึ่งด้วยจุดที่ใกล้กว่า</p>
+    </div>
+  </section>
+
+  <section id="extras">
+    <div class="head"><span class="tag">ตัวเสริม</span><h2>ILS, NSGA-II และ RL</h2></div>
+    <div class="cards">
+      <div class="stage">
+        <h3>NSGA-II: ขอหลายคำตอบ แทนคำตอบเดียว</h3>
+        <p class="note">สามวัตถุประสงค์ในระบบจริง (คะแนน ความหลากหลาย ระยะขับ) ตัวอย่างนี้ใช้สอง: คะแนน (มากดี) กับกิโลเมตร (น้อยดี) จุดที่ไม่มีใครดีกว่าในทั้งสองด้านคือ Pareto front</p>
+        <svg viewBox="0 0 320 220" id="n-chart" role="img" aria-label="กราฟกระจายแผนตัวอย่าง คะแนนเทียบระยะขับ"></svg>
+        <div class="row"><button id="n-front" class="primary">เผยชั้น front</button><button id="n-reset">รีเซ็ต</button></div>
+        <label class="sl"><span>น้ำหนักคะแนน</span><input type="range" id="n-w" min="0" max="100" value="50" aria-label="น้ำหนักคะแนนของ weighted-sum"><span id="n-wv">0.50</span></label>
+        <p class="note" id="n-note"></p>
+        <span class="tag">ตัวอย่าง</span>
+      </div>
+      <div class="stage">
+        <h3>RL: เรียนรู้น้ำหนักในการเลือกสถานที่</h3>
+        <p class="note">นโยบายคือ softmax ของ θ · ลักษณะเฉพาะ (ระบบจริงใช้ 9 ลักษณะ) ปรับน้ำหนักด้านล่างเพื่อดูว่าความน่าจะเป็นในการเลือกเปลี่ยนอย่างไร การฝึกจริงทำ 2,400 ตอนด้วย REINFORCE</p>
+        <div id="r-probs" style="display:grid;gap:6px"></div>
+        <label class="sl"><span>θ คะแนน</span><input type="range" id="r-s" min="-30" max="30" value="12"><span id="r-sv"></span></label>
+        <label class="sl"><span>θ ค่าใช้จ่าย</span><input type="range" id="r-c" min="-30" max="30" value="-8"><span id="r-cv"></span></label>
+        <label class="sl"><span>θ ระยะทาง</span><input type="range" id="r-d" min="-30" max="30" value="-10"><span id="r-dv"></span></label>
+        <div class="row"><button id="r-sample" class="primary">สุ่มเลือก 1 ครั้ง</button><span class="note" id="r-out"></span></div>
+        <p class="note">ผลวัดจริง: Hybrid+RL ดีกว่า Hybrid อย่างมีนัยสำคัญเพียง 2 จาก 20 ชุด จึงพักแนวทางนี้ไว้</p>
+        <span class="tag">ตัวอย่าง</span>
+      </div>
+      <div class="stage">
+        <h3>ILS: แทนที่ทีละจุดแล้วเก็บเฉพาะที่ดีขึ้น</h3>
+        <p class="note">หลัง Hybrid สร้างแผนเสร็จ ILS ลองแทนจุดแต่ละช่องด้วยจุดที่ยังไม่ใช้ในหมวดเดียวกัน รับเมื่อวัตถุประสงค์ดีขึ้นและยังผ่านเวลา เวลาปิด และงบ จากนั้นสั่นแผน (แทน 2 จุดแบบสุ่ม) 8 รอบแล้วเก็บแผนที่ดีที่สุด</p>
+        <div class="metrics"><div class="metric"><b>+1.9 ถึง +4.4%</b>คะแนนเพิ่มเทียบ Hybrid เดิม มีนัยสำคัญ 24 จาก 24 ชุด</div><div class="metric"><b>≈ 2.1 เท่า</b>เวลาที่เพิ่มขึ้น</div></div>
+        <p class="note">ดูการแทนที่จุดแบบเคลื่อนไหวได้ที่ขั้น 7 ในส่วน Hybrid</p>
+        <span class="tag">ผลวัดจริง</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="head"><span class="tag">ผลวัดจริง · 4 จังหวัด × 3 สถานการณ์ × 15 รอบ</span><h2>ผลเป็นอย่างไร</h2>
+      <p class="lead">ข้อมูลจาก experiments/results (รันเมื่อ 18 พ.ย. 2569) กดเลือกสถานการณ์เพื่อเปรียบเทียบคะแนนเฉลี่ย</p></div>
+    <div class="stage">
+      <div class="row" id="s-tabs" role="group" aria-label="เลือกสถานการณ์"></div>
+      <div class="legend"><span style="--c:var(--c-greedy)">Greedy</span><span style="--c:var(--c-ga)">GA</span><span style="--c:var(--c-hybrid)">Hybrid (รวม ILS)</span></div>
+      <svg viewBox="0 0 620 250" id="s-chart" role="img" aria-label="กราฟแท่งคะแนนเฉลี่ยของแต่ละอัลกอริทึมในแต่ละจังหวัด"></svg>
+      <div class="metrics" id="s-metrics"></div>
+      <p class="note">Hybrid ชนะ GA อย่างมีนัยสำคัญ 12 จาก 12 ชุด (สูงกว่า 2.4-5.5%) และชนะ Greedy 11 จาก 12 ชุด (เสียเฉพาะเกาะสมุย S3 ราว 0.5%) คะแนนต่างกันไม่มาก เพราะทั้งสามถูกจำกัดด้วยกติกาเดียวกัน จุดต่างที่ชัดคือระยะขับและความน่าเชื่อถือของแผน การปรับแผนหลังผู้ใช้แก้ด้วย Hybrid ทำให้แผนที่ผ่านข้อจำกัดเพิ่มจาก 137 เป็น 180 จาก 180 กรณี</p>
+    </div>
+  </section>
+
+  <footer class="note">แหล่งตัวเลข: experiments/results/province_stats.txt, ils_stats.txt, rl_stats.txt, pareto_stats.txt และตารางที่ 4.2-4.8 ในรายงาน Project 2 · ภาพเคลื่อนไหวป้าย "ตัวอย่าง" เป็นโจทย์จำลองขนาดเล็ก ไม่ใช่การรันโค้ดของระบบ</footer>
+</div>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+function autoplay(btn, tick, ms, label) {   // ปุ่มเล่นอัตโนมัติ: tick() คืน false เมื่อจบ
+  let t = null;
+  const stop = () => { clearInterval(t); t = null; btn.textContent = label; };
+  btn.onclick = () => { if (t) return stop(); btn.textContent = 'หยุด'; if (tick() === false) return stop(); t = setInterval(() => { if (tick() === false) stop(); }, ms); };
+  return stop;
+}
+
+/* ---------- 1) โจทย์: แถบเวลา ---------- */
+(() => {
+  const x = m => 20 + (m - 480) / 840 * 860, W = m => (m * 860 / 840);
+  let s = '';
+  s += `<rect x="20" y="62" width="860" height="26" rx="6" fill="${css('--surface-2')}" stroke="${css('--line')}"/>`;
+  [['11:00-14:30', 660, 870, 'ช่วงมื้อกลางวัน'], ['17:00-20:00', 1020, 1200, 'ช่วงมื้อเย็น']].forEach(([t, a, b, l]) =>
+    s += `<rect x="${x(a)}" y="56" width="${W(b - a)}" height="38" rx="6" fill="${css('--accent-soft')}" stroke="${css('--accent')}" stroke-dasharray="4 3"/><text x="${x(a)}" y="50">${l} ${t}</text>`);
+  const slots = [['เที่ยว', 500, 590], ['เที่ยว', 610, 670], ['มื้อ', 690, 750], ['เที่ยว', 780, 870], ['เที่ยว', 890, 980], ['มื้อ', 1020, 1080]];
+  slots.forEach(([l, a, b], i) => s += `<rect x="${x(a)}" y="64" width="${W(b - a)}" height="22" rx="5" fill="${l === 'มื้อ' ? css('--accent') : css('--c-ga')}"/><text x="${x(a) + 4}" y="79" style="fill:#fff;font-weight:600">${i + 1}</text>`);
+  [480, 600, 720, 840, 960, 1080, 1200, 1320].forEach(m => s += `<line x1="${x(m)}" x2="${x(m)}" y1="100" y2="108" stroke="${css('--muted')}"/><text x="${x(m)}" y="124" text-anchor="middle">${String(Math.floor(m / 60)).padStart(2, '0')}:00</text>`);
+  $('#dayline').innerHTML = s;
+})();
+
+/* ---------- 2) Greedy ---------- */
+(() => {
+  const SL = [
+    { t: 'เที่ยว', time: '08:20-09:50', c: [['หาดกะตะ', 9.1, 0, 3], ['วัดฉลอง', 8.4, 0, 6], ['ฟาร์มเสือ', 7.0, 900, 4], ['พิพิธภัณฑ์', 6.5, 200, 2]] },
+    { t: 'เที่ยว', time: '10:10-11:10', c: [['จุดชมวิวกะตะ', 8.0, 0, 2], ['ตลาดเก่า', 7.2, 0, 4], ['ล่องเรือ', 9.5, 1500, 5], ['วัดกะทู้', 6.0, 0, 3]] },
+    { t: 'มื้อกลางวัน', time: '11:30-12:30', c: [['ข้าวมันไก่', 6.2, 120, 0.8], ['ซีฟู้ดริมทะเล', 8.0, 600, 2], ['ร้านอาหารไทย', 6.8, 250, 1.2], ['คาเฟ่', 6.0, 300, 0.5]], note: 'ถึงก่อน 11:30 ระบบรอถึงเวลามื้อก่อนค่อยเลือกร้าน' },
+    { t: 'เที่ยว', time: '13:00-14:30', c: [['วัดพระใหญ่', 9.2, 0, 5], ['หาดในหาน', 8.0, 0, 3], ['ตลาดนัด', 6.0, 0, 2], ['สวนผีเสื้อ', 7.5, 350, 4]] },
+    { t: 'เที่ยว', time: '14:50-16:20', c: [['แหลมพรหมเทพ', 9.4, 0, 7], ['ตลาดกะรน', 6.5, 0, 3], ['พิพิธภัณฑ์ไทยหัว', 7.0, 150, 4], ['วัดพระใหญ่', 9.2, 0, 6]], note: 'สังเกต: เลือกตลาดกะรนที่คะแนนต่ำกว่า เพราะใกล้กว่า ส่วนแหลมพรหมเทพคะแนนสูงกว่าแต่ไกล นี่คือจุดที่ Greedy มองเฉพาะช่องนี้' },
+    { t: 'มื้อเย็น', time: '17:00-18:00', c: [['ร้านอาหารใต้', 7.5, 350, 2], ['ซีฟู้ดกะตะ', 8.2, 700, 1], ['โรตีมัสมัน', 6.0, 100, 1.5], ['ครัวกะรน', 7.0, 300, 0.6]], note: 'ถึงก่อน 17:00 ก็รอถึงเวลามื้อเย็น' },
+  ];
+  const ratio = c => c[1] / (1 + c[2] + 10 * c[3]);
+  let i = 0;
+  const win = k => SL[k].c.reduce((a, b) => ratio(b) > ratio(a) ? b : a);
+  function render() {
+    $('#g-chips').innerHTML = SL.map((s, k) => {
+      const done = k < i, now = k === i - 1;
+      return `<div class="chip ${done ? 'on' : ''} ${now ? 'now' : ''} ${s.t !== 'เที่ยว' ? 'meal' : ''}"><b>ช่อง ${k + 1} · ${s.t}</b>${done ? `<span>${win(k)[0]}</span><span style="color:var(--muted)">${s.time}</span>` : '<span style="color:var(--muted)">ว่าง</span>'}</div>`;
+    }).join('');
+    if (i === 0) { $('#g-table').innerHTML = ''; $('#g-cap').textContent = 'วันเริ่มที่โรงแรม 08:00 กด "ช่องถัดไป" เพื่อดูการเลือกทีละช่อง'; return; }
+    const k = i - 1, s = SL[k], w = win(k), mx = Math.max(...s.c.map(ratio));
+    $('#g-table').innerHTML = `<tr><th>ตัวเลือกของช่องที่ ${k + 1}</th><th>คะแนน</th><th>ค่าใช้จ่าย</th><th>ระยะ (กม.)</th><th style="width:34%">คะแนน ÷ (ต้นทุน + 10×กม.)</th></tr>` +
+      s.c.map(c => `<tr class="${c === w ? 'win' : ''}"><td>${c[0]}${c === w ? ' ✓' : ''}</td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td><td><div class="bar" style="width:${Math.max(2, ratio(c) / mx * 100)}%"></div></td></tr>`).join('');
+    const tot = SL.slice(0, i).map((_, q) => win(q)), sc = tot.reduce((a, c) => a + c[1], 0), co = tot.reduce((a, c) => a + c[2], 0);
+    $('#g-cap').textContent = (s.note ? s.note + ' · ' : '') + (i === 6 ? `จบวัน: ${tot.length} จุด คะแนนรวม ${sc.toFixed(1)} ค่าใช้จ่าย ${co} บาท แล้วกลับโรงแรม` : `เลือก "${w[0]}" เวลา ${s.time}`);
+  }
+  $('#g-next').onclick = () => { if (i < 6) i++; render(); };
+  const stop = autoplay($('#g-auto'), () => { if (i >= 6) return false; i++; render(); return i < 6; }, RM ? 1200 : 1500, 'เล่นอัตโนมัติ');
+  $('#g-reset').onclick = () => { stop(); i = 0; render(); };
+  render();
+})();
+
+/* ---------- 3) GA จำลอง (รันจริงในหน้า) ---------- */
+(() => {
+  const SC = [9, 8, 7.5, 7, 6.5, 6, 5.5, 5, 4.5, 4, 3.5, 3], CO = [0, 200, 500, 150, 700, 0, 300, 100, 900, 50, 400, 0], N = 12, BUD = 800, POP = 14;
+  const fit = g => { let s = 0, c = 0, n = 0; g.forEach((b, k) => { if (b) { s += SC[k]; c += CO[k]; n++; } }); return s - 10 * Math.max(0, n - 4) - 0.01 * Math.max(0, c - BUD); };
+  let best = -1e9; for (let m = 0; m < 1 << N; m++) { const g = Array.from({ length: N }, (_, k) => (m >> k) & 1); best = Math.max(best, fit(g)); }
+  let R, pop, hist, gen, seed = 7;
+  const init = () => { R = rng(seed); pop = Array.from({ length: POP }, () => Array.from({ length: N }, () => R() < 0.25 ? 1 : 0)); hist = [Math.max(...pop.map(fit))]; gen = 0; };
+  const tour = () => { let b = null; for (let k = 0; k < 3; k++) { const c = pop[Math.floor(R() * POP)]; if (!b || fit(c) > fit(b)) b = c; } return b; };
+  function step() {
+    const elite = pop.reduce((a, b) => fit(b) > fit(a) ? b : a), next = [elite.slice()];
+    while (next.length < POP) {
+      const a = tour(), b = tour(), child = a.map((v, k) => R() < 0.5 ? v : b[k]);
+      for (let k = 0; k < N; k++) if (R() < 0.05) child[k] ^= 1;
+      next.push(child);
+    }
+    pop = next; gen++; hist.push(Math.max(...pop.map(fit)));
+  }
+  const caps = ['เริ่มจากประชากรสุ่ม', 'คัดพ่อแม่ด้วย tournament (สุ่ม 3 ตัว เอาตัวที่ดีที่สุด)', 'ผสมยีนของพ่อแม่ (crossover)', 'สุ่มพลิกบางยีน (mutation)', 'เก็บตัวที่ดีที่สุดไว้ข้ามรุ่น (elitism)'];
+  function render() {
+    const sorted = pop.map(g => [g, fit(g)]).sort((a, b) => b[1] - a[1]), mx = Math.max(1, ...sorted.map(x => Math.max(0, x[1])));
+    $('#ga-pop').innerHTML = sorted.map(([g, f], k) => `<div class="ind ${k === 0 ? 'elite' : ''}"><div class="genes">${g.map(b => `<i class="${b ? 'on' : ''}"></i>`).join('')}</div><div><div class="fit" style="width:${Math.max(2, f / mx * 100)}%"></div></div><span>${f.toFixed(1)}</span></div>`).join('');
+    const W = 420, H = 240, px = i => 36 + i * (370 / Math.max(10, hist.length - 1 || 1)), lo = Math.min(...hist, best - 6), py = v => 20 + (1 - (v - lo) / (best + 1 - lo)) * 190;
+    let s = `<line x1="36" x2="${W - 14}" y1="${py(best)}" y2="${py(best)}" stroke="${css('--good')}" stroke-dasharray="5 4"/><text x="40" y="${py(best) - 5}" style="fill:${css('--good')}">คำตอบที่ดีที่สุดจริง ${best.toFixed(1)} (ลองครบ 4,096 แบบ)</text>`;
+    s += `<line x1="36" x2="36" y1="20" y2="210" stroke="${css('--line')}"/><line x1="36" x2="${W - 14}" y1="210" y2="210" stroke="${css('--line')}"/>`;
+    s += `<polyline fill="none" stroke="${css('--accent')}" stroke-width="2.5" points="${hist.map((v, i) => px(i) + ',' + py(v)).join(' ')}"/>`;
+    s += `<circle cx="${px(hist.length - 1)}" cy="${py(hist[hist.length - 1])}" r="4.5" fill="${css('--accent')}"/><text x="36" y="228">รุ่นที่ 0</text><text x="${Math.min(W - 40, px(hist.length - 1))}" y="228" text-anchor="end">รุ่นที่ ${gen}</text>`;
+    $('#ga-chart').innerHTML = s;
+    const gap = ((best - hist[hist.length - 1]) / best * 100);
+    $('#ga-cap').textContent = gen === 0 ? caps[0] + ' กด "รุ่นถัดไป" ในแต่ละรุ่นจะทำ: คัดพ่อแม่ ผสมยีน กลายพันธุ์ และเก็บตัวดีที่สุด' : `รุ่นที่ ${gen}: ดีที่สุด ${hist[hist.length - 1].toFixed(1)} ห่างจากคำตอบจริง ${gap.toFixed(1)}% ${gap < 0.05 ? '(ได้คำตอบที่ดีที่สุดแล้ว)' : ''}`;
+  }
+  $('#ga-step').onclick = () => { step(); render(); };
+  const stop = autoplay($('#ga-auto'), () => { step(); render(); return gen < 40 && hist[hist.length - 1] < best - 1e-9; }, RM ? 500 : 450, 'เล่นอัตโนมัติ');
+  $('#ga-reset').onclick = () => { stop(); seed = (seed * 31 + 11) % 9973; init(); render(); };
+  init(); render();
+})();
+
+/* ---------- 4) Hybrid ---------- */
+(() => {
+  const STEPS = [
+    ['1 · สร้างประชากรเริ่มต้น', 'สร้างแผน 30 แบบจาก Greedy หลายชุด (สลับลำดับสถานที่ต่างกัน) บางส่วนผสมแบบที่คำนึงต้นทุน และถ้ามีนโยบาย RL จะเพิ่มแผนจาก RL อีกชุด', 'จุดเริ่มต้นดีกว่าสุ่ม จึงลดจำนวนรุ่นที่ GA ต้องใช้', 'seed'],
+    ['2 · GA วิวัฒนาการ', 'วนสูงสุด 60 รุ่น: tournament k=3, สลับทั้งวันระหว่างพ่อแม่, กลายพันธุ์ (อัตราลดลงตามรุ่น), เก็บตัวดีที่สุดไว้ และหยุดเร็วถ้าไม่ดีขึ้น 15 รุ่น', 'ฟังก์ชันเป้าหมายรวมคะแนน โบนัสความหลากหลายหมวด และโทษระยะขับ 0.3 ต่อกม.', 'seed'],
+    ['3 · 2-opt', 'ปรับลำดับการไปของแต่ละวัน สลับช่วงของเส้นทางจนไม่มีเส้นไขว้ ระยะขับสั้นลงโดยไม่เปลี่ยนสถานที่ และคงตำแหน่งมื้อกลางวันกับมื้อเย็นไว้', 'ดูแผนที่: เส้นไขว้หายไป ระยะลดลง', 'opt'],
+    ['4 · เติมมื้อ (meal_fill)', 'รับประกันว่าทุกวันมีมื้อกลางวันและมื้อเย็นในช่วงเวลาที่ถูกต้อง ถ้าขาดจะหาร้านที่เหมาะสมมาแทรก', 'กติกามื้อ: กลางวันเริ่ม 11:00-14:30 เย็น 17:00-20:00', 'opt'],
+    ['5 · ซ่อมเวลา', 'ถอดสถานที่ที่ทำให้วันเกินเพดานเวลาหรือไปถึงหลังร้านปิด วันที่แน่นจนใส่มื้อไม่ได้จะถอดจุดคะแนนต่ำสุดก่อนเติมมื้อ', 'เพดานเวลาเที่ยว 8 ชั่วโมงต่อวัน', 'opt'],
+    ['6 · ซ่อมงบ', 'ถ้าเกินงบ ตัดจากวันที่มีสถานที่มากที่สุด โดยแทนที่ด้วยที่ที่ถูกกว่าและคะแนนสูงสุดก่อนลบทิ้ง วนสูงสุด 3 รอบจนมื้อครบ', 'การซ่อมวนซ้ำจนผ่านทุกข้อจำกัดหรือหมดรอบ', 'opt'],
+    ['7 · ILS', 'ลองแทนที่แต่ละจุดด้วยจุดที่ยังไม่ใช้ รับผลเฉพาะเมื่อผ่านข้อจำกัดและ fitness ไม่แย่ลง ดูแผนที่: จุดบนขวาถูกแทนด้วยจุดที่อยู่ใกล้กว่า', 'ผลวัดจริง: คะแนนเพิ่ม 1.9-4.4% (มีนัยสำคัญ 24 จาก 24 ชุด) ใช้เวลาเพิ่มราว 2.1 เท่า', 'ils'],
+  ];
+  const H = [50, 88], P = { A: [16, 62], B: [82, 60], C: [28, 24], D: [78, 16], E: [52, 44], D2: [64, 34] };
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+  const len = o => o.reduce((s, k, i) => s + dist(i ? P[o[i - 1]] || H : H, k === 'H' ? H : P[k]), 0);
+  const total = ord => { const pts = [H, ...ord.map(k => P[k]), H]; return pts.slice(1).reduce((s, p, i) => s + dist(pts[i], p), 0); };
+  let seedOrd = ['A', 'B', 'C', 'D', 'E'], opt = seedOrd.slice(), improved = true;
+  while (improved) { improved = false; for (let i = 0; i < opt.length - 1; i++) for (let j = i + 1; j < opt.length; j++) { const c = opt.slice(0, i).concat(opt.slice(i, j + 1).reverse(), opt.slice(j + 1)); if (total(c) < total(opt) - 1e-9) { opt = c; improved = true; } } }
+  const ils = opt.map(k => k === 'D' ? 'D2' : k); let ilsOrd = ils.slice();
+  improved = true; while (improved) { improved = false; for (let i = 0; i < ilsOrd.length - 1; i++) for (let j = i + 1; j < ilsOrd.length; j++) { const c = ilsOrd.slice(0, i).concat(ilsOrd.slice(i, j + 1).reverse(), ilsOrd.slice(j + 1)); if (total(c) < total(ilsOrd) - 1e-9) { ilsOrd = c; improved = true; } } }
+  const KM = 0.36, ords = { seed: seedOrd, opt, ils: ilsOrd };
+  let cur = 0;
+  function draw(state) {
+    const ord = ords[state], pts = [H, ...ord.map(k => P[k]), H];
+    let s = '';
+    pts.slice(1).forEach((p, i) => s += `<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${p[0]}" y2="${p[1]}" stroke="${css('--accent')}" stroke-width="0.9" stroke-linecap="round" ${RM ? '' : `style="stroke-dasharray:200;stroke-dashoffset:200;animation:dr .7s ${i * .12}s forwards"`}/>`);
+    Object.entries(P).forEach(([k, p]) => { if (k === 'D2' && state !== 'ils') return; if (k === 'D' && state === 'ils') return; const n = ord.indexOf(k) + 1; s += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${css('--surface')}" stroke="${css('--c-ga')}" stroke-width="0.9"/><text x="${p[0]}" y="${p[1] + 1.7}" text-anchor="middle" style="fill:${css('--fg')};font-size:4.6px;font-weight:700">${n}</text>`; });
+    s += `<rect x="${H[0] - 5}" y="${H[1] - 5}" width="10" height="10" rx="1.5" fill="${css('--fg')}"/><text x="${H[0] + 7}" y="${H[1] + 1.5}" style="font-size:3.6px">โรงแรม</text>`;
+    if (state === 'ils') s += `<circle cx="${P.D[0]}" cy="${P.D[1]}" r="4" fill="none" stroke="${css('--bad')}" stroke-width="0.7" stroke-dasharray="1.5 1.5"/><text x="${P.D[0] - 8}" y="${P.D[1] - 6}" style="font-size:3.6px;fill:${css('--bad')}">ถูกแทนที่</text>`;
+    $('#h-map').innerHTML = `<style>@keyframes dr{to{stroke-dashoffset:0}}</style>` + s;
+    $('#h-km').textContent = `ระยะขับรวมในตัวอย่าง ≈ ${(total(ord) * KM).toFixed(1)} กม. (${state === 'seed' ? 'ก่อน 2-opt' : state === 'opt' ? 'หลัง 2-opt' : 'หลัง ILS'})`;
+  }
+  function show(i) {
+    cur = i; const [t, x, r, st] = STEPS[i];
+    $('#h-title').textContent = t; $('#h-text').textContent = x; $('#h-real').textContent = r; draw(st);
+    [...$('#h-steps').children].forEach((b, k) => b.setAttribute('aria-pressed', k === i));
+  }
+  $('#h-steps').innerHTML = STEPS.map((s, i) => `<button type="button" aria-pressed="false" data-i="${i}">${s[0]}</button>`).join('');
+  $('#h-steps').onclick = e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); };
+  show(0);
+})();
+
+/* ---------- 5a) NSGA-II ---------- */
+(() => {
+  const R = rng(21), pts = Array.from({ length: 30 }, () => { const km = 6 + R() * 50, sc = 120 + R() * 40 + (km * .45) - R() * 22; return { sc, km }; });
+  const dom = (a, b) => a.sc >= b.sc && a.km <= b.km && (a.sc > b.sc || a.km < b.km);
+  pts.forEach(p => p.f = 0);
+  let rest = pts.slice(), rank = 1; while (rest.length) { const fr = rest.filter(p => !rest.some(q => dom(q, p))); fr.forEach(p => p.f = rank); rest = rest.filter(p => !fr.includes(p)); rank++; }
+  const minS = Math.min(...pts.map(p => p.sc)) - 4, maxS = Math.max(...pts.map(p => p.sc)) + 4, maxK = 62;
+  const X = km => 40 + km / maxK * 266, Y = sc => 190 - (sc - minS) / (maxS - minS) * 168;
+  let shown = 0;
+  function draw() {
+    const w = $('#n-w').value / 100; $('#n-wv').textContent = w.toFixed(2);
+    const norm = p => w * (p.sc - minS) / (maxS - minS) - (1 - w) * p.km / maxK, pick = pts.reduce((a, b) => norm(b) > norm(a) ? b : a);
+    let s = `<line x1="40" x2="40" y1="14" y2="190" stroke="${css('--line')}"/><line x1="40" x2="306" y1="190" y2="190" stroke="${css('--line')}"/><text x="306" y="208" text-anchor="end">ระยะขับ (กม./วัน) →  น้อยดี</text><text x="6" y="12">คะแนน ↑</text>`;
+    const front = pts.filter(p => p.f === 1).sort((a, b) => a.km - b.km);
+    if (shown >= 1) s += `<polyline fill="none" stroke="${css('--accent')}" stroke-width="1.5" points="${front.map(p => X(p.km) + ',' + Y(p.sc)).join(' ')}"/>`;
+    pts.forEach(p => { const on = shown === 0 || p.f <= shown, col = shown === 0 ? css('--c-ga') : p.f === 1 ? css('--accent') : p.f === 2 ? css('--c-ga') : css('--c-greedy'); s += `<circle cx="${X(p.km)}" cy="${Y(p.sc)}" r="${p.f === 1 && shown ? 5 : 4}" fill="${col}" opacity="${on ? .9 : .15}"/>`; });
+    s += `<circle cx="${X(pick.km)}" cy="${Y(pick.sc)}" r="9" fill="none" stroke="${css('--good')}" stroke-width="2"/>`;
+    $('#n-chart').innerHTML = s;
+    $('#n-note').textContent = `วงเขียว = แผนเดียวที่ weighted-sum เลือกที่น้ำหนักนี้ ส่วน NSGA-II ให้ทั้งเส้นส้ม (${front.length} แผนในตัวอย่าง) ให้ผู้ใช้เลือก trade-off เอง ผลวัดจริง: ให้แผนทางเลือก 23-28 แผนเทียบกับ 3-4 แต่ hypervolume ต่ำกว่า Hybrid ถ่วงน้ำหนักอย่างมีนัยสำคัญ 3 จาก 4 จังหวัด`;
+  }
+  $('#n-front').onclick = () => { shown = shown >= 3 ? 1 : shown + 1; $('#n-front').textContent = shown === 0 ? 'เผยชั้น front' : shown >= 3 ? 'กลับไปชั้น 1' : `เผยชั้นที่ ${shown + 1}`; draw(); };
+  $('#n-reset').onclick = () => { shown = 0; $('#n-front').textContent = 'เผยชั้น front'; draw(); };
+  $('#n-w').oninput = draw; draw();
+})();
+
+/* ---------- 5b) RL ---------- */
+(() => {
+  const C = [['หาดกะตะ', 9.1, 0, 3], ['ตลาดเก่า', 7.2, 120, 4], ['ล่องเรือ', 9.5, 1500, 5], ['วัดฉลอง', 8.4, 0, 6]];
+  const F = c => [c[1] / 10, c[2] / 1500, c[3] / 10];
+  let last = -1;
+  function probs() {
+    const t = [+$('#r-s').value / 10, +$('#r-c').value / 10, +$('#r-d').value / 10];
+    ['s', 'c', 'd'].forEach((k, i) => $('#r-' + k + 'v').textContent = t[i].toFixed(1));
+    const z = C.map(c => F(c).reduce((a, f, i) => a + f * t[i], 0) * 3), m = Math.max(...z), e = z.map(v => Math.exp(v - m)), sum = e.reduce((a, b) => a + b, 0);
+    return e.map(v => v / sum);
+  }
+  function draw() { const p = probs(); $('#r-probs').innerHTML = C.map((c, i) => `<div class="prob ${i === last ? 'pick' : ''}"><span>${c[0]}</span><div><div class="bar" style="width:${Math.max(2, p[i] * 100)}%"></div></div><span>${(p[i] * 100).toFixed(0)}%</span></div>`).join(''); return p; }
+  ['r-s', 'r-c', 'r-d'].forEach(id => $('#' + id).oninput = () => { last = -1; $('#r-out').textContent = ''; draw(); });
+  $('#r-sample').onclick = () => { const p = probs(); let u = Math.random(), k = 0; while (k < 3 && u > p[k]) { u -= p[k]; k++; } last = k; draw(); $('#r-out').textContent = `สุ่มได้: ${C[k][0]}`; };
+  draw();
+})();
+
+/* ---------- 6) ผลวัดจริง ---------- */
+(() => {
+  const D = { // [Greedy, GA, Hybrid] คะแนนเฉลี่ย และ กม./วัน ตามตารางที่ 4.2 และ 4.3
+    'ภูเก็ต': { S1: [141.3, 141.0, 146.8, 8.8, 19.4, 6.6], S2: [236.2, 234.4, 247.2, 21.5, 33.8, 16.3], S3: [341.9, 328.2, 344.5, 127.2, 66.0, 52.0] },
+    'เชียงใหม่': { S1: [141.9, 143.0, 148.5, 14.6, 17.7, 10.7], S2: [233.6, 235.2, 244.4, 24.3, 26.2, 17.1], S3: [330.2, 329.0, 338.5, 78.7, 16.7, 8.2] },
+    'กระบี่': { S1: [132.1, 132.4, 136.7, 54.8, 48.9, 29.1], S2: [221.9, 219.7, 226.7, 65.3, 55.5, 35.8], S3: [292.3, 307.8, 315.2, 142.5, 66.6, 44.6] },
+    'เกาะสมุย': { S1: [134.6, 136.3, 142.8, 23.5, 29.8, 17.7], S2: [226.6, 223.4, 232.9, 45.6, 48.2, 36.7], S3: [327.7, 316.0, 326.0, 91.5, 35.9, 21.8] },
+  };
+  const LAB = { S1: 'S1 · 3 วัน 10,000 บาท', S2: 'S2 · 5 วัน 15,000 บาท', S3: 'S3 · 7 วัน 25,000 บาท' };
+  let sc = 'S2';
+  function draw() {
+    const provs = Object.keys(D), cols = [css('--c-greedy'), css('--c-ga'), css('--c-hybrid')], vals = provs.map(p => D[p][sc]);
+    const lo = Math.min(...vals.flatMap(v => v.slice(0, 3))) * 0.9, hi = Math.max(...vals.flatMap(v => v.slice(0, 3))), Y = v => 200 - (v - lo) / (hi - lo) * 175;
+    let s = [0, .25, .5, .75, 1].map(f => { const v = lo + f * (hi - lo), y = Y(v); return `<line x1="46" x2="610" y1="${y}" y2="${y}" stroke="${css('--line')}" stroke-width=".7"/><text x="40" y="${y + 3}" text-anchor="end">${v.toFixed(0)}</text>`; }).join('');
+    provs.forEach((p, gi) => {
+      const gx = 60 + gi * 138; D[p][sc].slice(0, 3).forEach((v, k) => { const x = gx + k * 36, y = Y(v); s += `<rect x="${x}" y="${y}" width="30" height="${200 - y}" rx="4" fill="${cols[k]}"><title>${p} ${['Greedy', 'GA', 'Hybrid'][k]} ${v}</title></rect><text x="${x + 15}" y="${y - 4}" text-anchor="middle" style="font-size:10px;fill:${css('--fg')}">${v.toFixed(0)}</text>`; });
+      s += `<text x="${gx + 54}" y="222" text-anchor="middle" style="font-size:12px;fill:${css('--fg')}">${p}</text>`;
+    });
+    $('#s-chart').innerHTML = s;
+    const avg = i => provs.reduce((a, p) => a + D[p][sc][i], 0) / provs.length, all = i => Object.values(D).reduce((a, o) => a + ['S1', 'S2', 'S3'].reduce((b, k) => b + o[k][i], 0) / 3, 0) / 4;
+    $('#s-metrics').innerHTML = `<div class="metric"><b>${avg(2).toFixed(1)}</b>Hybrid เฉลี่ยใน ${LAB[sc]} (GA ${avg(1).toFixed(1)} · Greedy ${avg(0).toFixed(1)})</div>` +
+      `<div class="metric"><b>${all(5).toFixed(0)} กม.</b>ระยะขับ Hybrid ต่อวัน (GA ${all(4).toFixed(0)} · Greedy ${all(3).toFixed(0)}) เฉลี่ยทุกชุด</div>` +
+      `<div class="metric"><b>0.6-1.5 วิ</b>เวลา Hybrid ต่อครั้ง เทียบ GA 3.0-8.6 วิ</div>`;
+    document.querySelectorAll('#s-tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === sc));
+  }
+  $('#s-tabs').innerHTML = Object.entries(LAB).map(([k, v]) => `<button type="button" data-k="${k}" aria-pressed="false">${v}</button>`).join('');
+  $('#s-tabs').onclick = e => { const b = e.target.closest('button'); if (b) { sc = b.dataset.k; draw(); } };
+  draw();
+})();
+</script>
