@@ -4,10 +4,10 @@ run_experiments.py — WeEasyTrip (Thesis)
 Runs 30 trials × 3 algorithms × 3 scenarios
 Outputs: results/results.json, results/stats.txt, results/convergence.png
 """
-import sys, os, time, json, random, copy, statistics, math
+import sys, os, time, json, random, statistics, math
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'algorithm'))
 
-from utils import load_data, evaluate_route, DAY_TIME_BUDGET
+from utils import load_data, evaluate_route
 from greedy import greedy_solve
 from genetic import genetic_solve
 from hybrid import hybrid_solve
@@ -143,7 +143,6 @@ def kruskal_wallis(groups):
     p = 1.0
     if df > 0 and H > 0:
         # ประมาณ chi-squared survival function
-        x = H / df
         p = math.exp(-H / 2) * sum(
             (H / 2) ** k / math.factorial(k)
             for k in range(df)

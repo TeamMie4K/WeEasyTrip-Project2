@@ -13,7 +13,7 @@ sys.argv = [sys.argv[0], '15'] + sys.argv[1:]
 import run_province_experiments as E
 from scipy import stats as st
 from hybrid import hybrid_solve
-from pareto import nsga2_solve, evaluate_objectives, hypervolume, _dominates
+from pareto import nsga2_solve, evaluate_objectives, _dominates
 
 TRIALS = int(os.environ.get('PARETO_TRIALS', 8))
 SC = E.SCENARIOS[1]          # S2: 5 วัน 15,000 บาท

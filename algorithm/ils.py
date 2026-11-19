@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 ils.py - Insertion local search (Iterated Local Search) สำหรับปรับปรุงแผนที่ Hybrid สร้างแล้ว
 
@@ -14,7 +14,7 @@ from typing import Dict, List
 import utils
 from utils import evaluate_route, MAX_ATTRS
 
-DIST_WEIGHT = 0.03   # ต้องตรงกับ hybrid.DIST_WEIGHT
+DIST_WEIGHT = 0.3    # ต้องตรงกับ hybrid.DIST_WEIGHT
 IDLE_WEIGHT = 0.02   # ต้องตรงกับค่า idle ใน hybrid._fitness
 
 

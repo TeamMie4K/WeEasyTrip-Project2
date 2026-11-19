@@ -4,11 +4,10 @@ greedy.py - Slot-based Greedy Algorithm สำหรับปัญหา B-TOPT
 
 Workflow ต่อหนึ่งวัน: [attr, attr, lunch, attr, attr, dinner]
   - เลือก POI ที่มี score/cost ratio สูงสุดในแต่ละ slot
-  - มี fallback 3 ระดับเพื่อรับประกัน lunch + dinner ทุกวัน
+  - มี fallback หลายระดับ (ขยายงบมื้อ, ร้านใดก็ได้, ขยายเวลาเข้าร้าน, เฉพาะของฟรี) เพื่อรับประกัน lunch + dinner ทุกวัน
   - random_factor เพิ่ม diversity เพื่อใช้เป็น seed ใน GA/Hybrid
 """
 import random
-from typing import List, Dict
 from utils import (haversine_km, travel_time_min, travel_cost,
                    DAY_TIME_BUDGET, DAY_START_MIN, evaluate_route, LUNCH_WIN, DINNER_WIN, MAX_SIGHT_MIN)
 
@@ -20,6 +19,7 @@ DINNER_ARRIVE  = DINNER_WIN
 LUNCH_RELAXED  = LUNCH_WIN      # ไม่ผ่อนช่วงเวลามื้อแล้ว (ต้องตรงเวลาจริง)
 DINNER_RELAXED = DINNER_WIN
 MAX_MEAL_WAIT  = 90
+GREEDY_KM_PENALTY = 10.0   # บาทเทียบเท่าต่อ km ใน ranking ของ greedy (ให้เลือกจุดใกล้กัน เหมือน DIST_WEIGHT ของ Hybrid/GA)
 DINNER_BUFFER_MIN = 150
 
 
@@ -71,7 +71,8 @@ def _find_best_for_slot(pois, used_ids, current_pos, current_time, hotel,
         else:
             # ratio mode: ใช้ floor 80 เพื่อป้องกัน POI ฟรีใกล้ๆ ชนะจากระยะทางเสมอ
             # → POI ฟรีทุกอันแข่งกันด้วย score เป็นหลัก + noise กระจาย diversity
-            effective_cost = max(add_cost, 80.0)
+            # ค่าเดินทางไม่นับในงบ (COST_PER_KM=0) แต่ถ่วงระยะขับใน ranking เท่ากับค่าเดิม 10 บาท/km
+            effective_cost = max(add_cost, 80.0) + GREEDY_KM_PENALTY * d_to
             base_score = (poi['score'] * diversity_bonus) / (effective_cost + 1.0)
         noise = 1.0 + random.uniform(-random_factor, random_factor) if random_factor > 0 else 1.0
         score = base_score * noise

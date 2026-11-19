@@ -82,7 +82,7 @@ const ALGO_HINTS = {
   greedy: 'Greedy: เร็วที่สุด (~10 ms) — เลือกจุดดีที่สุดทีละขั้น แต่อาจไม่ optimal ในภาพรวม',
   ga:     'Genetic Algorithm: optimization ทั้งทริปพร้อมกัน (~3-8 sec) — global optimal กว่า greedy',
   hybrid: 'Hybrid (แนะนำ): Greedy seed → GA refine → 2-opt local search (~0.3-0.7 sec) — รวมข้อดีของทั้งสอง',
-  hybrid_rl: 'Hybrid + RL seed: เพิ่มแผนเริ่มต้นจาก RL policy (ฝึกในสภาพแวดล้อมจำลอง) — ดีขึ้นเล็กน้อย (~0.3%) ช้าลง ~10-20%',
+  hybrid_rl: 'Hybrid + RL seed: เพิ่มแผนเริ่มต้นจาก RL policy (ฝึกในสภาพแวดล้อมจำลอง) — ผลทดลองไม่ดีกว่า Hybrid อย่างสม่ำเสมอ ใช้เวลาเพิ่มเล็กน้อย (ทดลอง)',
 };
 const ALGO_NAMES = { greedy: 'Greedy', ga: 'Genetic Algorithm', hybrid: 'Hybrid', hybrid_rl: 'Hybrid + RL' };
 let SELECTED_ALGO = 'hybrid';
@@ -1064,7 +1064,7 @@ async function searchPackages() {
     }
     const data = await res.json();
     STATE.packages = data.packages;
-    STATE.includeHotel = includeHotel;
+    STATE.includeHotel = includeHotel && !data.packages.every(p => !p.total_hotel_cost);   // งบไม่พอที่พัก: เซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรมให้
     (data.packages[0]?.notes || []).forEach(n => showToast(n, 'error', 7000));   // เช่น ร้านอาหารตามความชอบมีไม่พอ
     renderPackages();
     const totalRuntime = data.packages.reduce((s, p) => s + p.runtime_ms, 0);
@@ -1624,7 +1624,7 @@ async function reshufflePackage() {
 
     // Update global package list
     STATE.packages = data.packages;
-    STATE.includeHotel = includeHotel;
+    STATE.includeHotel = includeHotel && !data.packages.every(p => !p.total_hotel_cost);   // งบไม่พอที่พัก: เซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรมให้
 
     // Find the matching tier (or fall back to same index)
     const tierIdx = data.packages.findIndex(p => p.tier === targetTier);
@@ -1656,46 +1656,6 @@ async function reshufflePackage() {
   } finally {
     detailEl.classList.remove('reshuffling');
     document.getElementById('reshuffleOverlay')?.remove();
-  }
-}
-
-// หลังผู้ใช้แก้แผน: ให้ backend รัน Hybrid ปรับทั้งแพ็กเกจใหม่ (คงจุดที่เลือก/ไม่ใส่จุดที่ลบ)
-// ถ้า endpoint ใช้ไม่ได้ ถอยไปใช้ recompute เดิม (คำนวณค่าใช้จ่ายอย่างเดียว)
-async function reoptimizeAndRefresh() {
-  const t = showToast('กำลังปรับเส้นทางด้วย Hybrid...', 'loading', 15000);
-  try {
-    const pkg = STATE.selectedPkg;
-    const res = await fetch(`${API_BASE}/api/reoptimize`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        province: getProvince(),
-        preferences: getPreferences(),
-        tier: pkg.tier,
-        hotel_id: pkg.hotel.id,
-        days: pkg.days.length,
-        budget: +document.getElementById('budget').value,
-        travelers: +document.getElementById('travelers').value,
-        include_hotel: STATE.includeHotel !== false,
-        routes: pkg.days.map(d => d.pois.map(p => p.id)),
-        locked: [...STATE.locked],
-        excluded: [...STATE.excluded],
-        seed: Math.floor(Math.random() * 1000000),
-      }),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    STATE.selectedPkg = data;
-    drawOnMap(data);
-    renderDetail(data);
-    t.remove();
-    pushSession();
-    (data.notes || []).forEach(n => showToast(n, 'error', 6000));
-    showToast(uiWarnings(data).length ? `ปรับแล้ว · ${uiWarnings(data).length} คำเตือน` : (STATE.dev ? `ปรับแผนใหม่แล้ว! Score ${data.total_score}` : 'ปรับแผนใหม่แล้ว!'),
-              uiWarnings(data).length ? 'error' : 'ok', 4000);
-  } catch (e) {
-    t.remove();
-    await recomputeAndRefresh();
   }
 }
 

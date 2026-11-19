@@ -8,9 +8,7 @@ policy: softmax เชิงเส้น  pi(a|s) ∝ exp(theta · phi(s,a))
 ฝึกด้วย REINFORCE (baseline = ค่าเฉลี่ยรางวัลของ scenario) ใน "สภาพแวดล้อมจำลอง" (ตัวอัลกอริทึมเอง)
 รางวัล = คะแนนรวมของแผนที่ผ่านข้อจำกัด (ลบเมื่อเกินงบ/ผิดเวลา) — ไม่ใช้ประวัติผู้ใช้จริง เพราะระบบยังไม่มีข้อมูลนั้น
 """
-import math
-import random
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 import numpy as np
 
@@ -117,37 +115,3 @@ def episode_reward(routes, hotel, budget, days) -> float:
     if not ev['valid']:
         r -= 0.5 * len(ev['violations'])
     return r
-
-
-def train(envs: List[tuple], episodes: int = 1500, lr: float = 0.08, seed: int = 0,
-          theta0: np.ndarray = None, log_every: int = 250) -> Tuple[np.ndarray, List[float]]:
-    """ฝึก policy ด้วย REINFORCE
-    envs: รายการ (pois, hotel, days, budget) — สุ่มหนึ่ง env ต่อ episode; baseline แยกตาม env
-    คืน (theta, ประวัติรางวัลเฉลี่ยทุก log_every episodes)"""
-    rng = random.Random(seed)
-    np.random.seed(seed)
-    theta = np.zeros(N_FEATURES) if theta0 is None else theta0.copy()
-    baseline = [None] * len(envs)
-    hist, window = [], []
-    for ep in range(episodes):
-        i = rng.randrange(len(envs))
-        pois, hotel, days, budget = envs[i]
-        rec = []
-        routes = rl_solve(pois, hotel, days, budget, theta, sample=True, record=rec)
-        R = episode_reward(routes, hotel, budget, days)
-        baseline[i] = R if baseline[i] is None else 0.95 * baseline[i] + 0.05 * R
-        adv = R - baseline[i]
-        grad = np.zeros(N_FEATURES)
-        for phi, idx in rec:
-            logits = phi @ theta
-            logits -= logits.max()
-            p = np.exp(logits)
-            p /= p.sum()
-            grad += phi[idx] - p @ phi
-        if rec:
-            theta += lr * adv * grad / len(rec) * 10.0
-        window.append(R)
-        if (ep + 1) % log_every == 0:
-            hist.append(float(np.mean(window)))
-            window = []
-    return theta, hist

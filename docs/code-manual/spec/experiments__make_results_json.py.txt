@@ -1,0 +1,20 @@
+@title สรุปผลทดลองเป็น JSON สำหรับหน้าผลทดลอง
+@role อ่านไฟล์ผลทดลองทั้งหมดใน experiments/results/ (json และ stats.txt) แล้วรวมเป็น frontend/results.json ขนาดเล็ก เพื่อให้หน้า [[frontend/results.html]] (แสดงเฉพาะโหมด Developer) แสดงตารางผลทดลองได้ รันเป็นขั้นสุดท้ายของ experiments/run_all_chapter4.sh
+
+@@ 1-16 ส่วน A และ B จากผลจังหวัด
+1-2: docstring
+3-5: นำเข้าโมดูลมาตรฐาน และกำหนดโฟลเดอร์ results
+6: `rd` ฟังก์ชันอ่านไฟล์ข้อความเป็นรายการบรรทัด
+7: โหลดผลจังหวัด (province_results.json) ซึ่งสร้างโดย [[experiments/run_province_experiments.py]]
+9-14: สร้างแถวของส่วน A: ทุกชุด (จังหวัด/สถานการณ์) เก็บคะแนน เวลา ความถูกต้อง ระยะขับ ความหลากหลายของ 4 อัลกอริทึม และค่า p เทียบ GA
+15-16: สร้างแถวของส่วน B (ปรับแผนหลังผู้ใช้แก้): จำนวนที่ใช้งานได้ มื้อครบ และค่า p
+
+@@ 18-33 ILS RL และ Pareto
+18-21: อ่าน ils_stats.txt (จาก [[experiments/run_ils_experiments.py]]) แยกคอลัมน์ด้วย regex เก็บ น้ำหนัก คะแนนก่อน/หลัง ร้อยละที่เพิ่ม เวลา และค่า p
+23-26: อ่าน rl_stats.txt (จาก [[experiments/run_rl_experiments.py]]) แยกกลุ่ม train/held-out และคะแนน
+28-33: อ่าน pareto_stats.txt (จาก [[experiments/run_pareto_experiments.py]]) เก็บ hypervolume จำนวนแผน เวลา และค่า p ต่อจังหวัด
+
+@@ 35-45 ผลจังหวัดข้อมูลน้อยและบันทึก
+35-41: อ่านผลสามสถานการณ์ของ [[experiments/run_sparse_experiments.py]] (S1 S2 S3) แยกคอลัมน์ด้วย regex
+43-44: เขียนทุกส่วนรวมเป็น frontend/results.json
+45: พิมพ์จำนวนแถวของแต่ละส่วนไว้ตรวจ

@@ -1,13 +1,13 @@
 SPARSE / CROSS-PROVINCE EXPERIMENTS — trials=10, scenario=S1_Short_Budget
-nongbualamphu	POI=56	H=5	rest=24	Greedy=130.9	GA=131.23	Hybrid=135.97	valid=10/10	p=0.0001
-phichit	POI=43	H=6	rest=8	Greedy=128.3	GA=127.17	Hybrid=131.1	valid=10/10	p=0.0001
-lamphun	POI=109	H=12	rest=50	Greedy=135.7	GA=137.04	Hybrid=142.06	valid=10/10	p=0.0001
-nakhonnayok	POI=97	H=9	rest=33	Greedy=130.0	GA=129.49	Hybrid=137.6	valid=10/10	p=0.0001
-singburi	POI=70	H=8	rest=24	Greedy=131.5	GA=131.93	Hybrid=137.24	valid=10/10	p=0.0001
-kalasin	POI=80	H=9	rest=37	Greedy=131.8	GA=131.32	Hybrid=133.84	valid=10/10	p=0.0010
-chaiyaphum	POI=89	H=9	rest=19	Greedy=115.8	GA=113.63	Hybrid=122.97	valid=10/10	p=0.0000
-loei	POI=72	H=9	rest=50	Greedy=129.6	GA=129.43	Hybrid=132.11	valid=10/10	p=0.0001
-chiangmai+lamphun	POI=333	H=38	rest=100	Greedy=139.1	GA=143.11	Hybrid=151.0	valid=10/10	p=0.0001
-bangkok+nonthaburi	POI=390	H=48	rest=122	Greedy=144.6	GA=148.81	Hybrid=161.05	valid=10/10	p=0.0001
-phuket+phangnga	POI=249	H=32	rest=91	Greedy=148.6	GA=147.94	Hybrid=156.98	valid=10/10	p=0.0001
-phuket+krabi	POI=326	H=45	rest=116	Greedy=134.3	GA=133.29	Hybrid=142.82	valid=10/10	p=0.0001
+nongbualamphu	POI=56	H=5	rest=24	Greedy=129.4	GA=130.59	Hybrid=132.37	valid=10/10	p=0.0014
+phichit	POI=43	H=6	rest=8	Greedy=128.0	GA=102.42	Hybrid=129.0	valid=10/10	p=0.0013
+lamphun	POI=109	H=12	rest=50	Greedy=135.4	GA=134.0	Hybrid=135.73	valid=10/10	p=0.0001
+nakhonnayok	POI=97	H=9	rest=33	Greedy=129.6	GA=128.9	Hybrid=131.96	valid=10/10	p=0.0001
+singburi	POI=70	H=8	rest=24	Greedy=130.1	GA=131.83	Hybrid=132.95	valid=10/10	p=0.0002
+kalasin	POI=80	H=9	rest=37	Greedy=131.1	GA=130.84	Hybrid=129.24	valid=10/10	p=0.9999
+chaiyaphum	POI=89	H=9	rest=19	Greedy=115.7	GA=72.31	Hybrid=118.53	valid=10/10	p=0.0001
+loei	POI=72	H=9	rest=50	Greedy=129.3	GA=129.31	Hybrid=130.24	valid=10/10	p=0.0010
+chiangmai+lamphun	POI=333	H=38	rest=100	Greedy=139.5	GA=142.4	Hybrid=147.6	valid=10/10	p=0.0001
+bangkok+nonthaburi	POI=390	H=48	rest=122	Greedy=140.2	GA=145.05	Hybrid=156.82	valid=10/10	p=0.0001
+phuket+phangnga	POI=249	H=32	rest=91	Greedy=146.3	GA=139.97	Hybrid=154.27	valid=10/10	p=0.0001
+phuket+krabi	POI=326	H=45	rest=116	Greedy=131.7	GA=132.16	Hybrid=134.84	valid=10/10	p=0.0001

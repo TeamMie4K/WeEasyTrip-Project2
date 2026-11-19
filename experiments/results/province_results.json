@@ -7,69 +7,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 143.7,
+          "mean": 141.3,
           "stdev": 0.0,
-          "min": 143.7,
-          "max": 143.7
+          "min": 141.3,
+          "max": 141.3
         },
-        "time_ms": 8.7,
+        "time_ms": 6.0,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 26.6,
-        "diversity": 3.67,
+        "km_day": 8.8,
+        "diversity": 3.0,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 142.74,
-          "stdev": 3.99,
-          "min": 129.0,
-          "max": 146.7
+          "mean": 141.02,
+          "stdev": 1.03,
+          "min": 139.2,
+          "max": 142.9
         },
-        "time_ms": 4687.45,
+        "time_ms": 3223.71,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 59.4,
-        "diversity": 2.87,
-        "over": 0.4
+        "km_day": 19.4,
+        "diversity": 2.53,
+        "over": 1.07
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 156.53,
-          "stdev": 0.53,
-          "min": 155.6,
-          "max": 157.3
+          "mean": 146.85,
+          "stdev": 0.35,
+          "min": 146.0,
+          "max": 147.4
         },
-        "time_ms": 813.45,
+        "time_ms": 607.95,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 44.1,
-        "diversity": 2.98,
-        "over": 0.13
+        "km_day": 6.6,
+        "diversity": 3.22,
+        "over": 0.2
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 156.7,
-          "stdev": 0.56,
-          "min": 155.6,
-          "max": 157.6
+          "mean": 147.04,
+          "stdev": 0.35,
+          "min": 146.3,
+          "max": 147.6
         },
-        "time_ms": 843.71,
+        "time_ms": 621.98,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 42.3,
-        "diversity": 4.0,
+        "km_day": 7.6,
+        "diversity": 3.51,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.9752109164179596e-06,
-        "mwu_greater_p": 1.6455939818346062e-06
+        "kruskal_p": 3.0055438865562775e-06,
+        "mwu_greater_p": 1.6622273048380918e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 0.33743875325892914
+        "mwu_two_sided_p": 0.1812225634467829
       }
     },
     "phuket/S2_Medium_Standard": {
@@ -83,64 +83,64 @@
           "min": 236.2,
           "max": 236.2
         },
-        "time_ms": 13.6,
+        "time_ms": 8.9,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 33.4,
-        "diversity": 3.8,
+        "km_day": 21.5,
+        "diversity": 3.2,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 239.27,
-          "stdev": 1.6,
-          "min": 236.3,
-          "max": 242.5
+          "mean": 234.36,
+          "stdev": 2.38,
+          "min": 226.9,
+          "max": 237.7
         },
-        "time_ms": 7057.59,
+        "time_ms": 4798.21,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 59.7,
-        "diversity": 3.19,
-        "over": 0.27
+        "km_day": 33.8,
+        "diversity": 2.79,
+        "over": 1.2
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 255.1,
-          "stdev": 0.51,
-          "min": 254.3,
-          "max": 256.0
+          "mean": 247.25,
+          "stdev": 1.28,
+          "min": 245.6,
+          "max": 249.7
         },
-        "time_ms": 1308.87,
+        "time_ms": 964.21,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 39.6,
-        "diversity": 3.04,
-        "over": 0.47
+        "km_day": 16.3,
+        "diversity": 3.21,
+        "over": 0.07
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 254.34,
-          "stdev": 0.6,
-          "min": 253.1,
-          "max": 255.8
+          "mean": 246.99,
+          "stdev": 1.17,
+          "min": 244.6,
+          "max": 249.0
         },
-        "time_ms": 1447.53,
+        "time_ms": 930.47,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 40.7,
-        "diversity": 4.0,
+        "km_day": 17.4,
+        "diversity": 3.53,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 3.0361322850187357e-06,
-        "mwu_greater_p": 1.6789992476286237e-06
+        "kruskal_p": 3.0515227863680784e-06,
+        "mwu_greater_p": 1.6874374779290916e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 0.0011923618535923726
+        "mwu_two_sided_p": 0.8354884219368641
       }
     },
     "phuket/S3_Long_Premium": {
@@ -149,69 +149,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 329.4,
+          "mean": 341.9,
           "stdev": 0.0,
-          "min": 329.4,
-          "max": 329.4
+          "min": 341.9,
+          "max": 341.9
         },
-        "time_ms": 71.1,
+        "time_ms": 11.9,
         "valid": 1,
-        "meals_ok": 1,
-        "km_day": 72.7,
+        "meals_ok": 0,
+        "km_day": 127.2,
         "diversity": 4.0,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 327.37,
-          "stdev": 5.22,
-          "min": 314.2,
-          "max": 333.4
+          "mean": 328.21,
+          "stdev": 1.5,
+          "min": 326.1,
+          "max": 331.4
         },
-        "time_ms": 7974.63,
+        "time_ms": 6671.2,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 91.8,
-        "diversity": 3.33,
-        "over": 0.13
+        "km_day": 66.0,
+        "diversity": 2.96,
+        "over": 0.87
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 350.09,
-          "stdev": 1.98,
-          "min": 344.9,
-          "max": 352.5
+          "mean": 344.47,
+          "stdev": 2.17,
+          "min": 340.6,
+          "max": 348.6
         },
-        "time_ms": 1890.8,
+        "time_ms": 1413.83,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 70.2,
-        "diversity": 3.02,
-        "over": 1.07
+        "km_day": 52.0,
+        "diversity": 3.12,
+        "over": 0.47
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 348.11,
-          "stdev": 1.71,
-          "min": 344.6,
-          "max": 350.4
+          "mean": 343.59,
+          "stdev": 1.93,
+          "min": 340.8,
+          "max": 346.6
         },
-        "time_ms": 1894.85,
+        "time_ms": 1451.01,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 72.8,
-        "diversity": 3.98,
+        "km_day": 52.3,
+        "diversity": 3.81,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 3.0669777654622633e-06,
-        "mwu_greater_p": 1.6959106954125475e-06
+        "kruskal_p": 3.0515227863680784e-06,
+        "mwu_greater_p": 1.6874374779290916e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 0.007419135968746163
+        "mwu_two_sided_p": 0.3191288600760921
       }
     },
     "chiangmai/S1_Short_Budget": {
@@ -220,69 +220,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 139.5,
+          "mean": 141.9,
           "stdev": 0.0,
-          "min": 139.5,
-          "max": 139.5
+          "min": 141.9,
+          "max": 141.9
         },
-        "time_ms": 9.5,
+        "time_ms": 7.4,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 25.7,
-        "diversity": 4.0,
+        "km_day": 14.6,
+        "diversity": 3.33,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 143.23,
-          "stdev": 1.14,
+          "mean": 143.04,
+          "stdev": 1.27,
           "min": 141.0,
-          "max": 145.1
+          "max": 145.4
         },
-        "time_ms": 3633.9,
+        "time_ms": 3406.89,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 43.5,
-        "diversity": 2.64,
-        "over": 0.67
+        "km_day": 17.7,
+        "diversity": 2.29,
+        "over": 2
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 150.7,
-          "stdev": 0.21,
-          "min": 150.2,
-          "max": 151.0
+          "mean": 148.53,
+          "stdev": 0.38,
+          "min": 147.8,
+          "max": 149.0
         },
-        "time_ms": 685.57,
+        "time_ms": 643.1,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 20.5,
-        "diversity": 1.53,
-        "over": 3.8
+        "km_day": 10.7,
+        "diversity": 1.69,
+        "over": 3.33
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 148.04,
-          "stdev": 0.85,
-          "min": 146.3,
-          "max": 148.8
+          "mean": 145.81,
+          "stdev": 1.19,
+          "min": 142.7,
+          "max": 147.3
         },
-        "time_ms": 706.34,
+        "time_ms": 665.97,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 37.1,
-        "diversity": 3.78,
+        "km_day": 11.9,
+        "diversity": 3.36,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.893098881673624e-06,
-        "mwu_greater_p": 1.6005599175672446e-06
+        "kruskal_p": 2.930186789016965e-06,
+        "mwu_greater_p": 1.6209019819752427e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 3.1608586211339886e-06
+        "mwu_two_sided_p": 3.249991838951539e-06
       }
     },
     "chiangmai/S2_Medium_Standard": {
@@ -291,69 +291,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 234.7,
+          "mean": 233.6,
           "stdev": 0.0,
-          "min": 234.7,
-          "max": 234.7
+          "min": 233.6,
+          "max": 233.6
         },
-        "time_ms": 15.2,
+        "time_ms": 12.6,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 28.3,
-        "diversity": 3.8,
+        "km_day": 24.3,
+        "diversity": 3.4,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 236.54,
-          "stdev": 1.27,
-          "min": 234.7,
-          "max": 239.7
+          "mean": 235.21,
+          "stdev": 1.79,
+          "min": 231.1,
+          "max": 238.6
         },
-        "time_ms": 5920.06,
+        "time_ms": 5718.13,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 47.7,
-        "diversity": 2.92,
-        "over": 0.73
+        "km_day": 26.2,
+        "diversity": 2.61,
+        "over": 1.73
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 247.38,
-          "stdev": 0.3,
-          "min": 246.7,
-          "max": 247.9
+          "mean": 244.43,
+          "stdev": 0.7,
+          "min": 243.1,
+          "max": 245.8
         },
-        "time_ms": 1118.33,
+        "time_ms": 1194.01,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 25.3,
-        "diversity": 1.67,
-        "over": 5.6
+        "km_day": 17.1,
+        "diversity": 1.73,
+        "over": 4.47
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 245.09,
-          "stdev": 0.8,
-          "min": 243.1,
-          "max": 246.1
+          "mean": 241.62,
+          "stdev": 1.34,
+          "min": 239.7,
+          "max": 243.8
         },
-        "time_ms": 1278.72,
+        "time_ms": 1153.9,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 44.1,
-        "diversity": 3.67,
+        "km_day": 18.1,
+        "diversity": 3.17,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.863709158223629e-06,
-        "mwu_greater_p": 1.5844385968333278e-06
+        "kruskal_p": 3.0361322850187357e-06,
+        "mwu_greater_p": 1.6789992476286237e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 3.1051969694601048e-06
+        "mwu_two_sided_p": 8.969852672402501e-06
       }
     },
     "chiangmai/S3_Long_Premium": {
@@ -367,7 +367,7 @@
           "min": 330.2,
           "max": 330.2
         },
-        "time_ms": 15.3,
+        "time_ms": 17.3,
         "valid": 1,
         "meals_ok": 0,
         "km_day": 78.7,
@@ -377,54 +377,54 @@
       "GA": {
         "n": 15,
         "score": {
-          "mean": 328.98,
-          "stdev": 4.41,
-          "min": 313.8,
-          "max": 332.8
+          "mean": 329.02,
+          "stdev": 1.62,
+          "min": 326.6,
+          "max": 332.1
         },
-        "time_ms": 8204.61,
+        "time_ms": 8552.71,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 38.4,
-        "diversity": 2.99,
-        "over": 0.93
+        "km_day": 16.7,
+        "diversity": 2.86,
+        "over": 1.93
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 342.76,
-          "stdev": 0.41,
-          "min": 342.2,
-          "max": 343.8
+          "mean": 338.53,
+          "stdev": 0.96,
+          "min": 337.2,
+          "max": 339.8
         },
-        "time_ms": 1511.16,
+        "time_ms": 1421.04,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 23.9,
-        "diversity": 1.88,
+        "km_day": 8.2,
+        "diversity": 1.89,
         "over": 5.13
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 340.27,
-          "stdev": 0.62,
-          "min": 338.9,
-          "max": 341.3
+          "mean": 335.35,
+          "stdev": 1.29,
+          "min": 331.6,
+          "max": 337.0
         },
-        "time_ms": 1467.67,
+        "time_ms": 1372.41,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 39.2,
-        "diversity": 3.69,
+        "km_day": 9.4,
+        "diversity": 3.06,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.9526278227871763e-06,
-        "mwu_greater_p": 1.6332094283579663e-06
+        "kruskal_p": 3.0361322850187357e-06,
+        "mwu_greater_p": 1.6789992476286237e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 3.25819679408497e-06
+        "mwu_two_sided_p": 3.3664279926465495e-06
       }
     },
     "krabi/S1_Short_Budget": {
@@ -433,69 +433,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 133.8,
+          "mean": 132.1,
           "stdev": 0.0,
-          "min": 133.8,
-          "max": 133.8
+          "min": 132.1,
+          "max": 132.1
         },
-        "time_ms": 5.4,
+        "time_ms": 4.6,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 64.1,
-        "diversity": 3.67,
+        "km_day": 54.8,
+        "diversity": 3.33,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 134.44,
-          "stdev": 0.83,
-          "min": 132.9,
-          "max": 135.7
+          "mean": 132.39,
+          "stdev": 0.82,
+          "min": 131.0,
+          "max": 134.0
         },
-        "time_ms": 3373.1,
+        "time_ms": 2984.78,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 98.4,
-        "diversity": 3.22,
-        "over": 0.27
+        "km_day": 48.9,
+        "diversity": 2.69,
+        "over": 0.47
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 141.04,
-          "stdev": 0.58,
-          "min": 139.7,
-          "max": 141.6
+          "mean": 136.71,
+          "stdev": 0.4,
+          "min": 135.7,
+          "max": 137.1
         },
-        "time_ms": 655.79,
+        "time_ms": 568.53,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 58.3,
-        "diversity": 2.96,
-        "over": 0.67
+        "km_day": 29.1,
+        "diversity": 2.16,
+        "over": 1.73
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 141.02,
-          "stdev": 0.58,
-          "min": 140.2,
-          "max": 142.0
+          "mean": 136.19,
+          "stdev": 0.6,
+          "min": 135.0,
+          "max": 137.1
         },
-        "time_ms": 631.86,
+        "time_ms": 618.73,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 63.7,
-        "diversity": 4.0,
+        "km_day": 32.8,
+        "diversity": 3.38,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.937651391813231e-06,
-        "mwu_greater_p": 1.6249959194757695e-06
+        "kruskal_p": 2.878372960302608e-06,
+        "mwu_greater_p": 1.59248239496305e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 0.75486288428173
+        "mwu_two_sided_p": 0.016602099034863076
       }
     },
     "krabi/S2_Medium_Standard": {
@@ -504,69 +504,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 219.9,
+          "mean": 221.9,
           "stdev": 0.0,
-          "min": 219.9,
-          "max": 219.9
+          "min": 221.9,
+          "max": 221.9
         },
-        "time_ms": 8.0,
+        "time_ms": 8.3,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 62.1,
+        "km_day": 65.3,
         "diversity": 3.2,
-        "over": 1
+        "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 219.59,
-          "stdev": 3.58,
-          "min": 213.7,
-          "max": 223.6
+          "mean": 219.66,
+          "stdev": 3.56,
+          "min": 207.7,
+          "max": 223.4
         },
-        "time_ms": 5144.59,
+        "time_ms": 5008.87,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 99.6,
-        "diversity": 3.12,
-        "over": 0.53
+        "km_day": 55.5,
+        "diversity": 2.88,
+        "over": 1
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 231.21,
-          "stdev": 0.75,
-          "min": 230.3,
-          "max": 233.4
+          "mean": 226.73,
+          "stdev": 1.0,
+          "min": 225.7,
+          "max": 229.3
         },
-        "time_ms": 1017.95,
+        "time_ms": 979.74,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 52.6,
-        "diversity": 2.75,
-        "over": 1.47
+        "km_day": 35.8,
+        "diversity": 2.33,
+        "over": 2.87
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 230.46,
-          "stdev": 0.67,
-          "min": 228.9,
-          "max": 231.4
+          "mean": 226.69,
+          "stdev": 1.36,
+          "min": 224.6,
+          "max": 229.1
         },
-        "time_ms": 1077.01,
+        "time_ms": 1138.8,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 60.4,
-        "diversity": 4.0,
-        "over": 0
+        "km_day": 37.3,
+        "diversity": 3.41,
+        "over": 0.13
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.9601397020999893e-06,
-        "mwu_greater_p": 1.6373290271188749e-06
+        "kruskal_p": 3.0515227863680784e-06,
+        "mwu_greater_p": 1.6874374779290916e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 0.0035550414761251867
+        "mwu_two_sided_p": 0.739742575214976
       }
     },
     "krabi/S3_Long_Premium": {
@@ -575,69 +575,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 276.6,
+          "mean": 292.3,
           "stdev": 0.0,
-          "min": 276.6,
-          "max": 276.6
+          "min": 292.3,
+          "max": 292.3
         },
-        "time_ms": 12.8,
+        "time_ms": 11.1,
         "valid": 1,
         "meals_ok": 0,
-        "km_day": 143.4,
-        "diversity": 3.71,
+        "km_day": 142.5,
+        "diversity": 3.86,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 307.49,
-          "stdev": 4.87,
-          "min": 293.6,
-          "max": 311.8
+          "mean": 307.79,
+          "stdev": 1.19,
+          "min": 306.5,
+          "max": 310.0
         },
-        "time_ms": 6993.05,
+        "time_ms": 6732.41,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 100.6,
-        "diversity": 3.15,
-        "over": 1
+        "km_day": 66.6,
+        "diversity": 2.95,
+        "over": 0.73
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 320.61,
-          "stdev": 0.9,
-          "min": 319.1,
-          "max": 322.0
+          "mean": 315.22,
+          "stdev": 0.74,
+          "min": 314.0,
+          "max": 316.3
         },
-        "time_ms": 1409.47,
+        "time_ms": 1282.51,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 62.5,
-        "diversity": 2.9,
-        "over": 1.13
+        "km_day": 44.6,
+        "diversity": 2.42,
+        "over": 3.87
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 320.07,
-          "stdev": 0.84,
-          "min": 317.9,
-          "max": 320.9
+          "mean": 315.79,
+          "stdev": 1.05,
+          "min": 314.3,
+          "max": 318.1
         },
-        "time_ms": 1471.27,
+        "time_ms": 1327.34,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 72.4,
-        "diversity": 4.0,
-        "over": 0
+        "km_day": 47.1,
+        "diversity": 3.43,
+        "over": 0.07
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 3.0361322850187357e-06,
-        "mwu_greater_p": 1.6789992476286237e-06
+        "kruskal_p": 2.9903455760290373e-06,
+        "mwu_greater_p": 1.6538933710465057e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 0.21255792678738838
+        "mwu_two_sided_p": 0.19745571576684828
       }
     },
     "samui/S1_Short_Budget": {
@@ -646,69 +646,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 136.6,
+          "mean": 134.6,
           "stdev": 0.0,
-          "min": 136.6,
-          "max": 136.6
+          "min": 134.6,
+          "max": 134.6
         },
-        "time_ms": 5.5,
+        "time_ms": 5.7,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 33.9,
-        "diversity": 4.0,
+        "km_day": 23.5,
+        "diversity": 3.67,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 140.81,
-          "stdev": 1.32,
-          "min": 139.1,
-          "max": 144.2
+          "mean": 136.27,
+          "stdev": 1.77,
+          "min": 133.8,
+          "max": 139.0
         },
-        "time_ms": 3331.16,
+        "time_ms": 3214.87,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 65.5,
-        "diversity": 2.96,
-        "over": 0.47
+        "km_day": 29.8,
+        "diversity": 2.84,
+        "over": 1.07
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 148.27,
-          "stdev": 0.47,
-          "min": 147.3,
-          "max": 149.1
+          "mean": 142.76,
+          "stdev": 0.67,
+          "min": 141.5,
+          "max": 143.7
         },
-        "time_ms": 653.12,
+        "time_ms": 663.36,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 39.8,
-        "diversity": 2.02,
-        "over": 2.47
+        "km_day": 17.7,
+        "diversity": 2.56,
+        "over": 1.6
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 144.25,
-          "stdev": 0.38,
-          "min": 143.7,
-          "max": 145.2
+          "mean": 141.77,
+          "stdev": 1.32,
+          "min": 138.8,
+          "max": 143.9
         },
-        "time_ms": 726.89,
+        "time_ms": 676.75,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 34.7,
-        "diversity": 3.98,
+        "km_day": 18.6,
+        "diversity": 3.67,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 3.0208060540561325e-06,
-        "mwu_greater_p": 1.6705958935197095e-06
+        "kruskal_p": 3.0592422032202165e-06,
+        "mwu_greater_p": 1.6916697063271087e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 3.2829144140721646e-06
+        "mwu_two_sided_p": 0.022441102508968705
       }
     },
     "samui/S2_Medium_Standard": {
@@ -717,69 +717,69 @@
       "Greedy": {
         "n": 1,
         "score": {
-          "mean": 223.6,
+          "mean": 226.6,
           "stdev": 0.0,
-          "min": 223.6,
-          "max": 223.6
+          "min": 226.6,
+          "max": 226.6
         },
-        "time_ms": 8.6,
+        "time_ms": 8.8,
         "valid": 1,
         "meals_ok": 1,
-        "km_day": 48.1,
-        "diversity": 3.8,
+        "km_day": 45.6,
+        "diversity": 3.6,
         "over": 0
       },
       "GA": {
         "n": 15,
         "score": {
-          "mean": 226.19,
-          "stdev": 1.54,
-          "min": 223.4,
-          "max": 228.9
+          "mean": 223.45,
+          "stdev": 2.0,
+          "min": 219.2,
+          "max": 226.3
         },
-        "time_ms": 5273.03,
+        "time_ms": 5198.33,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 76.9,
-        "diversity": 2.96,
-        "over": 0.53
+        "km_day": 48.2,
+        "diversity": 2.97,
+        "over": 0.87
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 243.44,
-          "stdev": 0.35,
-          "min": 242.6,
-          "max": 243.8
+          "mean": 232.91,
+          "stdev": 1.96,
+          "min": 229.6,
+          "max": 235.7
         },
-        "time_ms": 1026.85,
+        "time_ms": 1007.36,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 63.9,
-        "diversity": 2.33,
-        "over": 2.87
+        "km_day": 36.7,
+        "diversity": 2.83,
+        "over": 1.27
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 237.26,
-          "stdev": 0.39,
-          "min": 236.4,
-          "max": 237.7
+          "mean": 228.87,
+          "stdev": 0.88,
+          "min": 227.4,
+          "max": 230.2
         },
-        "time_ms": 1196.48,
+        "time_ms": 1020.41,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 60.3,
-        "diversity": 4.0,
+        "km_day": 35.7,
+        "diversity": 3.84,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.9526278227871763e-06,
-        "mwu_greater_p": 1.6332094283579663e-06
+        "kruskal_p": 3.0131669752891618e-06,
+        "mwu_greater_p": 1.6664072604143881e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 3.1369034813596453e-06
+        "mwu_two_sided_p": 6.625280636010686e-06
       }
     },
     "samui/S3_Long_Premium": {
@@ -793,7 +793,7 @@
           "min": 327.7,
           "max": 327.7
         },
-        "time_ms": 13.6,
+        "time_ms": 13.2,
         "valid": 1,
         "meals_ok": 1,
         "km_day": 91.5,
@@ -803,54 +803,54 @@
       "GA": {
         "n": 15,
         "score": {
-          "mean": 320.86,
-          "stdev": 1.68,
-          "min": 318.5,
-          "max": 323.9
+          "mean": 316.03,
+          "stdev": 2.59,
+          "min": 311.4,
+          "max": 321.1
         },
-        "time_ms": 7537.63,
+        "time_ms": 6995.39,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 65.3,
-        "diversity": 3.01,
-        "over": 0.67
+        "km_day": 35.9,
+        "diversity": 3.13,
+        "over": 0.73
       },
       "Hybrid": {
         "n": 15,
         "score": {
-          "mean": 334.69,
-          "stdev": 0.25,
-          "min": 334.3,
-          "max": 335.1
+          "mean": 326.02,
+          "stdev": 1.31,
+          "min": 323.8,
+          "max": 327.8
         },
-        "time_ms": 1390.33,
+        "time_ms": 1453.69,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 48.6,
-        "diversity": 2.5,
-        "over": 3
+        "km_day": 21.8,
+        "diversity": 2.74,
+        "over": 1.73
       },
       "HybridDiv": {
         "n": 15,
         "score": {
-          "mean": 328.63,
-          "stdev": 0.42,
-          "min": 328.0,
-          "max": 329.7
+          "mean": 325.14,
+          "stdev": 1.05,
+          "min": 323.1,
+          "max": 327.3
         },
-        "time_ms": 1455.79,
+        "time_ms": 1678.16,
         "valid": 15,
         "meals_ok": 15,
-        "km_day": 43.9,
-        "diversity": 3.99,
+        "km_day": 23.2,
+        "diversity": 3.69,
         "over": 0
       },
       "hybrid_vs_ga": {
-        "kruskal_p": 2.9903455760290373e-06,
-        "mwu_greater_p": 1.6538933710465057e-06
+        "kruskal_p": 3.0361322850187357e-06,
+        "mwu_greater_p": 1.6789992476286237e-06
       },
       "div_vs_hybrid": {
-        "mwu_two_sided_p": 3.2254793450267944e-06
+        "mwu_two_sided_p": 0.06468647736590576
       }
     }
   },
@@ -858,350 +858,350 @@
     "phuket/S1_Short_Budget": {
       "recompute": {
         "score": {
-          "mean": 137.87,
-          "stdev": 0.44,
-          "min": 136.9,
-          "max": 138.6
+          "mean": 130.51,
+          "stdev": 1.14,
+          "min": 129.0,
+          "max": 132.8
         },
-        "adj_mean": 110.32,
-        "valid": 12,
+        "adj_mean": 113.06,
+        "valid": 13,
         "meals_ok": 6
       },
       "reoptimize": {
         "score": {
-          "mean": 139.48,
-          "stdev": 10.54,
-          "min": 111.5,
-          "max": 153.9
+          "mean": 135.39,
+          "stdev": 7.49,
+          "min": 114.8,
+          "max": 145.2
         },
-        "adj_mean": 139.48,
+        "adj_mean": 135.39,
         "valid": 15,
         "meals_ok": 15,
         "locked_kept": 15,
         "excluded_absent": 15,
-        "time_ms": 126.1
+        "time_ms": 143.2
       },
       "n": 15,
-      "wilcoxon_greater_p": 0.01507568359375
+      "wilcoxon_greater_p": 0.0016650069558729898
     },
     "phuket/S2_Medium_Standard": {
       "recompute": {
         "score": {
-          "mean": 236.44,
-          "stdev": 0.7,
-          "min": 235.5,
-          "max": 237.9
+          "mean": 229.97,
+          "stdev": 1.5,
+          "min": 227.5,
+          "max": 232.0
         },
-        "adj_mean": 126.02,
+        "adj_mean": 199.47,
+        "valid": 13,
+        "meals_ok": 6
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 234.91,
+          "stdev": 4.86,
+          "min": 229.7,
+          "max": 248.0
+        },
+        "adj_mean": 234.91,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 249.4
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.0021805615268203154
+    },
+    "phuket/S3_Long_Premium": {
+      "recompute": {
+        "score": {
+          "mean": 327.09,
+          "stdev": 2.22,
+          "min": 324.1,
+          "max": 330.7
+        },
+        "adj_mean": 196.05,
+        "valid": 9,
+        "meals_ok": 10
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 317.92,
+          "stdev": 12.18,
+          "min": 292.1,
+          "max": 331.9
+        },
+        "adj_mean": 317.92,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 13,
+        "excluded_absent": 15,
+        "time_ms": 325.9
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.03713677485276209
+    },
+    "chiangmai/S1_Short_Budget": {
+      "recompute": {
+        "score": {
+          "mean": 129.11,
+          "stdev": 1.15,
+          "min": 127.9,
+          "max": 131.7
+        },
+        "adj_mean": 68.86,
         "valid": 8,
         "meals_ok": 6
       },
       "reoptimize": {
         "score": {
-          "mean": 236.19,
-          "stdev": 6.93,
-          "min": 218.3,
-          "max": 245.1
+          "mean": 133.77,
+          "stdev": 4.93,
+          "min": 127.3,
+          "max": 144.0
         },
-        "adj_mean": 236.19,
+        "adj_mean": 133.77,
         "valid": 15,
         "meals_ok": 15,
         "locked_kept": 15,
         "excluded_absent": 15,
-        "time_ms": 214.7
+        "time_ms": 142.3
       },
       "n": 15,
-      "wilcoxon_greater_p": 0.002077244288437711
-    },
-    "phuket/S3_Long_Premium": {
-      "recompute": {
-        "score": {
-          "mean": 331.24,
-          "stdev": 1.99,
-          "min": 328.2,
-          "max": 334.3
-        },
-        "adj_mean": 154.32,
-        "valid": 7,
-        "meals_ok": 10
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 274.71,
-          "stdev": 62.83,
-          "min": 177.4,
-          "max": 332.8
-        },
-        "adj_mean": 274.71,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 311.2
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.013853924679039932
-    },
-    "chiangmai/S1_Short_Budget": {
-      "recompute": {
-        "score": {
-          "mean": 130.83,
-          "stdev": 0.67,
-          "min": 129.5,
-          "max": 132.0
-        },
-        "adj_mean": 78.57,
-        "valid": 9,
-        "meals_ok": 6
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 133.79,
-          "stdev": 7.31,
-          "min": 113.8,
-          "max": 145.7
-        },
-        "adj_mean": 133.79,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 115.9
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.001300177764157341
+      "wilcoxon_greater_p": 0.001488318505585258
     },
     "chiangmai/S2_Medium_Standard": {
       "recompute": {
         "score": {
-          "mean": 228.09,
-          "stdev": 1.12,
-          "min": 225.4,
-          "max": 229.5
+          "mean": 225.15,
+          "stdev": 1.29,
+          "min": 222.3,
+          "max": 226.9
         },
-        "adj_mean": 182.33,
-        "valid": 12,
-        "meals_ok": 6
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 232.58,
-          "stdev": 4.86,
-          "min": 225.4,
-          "max": 243.0
-        },
-        "adj_mean": 232.58,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 206.1
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.0022195463283960775
-    },
-    "chiangmai/S3_Long_Premium": {
-      "recompute": {
-        "score": {
-          "mean": 323.13,
-          "stdev": 1.19,
-          "min": 321.3,
-          "max": 325.5
-        },
-        "adj_mean": 215.65,
-        "valid": 10,
-        "meals_ok": 7
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 323.76,
-          "stdev": 8.75,
-          "min": 305.5,
-          "max": 338.4
-        },
-        "adj_mean": 323.76,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 302.6
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.18122469640021466
-    },
-    "krabi/S1_Short_Budget": {
-      "recompute": {
-        "score": {
-          "mean": 124.56,
-          "stdev": 0.85,
-          "min": 123.2,
-          "max": 126.0
-        },
-        "adj_mean": 91.43,
-        "valid": 11,
-        "meals_ok": 6
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 128.72,
-          "stdev": 6.73,
-          "min": 113.8,
-          "max": 138.7
-        },
-        "adj_mean": 128.72,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 119.3
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.0007595927829048617
-    },
-    "krabi/S2_Medium_Standard": {
-      "recompute": {
-        "score": {
-          "mean": 214.52,
-          "stdev": 1.09,
-          "min": 212.4,
-          "max": 216.2
-        },
-        "adj_mean": 200.11,
-        "valid": 14,
-        "meals_ok": 7
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 213.27,
-          "stdev": 11.4,
-          "min": 184.0,
-          "max": 229.3
-        },
-        "adj_mean": 213.27,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 208.7
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.2913872707521592
-    },
-    "krabi/S3_Long_Premium": {
-      "recompute": {
-        "score": {
-          "mean": 304.63,
-          "stdev": 1.2,
-          "min": 301.1,
-          "max": 306.0
-        },
-        "adj_mean": 243.69,
-        "valid": 12,
-        "meals_ok": 6
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 301.07,
-          "stdev": 17.9,
-          "min": 246.8,
-          "max": 313.5
-        },
-        "adj_mean": 301.07,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 295.4
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.04175968000505653
-    },
-    "samui/S1_Short_Budget": {
-      "recompute": {
-        "score": {
-          "mean": 127.15,
-          "stdev": 0.59,
-          "min": 126.0,
-          "max": 128.1
-        },
-        "adj_mean": 93.25,
-        "valid": 11,
-        "meals_ok": 6
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 131.95,
-          "stdev": 6.48,
-          "min": 118.4,
-          "max": 142.2
-        },
-        "adj_mean": 131.95,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 121.9
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.004672056501102442
-    },
-    "samui/S2_Medium_Standard": {
-      "recompute": {
-        "score": {
-          "mean": 220.91,
-          "stdev": 0.84,
-          "min": 219.5,
-          "max": 222.4
-        },
-        "adj_mean": 206.24,
-        "valid": 14,
-        "meals_ok": 7
-      },
-      "reoptimize": {
-        "score": {
-          "mean": 223.95,
-          "stdev": 7.25,
-          "min": 204.7,
-          "max": 237.2
-        },
-        "adj_mean": 223.95,
-        "valid": 15,
-        "meals_ok": 15,
-        "locked_kept": 15,
-        "excluded_absent": 15,
-        "time_ms": 200.1
-      },
-      "n": 15,
-      "wilcoxon_greater_p": 0.04619442830634168
-    },
-    "samui/S3_Long_Premium": {
-      "recompute": {
-        "score": {
-          "mean": 312.22,
-          "stdev": 0.85,
-          "min": 311.0,
-          "max": 314.0
-        },
-        "adj_mean": 229.08,
-        "valid": 11,
+        "adj_mean": 195.29,
+        "valid": 13,
         "meals_ok": 5
       },
       "reoptimize": {
         "score": {
-          "mean": 316.6,
-          "stdev": 3.67,
-          "min": 311.8,
-          "max": 321.0
+          "mean": 229.87,
+          "stdev": 4.17,
+          "min": 221.5,
+          "max": 234.5
         },
-        "adj_mean": 316.6,
+        "adj_mean": 229.87,
         "valid": 15,
         "meals_ok": 15,
         "locked_kept": 15,
         "excluded_absent": 15,
-        "time_ms": 309.4
+        "time_ms": 220.2
       },
       "n": 15,
-      "wilcoxon_greater_p": 0.0007368904219375711
+      "wilcoxon_greater_p": 0.0017511361946473199
+    },
+    "chiangmai/S3_Long_Premium": {
+      "recompute": {
+        "score": {
+          "mean": 318.83,
+          "stdev": 1.47,
+          "min": 315.4,
+          "max": 321.2
+        },
+        "adj_mean": 212.49,
+        "valid": 10,
+        "meals_ok": 6
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 322.37,
+          "stdev": 5.21,
+          "min": 311.4,
+          "max": 329.2
+        },
+        "adj_mean": 322.37,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 318.7
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.002601078459063882
+    },
+    "krabi/S1_Short_Budget": {
+      "recompute": {
+        "score": {
+          "mean": 120.79,
+          "stdev": 0.79,
+          "min": 119.3,
+          "max": 122.3
+        },
+        "adj_mean": 80.54,
+        "valid": 10,
+        "meals_ok": 5
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 120.01,
+          "stdev": 8.8,
+          "min": 105.3,
+          "max": 135.5
+        },
+        "adj_mean": 120.01,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 128.0
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.008518210131141363
+    },
+    "krabi/S2_Medium_Standard": {
+      "recompute": {
+        "score": {
+          "mean": 210.87,
+          "stdev": 1.31,
+          "min": 208.9,
+          "max": 213.6
+        },
+        "adj_mean": 182.53,
+        "valid": 13,
+        "meals_ok": 4
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 214.27,
+          "stdev": 7.18,
+          "min": 194.5,
+          "max": 221.1
+        },
+        "adj_mean": 214.27,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 208.1
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.008995553119160704
+    },
+    "krabi/S3_Long_Premium": {
+      "recompute": {
+        "score": {
+          "mean": 300.65,
+          "stdev": 1.08,
+          "min": 298.9,
+          "max": 302.9
+        },
+        "adj_mean": 220.6,
+        "valid": 11,
+        "meals_ok": 4
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 301.42,
+          "stdev": 6.11,
+          "min": 293.3,
+          "max": 308.7
+        },
+        "adj_mean": 301.42,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 352.2
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.037323402459789684
+    },
+    "samui/S1_Short_Budget": {
+      "recompute": {
+        "score": {
+          "mean": 125.72,
+          "stdev": 1.13,
+          "min": 123.9,
+          "max": 127.9
+        },
+        "adj_mean": 117.21,
+        "valid": 14,
+        "meals_ok": 8
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 128.91,
+          "stdev": 6.82,
+          "min": 115.5,
+          "max": 141.8
+        },
+        "adj_mean": 128.91,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 166.4
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.03723091570870273
+    },
+    "samui/S2_Medium_Standard": {
+      "recompute": {
+        "score": {
+          "mean": 213.37,
+          "stdev": 1.0,
+          "min": 212.0,
+          "max": 215.6
+        },
+        "adj_mean": 156.41,
+        "valid": 11,
+        "meals_ok": 7
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 217.43,
+          "stdev": 5.88,
+          "min": 207.3,
+          "max": 227.9
+        },
+        "adj_mean": 217.43,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 223.2
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.0034552149039073997
+    },
+    "samui/S3_Long_Premium": {
+      "recompute": {
+        "score": {
+          "mean": 309.17,
+          "stdev": 1.02,
+          "min": 307.4,
+          "max": 311.0
+        },
+        "adj_mean": 247.25,
+        "valid": 12,
+        "meals_ok": 5
+      },
+      "reoptimize": {
+        "score": {
+          "mean": 312.54,
+          "stdev": 7.18,
+          "min": 294.5,
+          "max": 324.4
+        },
+        "adj_mean": 312.54,
+        "valid": 15,
+        "meals_ok": 15,
+        "locked_kept": 15,
+        "excluded_absent": 15,
+        "time_ms": 358.5
+      },
+      "n": 15,
+      "wilcoxon_greater_p": 0.01772171524267468
     }
   }
 }
