@@ -4,3 +4,6 @@ __pycache__/
 docs/P1_test.docx
 data/sessions.json
 docs/presentation_script.docx
+.claude/
+graphify-out/
+CLAUDE.md
