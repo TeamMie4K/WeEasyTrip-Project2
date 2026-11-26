@@ -695,7 +695,7 @@ document.addEventListener('keydown', e => {
 // คำเตือนที่แสดงแก่ผู้ใช้: เฉพาะ "อาจไปไม่ทันเวลาปิด" และ "อาจไปถึงก่อนร้านเปิด" (ไม่เตือนเรื่องช่วงเวลามื้อ เวลารวมต่อวัน — ผู้ใช้จัดเองได้)
 // ไม่บอกเวลาถึงที่แน่นอน เพราะไม่รู้ว่าผู้ใช้จะออกเดินทางจริงกี่โมง; เวลาถึงตามแผนเป็นการประมาณจากเวลาเริ่มวัน 08:00 + เวลาเที่ยว + เวลาเดินทาง
 function uiWarnings(pkg, raw = false) {
-  const out = [], speed = (STATE.provinces[getProvince().split('+')[0]] || {}).speed_kmh || 40;
+  const out = [], speed = (STATE.provinces[getProvince()] || {}).speed_kmh || 40;
   (pkg.days || []).forEach((day, d) => {
     let endT = 480, lat = pkg.hotel.lat, lng = pkg.hotel.lng;
     day.pois.forEach(p => {
@@ -744,6 +744,7 @@ const MOCK_REVIEWS = {
   culture: ['ให้ความรู้ดี เจ้าหน้าที่แนะนำเป็นกันเอง', 'จัดแสดงน่าสนใจ เหมาะกับครอบครัว', 'ค่าเข้าไม่แพง ใช้เวลาชมประมาณชั่วโมงกว่า'],
   market: ['ของกินหลากหลาย ราคาไม่แพง', 'คนเยอะช่วงเย็น ควรมาก่อนหัวค่ำ', 'ของฝากน่าซื้อ บรรยากาศคึกคัก'],
   activity: ['กิจกรรมสนุก เจ้าหน้าที่ดูแลดี', 'ควรจองล่วงหน้าช่วงวันหยุด', 'เหมาะกับกลุ่มเพื่อนและครอบครัว'],
+  hotel: ['ห้องพักสะอาด พนักงานบริการดี', 'ทำเลสะดวก เดินทางไปที่เที่ยวง่าย', 'อาหารเช้าหลากหลาย เตียงนอนสบาย', 'ราคาคุ้มค่า เหมาะกับการพักผ่อน', 'ห้องค่อนข้างเล็กแต่ครบครัน เช็คอินรวดเร็ว'],
   restaurant: ['รสชาติดี ราคาเหมาะสม บริการรวดเร็ว', 'ร้านบรรยากาศดี ช่วงเที่ยงคนค่อนข้างเยอะ', 'เมนูแนะนำอร่อย ที่นั่งสบาย'],
 };
 
@@ -758,9 +759,7 @@ function mockReviewsFor(poi) {   // สร้างจาก id ของสถ�
   return {rating, count: 40 + (h % 860), reviews: picks};
 }
 
-function showPoiDetail(poiId, arriveMin) {
-  const poi = STATE.pois.find(p => p.id === poiId);
-  if (!poi) return;
+function ensurePoiModal() {
   let m = document.getElementById('poiModal');
   if (!m) {
     m = document.createElement('div');
@@ -769,12 +768,27 @@ function showPoiDetail(poiId, arriveMin) {
     m.innerHTML = `<div class="modal-backdrop" onclick="closePoiDetail()"></div>
       <div class="modal-card"><div class="modal-head"><div><div class="modal-title" id="poiTitle"></div>
       <div class="modal-sub" id="poiSub"></div></div>
-      <button class="icon-btn" onclick="closePoiDetail()" title="ปิด"><svg class="ic "><use href="#i-close"/></svg></button></div>
+      <div class="modal-head-actions"><a class="icon-btn" id="poiMap" target="_blank" rel="noopener" title="ดูใน Google Maps">${ICON.pin}</a>
+      <button class="icon-btn" onclick="closePoiDetail()" title="ปิด"><svg class="ic "><use href="#i-close"/></svg></button></div></div>
       <div class="modal-body" id="poiBody"></div></div>`;
     document.body.appendChild(m);
   }
-  const r = mockReviewsFor(poi);
+  return m;
+}
+
+function reviewBlock(r) {
   const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+  return `<div class="rev-head"><span class="rev-score">${ic('star')} ${r.rating.toFixed(1)}</span>
+      <span class="rev-count">${r.count} รีวิว</span><span class="mock-chip">ข้อมูลจำลอง</span></div>
+    ${r.reviews.map(v => `<div class="rev-item"><div class="rev-stars">${stars(v.stars)}</div><div>${v.text}</div></div>`).join('')}
+    <p class="poi-note">รีวิวและจำนวนรีวิวเป็นข้อมูลตัวอย่างที่สร้างขึ้นเพื่อสาธิตฟีเจอร์ ไม่ใช่ความเห็นของนักท่องเที่ยวจริง (รีวิวจริงเป็นแนวทางต่อยอดผ่านบริการข้อมูลสถานที่)</p>`;
+}
+
+function showPoiDetail(poiId, arriveMin) {
+  const poi = STATE.pois.find(p => p.id === poiId);
+  if (!poi) return;
+  const m = ensurePoiModal();
+  document.getElementById('poiMap').href = gmapsUrl(poi);
   document.getElementById('poiTitle').textContent = poi.name_th;
   document.getElementById('poiSub').textContent = `${poi.name_en} · ${CAT_LABELS[poi.category] || poi.category}`;
   document.getElementById('poiBody').innerHTML = `
@@ -785,10 +799,28 @@ function showPoiDetail(poiId, arriveMin) {
       <div><span>ค่าใช้จ่าย</span><b>${poi.cost ? fmt(poi.cost) + ' ฿' : 'ฟรี'}</b></div>
     </div>
     <p class="poi-note">เวลาเปิด-ปิดมาจากข้อมูล OpenStreetMap หรือเป็นค่าประมาณตามประเภทสถานที่ ควรตรวจสอบกับสถานที่อีกครั้งก่อนเดินทาง</p>
-    <div class="rev-head"><span class="rev-score">${ic('star')} ${r.rating.toFixed(1)}</span>
-      <span class="rev-count">${r.count} รีวิว</span><span class="mock-chip">ข้อมูลจำลอง</span></div>
-    ${r.reviews.map(v => `<div class="rev-item"><div class="rev-stars">${stars(v.stars)}</div><div>${v.text}</div></div>`).join('')}
-    <p class="poi-note">รีวิวและจำนวนรีวิวเป็นข้อมูลตัวอย่างที่สร้างขึ้นเพื่อสาธิตฟีเจอร์ ไม่ใช่ความเห็นของนักท่องเที่ยวจริง (รีวิวจริงเป็นแนวทางต่อยอดผ่านบริการข้อมูลสถานที่)</p>`;
+    ${reviewBlock(mockReviewsFor(poi))}`;
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// โรงแรม: ดาว/ราคาจากข้อมูลจริง ส่วนรีวิวเป็นข้อมูลจำลองเหมือนสถานที่ท่องเที่ยว (ติดป้ายกำกับ)
+function showHotelDetail(hotelId) {
+  const h = (STATE.hotels || []).find(x => x.id === hotelId) || (STATE.selectedPkg && STATE.selectedPkg.hotel);
+  if (!h) return;
+  const m = ensurePoiModal();
+  const stars = Math.max(1, Math.min(5, Math.round(h.stars || 3)));
+  const r = mockReviewsFor({id: h.id, name_en: h.name_en, category: 'hotel', score: (h.score || 7)});
+  document.getElementById('poiMap').href = gmapsUrl({...h, name_th: h.name_en});
+  document.getElementById('poiTitle').textContent = h.name_th || h.name_en;
+  document.getElementById('poiSub').textContent = `${h.name_en} · โรงแรม`;
+  document.getElementById('poiBody').innerHTML = `
+    <div class="poi-facts">
+      <div><span>ระดับดาว</span><b>${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</b></div>
+      <div><span>ราคาต่อคืน</span><b>${fmt(h.cost)} ฿</b></div>
+    </div>
+    <p class="poi-note">ราคาต่อคืนเป็นค่าประมาณจากระดับดาวของโรงแรมใน OpenStreetMap ไม่ใช่ราคาจริง ควรตรวจสอบราคาและห้องว่างกับโรงแรมหรือเว็บจองห้องพักก่อนเดินทาง</p>
+    ${reviewBlock(r)}`;
   m.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1115,7 +1147,8 @@ function renderPackages() {
         <span class="runtime">${pkg.runtime_ms.toFixed(0)} ms</span>
       </div>
       ${showHotel
-        ? `<div class="hotel-name">${CAT_ICON.hotel} ${pkg.hotel.name_en}</div>`
+        ? `<div class="hotel-name">${CAT_ICON.hotel} ${pkg.hotel.name_en}
+            <button type="button" class="hotel-info-btn" title="ดูรายละเอียดและรีวิว" onclick="event.stopPropagation(); showHotelDetail('${pkg.hotel.id}')">${ICON.pin}</button></div>`
         : `<div class="hotel-name no-hotel">${ic('hotel-off')} ไม่รวมที่พัก</div>`}
       ${pkg.valid ? `
         <div class="score-display">
@@ -1177,7 +1210,8 @@ function drawOnMap(pkg) {
       iconSize: [40, 40], iconAnchor: [20, 20],
     });
     STATE.hotelMarker = L.marker([pkg.hotel.lat, pkg.hotel.lng], {icon: hotelIcon})
-      .bindPopup(`<b>${pkg.hotel.name_en}</b><br><small>${pkg.hotel.cost} ฿/คืน</small>`)
+      .bindPopup(`<b>${pkg.hotel.name_en}</b><br><small>${pkg.hotel.cost} ฿/คืน</small><br>
+         <a href="#" onclick="showHotelDetail('${pkg.hotel.id}'); return false;">ดูรายละเอียดและรีวิว</a>`)
       .addTo(STATE.map);
   } else {
     STATE.hotelMarker = null;
@@ -1496,11 +1530,10 @@ function swapRainIcon(p) {
 }
 
 // ลิงก์ Google Maps ค้นหาด้วยชื่อสถานที่ + ชื่อจังหวัด เพื่อให้ปักหมุดที่สถานที่จริงของ Google (ไม่ใช่พิกัดจากข้อมูล OSM ที่อาจเลื่อน)
-// ทริปข้ามจังหวัดใช้จังหวัดที่ใกล้จุดนั้นที่สุด; ถ้าไม่มีชื่อไทยใช้ชื่ออังกฤษ
+// ถ้าไม่มีชื่อไทยใช้ชื่ออังกฤษ
 function gmapsUrl(p) {
-  const provs = getProvince().split('+').map(s => STATE.provinces[s]).filter(Boolean);
-  const near = provs.slice().sort((a, b) => haversineKm(p.lat, p.lng, ...(a.center || [p.lat, p.lng])) - haversineKm(p.lat, p.lng, ...(b.center || [p.lat, p.lng])))[0];
-  const q = [p.name_th || p.name_en, near?.name_th].filter(Boolean).join(' ');
+  const prov = STATE.provinces[getProvince()];
+  const q = [p.name_th || p.name_en, prov?.name_th].filter(Boolean).join(' ');
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 }
 

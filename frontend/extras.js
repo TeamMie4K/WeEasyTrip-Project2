@@ -1,4 +1,4 @@
-// ส่วนเสริมหน้าเว็บ: จำกัดวันตามข้อมูลจังหวัด, ทริปข้ามจังหวัดข้างเคียง, หมายเหตุฤดูกาล,
+// ส่วนเสริมหน้าเว็บ: จำกัดวันตามข้อมูลจังหวัด, หมายเหตุฤดูกาล,
 // บันทึก/เปิดแผน (localStorage), เปรียบเทียบอัลกอริทึม — โหลดต่อจาก app.js
 (function () {
   const $ = id => document.getElementById(id);
@@ -9,40 +9,7 @@
   };
   let baseSlug = null;
 
-  // ---------- จังหวัดข้างเคียง (ทริปข้ามจังหวัด) ----------
   const nameOf = s => STATE.provinces[s]?.name_th || s;
-  function registerCombo(slug) {
-    if (!slug.includes('+') || STATE.provinces[slug]) return;
-    const ps = slug.split('+').map(s => STATE.provinces[s]);
-    STATE.provinces[slug] = {
-      ...ps[0], name_th: slug.split('+').map(nameOf).join(' + '),
-      center: [0, 1].map(i => ps.reduce((a, p) => a + p.center[i], 0) / ps.length),
-      zoom: Math.max(8, ps[0].zoom - 2), max_days: Math.min(7, ps.reduce((a, p) => a + p.max_days, 0)),
-    };
-  }
-
-  function renderNeighbors() {
-    let row = $('neighborRow');
-    if (!row) { $('provSelect').insertAdjacentHTML('afterend', '<div id="neighborRow" class="neighbor-row"></div>'); row = $('neighborRow'); }
-    const pv = STATE.provinces[baseSlug];
-    if (!pv || !pv.neighbors?.length) { row.innerHTML = ''; return; }
-    const cur = getProvince().split('+');
-    row.innerHTML = '<span class="neighbor-label">เที่ยวต่อจังหวัดข้างเคียง:</span>' + pv.neighbors.map(n =>
-      `<button type="button" class="neighbor-chip${cur.includes(n) ? ' on' : ''}" data-slug="${n}" aria-pressed="${cur.includes(n)}">${esc(nameOf(n))}</button>`).join('');
-    row.querySelectorAll('button').forEach(b => b.onclick = () => {
-      const on = b.classList.toggle('on');
-      b.setAttribute('aria-pressed', String(on));
-      const picked = [...row.querySelectorAll('button.on')].map(x => x.dataset.slug).slice(0, 2);   // รวมกันไม่เกิน 3 จังหวัด
-      applyProvince([baseSlug, ...picked].join('+'));
-    });
-  }
-
-  function applyProvince(slug) {
-    registerCombo(slug);
-    $('province').value = slug;
-    $('provName').textContent = slug.split('+').map(nameOf).join(' + ');
-    onProvinceChange(slug);
-  }
 
   // แบนเนอร์ประจำจังหวัด: ใช้ img/provinces/<slug>.jpg (ภาพถ่ายถ้ามี) ไม่งั้นใช้ .svg ที่สร้างอัตโนมัติ; สลับด้วย cross-fade
   let bannerSlug = 'phuket';
@@ -63,19 +30,15 @@
   const origProvinceChange = onProvinceChange;
   onProvinceChange = async function (slug) {
     setBanner(slug);
-    if (!slug.includes('+')) baseSlug = slug;
-    else baseSlug = slug.split('+')[0];
-    registerCombo(slug);
+    baseSlug = slug;
     await origProvinceChange(slug);
-    renderNeighbors();
     updateHint();
   };
 
   const origLoadProvinces = loadProvinces;
   loadProvinces = async function () {
     await origLoadProvinces();
-    baseSlug = getProvince().split('+')[0];
-    renderNeighbors();
+    baseSlug = getProvince();
     updateHint();
   };
 
@@ -85,7 +48,7 @@
   const origValidate = validateInputs;
   validateInputs = function (budget, days, travelers) {
     const errs = origValidate(budget, days, travelers);
-    if (days > maxDays()) errs.push(`ข้อมูลของ ${nameOf(getProvince())} รองรับสูงสุด ${maxDays()} วัน (สถานที่หรือร้านอาหารไม่พอสำหรับ ${days} วัน) ลองลดจำนวนวันหรือเพิ่มจังหวัดข้างเคียง`);
+    if (days > maxDays()) errs.push(`ข้อมูลของ ${nameOf(getProvince())} รองรับสูงสุด ${maxDays()} วัน (สถานที่หรือร้านอาหารไม่พอสำหรับ ${days} วัน) ลองลดจำนวนวัน`);
     return errs;
   };
 
@@ -390,7 +353,6 @@
     const t = [
       '💡 กด "ความชอบ" เพื่อเลือกหมวดที่ชอบหรือไม่ชอบ แผนจะปรับตามให้',
       '💡 บันทึกแผนที่ถูกใจด้วยปุ่ม ★ แล้วกลับมาเปิดดูได้ภายหลัง',
-      '💡 เที่ยวต่อจังหวัดข้างเคียงได้ กดชื่อจังหวัดใต้ช่องเลือกจังหวัด',
       '🔄 ไม่ถูกใจสถานที่ไหน กดสลับหรือลบจุดในแผน ระบบจะจัดเส้นทางที่เหลือให้ใหม่',
       '📅 ส่งแผนเข้าปฏิทินได้ด้วยปุ่ม ปฏิทิน และบันทึกเป็น PDF ไว้เปิดตอนไม่มีสัญญาณ',
       '👫 ชวนเพื่อนวางแผนด้วยกันผ่านปุ่ม แชร์ ทุกคนเห็นและแก้แผนเดียวกันได้',
@@ -530,13 +492,11 @@
     const p = store.get().find(x => x.id === id);
     if (!p) return;
     toggleModal('savedModal', false);
-    baseSlug = p.province.split('+')[0];
-    registerCombo(p.province);
-    $('province').value = p.province;
-    $('provName').textContent = p.province.split('+').map(nameOf).join(' + ');
+    baseSlug = p.province.split('+')[0];   // แผนที่บันทึกไว้จากเวอร์ชันที่เคยมีทริปข้ามจังหวัด: เปิดด้วยจังหวัดแรก
+    $('province').value = baseSlug;
+    $('provName').textContent = nameOf(baseSlug);
     document.querySelectorAll('.prov-item').forEach(i => i.classList.toggle('prov-active', i.dataset.value === baseSlug));
     await loadPois();
-    renderNeighbors();
     $('budget').value = p.budget; $('travelers').value = p.travelers;
     if (p.start && DATE_PICKER) {
       const d0 = new Date(p.start + 'T00:00:00');

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 run_sparse_experiments.py — WeEasyTrip Project 2
-ทดลอง Greedy / GA / Hybrid (1) บนจังหวัดข้อมูลน้อย (sparse) และ (2) บนทริปข้ามจังหวัดข้างเคียง (รวมข้อมูลหลายจังหวัด)
+ทดลอง Greedy / GA / Hybrid บนจังหวัดข้อมูลน้อย (sparse)
+(เดิมมีชุดทริปข้ามจังหวัดข้างเคียงด้วย แต่ถอดฟังก์ชันนั้นออกจากระบบแล้ว)
 ใช้ฟังก์ชันจาก run_province_experiments.py (กติกาและพารามิเตอร์เดียวกัน) — สถานการณ์ S1 (3 วัน 10,000 บาท)
 ผลลัพธ์: results/sparse_results.json, results/sparse_stats.txt
 รัน:  python run_sparse_experiments.py [trials]
@@ -14,7 +15,6 @@ from scipy import stats as st
 
 TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 10
 SPARSE = ['nongbualamphu', 'phichit', 'lamphun', 'nakhonnayok', 'singburi', 'kalasin', 'chaiyaphum', 'loei']
-COMBOS = [('chiangmai', 'lamphun'), ('bangkok', 'nonthaburi'), ('phuket', 'phangnga'), ('phuket', 'krabi')]
 SC = R.SCENARIOS[int(os.environ.get('SC_IDX', 0))]
 SUF = '' if SC is R.SCENARIOS[0] else '_' + SC['label'].split('_')[0]
 R.TRIALS = TRIALS
@@ -50,13 +50,13 @@ def run(slug):
 
 if __name__ == '__main__':
     res = {}
-    for slug in SPARSE + ['+'.join(c) for c in COMBOS]:
+    for slug in SPARSE:
         res[slug] = run(slug)
         r = res[slug]
         print(f"{slug:24s} POI={r['pois']:4d} H={r['hotels']:3d} rest={r['restaurants']:3d}  Greedy={r['Greedy']['score']['mean']:6.1f}  GA={r['GA']['score']['mean']:6.1f}  Hybrid={r['Hybrid']['score']['mean']:6.1f}  valid {r['Hybrid']['valid']}/{r['Hybrid']['n']}  p={r['hybrid_vs_ga_p']:.4f}", flush=True)
     json.dump({'trials': TRIALS, 'scenario': SC['label'], 'results': res}, open(os.path.join(R.OUT_DIR, f'sparse_results{SUF}.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     with open(os.path.join(R.OUT_DIR, f'sparse_stats{SUF}.txt'), 'w', encoding='utf-8') as f:
-        f.write(f"SPARSE / CROSS-PROVINCE EXPERIMENTS — trials={TRIALS}, scenario={SC['label']}\n")
+        f.write(f"SPARSE EXPERIMENTS — trials={TRIALS}, scenario={SC['label']}\n")
         for slug, r in res.items():
             f.write(f"{slug}\tPOI={r['pois']}\tH={r['hotels']}\trest={r['restaurants']}\tGreedy={r['Greedy']['score']['mean']}\tGA={r['GA']['score']['mean']}\tHybrid={r['Hybrid']['score']['mean']}\tvalid={r['Hybrid']['valid']}/{r['Hybrid']['n']}\tp={r['hybrid_vs_ga_p']:.4f}\n")
     print('saved')

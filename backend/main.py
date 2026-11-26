@@ -27,7 +27,6 @@ from hybrid import hybrid_solve, reoptimize_solve, infeasible_locks
 from pareto import nsga2_solve
 
 import json
-import math
 DATA_DIR = os.path.join(os.path.dirname(THIS_DIR), 'data')
 with open(os.path.join(DATA_DIR, 'provinces.json'), encoding='utf-8') as _f:
     PROVINCES = json.load(_f)
@@ -60,29 +59,9 @@ for _slug in list(PROVINCES):
                    'hotel_by_id': {h['id']: h for h in _hotels}}
 
 
-COMBO = {}   # 'a+b' -> ข้อมูลรวมหลายจังหวัด (ทริปข้ามจังหวัดข้างเคียง)
-
-
-def _combo(slug):
-    parts = slug.split('+')
-    if len(parts) > 3 or len(set(parts)) != len(parts) or any(p not in DATA for p in parts):
-        return None
-    if slug not in COMBO:
-        pois = [{**x, 'id': f'{s}.{x["id"]}'} for s in parts for x in DATA[s]['pois']]   # id ซ้ำข้ามจังหวัด (P01) จึงใส่ prefix
-        hotels = [{**x, 'id': f'{s}.{x["id"]}'} for s in parts for x in DATA[s]['hotels']]
-        COMBO[slug] = {'pois': pois, 'hotels': hotels, 'poi_by_id': {p['id']: p for p in pois},
-                       'hotel_by_id': {h['id']: h for h in hotels}}
-    return COMBO[slug]
-
-
 def get_province(slug):
     if slug not in DATA:
-        d = _combo(slug)
-        if d is None:
-            raise HTTPException(status_code=404, detail=f'Province {slug} not found')
-        pv = PROVINCES[slug.split('+')[0]]   # โปรไฟล์เวลาเดินทางใช้ของจังหวัดแรก
-        set_travel_profile(pv.get('road_factor', 1.0), pv.get('speed_kmh', 40))
-        return d
+        raise HTTPException(status_code=404, detail=f'Province {slug} not found')
     pv = PROVINCES[slug]   # ตั้งโปรไฟล์ระยะ/เวลาเดินทางของจังหวัดให้ request นี้
     set_travel_profile(pv.get('road_factor', 1.0), pv.get('speed_kmh', 40))
     return DATA[slug]
@@ -501,16 +480,6 @@ def _max_days(slug):
     return max(1, min(7, (len(pois) - rest) // 3, rest // 2))
 
 
-def _neighbors(slug, km=110, top=4):
-    """จังหวัดข้างเคียง (ศูนย์กลางห่างไม่เกิน km กม.) เรียงจากใกล้สุด — ใช้ทำทริปข้ามจังหวัด"""
-    c = PROVINCES[slug]['center']
-    def dist(o):   # กม. เส้นตรงโดยประมาณ (ไม่ผ่าน haversine_km เพราะคูณ road_factor ของ request ก่อนหน้า)
-        b = PROVINCES[o]['center']
-        return 111 * ((c[0] - b[0]) ** 2 + ((c[1] - b[1]) * math.cos(math.radians(c[0]))) ** 2) ** 0.5
-    ds = sorted((dist(o), o) for o in DATA if o != slug and o != 'samui')
-    return [o for d, o in ds if d <= km][:top]
-
-
 @app.get('/api/provinces')
 def get_provinces():
     """รายการจังหวัดที่มีข้อมูล พร้อมศูนย์กลางแผนที่และจำนวน POI/โรงแรม"""
@@ -519,7 +488,7 @@ def get_provinces():
     return {'default': DEFAULT_PROVINCE,
             'provinces': [{'slug': s, **PROVINCES[s], 'region': region.get(s, PROVINCES[s].get('region', '')),
                            'pois': len(DATA[s]['pois']), 'hotels': len(DATA[s]['hotels']), 'sparse': s in SPARSE,
-                           'max_days': _max_days(s), 'neighbors': _neighbors(s)}
+                           'max_days': _max_days(s)}
                           for s in DATA],
             'planned': [{'slug': p[0], 'name_th': p[1], 'name_en': p[2], 'region': p[3]}
                         for p in PROVINCES_77 if p[0] not in DATA]}

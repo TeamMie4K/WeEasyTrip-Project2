@@ -1,4 +1,4 @@
-SPARSE / CROSS-PROVINCE EXPERIMENTS — trials=10, scenario=S2_Medium_Standard
+SPARSE EXPERIMENTS — trials=10, scenario=S2_Medium_Standard
 nongbualamphu	POI=56	H=5	rest=24	Greedy=218.9	GA=218.65	Hybrid=219.52	valid=10/10	p=0.0169
 phichit	POI=43	H=6	rest=8	Greedy=201.3	GA=168.64	Hybrid=167.8	valid=10/10	p=0.5751
 lamphun	POI=109	H=12	rest=50	Greedy=191.6	GA=170.24	Hybrid=211.71	valid=10/10	p=0.0002
@@ -7,7 +7,3 @@ singburi	POI=70	H=8	rest=24	Greedy=218.1	GA=218.39	Hybrid=219.18	valid=10/10	p=0
 kalasin	POI=80	H=9	rest=37	Greedy=216.4	GA=216.11	Hybrid=215.52	valid=10/10	p=0.9997
 chaiyaphum	POI=89	H=9	rest=19	Greedy=217.8	GA=160.91	Hybrid=155.84	valid=10/10	p=0.5451
 loei	POI=72	H=9	rest=50	Greedy=171.7	GA=178.8	Hybrid=211.82	valid=10/10	p=0.0001
-chiangmai+lamphun	POI=333	H=38	rest=100	Greedy=226.1	GA=228.52	Hybrid=241.15	valid=10/10	p=0.0001
-bangkok+nonthaburi	POI=390	H=48	rest=122	Greedy=236.4	GA=239.06	Hybrid=259.89	valid=10/10	p=0.0001
-phuket+phangnga	POI=249	H=32	rest=91	Greedy=239.0	GA=234.38	Hybrid=251.1	valid=10/10	p=0.0001
-phuket+krabi	POI=326	H=45	rest=116	Greedy=221.6	GA=220.53	Hybrid=221.83	valid=10/10	p=0.0702

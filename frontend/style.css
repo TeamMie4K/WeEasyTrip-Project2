@@ -502,6 +502,9 @@ p  { margin: 0; color: var(--text-secondary); }
   display: flex; justify-content: space-between; align-items: flex-start;
   margin-bottom: 0.75rem;
 }
+.modal-head-actions { display: flex; gap: 0.5rem; flex-shrink: 0; margin-left: 0.75rem; }
+.modal-head-actions a.icon-btn { text-decoration: none; }
+.modal-head-actions a.icon-btn:hover { color: var(--accent-primary); }
 .modal-sub { font-size: 0.85rem; color: var(--text-tertiary); margin-top: 0.25rem; }
 /* swap modal search bar */
 .modal-search { margin-bottom: 0.75rem; }
@@ -1705,12 +1708,7 @@ html[data-theme="light"] .detail-section { background: #ffffff; }
 .rev-item { border-top: 1px solid var(--border-subtle); padding: 0.55rem 0; font-size: 0.88rem; line-height: 1.5; }
 .rev-stars { color: #f59e0b; letter-spacing: 1px; font-size: 0.85rem; }
 
-/* ── ส่วนเสริม: จังหวัดข้างเคียง / ฤดูกาล / แผนที่บันทึก / เปรียบเทียบ ── */
-.neighbor-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
-.neighbor-label { font-size: 0.75rem; color: var(--text-secondary); }
-.neighbor-chip { font: inherit; font-size: 0.78rem; padding: 4px 12px; background: transparent; border: 1px solid rgba(255,109,53,0.4); border-radius: 20px; cursor: pointer; color: var(--text-primary); transition: background .15s, color .15s; }
-.neighbor-chip:hover { background: rgba(255,109,53,0.12); }
-.neighbor-chip.on { background: var(--grad-cta, #ff6d35); border-color: transparent; color: #fff; font-weight: 700; box-shadow: 0 2px 10px rgba(255,109,53,0.35); }
+/* ── ส่วนเสริม: ฤดูกาล / แผนที่บันทึก / เปรียบเทียบ ── */
 .tips-card { height: 43px; box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 16px; background: rgba(255,109,53,0.08); border: 1px dashed rgba(255,109,53,0.45); overflow: hidden; }
 .tips-badge { flex-shrink: 0; font-size: 0.62rem; font-weight: 800; letter-spacing: .04em; color: #fff; background: var(--accent-primary); border-radius: 999px; padding: 2px 8px; }
 .tips-text { font-size: 0.8rem; line-height: 1.35; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: opacity .4s; }
@@ -1722,7 +1720,7 @@ html[data-theme="light"] .detail-section { background: #ffffff; }
 .saved-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(128,128,128,0.2); }
 .saved-btn { font-size: 1.1rem; }
 .pareto-table tr.cmp-main td { font-weight: 700; color: var(--accent-primary); }
-@media (max-width: 640px) { .modal-body { overflow-x: auto; } .neighbor-row { gap: 4px; } }
+@media (max-width: 640px) { .modal-body { overflow-x: auto; } }
 
 /* ── ความชอบ: ชื่อหมวด + ปุ่มไอคอน 👍/👎 ด้านหลัง ── */
 .pref-cat { display: inline-flex; align-items: center; gap: 2px; padding: 3px 4px 3px 14px; border-radius: 999px; border: 1.5px solid var(--border-subtle); background: var(--bg-surface); transition: border-color .15s, background .15s, box-shadow .15s; }
@@ -1772,8 +1770,6 @@ html[data-theme="light"] .detail-section { background: #ffffff; }
   .topbar-actions .results-link { font-size: 0 !important; width: 30px !important; justify-content: center; padding: 0 !important; }
   .topbar-actions .results-link::before { content: "📊"; font-size: .85rem; }
 }
-.neighbor-row .neighbor-chip { color: var(--text-primary); }
-.neighbor-row .neighbor-chip.on { color: #fff; }
 [data-theme="light"] .pref-cat .pc-like, [data-theme="light"] .pref-cat .pc-dislike { color: #64748b; }
 [data-theme="light"] .pref-cat[data-state="like"] button, [data-theme="light"] .pref-cat[data-state="avoid"] button { color: rgba(255,255,255,.7); }
 [data-theme="light"] .pref-cat[data-state="like"] .pc-like, [data-theme="light"] .pref-cat[data-state="avoid"] .pc-dislike { color: #fff; }
@@ -1954,7 +1950,6 @@ body.wet-dragging, body.wet-dragging * { user-select: none !important; cursor: g
 @media (max-width: 640px) {
   .icon-btn { width: 36px; height: 36px; }
   input, select, textarea { font-size: 16px !important; }   /* กัน iOS ซูมเองเมื่อแตะช่องกรอก */
-  .neighbor-chip, .pref-toggle { min-height: 36px; }
   .day-head { flex-wrap: wrap; gap: 0.4rem; }
   .day-stats { flex-wrap: wrap; gap: 0.3rem 0.75rem; }
   .wx-chip { white-space: nowrap; }
@@ -1971,3 +1966,8 @@ body.wet-dragging, body.wet-dragging * { user-select: none !important; cursor: g
 @media (max-width: 720px) {   /* กฎ pf-grid-b ด้านบนมาทีหลังกฎจอแคบ จึงต้องทับซ้ำ */
   .pf-grid, .pf-grid-b, .dev-mode .pf-grid-b { grid-template-columns: 1fr !important; }
 }
+
+.hotel-info-btn { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-left: .35rem; vertical-align: middle;
+  border: 1px solid var(--border-subtle, rgba(255,255,255,.15)); border-radius: 8px; background: transparent; color: var(--text-muted); cursor: pointer; }
+.hotel-info-btn svg { width: 15px; height: 15px; }
+.hotel-info-btn:hover { color: var(--accent-primary); }

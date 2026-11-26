@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 ~$*
 docs/P1_test.docx
+data/sessions.json

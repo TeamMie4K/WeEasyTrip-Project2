@@ -76,7 +76,7 @@
   </section>
 
   <section>
-    <div class="sec-head"><h2>จังหวัดข้อมูลน้อยและทริปข้ามจังหวัด</h2><div class="muted">คะแนน Hybrid เทียบ GA ในแต่ละพื้นที่</div></div>
+    <div class="sec-head"><h2>จังหวัดข้อมูลน้อย</h2><div class="muted">คะแนน Hybrid เทียบ GA ในแต่ละพื้นที่</div></div>
     <div class="card" style="overflow-x:auto"><table id="sp"></table></div>
   </section>
 
@@ -84,8 +84,7 @@
 </main>
 <script>
 try { document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {}
-const TH = {phuket:'ภูเก็ต', chiangmai:'เชียงใหม่', krabi:'กระบี่', samui:'เกาะสมุย', nongbualamphu:'หนองบัวลำภู', phichit:'พิจิตร', lamphun:'ลำพูน', nakhonnayok:'นครนายก', singburi:'สิงห์บุรี', kalasin:'กาฬสินธุ์', chaiyaphum:'ชัยภูมิ', loei:'เลย',
-  'chiangmai+lamphun':'เชียงใหม่ + ลำพูน', 'bangkok+nonthaburi':'กรุงเทพฯ + นนทบุรี', 'phuket+phangnga':'ภูเก็ต + พังงา', 'phuket+krabi':'ภูเก็ต + กระบี่'};
+const TH = {phuket:'ภูเก็ต', chiangmai:'เชียงใหม่', krabi:'กระบี่', samui:'เกาะสมุย', nongbualamphu:'หนองบัวลำภู', phichit:'พิจิตร', lamphun:'ลำพูน', nakhonnayok:'นครนายก', singburi:'สิงห์บุรี', kalasin:'กาฬสินธุ์', chaiyaphum:'ชัยภูมิ', loei:'เลย'};
 const $ = id => document.getElementById(id), name = s => TH[s] || s;
 const fmtP = p => p < 0.0001 ? '<0.0001' : p.toFixed(4), avg = a => a.reduce((s, x) => s + x, 0) / a.length;
 const pair = (label, a, b, n, colA, colB) => `<div class="pair"><span>${label}</span><div><div class="track"><div style="width:${100 * a / n}%;background:${colA}"></div></div><div class="track" style="margin-top:3px"><div style="width:${100 * b / n}%;background:${colB}"></div></div></div><b style="font-size:.8rem;text-align:right">${a}→${b}</b></div>`;
