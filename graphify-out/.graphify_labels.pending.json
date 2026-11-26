@@ -7,7 +7,7 @@
   "6": "fetch_pois_osm.py",
   "7": "load_data",
   "8": "statistics",
-  "15": "genetic.py",
+  "15": "hybrid.py",
   "16": "Budget-Aware Travel Route Generation and Optimization Using AI: Phuket Case Study",
   "17": "TestAPI",
   "18": "_prioritize_sights",
@@ -77,8 +77,8 @@
   "82": "__init__.py",
   "83": "evaluate_route",
   "84": "experiments__run_seed_penalty_check.py_493918d7.md",
-  "85": "create_session",
-  "86": "meal_fill",
+  "85": "json",
+  "86": "CS403_Report_68-2_33_pps-r1 Project 2_ffdbec9c.md",
   "87": "Genetic Algorithm (GA)",
   "88": "run_all_chapter4.sh",
   "89": "run_all_realistic.sh",
@@ -87,5 +87,10 @@
   "92": "experiments__run_preference_cause.py_a6760f5d.md",
   "93": "experiments__run_sensitivity.py_1f51c05a.md",
   "94": "tests__sweep_provinces.py_449dbf15.md",
-  "95": "tests__test_system.py_10cc2d1b.md"
+  "95": "tests__test_system.py_10cc2d1b.md",
+  "96": "แนวคิดทฤษฎีที่เกี่ยวข้อง",
+  "97": "ภาพรวมของโครงงาน",
+  "98": "งานวิจัยที่เกี่ยวข้อง",
+  "99": "สรุป",
+  "100": "two_opt_day"
 }

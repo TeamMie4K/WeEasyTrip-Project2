@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "frontend/app.js": {
-    "mtime": 1795670975.9815116,
-    "seen": 1795671226.4736996,
-    "ast_hash": "aaf29ff6fdfe100899d7b3011871f931",
+    "mtime": 1795675827.0135052,
+    "seen": 1795682016.53293,
+    "ast_hash": "db94f6fa02aaa4eff78db9c2eb3db1f3",
     "semantic_hash": ""
   },
   "README.md": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/project2_plan.md": {
-    "mtime": 1795674899.576895,
-    "seen": 1795674927.044512,
-    "ast_hash": "8ec1dd1a8077e7371e865f0827ca511e",
+    "mtime": 1795681990.3195586,
+    "seen": 1795682016.53293,
+    "ast_hash": "a32fa0fd58ccba18aa645e6a50924e54",
     "semantic_hash": ""
   },
   "graphify-out/converted/CS403_Report_68-2_33_pps-r1 Project 2_ffdbec9c.md": {
@@ -762,9 +762,9 @@
     "semantic_hash": ""
   },
   "frontend/extras.js": {
-    "mtime": 1795670982.5897608,
-    "seen": 1795671226.4736996,
-    "ast_hash": "300e59f5f0e33346a379094484304d9f",
+    "mtime": 1795679594.278618,
+    "seen": 1795682016.53293,
+    "ast_hash": "8dc6986f9c95ae49522050b45bcc6a1f",
     "semantic_hash": ""
   },
   "experiments/make_results_json.py": {
@@ -804,9 +804,9 @@
     "semantic_hash": ""
   },
   "frontend/results.html": {
-    "mtime": 1795671008.8804908,
-    "seen": 1795671226.4736996,
-    "ast_hash": "a9d6629c4752ab76f1875b160bea9003",
+    "mtime": 1795675827.0291476,
+    "seen": 1795682016.53293,
+    "ast_hash": "9b6717e51d4464d5e0ad6760be604acf",
     "semantic_hash": ""
   },
   "requirements.txt": {
@@ -2055,6 +2055,504 @@
     "mtime": 1795674912.4144213,
     "seen": 1795674927.044512,
     "ast_hash": "ddbd46d219597c6d2a8935562a6f5e32",
+    "semantic_hash": ""
+  },
+  "data/banner_candidates.json": {
+    "mtime": 1795681501.292322,
+    "seen": 1795682016.53293,
+    "ast_hash": "fee58c4e7e96a3af11d4381c96ed3b13",
+    "semantic_hash": ""
+  },
+  "data/banner_candidates_v1.json": {
+    "mtime": 1795678560.745455,
+    "seen": 1795682016.53293,
+    "ast_hash": "7e61b838db722f739b790cd36fd6a891",
+    "semantic_hash": ""
+  },
+  "data/banner_choices.json": {
+    "mtime": 1795681550.8094358,
+    "seen": 1795682016.53293,
+    "ast_hash": "c7483682ebc16ebf74f971bdad3f826c",
+    "semantic_hash": ""
+  },
+  "data/banner_choices_v1.json": {
+    "mtime": 1795678560.7814631,
+    "seen": 1795682016.53293,
+    "ast_hash": "94a772d0aa447599aeea8534354db7df",
+    "semantic_hash": ""
+  },
+  "data/fetch_banners.py": {
+    "mtime": 1795681482.9382682,
+    "seen": 1795682016.53293,
+    "ast_hash": "e8fc30694ddf90d529d925aed67182b0",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/CREDITS.json": {
+    "mtime": 1795681897.8401637,
+    "seen": 1795682016.53293,
+    "ast_hash": "397145ffe0f5abe2020c55ff4f1f63ab",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/focus.json": {
+    "mtime": 1795681933.631999,
+    "seen": 1795682016.53293,
+    "ast_hash": "256f3cbf9eef2c25863b20450016b575",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/amnatcharoen.jpg": {
+    "mtime": 1795681946.0507052,
+    "seen": 1795682016.53293,
+    "ast_hash": "a57d85089ca924bd5200a3657360ccc9",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/angthong.jpg": {
+    "mtime": 1795681946.1704817,
+    "seen": 1795682016.53293,
+    "ast_hash": "fbe848ebd985cb9f02b8888ebec4f07a",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/ayutthaya.jpg": {
+    "mtime": 1795681946.2917225,
+    "seen": 1795682016.53293,
+    "ast_hash": "1b8fcd5e5a03c01e233bcad8d342cedd",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/bangkok.jpg": {
+    "mtime": 1795681946.4105375,
+    "seen": 1795682016.53293,
+    "ast_hash": "629ed5b6fdb8f3716596edb0095fc75e",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/buengkan.jpg": {
+    "mtime": 1795681946.6258283,
+    "seen": 1795682016.53293,
+    "ast_hash": "c605c6fbfdbd655d1b56b4b9b2fbc47e",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/buriram.jpg": {
+    "mtime": 1795681946.7338004,
+    "seen": 1795682016.53293,
+    "ast_hash": "eb49c813e4b52de614b624a9950775f6",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chachoengsao.jpg": {
+    "mtime": 1795681946.8120668,
+    "seen": 1795682016.53293,
+    "ast_hash": "14ccaeeee37201d296f451b101184e9e",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chainat.jpg": {
+    "mtime": 1795681946.9084382,
+    "seen": 1795682016.53293,
+    "ast_hash": "a3e099fb9fe44030ffe264df5e2a0389",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chaiyaphum.jpg": {
+    "mtime": 1795681946.994606,
+    "seen": 1795682016.53293,
+    "ast_hash": "a51e6336f4e36ed02548a3016c0e5931",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chanthaburi.jpg": {
+    "mtime": 1795681947.0929165,
+    "seen": 1795682016.53293,
+    "ast_hash": "1ee20d0d6aaef9f55ad0f9e3e1909a11",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chiangmai.jpg": {
+    "mtime": 1795681947.1874385,
+    "seen": 1795682016.53293,
+    "ast_hash": "c81f31e36e9561ca8eadf0963d4a8003",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chiangrai.jpg": {
+    "mtime": 1795681947.314841,
+    "seen": 1795682016.53293,
+    "ast_hash": "45fa1f6df7dc69c2cbd972c870324d56",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chonburi.jpg": {
+    "mtime": 1795681947.4302876,
+    "seen": 1795682016.53293,
+    "ast_hash": "ffbcd3acab7ad5edb1336b04d7236e2a",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/chumphon.jpg": {
+    "mtime": 1795681947.5204122,
+    "seen": 1795682016.53293,
+    "ast_hash": "2433ed1119c71aae7b84523517bebece",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/kamphaengphet.jpg": {
+    "mtime": 1795681947.6415653,
+    "seen": 1795682016.53293,
+    "ast_hash": "6878658876cdf69424a99ac691e651d5",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/kanchanaburi.jpg": {
+    "mtime": 1795681947.7576036,
+    "seen": 1795682016.53293,
+    "ast_hash": "e86547ed4c6278293f22c78d27550da8",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/khonkaen.jpg": {
+    "mtime": 1795681947.8781931,
+    "seen": 1795682016.53293,
+    "ast_hash": "7f19990981498ac3a0349f7cd9014c22",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/krabi.jpg": {
+    "mtime": 1795681947.95703,
+    "seen": 1795682016.53293,
+    "ast_hash": "00f1df651c904f7f5955167a18fdfe5c",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/lampang.jpg": {
+    "mtime": 1795681948.0217302,
+    "seen": 1795682016.53293,
+    "ast_hash": "d68b68d74d20093731ed1684b0e4be92",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/lamphun.jpg": {
+    "mtime": 1795681948.1397,
+    "seen": 1795682016.53293,
+    "ast_hash": "029235512aacc66a9b22875df922bfd6",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/loei.jpg": {
+    "mtime": 1795681948.2680218,
+    "seen": 1795682016.53293,
+    "ast_hash": "a73bf8905dd4785f4b492c489a979250",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/lopburi.jpg": {
+    "mtime": 1795681948.4511783,
+    "seen": 1795682016.53293,
+    "ast_hash": "48aa8d5e2bc0eb8a653aae2fa22e0dfc",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/maehongson.jpg": {
+    "mtime": 1795681948.7842228,
+    "seen": 1795682016.53293,
+    "ast_hash": "315e6803eaf14093661fa198c1ccbfb5",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/mahasarakham.jpg": {
+    "mtime": 1795681948.923397,
+    "seen": 1795682016.53293,
+    "ast_hash": "bd3c35ade8b0db9814127568d28d8650",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/mukdahan.jpg": {
+    "mtime": 1795681949.0378284,
+    "seen": 1795682016.53293,
+    "ast_hash": "c3364cc937f57ee5ea341ac176e970f9",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nakhonnayok.jpg": {
+    "mtime": 1795681949.1848614,
+    "seen": 1795682016.53293,
+    "ast_hash": "67348208a9825d4c1fa0334af05df1d3",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nakhonpathom.jpg": {
+    "mtime": 1795681949.3004775,
+    "seen": 1795682016.53293,
+    "ast_hash": "3442163b5db08564ecd67ff992b1ef8e",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nakhonphanom.jpg": {
+    "mtime": 1795681949.3965015,
+    "seen": 1795682016.53293,
+    "ast_hash": "14cfe88600a0c1217984aa2d56b027d0",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nakhonratchasima.jpg": {
+    "mtime": 1795681949.5176983,
+    "seen": 1795682016.53293,
+    "ast_hash": "9a3f8fef234ebe3d4ae776319f988cf0",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nakhonsawan.jpg": {
+    "mtime": 1795681949.6379895,
+    "seen": 1795682016.53293,
+    "ast_hash": "03760ee258a099a80c4e1967e59aa6ed",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nakhonsithammarat.jpg": {
+    "mtime": 1795681949.736775,
+    "seen": 1795682016.53293,
+    "ast_hash": "0ef71685300b1e4adb73400400180e90",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nan.jpg": {
+    "mtime": 1795681949.8590176,
+    "seen": 1795682016.53293,
+    "ast_hash": "b27936b642bc81c309a9dc845d7d7838",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/narathiwat.jpg": {
+    "mtime": 1795681949.9828837,
+    "seen": 1795682016.53293,
+    "ast_hash": "e1e865801a126bd8bd55d3f43a554a5d",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nongbualamphu.jpg": {
+    "mtime": 1795681950.0971427,
+    "seen": 1795682016.53293,
+    "ast_hash": "6be22d0f3d33b79fe1820aebdf10f9ed",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nongkhai.jpg": {
+    "mtime": 1795681950.2136295,
+    "seen": 1795682016.53293,
+    "ast_hash": "2d11bfb17b14e092078614f36492e290",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/nonthaburi.jpg": {
+    "mtime": 1795681950.3437839,
+    "seen": 1795682016.53293,
+    "ast_hash": "eb840ee6b8fea6f83e19327276b62c3c",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/pathumthani.jpg": {
+    "mtime": 1795681950.4352746,
+    "seen": 1795682016.53293,
+    "ast_hash": "053043c5e8210477235fc172bfc27e91",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/pattani.jpg": {
+    "mtime": 1795681950.5504987,
+    "seen": 1795682016.53293,
+    "ast_hash": "73d1427aeb96bd04e4362ad813e4bc40",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phangnga.jpg": {
+    "mtime": 1795681950.6703975,
+    "seen": 1795682016.53293,
+    "ast_hash": "5b5efee968f6fc3c5513317dc6188cb1",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phatthalung.jpg": {
+    "mtime": 1795681950.7673967,
+    "seen": 1795682016.53293,
+    "ast_hash": "409e9fdf88c70458c3f38c9d04b30ac8",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phayao.jpg": {
+    "mtime": 1795681950.8874066,
+    "seen": 1795682016.53293,
+    "ast_hash": "42c04613da78e89159cbbb261be8743d",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phetchabun.jpg": {
+    "mtime": 1795681951.015419,
+    "seen": 1795682016.53293,
+    "ast_hash": "c82e98a9e24e2bc6738be7ea1fdf211f",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phetchaburi.jpg": {
+    "mtime": 1795681951.1316729,
+    "seen": 1795682016.53293,
+    "ast_hash": "f0b0e09059362abf881d59e6f211f92e",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phichit.jpg": {
+    "mtime": 1795681951.2608342,
+    "seen": 1795682016.53293,
+    "ast_hash": "b401e40df13b0b710c53582cb151aea9",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phitsanulok.jpg": {
+    "mtime": 1795681951.3902326,
+    "seen": 1795682016.53293,
+    "ast_hash": "f1f59e32624a054c4fc91936af08012d",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/phrae.jpg": {
+    "mtime": 1795681951.5104613,
+    "seen": 1795682016.53293,
+    "ast_hash": "632e23e91e5145203209b1feef2d9681",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/prachinburi.jpg": {
+    "mtime": 1795681951.6416838,
+    "seen": 1795682016.53293,
+    "ast_hash": "6b35b016be8f94417ab02bc645ea0896",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/prachuapkhirikhan.jpg": {
+    "mtime": 1795681951.7665958,
+    "seen": 1795682016.53293,
+    "ast_hash": "e80c8c109ca5e2a3eb9ae9d573996150",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/ranong.jpg": {
+    "mtime": 1795681951.8926384,
+    "seen": 1795682016.53293,
+    "ast_hash": "328a21feb87447233975054f9433d551",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/ratchaburi.jpg": {
+    "mtime": 1795681951.9994502,
+    "seen": 1795682016.53293,
+    "ast_hash": "fca38a1f34faa44b7e6c26cbfc5cffb9",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/rayong.jpg": {
+    "mtime": 1795681952.0871117,
+    "seen": 1795682016.53293,
+    "ast_hash": "f44803b1b7ede93221820246a8dd728d",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/roiet.jpg": {
+    "mtime": 1795681952.203312,
+    "seen": 1795682016.53293,
+    "ast_hash": "b24204195746ac4f5e16d19293a5b19c",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/sakaeo.jpg": {
+    "mtime": 1795681952.3087413,
+    "seen": 1795682016.53293,
+    "ast_hash": "38654cd3177d9192615f25195d10c9ff",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/sakonnakhon.jpg": {
+    "mtime": 1795681952.4215927,
+    "seen": 1795682016.53293,
+    "ast_hash": "ee72ea341ef9738cd28559cde141be0f",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/samui.jpg": {
+    "mtime": 1795681952.5319371,
+    "seen": 1795682016.53293,
+    "ast_hash": "285ebfc234eab36e7fca19c82778272f",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/samutprakan.jpg": {
+    "mtime": 1795681952.6564438,
+    "seen": 1795682016.53293,
+    "ast_hash": "77b3b3dfc49649aed061f5224bdc1762",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/samutsakhon.jpg": {
+    "mtime": 1795681952.7889376,
+    "seen": 1795682016.53293,
+    "ast_hash": "3a63d779cca092a83deac2c6ddf67be2",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/samutsongkhram.jpg": {
+    "mtime": 1795681952.904416,
+    "seen": 1795682016.53293,
+    "ast_hash": "1c9dea371383477d4ba5afd27f7f99af",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/saraburi.jpg": {
+    "mtime": 1795681952.994943,
+    "seen": 1795682016.53293,
+    "ast_hash": "1c020ca1d8133eb82383ac387fd48d51",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/satun.jpg": {
+    "mtime": 1795681953.1008315,
+    "seen": 1795682016.53293,
+    "ast_hash": "c312ad7297d059d107b2d50ab185f73e",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/singburi.jpg": {
+    "mtime": 1795681953.2494037,
+    "seen": 1795682016.53293,
+    "ast_hash": "9f8d6bdbbe295b5c57056244b5ac0274",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/sisaket.jpg": {
+    "mtime": 1795681953.4133346,
+    "seen": 1795682016.53293,
+    "ast_hash": "8967c1d255e78d3ba3ed6351bfb7f1e3",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/songkhla.jpg": {
+    "mtime": 1795681953.5725062,
+    "seen": 1795682016.53293,
+    "ast_hash": "fa9a702d24c6d7440a0f52993b662092",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/sukhothai.jpg": {
+    "mtime": 1795681953.7104893,
+    "seen": 1795682016.53293,
+    "ast_hash": "88d11b5d57a7066a306d95891fd53d5b",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/suphanburi.jpg": {
+    "mtime": 1795681953.8381708,
+    "seen": 1795682016.53293,
+    "ast_hash": "7488abdb6733d278c73755e1e98b53d6",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/suratthani.jpg": {
+    "mtime": 1795681953.9600215,
+    "seen": 1795682016.53293,
+    "ast_hash": "4a5fe440f967347835d25f26aee094b6",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/surin.jpg": {
+    "mtime": 1795681954.0413003,
+    "seen": 1795682016.53293,
+    "ast_hash": "9e021c94012ade43465bdd771d7059c5",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/tak.jpg": {
+    "mtime": 1795681954.1666346,
+    "seen": 1795682016.53293,
+    "ast_hash": "96bb188fbf7e37906f408a4566565e41",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/trang.jpg": {
+    "mtime": 1795681954.2729013,
+    "seen": 1795682016.53293,
+    "ast_hash": "b44f92ee06a8069cf798f857f17643c3",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/trat.jpg": {
+    "mtime": 1795681954.3721747,
+    "seen": 1795682016.53293,
+    "ast_hash": "97a718f23b949785582eadd29d74f3d4",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/ubonratchathani.jpg": {
+    "mtime": 1795681954.482911,
+    "seen": 1795682016.53293,
+    "ast_hash": "58688e561e3beac50d67e200f980b223",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/udonthani.jpg": {
+    "mtime": 1795681954.5865724,
+    "seen": 1795682016.53293,
+    "ast_hash": "accb4a1d827327b8af52028430b1f792",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/uthaithani.jpg": {
+    "mtime": 1795681954.7135713,
+    "seen": 1795682016.53293,
+    "ast_hash": "42b5c7c2d679111d46d529b73dfa0404",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/uttaradit.jpg": {
+    "mtime": 1795681954.8540304,
+    "seen": 1795682016.53293,
+    "ast_hash": "728a401518bfb52bf065c5e0cbc5dec0",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/yala.jpg": {
+    "mtime": 1795681955.0333638,
+    "seen": 1795682016.53293,
+    "ast_hash": "b20f0b81d6e136898d14ade1fe55342c",
+    "semantic_hash": ""
+  },
+  "frontend/img/provinces/yasothon.jpg": {
+    "mtime": 1795681955.1758637,
+    "seen": 1795682016.53293,
+    "ast_hash": "cd11dee6c5d461cf71959c5aedeeee80",
     "semantic_hash": ""
   }
 }

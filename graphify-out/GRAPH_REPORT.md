@@ -1,17 +1,17 @@
 # Graph Report - Thesis Project  (2026-11-26)
 
 ## Corpus Check
-- 206 files · ~589,984 words
+- 206 files · ~573,146 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 4 file(s) not represented in the graph (top: (none) 2, .gs 1, .css 1)
 
 ## Summary
-- 889 nodes · 1781 edges · 96 communities (49 shown, 47 thin omitted)
+- 890 nodes · 1783 edges · 101 communities (54 shown, 47 thin omitted)
 - Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 122 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7b28ce92`
+- Built from commit: `5d7412e0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,7 @@
 - Packages & Swap Feature
 - Background Image
 - Project Limitations
-- genetic.py
+- hybrid.py
 - Budget-Aware Travel Route Generation and Optimization Using AI: Phuket Case Study
 - TestAPI
 - _prioritize_sights
@@ -69,11 +69,16 @@
 - build_manual.py
 - time
 - evaluate_route
-- create_session
-- meal_fill
+- json
+- CS403_Report_68-2_33_pps-r1 Project 2_ffdbec9c.md
 - Genetic Algorithm (GA)
 - run_all_chapter4.sh
 - run_all_realistic.sh
+- แนวคิดทฤษฎีที่เกี่ยวข้อง
+- ภาพรวมของโครงงาน
+- งานวิจัยที่เกี่ยวข้อง
+- สรุป
+- two_opt_day
 
 ## God Nodes (most connected - your core abstractions)
 1. `evaluate_route()` - 44 edges
@@ -114,10 +119,10 @@
 - **Experiment scenarios S1-S3** — experiments_results_stats_s1, experiments_results_stats_s2, experiments_results_stats_s3 [EXTRACTED 1.00]
 - **Greedy, GA and Hybrid solvers** — docs_problem_formulation_greedy, docs_problem_formulation_ga, docs_problem_formulation_hybrid [EXTRACTED 1.00]
 
-## Communities (96 total, 47 thin omitted)
+## Communities (101 total, 47 thin omitted)
 
 ### Community 0 - "greedy.py"
-Cohesion: 0.15
+Cohesion: 0.16
 Nodes (8): _find_best_for_slot(), greedy_solve(), _repaired(), features(), rl_solve(), chooser(), haversine_km(), travel_cost()
 
 ### Community 1 - "B-TOPTW with Meal Constraints"
@@ -130,7 +135,7 @@ Nodes (32): RFC-5545, addPoiToDay(), ALGO_HINTS, ALGO_NAMES, buildIcs(), CAT_ICO
 
 ### Community 4 - "main.py"
 Cohesion: 0.14
-Nodes (5): get_session(), _session_load(), _session_view(), SessionUpdate, update_session()
+Nodes (10): create_session(), dev_unlock(), get_session(), _session_gc(), _session_load(), _session_view(), SessionCreate, SessionUpdate (+2 more)
 
 ### Community 5 - "Experiments & Dataset (Report)"
 Cohesion: 0.13
@@ -141,8 +146,8 @@ Cohesion: 0.09
 Nodes (18): clean_name(), collect(), coords(), diet_merge(), diet_tags(), extra(), main(), make_hotel() (+10 more)
 
 ### Community 7 - "load_data"
-Cohesion: 0.18
-Nodes (7): load_data(), set_travel_profile(), run_all_chapter4.sh script, part2(), load(), load(), run()
+Cohesion: 0.33
+Nodes (3): run_all_chapter4.sh script, load(), run()
 
 ### Community 8 - "statistics"
 Cohesion: 0.20
@@ -164,9 +169,9 @@ Nodes (7): Convergence plot: WeEasyTrip GA vs Hybrid vs Greedy (fitness per gene
 Cohesion: 0.50
 Nodes (4): Custom package swap and re-optimize, Scoring Modes (ratio vs quality), Three packages (Budget/Standard/Premium), Tier-based Budget Allocation
 
-### Community 15 - "genetic.py"
-Cohesion: 0.07
-Nodes (18): crossover(), fitness(), genetic_solve(), initial_population(), main(), mutate(), repair(), tournament_select() (+10 more)
+### Community 15 - "hybrid.py"
+Cohesion: 0.13
+Nodes (10): crossover(), fitness(), genetic_solve(), initial_population(), main(), mutate(), repair(), tournament_select() (+2 more)
 
 ### Community 16 - "Budget-Aware Travel Route Generation and Optimization Using AI: Phuket Case Study"
 Cohesion: 0.13
@@ -189,24 +194,24 @@ Cohesion: 0.12
 Nodes (19): Convergence plot of GA vs Hybrid, Phuket POI Dataset (164 POIs, 20 hotels), Day Pattern (attr-attr-lunch-attr-attr-dinner), Algorithm Engine, Experiment: 15 trials x 3 scenarios x 3 algorithms (135 trials), GA Refinement (slot_repair, adaptive mutation, early stopping), Hybrid Algorithm (Greedy seed + GA + 2-opt), Kruskal-Wallis test (p<0.001) (+11 more)
 
 ### Community 23 - "pareto.py"
-Cohesion: 0.13
-Nodes (10): _crossover(), diversity_stats(), _mutate(), _slot_repair(), _crowding(), _dominates(), evaluate_objectives(), _nondominated_sort() (+2 more)
+Cohesion: 0.12
+Nodes (11): _crossover(), diversity_stats(), _mutate(), _slot_repair(), _crowding(), _dominates(), evaluate_objectives(), _nondominated_sort() (+3 more)
 
 ### Community 24 - "hybrid.py"
-Cohesion: 0.15
-Nodes (10): _budget_repair(), _final_validity(), _fitness(), hybrid_solve(), infeasible_locks(), main(), reoptimize_solve(), _route_distance() (+2 more)
+Cohesion: 0.17
+Nodes (8): _budget_repair(), _final_validity(), _fitness(), hybrid_solve(), infeasible_locks(), meal_fill(), reoptimize_solve(), _time_repair()
 
 ### Community 25 - "การดำเนินงาน"
-Cohesion: 0.07
-Nodes (27): Free-Attraction Fallback Mechanism (สำคัญสำหรับงบจำกัด), Hybrid Algorithm, Insertion Local Search (ILS), Workflow การใช้งาน, กติกาความสมจริงของแผนรายวันและตัวตรวจแผนกลาง, การขยายข้อมูลหลายจังหวัด, การจัดการ Constraint Violation, การจัดสรรงบประมาณตาม Tier (+19 more)
+Cohesion: 0.10
+Nodes (20): Free-Attraction Fallback Mechanism (สำคัญสำหรับงบจำกัด), Hybrid Algorithm, Insertion Local Search (ILS), กติกาความสมจริงของแผนรายวันและตัวตรวจแผนกลาง, การขยายข้อมูลหลายจังหวัด, การจัดการ Constraint Violation, การจัดเตรียมฮาร์ดแวร์และซอฟต์แวร์, การดำเนินงาน (+12 more)
 
 ### Community 26 - "utils.py"
-Cohesion: 0.25
+Cohesion: 0.29
 Nodes (5): day_objective(), _has_room(), insertion_local_search(), kind(), local_search()
 
 ### Community 27 - "create_packages"
-Cohesion: 0.32
-Nodes (6): create_packages(), find_best_hotel(), make_tier_pois(), _median_dist(), _percentile(), งานตรวจรอบสุดท้าย (25 ต.ค. 2569)
+Cohesion: 0.19
+Nodes (10): build_package(), create_packages(), find_best_hotel(), make_tier_pois(), _median_dist(), _percentile(), DayDetail, make_day_details() (+2 more)
 
 ### Community 29 - "project2_plan.md"
 Cohesion: 0.11
@@ -217,8 +222,8 @@ Cohesion: 0.18
 Nodes (15): diag(), save(), scores(), tradeoff(), fig_chromosome(), fig_reopt(), fig_usecase(), arrow() (+7 more)
 
 ### Community 31 - "run_province_experiments.py"
-Cohesion: 0.38
-Nodes (6): min_meals(), part_a(), part_b(), run_algo(), setup(), summarize()
+Cohesion: 0.22
+Nodes (8): set_travel_profile(), load(), min_meals(), part_a(), part_b(), run_algo(), setup(), summarize()
 
 ### Community 32 - "get_province"
 Cohesion: 0.17
@@ -233,20 +238,20 @@ Cohesion: 0.22
 Nodes (8): key, sync, services, envVars, name, plan, runtime, type
 
 ### Community 36 - "pareto"
-Cohesion: 0.18
-Nodes (11): build_package(), DayDetail, make_day_details(), Package, PackageRequest, PackageResponse, pareto(), recompute() (+3 more)
+Cohesion: 0.31
+Nodes (6): PackageRequest, PackageResponse, pareto(), recompute(), RecomputeRequest, เฟส 1 — ขยายจังหวัด (เริ่มตรงนี้)
 
 ### Community 37 - "ผลการทดลองหลายจังหวัดและการปรับแผนใหม่"
-Cohesion: 0.05
-Nodes (40): Genetic Algorithm (GA), Greedy Algorithm, Insertion Local Search, Iterated Local Search (ILS), Multi-objective Optimization และ NSGA-II, Orienteering Problem (OP), Reinforcement Learning, Reinforcement Learning และ REINFORCE (+32 more)
+Cohesion: 0.17
+Nodes (12): Insertion Local Search, Reinforcement Learning, การปรับแผนใหม่หลังผู้ใช้แก้ไข, การออกแบบการทดลอง, คุณภาพของข้อมูลที่สร้างอัตโนมัติ, ความชอบของผู้ใช้, ความไวต่อพารามิเตอร์, จังหวัดข้อมูลน้อย (+4 more)
 
 ### Community 38 - "extras.js"
 Cohesion: 0.13
-Nodes (18): add(), buildTips(), decorateWeather(), enableDrag(), generalTips(), initTips(), loadWeather(), makeModal() (+10 more)
+Nodes (20): add(), buildTips(), decorateWeather(), enableDrag(), generalTips(), initTips(), loadWeather(), makeModal() (+12 more)
 
 ### Community 40 - "json"
-Cohesion: 0.23
-Nodes (9): build(), geocode(), load(), main(), reeval(), verdict(), hav(), main() (+1 more)
+Cohesion: 0.24
+Nodes (6): build(), geocode(), load(), main(), reeval(), verdict()
 
 ### Community 41 - "วิธีนำ WeEasyTrip ขึ้นเว็บให้คนอื่นใช้ (Render ฟรี)"
 Cohesion: 0.40
@@ -297,38 +302,58 @@ Cohesion: 0.21
 Nodes (11): add_bookmark(), add_link(), build(), build_index(), defs_in(), docname(), para_fmt(), parse_spec() (+3 more)
 
 ### Community 81 - "time"
-Cohesion: 0.26
-Nodes (8): api(), clean(), cmd_download(), cmd_rank(), cmd_search(), score(), search(), thumb_url()
+Cohesion: 0.19
+Nodes (11): hav(), main(), route(), api(), clean(), cmd_download(), cmd_rank(), cmd_search() (+3 more)
 
 ### Community 83 - "evaluate_route"
-Cohesion: 0.18
-Nodes (5): episode_reward(), evaluate_route(), travel_time_min(), run(), TestUtils
+Cohesion: 0.14
+Nodes (6): episode_reward(), evaluate_route(), travel_time_min(), run_one(), run(), TestUtils
 
-### Community 85 - "create_session"
-Cohesion: 0.40
-Nodes (4): create_session(), dev_unlock(), _session_gc(), UnlockRequest
+### Community 85 - "json"
+Cohesion: 0.13
+Nodes (10): load_data(), part2(), activity_budget(), _avg_history(), kruskal_wallis(), main(), plot_convergence(), print_summary() (+2 more)
+
+### Community 86 - "CS403_Report_68-2_33_pps-r1 Project 2_ffdbec9c.md"
+Cohesion: 0.20
+Nodes (9): การทดสอบซอฟต์แวร์, ข้อจำกัดของโครงงาน, ขอบเขตของโครงงาน, ความก้าวหน้าของโครงงานพิเศษ 2, ความเป็นมาและความสำคัญของโครงงาน, ประโยชน์ของโครงงาน, ผลการดำเนินงาน, ระบบต้นแบบและผลลัพธ์เบื้องต้น (+1 more)
 
 ### Community 87 - "Genetic Algorithm (GA)"
 Cohesion: 0.22
 Nodes (9): Gavalas et al. 2014 TTDP Survey, Goldberg 1989 Genetic Algorithms, Holland 1992 Adaptation in Natural and Artificial Systems, Chromosome Representation (list of lists of POI indices), Genetic Algorithm (GA), Penalty Function for Constraint Violation, Tabu Search, Tourist Trip Design Problem (TTDP) (+1 more)
 
+### Community 96 - "แนวคิดทฤษฎีที่เกี่ยวข้อง"
+Cohesion: 0.25
+Nodes (8): Genetic Algorithm (GA), Greedy Algorithm, Iterated Local Search (ILS), Multi-objective Optimization และ NSGA-II, Orienteering Problem (OP), Reinforcement Learning และ REINFORCE, Team Orienteering Problem with Time Windows (TOPTW), แนวคิดทฤษฎีที่เกี่ยวข้อง
+
+### Community 97 - "ภาพรวมของโครงงาน"
+Cohesion: 0.29
+Nodes (7): Workflow การใช้งาน, การจัดสรรงบประมาณตาม Tier, การวิเคราะห์ขอบเขตและความต้องการของระบบ, นิยามปัญหา B-TOPTW เชิงคณิตศาสตร์, ภาพรวมของโครงงาน, วิธีการวิจัย, สถาปัตยกรรมของระบบ
+
+### Community 98 - "งานวิจัยที่เกี่ยวข้อง"
+Cohesion: 0.33
+Nodes (6): ความแตกต่างของโครงงานนี้กับงานวิจัยข้างต้น, งานวิจัยของ Gavalas และคณะ (2014), งานวิจัยของ Souffriau และคณะ (2008), งานวิจัยของ Vansteenwegen และคณะ (2011), งานวิจัยที่เกี่ยวข้อง, วรรณกรรมและงานวิจัยที่เกี่ยวข้อง
+
+### Community 99 - "สรุป"
+Cohesion: 0.40
+Nodes (5): ข้อจำกัดของผลงาน, ข้อเสนอแนะและแนวทางต่อยอด, สรุป, สรุปผลการดำเนินงาน, อภิปรายผล
+
 ## Knowledge Gaps
 - **55 isolated node(s):** `PYTHONIOENCODING`, `PYTHONUNBUFFERED`, `PYTHONIOENCODING`, `PYTHONUNBUFFERED`, `RFC-5545` (+50 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 382 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 381 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **47 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `create_packages()` connect `create_packages` to `greedy.py`, `reoptimize`, `get_province`, `app.js`, `main.py`, `pareto`, `genetic.py`, `statistics`, `time`, `_prioritize_sights`, `create_session`, `hybrid.py`?**
-  _High betweenness centrality (0.233) - this node is a cross-community bridge._
+- **Why does `create_packages()` connect `create_packages` to `greedy.py`, `reoptimize`, `get_province`, `app.js`, `main.py`, `pareto`, `hybrid.py`, `statistics`, `time`, `_prioritize_sights`, `hybrid.py`?**
+  _High betweenness centrality (0.234) - this node is a cross-community bridge._
 - **Are the 15 inferred relationships involving `evaluate_route()` (e.g. with `make_day_details()` and `part1()`) actually correct?**
   _`evaluate_route()` has 15 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `PYTHONIOENCODING`, `PYTHONUNBUFFERED`, `PYTHONIOENCODING` to the rest of the system?**
   _55 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `B-TOPTW with Meal Constraints` be split into smaller, more focused modules?**
   _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
-- **Why does `Hybrid Algorithm (Greedy seed + GA + 2-opt)` connect `Experiments & Dataset (Report)` to `hybrid.py`, `Budget-Aware Travel Route Generation and Optimization Using AI: Phuket Case Study`, `Special Project 2 future work`, `Genetic Algorithm (GA)`?**
+- **Why does `Hybrid Algorithm (Greedy seed + GA + 2-opt)` connect `Experiments & Dataset (Report)` to `Budget-Aware Travel Route Generation and Optimization Using AI: Phuket Case Study`, `Special Project 2 future work`, `Genetic Algorithm (GA)`, `hybrid.py`?**
   _High betweenness centrality (0.123) - this node is a cross-community bridge._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.06585365853658537 - nodes in this community are weakly interconnected._
