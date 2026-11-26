@@ -2,7 +2,7 @@
 
 คู่มือโค้ด: algorithm/hybrid.py
 Hybrid Algorithm: Greedy seed + GA + 2-opt + ซ่อมแผน + ILS
-ไฟล์ต้นฉบับ: algorithm/hybrid.py (753 บรรทัด)   ➜ กลับสารบัญคู่มือ
+ไฟล์ต้นฉบับ: algorithm/hybrid.py (754 บรรทัด)   ➜ กลับสารบัญคู่มือ
 บทบาทของไฟล์: อัลกอริทึมหลักของโครงงาน ขั้นตอนคือ (1) สร้าง seed ด้วย ➜ greedy_solve() ใน algorithm/greedy.py (2) วิวัฒนาการด้วย GA แบบรักษารูปแบบช่อง (slot) (3) ปรับลำดับในวันด้วย 2-opt (4) เติมมื้อด้วย meal_fill (5) ซ่อมเวลาและงบ (6) ปรับปรุงด้วย Insertion Local Search ใน ➜ algorithm/ils.py ใช้ตัวตรวจแผนจาก ➜ evaluate_route() ใน algorithm/utils.py และถูกเรียกจาก ➜ backend/main.py และสคริปต์ทดลองใน experiments/
 
 บรรทัด 1–20  หัวไฟล์และการนำเข้า
@@ -627,7 +627,7 @@ Hybrid Algorithm: Greedy seed + GA + 2-opt + ซ่อมแผน + ILS
 บรรทัด 507: บันทึกประวัติ
 บรรทัด 508–509: พิมพ์ทุก 10 รุ่นถ้า verbose
 บรรทัด 510–514: หยุดเร็วถ้าไม่ดีขึ้น 15 รุ่นติด
-บรรทัด 516–550  ขั้นที่ 3-7: ปรับแต่งแผนสุดท้าย
+บรรทัด 516–551  ขั้นที่ 3-7: ปรับแต่งแผนสุดท้าย
 516      # ขั้นที่ 3: 2-opt local search บน best solution
 517      refined = []
 518      for day in best:
@@ -645,278 +645,279 @@ Hybrid Algorithm: Greedy seed + GA + 2-opt + ซ่อมแผน + ILS
 530          if all(sum(1 for p in day if p['category'] == 'restaurant') >= 2 for day in refined if day):
 531              break
 532          for d, day in enumerate(refined):   # วันที่แน่นจนไม่มีเวลาใส่มื้อ: ถอด attraction คะแนนต่ำสุดออกก่อนเติมมื้อ
-533              if day and sum(1 for p in day if p['category'] == 'restaurant') < 2:
-534                  cands = [(i, p) for i, p in enumerate(day) if p['category'] != 'restaurant']
-535                  if cands:
-536                      refined[d] = [p for i, p in enumerate(day) if i != min(cands, key=lambda c: c[1]['score'])[0]]
-537          refined = _time_repair(meal_fill(refined, pois, hotel, budget, scoring_mode), hotel)
-538      refined = _budget_repair(refined, hotel, budget, pool=pois)
-539
-540      if ils:   # ขั้นที่ 7 (ทดลอง): insertion local search — รับผลเฉพาะเมื่อยังผ่านข้อจำกัดและ fitness ไม่แย่ลง
-541          from ils import insertion_local_search
-542          improved = insertion_local_search(refined, pois, hotel, budget, diversity_weight)
-543          improved = [two_opt_day(day, hotel) for day in improved]
-544          ev = evaluate_route(improved, hotel, budget)
-545          meals_ok = all(sum(1 for p in day if p['category'] == 'restaurant') >= 2 for day in improved if day)
-546          if ev['valid'] and meals_ok and (_fitness(improved, hotel, budget, scoring_mode, diversity_weight)
-547                                           >= _fitness(refined, hotel, budget, scoring_mode, diversity_weight)):
-548              refined = improved
-549
-550      return refined, history
+533              # ถอดสถานที่เพื่อเปิดเวลาให้มื้อ เฉพาะเมื่อมีร้านอาหารพอสำหรับทั้งทริป (ถ้าร้านไม่พอ การถอดไม่ช่วยให้ได้มื้อเพิ่มและเสียคะแนนเปล่า เช่น พิจิตร)
+534              if day and sum(1 for p in day if p['category'] == 'restaurant') < 2 and sum(1 for p in pois if p['category'] == 'restaurant') >= 2 * days:
+535                  cands = [(i, p) for i, p in enumerate(day) if p['category'] != 'restaurant']
+536                  if cands:
+537                      refined[d] = [p for i, p in enumerate(day) if i != min(cands, key=lambda c: c[1]['score'])[0]]
+538          refined = _time_repair(meal_fill(refined, pois, hotel, budget, scoring_mode), hotel)
+539      refined = _budget_repair(refined, hotel, budget, pool=pois)
+540
+541      if ils:   # ขั้นที่ 7 (ทดลอง): insertion local search — รับผลเฉพาะเมื่อยังผ่านข้อจำกัดและ fitness ไม่แย่ลง
+542          from ils import insertion_local_search
+543          improved = insertion_local_search(refined, pois, hotel, budget, diversity_weight)
+544          improved = [two_opt_day(day, hotel) for day in improved]
+545          ev = evaluate_route(improved, hotel, budget)
+546          meals_ok = all(sum(1 for p in day if p['category'] == 'restaurant') >= 2 for day in improved if day)
+547          if ev['valid'] and meals_ok and (_fitness(improved, hotel, budget, scoring_mode, diversity_weight)
+548                                           >= _fitness(refined, hotel, budget, scoring_mode, diversity_weight)):
+549              refined = improved
+550
+551      return refined, history
 บรรทัด 516–519: ขั้นที่ 3: 2-opt ทุกวันด้วย two_opt_day
 บรรทัด 521–522: ขั้นที่ 4: รับประกันมื้อกลางวัน+เย็นด้วย meal_fill
 บรรทัด 524–525: ขั้นที่ 5: ลบที่เที่ยวจากวันที่ยังเกินเวลาด้วย _time_repair
-บรรทัด 527–538: ขั้นที่ 6: การเติมมื้อและซ่อมเวลาอาจดันงบเกิน จึงวนไม่เกิน 3 รอบ ซ่อมงบด้วย _budget_repair ตรวจมื้อครบ ถ้าไม่ครบถอดที่เที่ยวคะแนนต่ำสุดของวันนั้นแล้วเติมมื้อและซ่อมเวลาใหม่ แล้วซ่อมงบอีกครั้งท้ายสุด
-บรรทัด 540–548: ขั้นที่ 7: ถ้าเปิด ILS เรียก ➜ insertion_local_search() ใน algorithm/ils.py แล้ว 2-opt ทุกวัน ตรวจว่า valid มีมื้อครบ และ fitness ไม่แย่ลง จึงรับแผนใหม่
-บรรทัด 550: คืนแผนและประวัติ fitness
-บรรทัด 553–607  `_budget_repair` ซ่อมงบ
-553  def _budget_repair(routes: List[List[Dict]], hotel: Dict, budget: float, protect=(), pool=None) -> List[List[Dict]]:
-554      """ถ้าแผนเกินงบ แทนที่ attraction (ไม่ได้ล็อก) ที่แพงสุดในวันที่มีสถานที่มากที่สุด ด้วยสถานที่ที่ถูกกว่าและคะแนนสูงสุดที่ยังไม่ได้ใช้ในวันเดียวกัน
-555         ถ้าไม่มีตัวแทนที่ใช้ได้จึงลบทิ้ง จนอยู่ในงบ (เดิมลบอย่างเดียว ทำให้บางวันเหลือจุดน้อยเมื่อกำหนดงบต่ำ)"""
-556      routes = [list(d) for d in routes]
-557      for _ in range(60):
-558          if evaluate_route(routes, hotel, float('inf'))['total_cost'] <= budget:
-559              break
-560          # ก่อนตัดสถานที่: สลับร้านอาหารเป็นร้านที่ทำให้ค่าใช้จ่ายรวม (ค่าอาหาร+ค่าเดินทาง) ลดมากที่สุด
-561          # ร้านที่ไกลโรงแรมกินงบจนแผนเหลือแต่ร้านอาหาร (เช่น นครนายก งบ 2,000 บาท ไม่รวมโรงแรม)
-562          if pool:
-563              used = {p['id'] for day in routes for p in day}
-564              rests = [p for p in pool if p['category'] == 'restaurant' and p['id'] not in used and p['id'] not in protect]
-565              best = None
-566              for d, day in enumerate(routes):
-567                  base = evaluate_route([day], hotel, float('inf'))['total_cost']
-568                  for i, p in enumerate(day):
-569                      if p['category'] != 'restaurant' or p['id'] in protect:
-570                          continue
-571                      for u in rests:
-572                          trial = day[:i] + [u] + day[i + 1:]
-573                          ev = evaluate_route([trial], hotel, float('inf'))
-574                          gain = base - ev['total_cost']
-575                          if ev['valid'] and gain > 0.5 and (best is None or gain > best[0]):
-576                              best = (gain, d, i, trial)
-577              if best:
-578                  routes[best[1]] = best[3]
-579                  continue
-580          cands = [(d, i, p) for d, day in enumerate(routes) for i, p in enumerate(day)
-581                   if p['category'] != 'restaurant' and p['id'] not in protect]
-582          if not cands:
-583              break
-584          # ถ้าตัดสถานที่ทั้งหมดแล้วก็ยังเกินงบ (ร้านอาหารไกลกันเกินไป) การตัดไม่ช่วยอะไร ให้คงสถานที่ไว้ ผู้ใช้จะได้แจ้งว่างบไม่พอ
-585          floor = [[p for p in day if p['category'] == 'restaurant' or p['id'] in protect] for day in routes]
-586          if evaluate_route(floor, hotel, float('inf'))['total_cost'] > budget:
-587              break
-588          # ลบเฉพาะสถานที่ที่ลบแล้วค่าใช้จ่ายรวมลดลงจริง (ค่าเข้า+ค่าเดินทาง): สถานที่ฟรีที่อยู่ระหว่างทางลบแล้วไม่ช่วยงบ
-589          # และถ้าเหตุที่เกินงบคือร้านอาหารอยู่ไกล การลบสถานที่ทิ้งหมดจะได้แผนที่มีแต่ร้านอาหารและยังเกินงบอยู่ดี
-590          cands = [c for c in cands
-591                   if evaluate_route([routes[c[0]]], hotel, float('inf'))['total_cost']
-592                   - evaluate_route([routes[c[0]][:c[1]] + routes[c[0]][c[1] + 1:]], hotel, float('inf'))['total_cost'] > 0.5]
-593          if not cands:
-594              break
-595          sights = [sum(1 for p in day if p['category'] != 'restaurant') for day in routes]
-596          d, i, old = max(cands, key=lambda c: (sights[c[0]], c[2]['cost'], -c[2]['score']))   # ตัดจากวันที่มีสถานที่มากที่สุดก่อน เพื่อให้แต่ละวันเหลือจำนวนใกล้เคียงกัน
-597          used = {p['id'] for day in routes for p in day}
-598          subs = sorted((p for p in (pool or []) if p['category'] != 'restaurant' and p['id'] not in used and p['id'] not in protect
-599                         and p['cost'] < old['cost']), key=lambda p: -p['score'])[:30]
-600          for u in subs:
-601              trial = routes[d][:i] + [u] + routes[d][i + 1:]
-602              if evaluate_route([trial], hotel, float('inf'))['valid']:
-603                  routes[d] = trial
-604                  break
-605          else:
-606              routes[d].pop(i)
-607      return routes
-บรรทัด 553: ประกาศ _budget_repair รับ protect (จุดล็อก) และ pool (จุดที่ใช้เป็นตัวแทนได้)
-บรรทัด 554–555: docstring: ถ้าเกินงบ แทนที่ที่เที่ยวที่แพงสุดด้วยจุดที่ถูกกว่าและคะแนนสูงสุด ถ้าไม่มีตัวแทนจึงลบทิ้ง
-บรรทัด 556: คัดลอกแผน
-บรรทัด 557–559: วนไม่เกิน 60 รอบ หยุดเมื่อค่าใช้จ่ายรวมอยู่ในงบ
-บรรทัด 560–579: ก่อนตัดที่เที่ยว ลองสลับร้านอาหารเป็นร้านที่ประหยัดสุด (ร้านไกลโรงแรมกินงบจนเหลือแต่ร้านอาหาร เช่น นครนายก งบ 2,000) เลือกคู่ที่ประหยัดสุดที่ยัง valid
-บรรทัด 580–583: รวบรวมที่เที่ยวที่ลบได้ (ไม่ใช่ร้านและไม่ถูกป้องกัน) ถ้าไม่มี หยุด
-บรรทัด 584–587: ถ้าตัดที่เที่ยวหมดแล้วก็ยังเกินงบ การตัดไม่ช่วย จึงหยุด (ผู้ใช้จะได้รับแจ้งว่างบไม่พอ)
-บรรทัด 588–594: กรองให้เหลือเฉพาะที่ลบแล้วค่าใช้จ่ายลดลงจริง (ที่เที่ยวฟรีลบแล้วไม่ช่วยงบ)
-บรรทัด 595–596: เลือกจุดจากวันที่มีที่เที่ยวมากที่สุดก่อน เพื่อให้แต่ละวันเหลือจำนวนใกล้เคียงกัน
-บรรทัด 597–599: หาตัวแทนที่ยังไม่ใช้ ถูกกว่าจุดเดิม คะแนนสูงสุด สูงสุด 30 ตัว
-บรรทัด 600–604: ลองแทนที่ ถ้าวันนั้นยัง valid ใช้ตัวแทนนั้น
-บรรทัด 605–606: ถ้าไม่มีตัวแทนที่ใช้ได้ ลบจุดทิ้ง
-บรรทัด 607: คืนแผน
-บรรทัด 610–626  `_final_validity` ซ่อมขั้นสุดท้ายสำหรับจุดล็อก
-610  def _final_validity(routes: List[List[Dict]], hotel: Dict, locked, tried=None) -> List[List[Dict]]:
-611      """วันที่ยังผิดเวลา/เวลาปิดหลังซ่อมแล้ว (มักเกิดจากจุดที่ผู้ใช้ล็อกเปิดดึก ชนกับมื้อเย็น):
-612         1) ลองย้ายจุดล็อกที่เปิดหลัง 17:00 ไปท้ายวัน  2) ถ้ายังไม่ผ่าน ถอดจุดล็อกของวันนั้นออก (ผู้ใช้จะได้รับแจ้ง)"""
-613      routes = [list(d) for d in routes]
-614      for d, day in enumerate(routes):
-615          if not day or evaluate_route([day], hotel, float('inf'))['valid']:
-616              continue
-617          late = [p for p in day if p['id'] in locked and p['open_min'] >= 1020]
-618          trial = [p for p in day if p not in late] + late
-619          # ย้ายไปท้ายวันได้ครั้งเดียวต่อวัน (meal_fill อาจจัดลำดับกลับ) — ถ้ายังไม่ผ่านรอบถัดไปถอดจุดล็อกออก
-620          if late and (tried is None or d not in tried) and evaluate_route([trial], hotel, float('inf'))['valid']:
-621              routes[d] = trial
-622              if tried is not None:
-623                  tried.add(d)
-624          else:
-625              routes[d] = [p for p in day if p['id'] not in locked]
-626      return routes
-บรรทัด 610–612: ประกาศและอธิบาย: วันที่ยังผิดหลังซ่อม (มักเพราะจุดล็อกที่เปิดดึกชนกับมื้อเย็น) ลองย้ายจุดล็อกที่เปิดหลัง 17:00 ไปท้ายวัน ถ้ายังไม่ผ่านถอดจุดล็อกออก
-บรรทัด 613: คัดลอกแผน
-บรรทัด 614–616: ข้ามวันว่างหรือวันที่ valid อยู่แล้ว
-บรรทัด 617–618: แยกจุดล็อกที่เปิดหลัง 17:00 ไปต่อท้ายวัน
-บรรทัด 619–623: ย้ายได้ครั้งเดียวต่อวัน (tried) และต้อง valid จึงยอมรับ
-บรรทัด 624–625: ไม่ผ่านก็ถอดจุดล็อกของวันนั้น
-บรรทัด 626: คืนแผน
-บรรทัด 629–640  `infeasible_locks` จุดล็อกที่ใส่ไม่ได้
-629  def infeasible_locks(pois: List[Dict], hotel: Dict, locked_ids, budget: float) -> List[str]:
-630      """POI ที่ผู้ใช้เลือกแต่ใส่ในแผนใดก็ไม่ได้ (เปิดดึกเกินวัน/เกินงบ/เกินเวลาต่อวัน) — คืน id เพื่อไม่ล็อกและแจ้งผู้ใช้"""
-631      by_id = {p['id']: p for p in pois}
-632      bad = []
-633      for pid in locked_ids:
-634          p = by_id.get(pid)
-635          if p is None:
-636              continue
-637          ev = evaluate_route([[p]], hotel, budget)
-638          if not ev['valid']:
-639              bad.append(pid)
-640      return bad
-บรรทัด 629–630: ประกาศและ docstring: จุดที่ผู้ใช้เลือกแต่ใส่แผนใดก็ไม่ได้ (เปิดดึกเกินวัน เกินงบ เกินเวลา)
-บรรทัด 631: ทำดัชนี id → จุด
-บรรทัด 632–640: ทดลองใส่แต่ละจุดเป็นแผนวันเดียว ถ้าไม่ valid ถือว่าไม่ได้ คืนรายการ id ให้ผู้เรียก (➜ backend/main.py) แจ้งผู้ใช้
-บรรทัด 643–685  `reoptimize_solve` เริ่มต้นและวิวัฒนาการ
-643  def reoptimize_solve(pois: List[Dict], hotel: Dict, routes: List[List[Dict]], budget: float,
-644                       locked_ids=(), excluded_ids=(), scoring_mode: str = 'quality',
-645                       pop_size: int = 20, generations: int = 30,
-646                       mutation_rate: float = 0.6, diversity_weight: float = 0.0) -> List[List[Dict]]:
-647      """Re-optimization หลังผู้ใช้แก้แผน: เริ่มจาก routes ปัจจุบัน (ไม่สร้างใหม่ทั้งหมด)
-648         - locked_ids:   POI ที่ผู้ใช้เลือกเอง (สลับเข้า/เพิ่ม) ต้องอยู่ในแผนเสมอ
-649         - excluded_ids: POI ที่ผู้ใช้ลบ ห้ามกลับเข้ามา
-650         ใช้ evolutionary search แบบ (mu+lambda) เฉพาะ mutation แล้วตามด้วย 2-opt, meal_fill, time_repair
-651         เพื่อปรับ POI ที่ไม่ล็อกให้ score สูงขึ้นภายใต้งบ/เวลาเดิม
-652      """
-653      locked, excluded = set(locked_ids), set(excluded_ids)
-654      locked -= set(infeasible_locks(pois, hotel, locked, budget))
-655      locked_all = set(locked)
-656      pool = [p for p in pois if p['id'] not in excluded]
-657      start = [[p for p in day if p['id'] not in excluded] for day in routes]
-658
-659      def respects(ch):
-660          ids = {p['id'] for day in ch for p in day}
-661          return locked <= ids and not (ids & excluded)
-662
-663      population = [start]
-664      fits = [_fitness(start, hotel, budget, scoring_mode, diversity_weight)]
-665      for _ in range(generations):
-666          children = []
-667          for _ in range(pop_size):
-668              parent = population[random.randrange(len(population))]
-669              child = _mutate(copy.deepcopy(parent), pool, mutation_rate)
-670              if respects(child):
-671                  children.append(child)
-672          population += children
-673          fits += [_fitness(c, hotel, budget, scoring_mode, diversity_weight) for c in children]
-674          order = sorted(range(len(population)), key=lambda i: fits[i], reverse=True)[:pop_size]
-675          population = [population[i] for i in order]
-676          fits = [fits[i] for i in order]
-677
-678      refined = [two_opt_day(day, hotel) for day in population[0]]
-679      before = refined
-680      refined = meal_fill(refined, pool, hotel, budget, scoring_mode)
-681      kept = {p['id'] for day in refined for p in day}
-682      for d, day in enumerate(before):          # meal_fill ตัด attr เกิน 4 ต่อวัน — คืนจุดที่ผู้ใช้ล็อกไว้
-683          for p in day:
-684              if p['id'] in locked and p['id'] not in kept:
-685                  refined[d].insert(max(0, len(refined[d]) - 1), p)
-บรรทัด 643–646: ประกาศ reoptimize_solve รับแผนปัจจุบัน งบ จุดล็อก จุดที่ห้ามกลับ โหมด ขนาดประชากร 20 รุ่น 30 อัตรากลายพันธุ์ 0.6
-บรรทัด 647–652: docstring: ปรับแผนหลังผู้ใช้แก้ เริ่มจากแผนปัจจุบัน ใช้การค้นหาแบบ (mu+lambda) เฉพาะ mutation แล้ว 2-opt, meal_fill, time_repair
-บรรทัด 653–654: เตรียมชุดจุดล็อกและจุดที่ถูกลบ และตัดจุดล็อกที่ใส่ไม่ได้ด้วย infeasible_locks
-บรรทัด 655: เก็บสำเนาจุดล็อกทั้งหมดไว้ใช้ตอนใส่คืน
-บรรทัด 656–657: ตัดจุดที่ถูกลบออกจากชุดจุดและแผนตั้งต้น
-บรรทัด 659–661: ฟังก์ชัน respects ตรวจว่าแผนมีจุดล็อกครบและไม่มีจุดที่ห้าม
-บรรทัด 663–664: ประชากรเริ่มต้นคือแผนตั้งต้น และ fitness ของมัน
-บรรทัด 665–676: วนตามรุ่น: สร้างลูกด้วย _mutate เฉพาะที่เคารพจุดล็อก/ห้าม รวมกับประชากรเดิม เรียงด้วย fitness แล้วเก็บ 20 ตัวดีสุด
-บรรทัด 678–680: 2-opt ในทุกวันของตัวดีที่สุด แล้ว meal_fill
-บรรทัด 681–685: คืนจุดล็อกที่ meal_fill ตัดออกเมื่อมีที่เที่ยวเกิน 4 ต่อวัน
-บรรทัด 686–720  `reoptimize_solve` ซ่อมซ้ำจนผ่าน
-686      # รอบซ่อมวนซ้ำจนแผนผ่านทุกข้อจำกัดและมีมื้อครบ (การเติมมื้ออาจทำให้เวลา/งบเสียอีก จึงต้องตรวจหลังเติมเสมอ)
-687      def meals_ok(rs):
-688          return all(sum(1 for p in day if p['category'] == 'restaurant') >= 2 for day in rs)
-689
-690      tried_days = set()
-691      for _ in range(5):
-692          refined = _time_repair(refined, hotel, protect=locked)
-693          refined = _budget_repair(refined, hotel, budget, protect=locked)
-694          refined = _final_validity(refined, hotel, locked, tried_days)
-695          locked = locked & {p['id'] for day in refined for p in day}      # จุดล็อกที่ยังอยู่ในแผน
-696          lacking = [d for d, day in enumerate(refined)
-697                     if sum(1 for p in day if p['category'] == 'restaurant') < 2]
-698          for d in lacking:           # วันที่แน่นจนไม่มีเวลาใส่มื้อ: ลบ attraction คะแนนต่ำสุดที่ไม่ได้ล็อกก่อนเติมมื้อ
-699              cands = [(i, p) for i, p in enumerate(refined[d])
-700                       if p['category'] != 'restaurant' and p['id'] not in locked]
-701              if cands:
-702                  refined[d].pop(min(cands, key=lambda c: c[1]['score'])[0])
-703          refined = meal_fill(refined, pool, hotel, budget, scoring_mode)
-704          ev = evaluate_route(refined, hotel, budget)
-705          if ev['valid'] and meals_ok(refined):
-706              break
-707      if not meals_ok(refined):    # ทางสุดท้าย: วันที่ยังไม่มีมื้อครบ เก็บเฉพาะจุดที่ผู้ใช้ล็อก แล้วเติมมื้อใหม่ (ได้แผนสั้นแต่ใช้ได้จริง)
-708          for d, day in enumerate(refined):
-709              if sum(1 for p in day if p['category'] == 'restaurant') < 2:
-710                  refined[d] = [p for p in day if p['id'] in locked and p['category'] != 'restaurant']
-711          refined = _time_repair(meal_fill(refined, pool, hotel, budget, scoring_mode), hotel, protect=locked)
-712          refined = _budget_repair(refined, hotel, budget, protect=locked)
-713      for _ in range(2):    # วันที่ยังผิดข้อจำกัดอยู่ (เช่น มื้อสายเกินช่วง): ล้างเหลือเฉพาะจุดที่ล็อก แล้วสร้างวันนั้นใหม่
-714          bad = {int(v.split()[1].rstrip(':')) - 1 for v in evaluate_route(refined, hotel, budget)['violations'] if v.startswith('Day ')}
-715          if not bad:
-716              break
-717          for d in bad:
-718              refined[d] = [p for p in refined[d] if p['id'] in locked and p['category'] != 'restaurant']
-719          refined = _time_repair(meal_fill(refined, pool, hotel, budget, scoring_mode), hotel, protect=locked)
-720          refined = _budget_repair(refined, hotel, budget, protect=locked)
-บรรทัด 687–688: ฟังก์ชัน meals_ok ตรวจว่าทุกวันมีร้านอย่างน้อย 2 ร้าน
-บรรทัด 690–694: วนไม่เกิน 5 รอบ: ซ่อมเวลา ซ่อมงบ ซ่อมความถูกต้องสุดท้ายโดยป้องกันจุดล็อก
-บรรทัด 695: ปรับชุดจุดล็อกให้เหลือเฉพาะที่ยังอยู่ในแผน
-บรรทัด 696–702: วันที่ไม่มีเวลาใส่มื้อ ลบที่เที่ยวคะแนนต่ำสุดที่ไม่ได้ล็อกก่อน
-บรรทัด 703–706: เติมมื้อใหม่ ถ้า valid และมื้อครบ ออกจากลูป
-บรรทัด 707–712: ทางสุดท้าย: วันที่ยังขาดมื้อ เก็บเฉพาะจุดล็อกแล้วเติมมื้อใหม่ ได้แผนสั้นแต่ใช้ได้จริง
-บรรทัด 713–720: อีกสองรอบสำหรับวันที่ยังผิดข้อจำกัด (เช่น มื้อสายเกินช่วง): ล้างเหลือเฉพาะจุดล็อกแล้วสร้างวันนั้นใหม่
-บรรทัด 721–735  ใส่จุดล็อกกลับและคืนผล
-721      # จุดล็อกที่ใส่ได้จริงแต่ถูกถอดระหว่างซ่อม: ใส่กลับในตำแหน่งที่ทำให้แผนยังผ่านทุกข้อจำกัด (ระยะเพิ่มน้อยสุด)
-722      by_id = {p['id']: p for p in pois}
-723      for pid in locked_all - {p['id'] for day in refined for p in day}:
-724          best = None
-725          for d, day in enumerate(refined):
-726              for i in range(len(day) + 1):
-727                  trial = refined[:d] + [day[:i] + [by_id[pid]] + day[i:]] + refined[d + 1:]
-728                  ev = evaluate_route(trial, hotel, budget)
-729                  if ev['valid']:
-730                      km = sum(x['distance_km'] for x in ev['days_detail'])
-731                      if best is None or km < best[0]:
-732                          best = (km, trial)
-733          if best:
-734              refined = best[1]
-735      return refined
-บรรทัด 721–723: จุดล็อกที่ใส่ได้จริงแต่ถูกถอดระหว่างซ่อม ให้ใส่กลับ
-บรรทัด 724–732: ลองแทรกที่ทุกตำแหน่งของทุกวัน เลือกตำแหน่งที่แผนยัง valid และระยะรวมเพิ่มน้อยสุด
-บรรทัด 733–734: ใช้ตำแหน่งที่ดีที่สุด
-บรรทัด 735: คืนแผน (เรียกจาก /api/reoptimize ใน ➜ backend/main.py)
-บรรทัด 738–753  ฟังก์ชันทดสอบ
-738  def main():
-739      from utils import load_data, print_result
-740      pois, hotels = load_data('../data/provinces/phuket.json')
-741      h = next(h for h in hotels if h['id'] == 'H11')
-742      print(f"Hotel: {h['name_en']}")
-743      t0 = time.time()
-744      routes, history = hybrid_solve(pois, h, 6, 6800, verbose=True)
-745      elapsed = (time.time() - t0) * 1000
-746      print(f"\nElapsed: {elapsed:.0f} ms")
-747      print(f"History: gen0={history[0]:.1f} → final={history[-1]:.1f}")
-748      result = evaluate_route(routes, h, 6800)
-749      print_result(result, label='Hybrid')
-750
+บรรทัด 527–539: ขั้นที่ 6: การเติมมื้อและซ่อมเวลาอาจดันงบเกิน จึงวนไม่เกิน 3 รอบ ซ่อมงบด้วย _budget_repair ตรวจมื้อครบ ถ้าไม่ครบและมีร้านอาหารพอสำหรับทั้งทริป (อย่างน้อย 2 ร้านต่อวัน) จึงถอดที่เที่ยวคะแนนต่ำสุดของวันนั้นเพื่อเปิดเวลาให้มื้อ แล้วเติมมื้อและซ่อมเวลาใหม่ (ถ้าร้านไม่พอ การถอดไม่ช่วยให้ได้มื้อเพิ่มและเสียคะแนนเปล่า เช่นจังหวัดพิจิตร) แล้วซ่อมงบอีกครั้งท้ายสุด
+บรรทัด 541–549: ขั้นที่ 7: ถ้าเปิด ILS เรียก ➜ insertion_local_search() ใน algorithm/ils.py แล้ว 2-opt ทุกวัน ตรวจว่า valid มีมื้อครบ และ fitness ไม่แย่ลง จึงรับแผนใหม่
+บรรทัด 551: คืนแผนและประวัติ fitness
+บรรทัด 554–608  `_budget_repair` ซ่อมงบ
+554  def _budget_repair(routes: List[List[Dict]], hotel: Dict, budget: float, protect=(), pool=None) -> List[List[Dict]]:
+555      """ถ้าแผนเกินงบ แทนที่ attraction (ไม่ได้ล็อก) ที่แพงสุดในวันที่มีสถานที่มากที่สุด ด้วยสถานที่ที่ถูกกว่าและคะแนนสูงสุดที่ยังไม่ได้ใช้ในวันเดียวกัน
+556         ถ้าไม่มีตัวแทนที่ใช้ได้จึงลบทิ้ง จนอยู่ในงบ (เดิมลบอย่างเดียว ทำให้บางวันเหลือจุดน้อยเมื่อกำหนดงบต่ำ)"""
+557      routes = [list(d) for d in routes]
+558      for _ in range(60):
+559          if evaluate_route(routes, hotel, float('inf'))['total_cost'] <= budget:
+560              break
+561          # ก่อนตัดสถานที่: สลับร้านอาหารเป็นร้านที่ทำให้ค่าใช้จ่ายรวม (ค่าอาหาร+ค่าเดินทาง) ลดมากที่สุด
+562          # ร้านที่ไกลโรงแรมกินงบจนแผนเหลือแต่ร้านอาหาร (เช่น นครนายก งบ 2,000 บาท ไม่รวมโรงแรม)
+563          if pool:
+564              used = {p['id'] for day in routes for p in day}
+565              rests = [p for p in pool if p['category'] == 'restaurant' and p['id'] not in used and p['id'] not in protect]
+566              best = None
+567              for d, day in enumerate(routes):
+568                  base = evaluate_route([day], hotel, float('inf'))['total_cost']
+569                  for i, p in enumerate(day):
+570                      if p['category'] != 'restaurant' or p['id'] in protect:
+571                          continue
+572                      for u in rests:
+573                          trial = day[:i] + [u] + day[i + 1:]
+574                          ev = evaluate_route([trial], hotel, float('inf'))
+575                          gain = base - ev['total_cost']
+576                          if ev['valid'] and gain > 0.5 and (best is None or gain > best[0]):
+577                              best = (gain, d, i, trial)
+578              if best:
+579                  routes[best[1]] = best[3]
+580                  continue
+581          cands = [(d, i, p) for d, day in enumerate(routes) for i, p in enumerate(day)
+582                   if p['category'] != 'restaurant' and p['id'] not in protect]
+583          if not cands:
+584              break
+585          # ถ้าตัดสถานที่ทั้งหมดแล้วก็ยังเกินงบ (ร้านอาหารไกลกันเกินไป) การตัดไม่ช่วยอะไร ให้คงสถานที่ไว้ ผู้ใช้จะได้แจ้งว่างบไม่พอ
+586          floor = [[p for p in day if p['category'] == 'restaurant' or p['id'] in protect] for day in routes]
+587          if evaluate_route(floor, hotel, float('inf'))['total_cost'] > budget:
+588              break
+589          # ลบเฉพาะสถานที่ที่ลบแล้วค่าใช้จ่ายรวมลดลงจริง (ค่าเข้า+ค่าเดินทาง): สถานที่ฟรีที่อยู่ระหว่างทางลบแล้วไม่ช่วยงบ
+590          # และถ้าเหตุที่เกินงบคือร้านอาหารอยู่ไกล การลบสถานที่ทิ้งหมดจะได้แผนที่มีแต่ร้านอาหารและยังเกินงบอยู่ดี
+591          cands = [c for c in cands
+592                   if evaluate_route([routes[c[0]]], hotel, float('inf'))['total_cost']
+593                   - evaluate_route([routes[c[0]][:c[1]] + routes[c[0]][c[1] + 1:]], hotel, float('inf'))['total_cost'] > 0.5]
+594          if not cands:
+595              break
+596          sights = [sum(1 for p in day if p['category'] != 'restaurant') for day in routes]
+597          d, i, old = max(cands, key=lambda c: (sights[c[0]], c[2]['cost'], -c[2]['score']))   # ตัดจากวันที่มีสถานที่มากที่สุดก่อน เพื่อให้แต่ละวันเหลือจำนวนใกล้เคียงกัน
+598          used = {p['id'] for day in routes for p in day}
+599          subs = sorted((p for p in (pool or []) if p['category'] != 'restaurant' and p['id'] not in used and p['id'] not in protect
+600                         and p['cost'] < old['cost']), key=lambda p: -p['score'])[:30]
+601          for u in subs:
+602              trial = routes[d][:i] + [u] + routes[d][i + 1:]
+603              if evaluate_route([trial], hotel, float('inf'))['valid']:
+604                  routes[d] = trial
+605                  break
+606          else:
+607              routes[d].pop(i)
+608      return routes
+บรรทัด 554: ประกาศ _budget_repair รับ protect (จุดล็อก) และ pool (จุดที่ใช้เป็นตัวแทนได้)
+บรรทัด 555–556: docstring: ถ้าเกินงบ แทนที่ที่เที่ยวที่แพงสุดด้วยจุดที่ถูกกว่าและคะแนนสูงสุด ถ้าไม่มีตัวแทนจึงลบทิ้ง
+บรรทัด 557: คัดลอกแผน
+บรรทัด 558–560: วนไม่เกิน 60 รอบ หยุดเมื่อค่าใช้จ่ายรวมอยู่ในงบ
+บรรทัด 561–580: ก่อนตัดที่เที่ยว ลองสลับร้านอาหารเป็นร้านที่ประหยัดสุด (ร้านไกลโรงแรมกินงบจนเหลือแต่ร้านอาหาร เช่น นครนายก งบ 2,000) เลือกคู่ที่ประหยัดสุดที่ยัง valid
+บรรทัด 581–584: รวบรวมที่เที่ยวที่ลบได้ (ไม่ใช่ร้านและไม่ถูกป้องกัน) ถ้าไม่มี หยุด
+บรรทัด 585–588: ถ้าตัดที่เที่ยวหมดแล้วก็ยังเกินงบ การตัดไม่ช่วย จึงหยุด (ผู้ใช้จะได้รับแจ้งว่างบไม่พอ)
+บรรทัด 589–595: กรองให้เหลือเฉพาะที่ลบแล้วค่าใช้จ่ายลดลงจริง (ที่เที่ยวฟรีลบแล้วไม่ช่วยงบ)
+บรรทัด 596–597: เลือกจุดจากวันที่มีที่เที่ยวมากที่สุดก่อน เพื่อให้แต่ละวันเหลือจำนวนใกล้เคียงกัน
+บรรทัด 598–600: หาตัวแทนที่ยังไม่ใช้ ถูกกว่าจุดเดิม คะแนนสูงสุด สูงสุด 30 ตัว
+บรรทัด 601–605: ลองแทนที่ ถ้าวันนั้นยัง valid ใช้ตัวแทนนั้น
+บรรทัด 606–607: ถ้าไม่มีตัวแทนที่ใช้ได้ ลบจุดทิ้ง
+บรรทัด 608: คืนแผน
+บรรทัด 611–627  `_final_validity` ซ่อมขั้นสุดท้ายสำหรับจุดล็อก
+611  def _final_validity(routes: List[List[Dict]], hotel: Dict, locked, tried=None) -> List[List[Dict]]:
+612      """วันที่ยังผิดเวลา/เวลาปิดหลังซ่อมแล้ว (มักเกิดจากจุดที่ผู้ใช้ล็อกเปิดดึก ชนกับมื้อเย็น):
+613         1) ลองย้ายจุดล็อกที่เปิดหลัง 17:00 ไปท้ายวัน  2) ถ้ายังไม่ผ่าน ถอดจุดล็อกของวันนั้นออก (ผู้ใช้จะได้รับแจ้ง)"""
+614      routes = [list(d) for d in routes]
+615      for d, day in enumerate(routes):
+616          if not day or evaluate_route([day], hotel, float('inf'))['valid']:
+617              continue
+618          late = [p for p in day if p['id'] in locked and p['open_min'] >= 1020]
+619          trial = [p for p in day if p not in late] + late
+620          # ย้ายไปท้ายวันได้ครั้งเดียวต่อวัน (meal_fill อาจจัดลำดับกลับ) — ถ้ายังไม่ผ่านรอบถัดไปถอดจุดล็อกออก
+621          if late and (tried is None or d not in tried) and evaluate_route([trial], hotel, float('inf'))['valid']:
+622              routes[d] = trial
+623              if tried is not None:
+624                  tried.add(d)
+625          else:
+626              routes[d] = [p for p in day if p['id'] not in locked]
+627      return routes
+บรรทัด 611–613: ประกาศและอธิบาย: วันที่ยังผิดหลังซ่อม (มักเพราะจุดล็อกที่เปิดดึกชนกับมื้อเย็น) ลองย้ายจุดล็อกที่เปิดหลัง 17:00 ไปท้ายวัน ถ้ายังไม่ผ่านถอดจุดล็อกออก
+บรรทัด 614: คัดลอกแผน
+บรรทัด 615–617: ข้ามวันว่างหรือวันที่ valid อยู่แล้ว
+บรรทัด 618–619: แยกจุดล็อกที่เปิดหลัง 17:00 ไปต่อท้ายวัน
+บรรทัด 620–624: ย้ายได้ครั้งเดียวต่อวัน (tried) และต้อง valid จึงยอมรับ
+บรรทัด 625–626: ไม่ผ่านก็ถอดจุดล็อกของวันนั้น
+บรรทัด 627: คืนแผน
+บรรทัด 630–641  `infeasible_locks` จุดล็อกที่ใส่ไม่ได้
+630  def infeasible_locks(pois: List[Dict], hotel: Dict, locked_ids, budget: float) -> List[str]:
+631      """POI ที่ผู้ใช้เลือกแต่ใส่ในแผนใดก็ไม่ได้ (เปิดดึกเกินวัน/เกินงบ/เกินเวลาต่อวัน) — คืน id เพื่อไม่ล็อกและแจ้งผู้ใช้"""
+632      by_id = {p['id']: p for p in pois}
+633      bad = []
+634      for pid in locked_ids:
+635          p = by_id.get(pid)
+636          if p is None:
+637              continue
+638          ev = evaluate_route([[p]], hotel, budget)
+639          if not ev['valid']:
+640              bad.append(pid)
+641      return bad
+บรรทัด 630–631: ประกาศและ docstring: จุดที่ผู้ใช้เลือกแต่ใส่แผนใดก็ไม่ได้ (เปิดดึกเกินวัน เกินงบ เกินเวลา)
+บรรทัด 632: ทำดัชนี id → จุด
+บรรทัด 633–641: ทดลองใส่แต่ละจุดเป็นแผนวันเดียว ถ้าไม่ valid ถือว่าไม่ได้ คืนรายการ id ให้ผู้เรียก (➜ backend/main.py) แจ้งผู้ใช้
+บรรทัด 644–686  `reoptimize_solve` เริ่มต้นและวิวัฒนาการ
+644  def reoptimize_solve(pois: List[Dict], hotel: Dict, routes: List[List[Dict]], budget: float,
+645                       locked_ids=(), excluded_ids=(), scoring_mode: str = 'quality',
+646                       pop_size: int = 20, generations: int = 30,
+647                       mutation_rate: float = 0.6, diversity_weight: float = 0.0) -> List[List[Dict]]:
+648      """Re-optimization หลังผู้ใช้แก้แผน: เริ่มจาก routes ปัจจุบัน (ไม่สร้างใหม่ทั้งหมด)
+649         - locked_ids:   POI ที่ผู้ใช้เลือกเอง (สลับเข้า/เพิ่ม) ต้องอยู่ในแผนเสมอ
+650         - excluded_ids: POI ที่ผู้ใช้ลบ ห้ามกลับเข้ามา
+651         ใช้ evolutionary search แบบ (mu+lambda) เฉพาะ mutation แล้วตามด้วย 2-opt, meal_fill, time_repair
+652         เพื่อปรับ POI ที่ไม่ล็อกให้ score สูงขึ้นภายใต้งบ/เวลาเดิม
+653      """
+654      locked, excluded = set(locked_ids), set(excluded_ids)
+655      locked -= set(infeasible_locks(pois, hotel, locked, budget))
+656      locked_all = set(locked)
+657      pool = [p for p in pois if p['id'] not in excluded]
+658      start = [[p for p in day if p['id'] not in excluded] for day in routes]
+659
+660      def respects(ch):
+661          ids = {p['id'] for day in ch for p in day}
+662          return locked <= ids and not (ids & excluded)
+663
+664      population = [start]
+665      fits = [_fitness(start, hotel, budget, scoring_mode, diversity_weight)]
+666      for _ in range(generations):
+667          children = []
+668          for _ in range(pop_size):
+669              parent = population[random.randrange(len(population))]
+670              child = _mutate(copy.deepcopy(parent), pool, mutation_rate)
+671              if respects(child):
+672                  children.append(child)
+673          population += children
+674          fits += [_fitness(c, hotel, budget, scoring_mode, diversity_weight) for c in children]
+675          order = sorted(range(len(population)), key=lambda i: fits[i], reverse=True)[:pop_size]
+676          population = [population[i] for i in order]
+677          fits = [fits[i] for i in order]
+678
+679      refined = [two_opt_day(day, hotel) for day in population[0]]
+680      before = refined
+681      refined = meal_fill(refined, pool, hotel, budget, scoring_mode)
+682      kept = {p['id'] for day in refined for p in day}
+683      for d, day in enumerate(before):          # meal_fill ตัด attr เกิน 4 ต่อวัน — คืนจุดที่ผู้ใช้ล็อกไว้
+684          for p in day:
+685              if p['id'] in locked and p['id'] not in kept:
+686                  refined[d].insert(max(0, len(refined[d]) - 1), p)
+บรรทัด 644–647: ประกาศ reoptimize_solve รับแผนปัจจุบัน งบ จุดล็อก จุดที่ห้ามกลับ โหมด ขนาดประชากร 20 รุ่น 30 อัตรากลายพันธุ์ 0.6
+บรรทัด 648–653: docstring: ปรับแผนหลังผู้ใช้แก้ เริ่มจากแผนปัจจุบัน ใช้การค้นหาแบบ (mu+lambda) เฉพาะ mutation แล้ว 2-opt, meal_fill, time_repair
+บรรทัด 654–655: เตรียมชุดจุดล็อกและจุดที่ถูกลบ และตัดจุดล็อกที่ใส่ไม่ได้ด้วย infeasible_locks
+บรรทัด 656: เก็บสำเนาจุดล็อกทั้งหมดไว้ใช้ตอนใส่คืน
+บรรทัด 657–658: ตัดจุดที่ถูกลบออกจากชุดจุดและแผนตั้งต้น
+บรรทัด 660–662: ฟังก์ชัน respects ตรวจว่าแผนมีจุดล็อกครบและไม่มีจุดที่ห้าม
+บรรทัด 664–665: ประชากรเริ่มต้นคือแผนตั้งต้น และ fitness ของมัน
+บรรทัด 666–677: วนตามรุ่น: สร้างลูกด้วย _mutate เฉพาะที่เคารพจุดล็อก/ห้าม รวมกับประชากรเดิม เรียงด้วย fitness แล้วเก็บ 20 ตัวดีสุด
+บรรทัด 679–681: 2-opt ในทุกวันของตัวดีที่สุด แล้ว meal_fill
+บรรทัด 682–686: คืนจุดล็อกที่ meal_fill ตัดออกเมื่อมีที่เที่ยวเกิน 4 ต่อวัน
+บรรทัด 687–721  `reoptimize_solve` ซ่อมซ้ำจนผ่าน
+687      # รอบซ่อมวนซ้ำจนแผนผ่านทุกข้อจำกัดและมีมื้อครบ (การเติมมื้ออาจทำให้เวลา/งบเสียอีก จึงต้องตรวจหลังเติมเสมอ)
+688      def meals_ok(rs):
+689          return all(sum(1 for p in day if p['category'] == 'restaurant') >= 2 for day in rs)
+690
+691      tried_days = set()
+692      for _ in range(5):
+693          refined = _time_repair(refined, hotel, protect=locked)
+694          refined = _budget_repair(refined, hotel, budget, protect=locked)
+695          refined = _final_validity(refined, hotel, locked, tried_days)
+696          locked = locked & {p['id'] for day in refined for p in day}      # จุดล็อกที่ยังอยู่ในแผน
+697          lacking = [d for d, day in enumerate(refined)
+698                     if sum(1 for p in day if p['category'] == 'restaurant') < 2]
+699          for d in lacking:           # วันที่แน่นจนไม่มีเวลาใส่มื้อ: ลบ attraction คะแนนต่ำสุดที่ไม่ได้ล็อกก่อนเติมมื้อ
+700              cands = [(i, p) for i, p in enumerate(refined[d])
+701                       if p['category'] != 'restaurant' and p['id'] not in locked]
+702              if cands:
+703                  refined[d].pop(min(cands, key=lambda c: c[1]['score'])[0])
+704          refined = meal_fill(refined, pool, hotel, budget, scoring_mode)
+705          ev = evaluate_route(refined, hotel, budget)
+706          if ev['valid'] and meals_ok(refined):
+707              break
+708      if not meals_ok(refined):    # ทางสุดท้าย: วันที่ยังไม่มีมื้อครบ เก็บเฉพาะจุดที่ผู้ใช้ล็อก แล้วเติมมื้อใหม่ (ได้แผนสั้นแต่ใช้ได้จริง)
+709          for d, day in enumerate(refined):
+710              if sum(1 for p in day if p['category'] == 'restaurant') < 2:
+711                  refined[d] = [p for p in day if p['id'] in locked and p['category'] != 'restaurant']
+712          refined = _time_repair(meal_fill(refined, pool, hotel, budget, scoring_mode), hotel, protect=locked)
+713          refined = _budget_repair(refined, hotel, budget, protect=locked)
+714      for _ in range(2):    # วันที่ยังผิดข้อจำกัดอยู่ (เช่น มื้อสายเกินช่วง): ล้างเหลือเฉพาะจุดที่ล็อก แล้วสร้างวันนั้นใหม่
+715          bad = {int(v.split()[1].rstrip(':')) - 1 for v in evaluate_route(refined, hotel, budget)['violations'] if v.startswith('Day ')}
+716          if not bad:
+717              break
+718          for d in bad:
+719              refined[d] = [p for p in refined[d] if p['id'] in locked and p['category'] != 'restaurant']
+720          refined = _time_repair(meal_fill(refined, pool, hotel, budget, scoring_mode), hotel, protect=locked)
+721          refined = _budget_repair(refined, hotel, budget, protect=locked)
+บรรทัด 688–689: ฟังก์ชัน meals_ok ตรวจว่าทุกวันมีร้านอย่างน้อย 2 ร้าน
+บรรทัด 691–695: วนไม่เกิน 5 รอบ: ซ่อมเวลา ซ่อมงบ ซ่อมความถูกต้องสุดท้ายโดยป้องกันจุดล็อก
+บรรทัด 696: ปรับชุดจุดล็อกให้เหลือเฉพาะที่ยังอยู่ในแผน
+บรรทัด 697–703: วันที่ไม่มีเวลาใส่มื้อ ลบที่เที่ยวคะแนนต่ำสุดที่ไม่ได้ล็อกก่อน
+บรรทัด 704–707: เติมมื้อใหม่ ถ้า valid และมื้อครบ ออกจากลูป
+บรรทัด 708–713: ทางสุดท้าย: วันที่ยังขาดมื้อ เก็บเฉพาะจุดล็อกแล้วเติมมื้อใหม่ ได้แผนสั้นแต่ใช้ได้จริง
+บรรทัด 714–721: อีกสองรอบสำหรับวันที่ยังผิดข้อจำกัด (เช่น มื้อสายเกินช่วง): ล้างเหลือเฉพาะจุดล็อกแล้วสร้างวันนั้นใหม่
+บรรทัด 722–736  ใส่จุดล็อกกลับและคืนผล
+722      # จุดล็อกที่ใส่ได้จริงแต่ถูกถอดระหว่างซ่อม: ใส่กลับในตำแหน่งที่ทำให้แผนยังผ่านทุกข้อจำกัด (ระยะเพิ่มน้อยสุด)
+723      by_id = {p['id']: p for p in pois}
+724      for pid in locked_all - {p['id'] for day in refined for p in day}:
+725          best = None
+726          for d, day in enumerate(refined):
+727              for i in range(len(day) + 1):
+728                  trial = refined[:d] + [day[:i] + [by_id[pid]] + day[i:]] + refined[d + 1:]
+729                  ev = evaluate_route(trial, hotel, budget)
+730                  if ev['valid']:
+731                      km = sum(x['distance_km'] for x in ev['days_detail'])
+732                      if best is None or km < best[0]:
+733                          best = (km, trial)
+734          if best:
+735              refined = best[1]
+736      return refined
+บรรทัด 722–724: จุดล็อกที่ใส่ได้จริงแต่ถูกถอดระหว่างซ่อม ให้ใส่กลับ
+บรรทัด 725–733: ลองแทรกที่ทุกตำแหน่งของทุกวัน เลือกตำแหน่งที่แผนยัง valid และระยะรวมเพิ่มน้อยสุด
+บรรทัด 734–735: ใช้ตำแหน่งที่ดีที่สุด
+บรรทัด 736: คืนแผน (เรียกจาก /api/reoptimize ใน ➜ backend/main.py)
+บรรทัด 739–754  ฟังก์ชันทดสอบ
+739  def main():
+740      from utils import load_data, print_result
+741      pois, hotels = load_data('../data/provinces/phuket.json')
+742      h = next(h for h in hotels if h['id'] == 'H11')
+743      print(f"Hotel: {h['name_en']}")
+744      t0 = time.time()
+745      routes, history = hybrid_solve(pois, h, 6, 6800, verbose=True)
+746      elapsed = (time.time() - t0) * 1000
+747      print(f"\nElapsed: {elapsed:.0f} ms")
+748      print(f"History: gen0={history[0]:.1f} → final={history[-1]:.1f}")
+749      result = evaluate_route(routes, h, 6800)
+750      print_result(result, label='Hybrid')
 751
-752  if __name__ == '__main__':
-753      main()
-บรรทัด 738–741: main สำหรับทดสอบตรง ๆ: โหลดข้อมูลภูเก็ตด้วย ➜ load_data() ใน algorithm/utils.py และเลือกโรงแรม H11
-บรรทัด 742–744: พิมพ์ชื่อโรงแรม จับเวลา และรัน hybrid_solve 6 วัน งบ 6,800
-บรรทัด 745–749: พิมพ์เวลา ประวัติ fitness และผลด้วย ➜ print_result() ใน algorithm/utils.py
-บรรทัด 752–753: เรียก main() เมื่อรันไฟล์นี้โดยตรง
+752
+753  if __name__ == '__main__':
+754      main()
+บรรทัด 739–742: main สำหรับทดสอบตรง ๆ: โหลดข้อมูลภูเก็ตด้วย ➜ load_data() ใน algorithm/utils.py และเลือกโรงแรม H11
+บรรทัด 743–745: พิมพ์ชื่อโรงแรม จับเวลา และรัน hybrid_solve 6 วัน งบ 6,800
+บรรทัด 746–750: พิมพ์เวลา ประวัติ fitness และผลด้วย ➜ print_result() ใน algorithm/utils.py
+บรรทัด 753–754: เรียก main() เมื่อรันไฟล์นี้โดยตรง
 
 ไฟล์ที่เชื่อมกับไฟล์นี้
 algorithm/genetic.py

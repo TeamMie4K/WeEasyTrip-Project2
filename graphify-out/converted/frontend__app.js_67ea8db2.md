@@ -2,7 +2,7 @@
 
 คู่มือโค้ด: frontend/app.js
 ตรรกะหลักของหน้าเว็บ (app.js)
-ไฟล์ต้นฉบับ: frontend/app.js (1713 บรรทัด)   ➜ กลับสารบัญคู่มือ
+ไฟล์ต้นฉบับ: frontend/app.js (1759 บรรทัด)   ➜ กลับสารบัญคู่มือ
 บทบาทของไฟล์: ไฟล์ JavaScript หลักของเว็บ ทำหน้าที่ตั้งค่าเริ่มต้น เลือกวันเดินทางและอัลกอริทึม ส่งคำขอไป ➜ backend/main.py (เส้นทาง /api/provinces /api/pois /api/packages /api/recompute /api/reoptimize /api/pareto และเซสชันแชร์) แล้ววาดแพ็กเกจ รายละเอียดแผน การ์ดสถานที่ และแผนที่ Leaflet ตัวแปรกลาง STATE เก็บสถานะทั้งเว็บ ฟังก์ชันที่ผูกกับปุ่มใน ➜ frontend/index.html (onclick) อยู่ในไฟล์นี้ทั้งหมด ไฟล์ ➜ frontend/extras.js โหลดตามหลังและห่อฟังก์ชันหลายตัวของไฟล์นี้เพื่อเพิ่มฟีเจอร์ ส่วน ➜ frontend/i18n.js แปลข้อความที่ไฟล์นี้สร้างเป็นภาษาอังกฤษ ➜ frontend/tutorial.js ห่อ renderDetail และ ➜ frontend/style.css กำหนดสไตล์ของคลาสที่ไฟล์นี้สร้าง (ไฟล์ app.backup.js เป็นสำเนารุ่นเก่า ไม่ได้ใช้)
 
 บรรทัด 1–5  หัวไฟล์ และที่อยู่ของ backend
@@ -566,7 +566,7 @@
 บรรทัด 500–503: exportIcs (ผูกกับปุ่มใน ➜ frontend/index.html) ถ้าไม่มีแผนออก หาวันเริ่มจากตัวเลือกวัน (ไม่มีใช้วันนี้)
 บรรทัด 504–511: สร้าง Blob และลิงก์ดาวน์โหลดชั่วคราว คลิก ลบ และเรียกคืน URL หลัง 1 วินาที
 บรรทัด 512: แจ้งผู้ใช้
-บรรทัด 518–528  ตั้งค่าที่ส่งขึ้นเซสชัน
+บรรทัด 518–533  ตั้งค่าที่ส่งขึ้นเซสชัน
 518  function sessionSettings() {
 519    const d = DATE_PICKER && DATE_PICKER.selectedDates[0];
 520    return {
@@ -576,1335 +576,1386 @@
 524      start_date: d ? `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` : null,
 525      preferences: getPreferences(),
 526      locked: [...STATE.locked], excluded: [...STATE.excluded],
-527    };
-528  }
-บรรทัด 518–528: sessionSettings รวมงบ จำนวนคน ตัวเลือกโรงแรม วันเริ่ม ความชอบ และชุด locked/excluded เป็นอ็อบเจ็กต์ที่ส่งไปให้เพื่อน
-บรรทัด 530–539  นำสถานะที่ได้มาใช้
-530  function applySharedState(data, announce) {
-531    STATE.selectedPkg = data.package;
-532    const st = data.settings || {};
-533    STATE.locked = new Set(st.locked || []);
-534    STATE.excluded = new Set(st.excluded || []);
-535    STATE.session.version = data.version;
-536    drawOnMap(STATE.selectedPkg);
-537    renderDetail(STATE.selectedPkg);
-538    if (announce) showToast(announce, 'ok', 3000);
-539  }
-บรรทัด 530–535: applySharedState ตั้งแผน จุดที่ล็อกและลบ และเลขรุ่น (version) จากข้อมูลของเซสชัน
-บรรทัด 536–538: วาดแผนที่ (➜ drawOnMap() ใน frontend/app.js) และรายละเอียด (➜ renderDetail() ใน frontend/app.js) ใหม่ และแจ้งข้อความถ้ามี
-บรรทัด 541–562  สร้างลิงก์แชร์
-541  async function shareSession() {
-542    const pkg = STATE.selectedPkg;
-543    if (!pkg) return;
-544    try {
-545      if (!STATE.session) {
-546        const res = await fetch(`${API_BASE}/api/sessions`, {
-547          method: 'POST', headers: {'Content-Type': 'application/json'},
-548          body: JSON.stringify({province: getProvince(), package: pkg, settings: sessionSettings()}),
-549        });
-550        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-551        const data = await res.json();
-552        STATE.session = {id: data.id, version: data.version, timer: null, busy: false};
-553        history.replaceState(null, '', `?s=${data.id}`);
-554        startSessionPolling();
-555      }
-556      const url = location.href;
-557      try { await navigator.clipboard.writeText(url); showToast('คัดลอกลิงก์แล้ว — ส่งให้เพื่อนเพื่อวางแผนร่วมกัน', 'ok', 4500); }
-558      catch (e) { window.prompt('คัดลอกลิงก์นี้ส่งให้เพื่อน', url); }
-559    } catch (e) {
-560      showToast(`แชร์ไม่สำเร็จ: ${e.message}`, 'error');
-561    }
-562  }
-บรรทัด 541–543: shareSession ถ้าไม่มีแผนออก
-บรรทัด 545–552: ถ้ายังไม่มีเซสชัน ส่ง POST ไป /api/sessions (➜ create_session() ใน backend/main.py) พร้อมจังหวัด แผน และค่าตั้ง แล้วจดรหัสเซสชันและเลขรุ่น
-บรรทัด 553–554: ใส่ ?s=<รหัส> ใน URL และเริ่มโพลล์ดูการเปลี่ยนแปลง
-บรรทัด 556–558: คัดลอกลิงก์ลงคลิปบอร์ด ถ้าทำไม่ได้แสดงช่องให้คัดลอกเอง
-บรรทัด 559–561: ถ้าผิดพลาดแจ้งข้อความ
-บรรทัด 564–577  โพลล์ดูการแก้ไขของเพื่อน
-564  function startSessionPolling() {
-565    clearInterval(STATE.session.timer);
-566    STATE.session.timer = setInterval(async () => {
-567      const ss = STATE.session;
-568      if (!ss || ss.busy || document.hidden) return;
-569      try {
-570        const res = await fetch(`${API_BASE}/api/sessions/${ss.id}?since=${ss.version}`);
-571        if (res.status === 404) { clearInterval(ss.timer); showToast('เซสชันหมดอายุแล้ว', 'error'); STATE.session = null; return; }
-572        if (!res.ok) return;
-573        const data = await res.json();
-574        if (data.changed) applySharedState(data, 'เพื่อนแก้ไขแผน — อัปเดตให้แล้ว');
-575      } catch (e) { /* เครือข่ายสะดุด: ลองใหม่รอบหน้า */ }
-576    }, 2000);
-577  }
-บรรทัด 564–566: startSessionPolling ล้างตัวจับเวลาเก่า แล้วตั้งทุก 2 วินาที
-บรรทัด 567–568: ข้ามถ้าไม่มีเซสชัน กำลังส่งอยู่ (busy) หรือแท็บถูกซ่อน
-บรรทัด 570–572: ถามเซสชันตามเลขรุ่น ถ้า 404 แจ้งว่าหมดอายุและหยุด
-บรรทัด 573–574: ถ้ามีการเปลี่ยน นำสถานะใหม่มาใช้ และแจ้ง "เพื่อนแก้ไขแผน — อัปเดตให้แล้ว"
-บรรทัด 575: เครือข่ายสะดุดข้ามไปลองรอบหน้า
-บรรทัด 580–597  ส่งการแก้ไขของเราขึ้นเซสชัน
-580  async function pushSession() {
-581    const ss = STATE.session;
-582    if (!ss) return;
-583    ss.busy = true;
-584    try {
-585      const res = await fetch(`${API_BASE}/api/sessions/${ss.id}`, {
-586        method: 'PUT', headers: {'Content-Type': 'application/json'},
-587        body: JSON.stringify({base_version: ss.version, package: STATE.selectedPkg, settings: sessionSettings()}),
-588      });
-589      if (res.status === 409) {
-590        const err = await res.json();
-591        applySharedState(err.detail, 'มีคนแก้ไขพร้อมกัน — ใช้ฉบับล่าสุดของเพื่อน');
-592      } else if (res.ok) {
-593        ss.version = (await res.json()).version;
-594      }
-595    } catch (e) { /* ออฟไลน์: เก็บไว้ในเครื่อง */ }
-596    finally { ss.busy = false; }
-597  }
-บรรทัด 580–583: pushSession ออกถ้าไม่มีเซสชัน ตั้ง busy ให้โพลล์ไม่ซ้อน
-บรรทัด 585–588: ส่ง PUT พร้อมเลขรุ่นฐาน แผน และค่าตั้ง ไป ➜ update_session() ใน backend/main.py
-บรรทัด 589–591: ถ้า 409 (มีคนแก้ก่อน) ใช้ฉบับล่าสุดของเพื่อนแทน และแจ้งผู้ใช้
-บรรทัด 592–594: ถ้าสำเร็จ จดเลขรุ่นใหม่
-บรรทัด 595–596: ออฟไลน์เก็บในเครื่อง และปลดสถานะ busy เสมอ
-บรรทัด 599–638  เข้าร่วมเซสชันจากลิงก์
-599  async function joinSession(id) {
-600    try {
-601      const res = await fetch(`${API_BASE}/api/sessions/${id}`);
-602      if (!res.ok) throw new Error(res.status === 404 ? 'ลิงก์หมดอายุหรือไม่ถูกต้อง' : `HTTP ${res.status}`);
-603      const data = await res.json();
-604      const st = data.settings || {};
-605      const item = [...document.querySelectorAll('#provList .prov-item')].find(i => i.dataset.value === data.province);
-606      if (item) {                                   // ตั้งจังหวัดโดยไม่ล้างผลซ้ำ แล้วโหลดข้อมูลจังหวัดนั้น
-607        document.querySelectorAll('.prov-item').forEach(i => i.classList.remove('prov-active'));
-608        item.classList.add('prov-active');
-609        document.getElementById('province').value = data.province;
-610        document.getElementById('provName').textContent = item.dataset.label;
-611      }
-612      await loadPois();
-613      if (st.budget) document.getElementById('budget').value = st.budget;
-614      if (st.travelers) document.getElementById('travelers').value = st.travelers;
-615      if (st.start_date && DATE_PICKER) {
-616        const d0 = new Date(st.start_date + 'T00:00:00');
-617        const d1 = new Date(d0.getTime() + (data.package.days.length - 1) * 86400000);
-618        DATE_PICKER.setDate([d0, d1], true);
-619      }
-620      STATE.includeHotel = st.include_hotel !== false;
-621      STATE.session = {id: data.id, version: data.version, timer: null, busy: false};
-622      document.getElementById('detailPanel').style.display = 'block';
-623      STATE.selectedPkg = data.package;
-624      STATE.locked = new Set(st.locked || []); STATE.excluded = new Set(st.excluded || []);
-625      renderDetail(STATE.selectedPkg);
-626      setTimeout(() => {
-627        STATE.map.invalidateSize();
-628        drawOnMap(STATE.selectedPkg);
-629        document.getElementById('detailPanel').scrollIntoView({behavior: 'smooth', block: 'start'});
-630        setTimeout(syncMapHeight, 150);
-631      }, 150);
-632      startSessionPolling();
-633      showToast('เข้าร่วมแผนที่เพื่อนแชร์มา — แก้ไขแล้วทุกคนเห็นพร้อมกัน', 'ok', 4500);
-634    } catch (e) {
-635      showToast(`เข้าร่วมไม่ได้: ${e.message}`, 'error', 6000);
-636      await loadPois();
-637    }
-638  }
-บรรทัด 599–603: joinSession ขอข้อมูลเซสชัน ถ้า 404 แจ้งว่าลิงก์หมดอายุหรือไม่ถูกต้อง
-บรรทัด 604–611: ตั้งจังหวัดในเมนูและช่องซ่อนโดยไม่ล้างผลซ้ำ
-บรรทัด 612: โหลดสถานที่ของจังหวัดนั้น (➜ loadPois() ใน frontend/app.js)
-บรรทัด 613–619: คืนค่างบ จำนวนคน และช่วงวันที่จากค่าตั้งที่แชร์
-บรรทัด 620–625: ตั้งสถานะโรงแรม เซสชัน แผน จุดที่ล็อกและลบ แล้วแสดงรายละเอียด
-บรรทัด 626–631: หน่วง 150 มิลลิวินาที แล้ววาดแผนที่ เลื่อนหน้า และปรับความสูงแผนที่
-บรรทัด 632–633: เริ่มโพลล์ และแจ้งว่าเข้าร่วมแล้ว
-บรรทัด 634–637: ถ้าผิดพลาดแจ้งข้อความและโหลดสถานที่ตามปกติ
-บรรทัด 643–681  ตัวช่วยเวลา และประวัติย้อนกลับ/เดินหน้า (undo/redo)
-643  function fmtClock(min) {
-644    return `${String(Math.floor(min / 60) % 24).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
-645  }
-646
-647  // เก็บแผนตั้งต้นไว้เป็นคุณสมบัติที่ไม่ถูก serialize (ไม่ปนใน session/ไฟล์บันทึก)
-648  function setHidden(obj, key, value) { Object.defineProperty(obj, key, {value, enumerable: false, writable: true, configurable: true}); }
-649  const routeIds = p => JSON.stringify((p?.days || []).map(d => d.pois.map(x => x.id)));
-650  // ย้อนกลับ / เดินหน้า (undo / redo) ทีละการแก้ไขเหมือนโปรแกรมแต่งภาพ: เก็บสำเนาแผนหลังการแก้แต่ละครั้ง (ลาก ลบ สลับ เพิ่ม สลับเป็นในร่ม) ผูกกับแผนตั้งต้น (_orig) ถ้าสร้างแผนใหม่ประวัติจะเริ่มใหม่
-651  const HIST = {orig: null, base: null, stack: [], idx: -1, applying: false};
-652  const histSnap = pkg => ({sig: routeIds(pkg) + JSON.stringify([...STATE.locked].sort()) + JSON.stringify([...STATE.excluded].sort()), pkg: JSON.parse(JSON.stringify(pkg)), locked: [...STATE.locked], excluded: [...STATE.excluded]});
-653  function recordHistory(pkg) {
-654    if (HIST.applying || !pkg._orig) return;
-655    const s = histSnap(pkg);
-656    if (HIST.orig !== pkg._orig) { HIST.orig = pkg._orig; HIST.stack = [s]; HIST.idx = 0; }
-657    else if (s.sig !== HIST.stack[HIST.idx].sig) { HIST.stack = HIST.stack.slice(0, HIST.idx + 1); HIST.stack.push(s); HIST.idx++; if (HIST.stack.length > 50) { HIST.stack.shift(); HIST.idx--; } }
-658    HIST.base = pkg._base;
-659    updateHistBtns();
-660  }
-661  function updateHistBtns() {
-662    const u = document.getElementById('undoBtn'), r = document.getElementById('redoBtn');
-663    if (u) u.classList.toggle('disabled', HIST.idx <= 0);
-664    if (r) r.classList.toggle('disabled', HIST.idx >= HIST.stack.length - 1);
-665  }
-666  function stepHistory(dir) {
-667    const n = HIST.idx + dir; if (n < 0 || n >= HIST.stack.length || !STATE.selectedPkg) return;
-668    HIST.idx = n; const e = HIST.stack[n], c = JSON.parse(JSON.stringify(e.pkg));
-669    setHidden(c, '_orig', HIST.orig); c._base = HIST.base;
-670    STATE.selectedPkg = c; STATE.locked = new Set(e.locked); STATE.excluded = new Set(e.excluded);
-671    HIST.applying = true;
-672    try { drawOnMap(c); renderDetail(c); } finally { HIST.applying = false; }
-673    updateHistBtns(); pushSession();
-674    showToast(dir < 0 ? 'ย้อนกลับแล้ว' : 'ทำซ้ำแล้ว', 'ok', 1800);
-675  }
-676  const undoEdit = () => stepHistory(-1), redoEdit = () => stepHistory(1);
-677  document.addEventListener('keydown', e => {
-678    if (!(e.ctrlKey || e.metaKey) || e.target.closest?.('input, textarea, select, [contenteditable]') || document.querySelector('.modal.open')) return;
-679    const k = e.key.toLowerCase();
-680    if (k === 'z' && !e.shiftKey) { e.preventDefault(); undoEdit(); } else if (k === 'y' || (k === 'z' && e.shiftKey)) { e.preventDefault(); redoEdit(); }
-681  });
-บรรทัด 643–645: fmtClock แปลงนาทีจากเที่ยงคืนเป็นข้อความ HH:MM
-บรรทัด 647–648: setHidden ตั้งคุณสมบัติที่ไม่ถูกนับตอนแปลงเป็น JSON (enumerable เป็นเท็จ) ใช้เก็บแผนตั้งต้นโดยไม่ปนไปกับเซสชันหรือไฟล์บันทึก
-บรรทัด 649: routeIds ลายเซ็นลำดับ id ของสถานที่ทุกวัน
-บรรทัด 650–652: HIST ตัวแปรสถานะประวัติ (แผนตั้งต้น ฐานคำเตือน กองประวัติ ตำแหน่ง และธง applying) และ histSnap สร้างสำเนาแผนพร้อมลายเซ็นของแผน ชุดล็อกและชุดลบ
-บรรทัด 653–660: recordHistory ถ้ากำลังเรียกจาก undo/redo หรือไม่มีแผนตั้งต้นก็ข้าม ถ้าเป็นแผนใหม่เริ่มกองประวัติใหม่ ถ้าลายเซ็นเปลี่ยนตัดส่วนที่เดินหน้าทิ้ง เพิ่มรายการ (เก็บสูงสุด 50) แล้วอัปเดตปุ่ม (ถูกเรียกจากตัวห่อ renderDetail ใน ➜ recordHistory() ใน frontend/app.js )
-บรรทัด 661–665: updateHistBtns ปิดปุ่มย้อนกลับเมื่ออยู่ต้นกอง และปุ่มเดินหน้าเมื่ออยู่ท้ายกอง
-บรรทัด 666–675: stepHistory ขยับตำแหน่งในกอง คืนแผน ชุดล็อก/ลบ จากสำเนา วาดใหม่ในขณะตั้งธง applying แล้วส่งขึ้นเซสชัน (➜ pushSession() ใน frontend/app.js) และแจ้งผู้ใช้
-บรรทัด 676: undoEdit และ redoEdit (ปุ่มที่ ➜ frontend/extras.js แทรกเรียกฟังก์ชันนี้)
-บรรทัด 677–681: ปุ่มลัด Ctrl/Cmd+Z ย้อนกลับ และ Ctrl+Y หรือ Ctrl+Shift+Z เดินหน้า (ไม่ทำงานเมื่อกำลังพิมพ์หรือมีหน้าต่างเปิดอยู่)
-บรรทัด 685–702  คำเตือนเวลาเปิด-ปิด
-685  function uiWarnings(pkg, raw = false) {
-686    const out = [], speed = (STATE.provinces[getProvince().split('+')[0]] || {}).speed_kmh || 40;
-687    (pkg.days || []).forEach((day, d) => {
-688      let endT = 480, lat = pkg.hotel.lat, lng = pkg.hotel.lng;
-689      day.pois.forEach(p => {
-690        const full = {...(STATE.pois.find(q => q.id === p.id) || {}), ...p}, at = arriveOf(day, p);
-691        const km = haversineKm(lat, lng, p.lat, p.lng), early = endT + km / speed * 60 * 1.25 + (km >= 0.3 ? 10 : 0);   // เวลาถึงก่อนรอร้านเปิด (ตัวคูณจราจร 1.25 + เผื่อจอด/เดิน 10 นาที ตรงกับ algorithm/utils.py)
-692        if (full.close_min !== undefined && at >= 0 && at > full.close_min) out.push({d, id: p.id, type: 'late', poi: full});
-693        else if (full.open_min > 0 && early < full.open_min - 10) out.push({d, id: p.id, type: 'early', poi: full});
-694        endT = (at >= 0 ? at : early) + (p.duration_min || 0); lat = p.lat; lng = p.lng;
-695      });
-696    });
-697    const key = w => `${w.id}:${w.type}`;
-698    if (raw) return out;
-699    // แผนที่ระบบสร้างเองมีการรอร้านเปิดตามปกติ จึงไม่เตือน: จำคำเตือนตั้งต้นของแผนไว้ (_base) แล้วแสดงเฉพาะที่เกิดใหม่หลังผู้ใช้แก้แผน
-700    if (!pkg._base) { pkg._base = new Set(out.map(key)); return []; }
-701    return out.filter(w => !pkg._base.has(key(w)));
-702  }
-บรรทัด 685–686: uiWarnings เตรียมรายการ และความเร็วเดินทางของจังหวัด (ตั้งต้น 40 กม./ชม.)
-บรรทัด 687–688: แต่ละวัน เริ่มที่ 8:00 (480 นาที) จากพิกัดโรงแรม
-บรรทัด 689–691: แต่ละสถานที่ รวมข้อมูลเวลาเปิด-ปิดจาก STATE.pois หาเวลาถึงที่คำนวณไว้ (➜ arriveOf() ใน frontend/app.js) และประมาณเวลาถึงก่อนรอร้านเปิดด้วยระยะทาง haversineKm ตัวคูณจราจร 1.25 และเวลาเตรียม 10 นาที
-บรรทัด 692–693: ถ้าเวลาถึงเกินเวลาปิด เป็นคำเตือน late ถ้าถึงก่อนร้านเปิดเกิน 10 นาที เป็น early
-บรรทัด 694–696: อัปเดตเวลาสิ้นสุดและตำแหน่งปัจจุบัน
-บรรทัด 697–698: key กุญแจคำเตือน และคืนทั้งหมดถ้า raw
-บรรทัด 700: แผนที่ระบบสร้างมีการรอร้านเปิดตามปกติ จึงจำคำเตือนตั้งต้นเป็นฐานและไม่เตือนครั้งแรก
-บรรทัด 701–702: ครั้งต่อไปแสดงเฉพาะคำเตือนที่ผู้ใช้ทำเกิดใหม่ (ตัวแสดงผลคือ decorateWarnings ใน ➜ decorateWarnings() ใน frontend/extras.js)
-บรรทัด 705–726  ตัวช่วยจัดรูปและเวลาถึง
-705  function fmtDur(min) {
-706    const m = Math.round(min), h = Math.floor(m / 60), r = m % 60;
-707    return h ? (r ? `${h}H ${r}m` : `${h}H`) : `${r}m`;
-708  }
-709
-710  function arriveOf(day, poi) {   // เวลาถึงที่อัลกอริทึมคำนวณ (นาทีจากเที่ยงคืน) หรือ -1 ถ้าไม่มี
-711    const a = (day.arrivals || []).find(x => x[0] === poi.id);
-712    return a ? a[1] : -1;
-713  }
-714
-715  function hoursText(poi) {
-716    if (poi.open_min === undefined) poi = STATE.pois.find(p => p.id === poi.id) || poi;   // POI ในแผนจาก API ไม่มีเวลาเปิด-ปิด
-717    if (poi.open_min === undefined) return 'ไม่ระบุ';
-718    if (poi.open_min <= 0 && poi.close_min >= 1439) return 'ทั้งวัน';
-719    return `${fmtClock(poi.open_min)}–${fmtClock(poi.close_min)}`;
+527      base_warn: STATE.selectedPkg && STATE.selectedPkg._base instanceof Set ? [...STATE.selectedPkg._base] : null,   // คำเตือนตั้งต้นของแผน ใช้ร่วมกันทุกเครื่อง ไม่งั้นแต่ละเครื่องตั้งต้นต่างกันแล้วเห็นคำเตือนไม่เหมือนกัน
+528    };
+529  }
+530  function applyBaseWarn(pkg, st) { if (pkg && st && Array.isArray(st.base_warn)) setHidden(pkg, '_base', new Set(st.base_warn)); return pkg; }
+531
+532  // แผนจาก session อาจมี _base ที่ถูก serialize เป็น {} (จากรุ่นเก่า): ลบทิ้งเพื่อให้คำนวณคำเตือนตั้งต้นใหม่
+533  function cleanShared(p) { if (p && !(p._base instanceof Set)) delete p._base; return p; }
+บรรทัด 518–528: sessionSettings รวมงบ จำนวนคน ตัวเลือกโรงแรม วันเริ่ม ความชอบ ชุด locked/excluded และ base_warn (คำเตือนตั้งต้นของแผน เพื่อให้ทุกเครื่องเห็นคำเตือนชุดเดียวกัน) เป็นอ็อบเจ็กต์ที่ส่งไปให้เพื่อน
+บรรทัด 530: applyBaseWarn นำ base_warn จากค่าตั้งมาตั้งเป็นคำเตือนตั้งต้นของแผน (เก็บเป็น Set ที่ซ่อนจาก JSON ด้วย setHidden)
+บรรทัด 532–533: cleanShared ลบ _base ที่ถูก serialize เป็น {} (จากเซสชันรุ่นเก่า) เพื่อให้คำนวณคำเตือนตั้งต้นใหม่ ไม่เช่นนั้นเรียก .has ไม่ได้
+บรรทัด 535–545  นำสถานะที่ได้มาใช้
+535  function applySharedState(data, announce) {
+536    STATE.selectedPkg = cleanShared(data.package);
+537    const st = data.settings || {};
+538    applyBaseWarn(STATE.selectedPkg, st);
+539    STATE.locked = new Set(st.locked || []);
+540    STATE.excluded = new Set(st.excluded || []);
+541    STATE.session.version = data.version;
+542    drawOnMap(STATE.selectedPkg);
+543    renderDetail(STATE.selectedPkg);
+544    if (announce) showToast(announce, 'ok', 3000);
+545  }
+บรรทัด 535–538: applySharedState ตั้งแผน (ผ่าน cleanShared) และคืนคำเตือนตั้งต้นด้วย applyBaseWarn
+บรรทัด 539–541: ตั้งจุดที่ล็อกและลบ และเลขรุ่น (version) จากข้อมูลของเซสชัน
+บรรทัด 542–544: วาดแผนที่ (➜ drawOnMap() ใน frontend/app.js) และรายละเอียด (➜ renderDetail() ใน frontend/app.js) ใหม่ และแจ้งข้อความถ้ามี
+บรรทัด 547–568  สร้างลิงก์แชร์
+547  async function shareSession() {
+548    const pkg = STATE.selectedPkg;
+549    if (!pkg) return;
+550    try {
+551      if (!STATE.session) {
+552        const res = await fetch(`${API_BASE}/api/sessions`, {
+553          method: 'POST', headers: {'Content-Type': 'application/json'},
+554          body: JSON.stringify({province: getProvince(), package: pkg, settings: sessionSettings()}),
+555        });
+556        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+557        const data = await res.json();
+558        STATE.session = {id: data.id, version: data.version, timer: null, busy: false};
+559        history.replaceState(null, '', `?s=${data.id}`);
+560        startSessionPolling();
+561      }
+562      const url = location.href;
+563      try { await navigator.clipboard.writeText(url); showToast('คัดลอกลิงก์แล้ว — ส่งให้เพื่อนเพื่อวางแผนร่วมกัน', 'ok', 4500); }
+564      catch (e) { window.prompt('คัดลอกลิงก์นี้ส่งให้เพื่อน', url); }
+565    } catch (e) {
+566      showToast(`แชร์ไม่สำเร็จ: ${e.message}`, 'error');
+567    }
+568  }
+บรรทัด 547–549: shareSession ถ้าไม่มีแผนออก
+บรรทัด 551–558: ถ้ายังไม่มีเซสชัน ส่ง POST ไป /api/sessions (➜ create_session() ใน backend/main.py) พร้อมจังหวัด แผน และค่าตั้ง แล้วจดรหัสเซสชันและเลขรุ่น
+บรรทัด 559–560: ใส่ ?s=<รหัส> ใน URL และเริ่มโพลล์ดูการเปลี่ยนแปลง
+บรรทัด 562–564: คัดลอกลิงก์ลงคลิปบอร์ด ถ้าทำไม่ได้แสดงช่องให้คัดลอกเอง
+บรรทัด 565–567: ถ้าผิดพลาดแจ้งข้อความ
+บรรทัด 570–589  โพลล์ดูการแก้ไขของเพื่อน
+570  function startSessionPolling() {
+571    clearInterval(STATE.session.timer);
+572    STATE.session.timer = setInterval(async () => {
+573      const ss = STATE.session;
+574      if (!ss || ss.busy || document.hidden) return;
+575      try {
+576        const res = await fetch(`${API_BASE}/api/sessions/${ss.id}?since=${ss.version}`);
+577        if (res.status === 404) { clearInterval(ss.timer); showToast('เซสชันหมดอายุแล้ว', 'error'); STATE.session = null; return; }
+578        if (!res.ok) return;
+579        const data = await res.json();
+580        if (data.changed) {
+581          try { applySharedState(data, 'เพื่อนแก้ไขแผน — อัปเดตให้แล้ว'); }
+582          catch (e) {   // แสดงผลแผนจากเพื่อนไม่สำเร็จ: ต้องไม่เงียบ ไม่งั้นดูเหมือน "ไม่มีการอัปเดต"
+583            console.error('applySharedState', e);
+584            if (!ss.errShown) { ss.errShown = true; showToast(`รับแผนจากเพื่อนไม่สำเร็จ: ${e.message} (ลองรีเฟรชหน้า Ctrl+F5)`, 'error', 8000); }
+585          }
+586        }
+587      } catch (e) { /* เครือข่ายสะดุด: ลองใหม่รอบหน้า */ }
+588    }, 2000);
+589  }
+บรรทัด 570–572: startSessionPolling ล้างตัวจับเวลาเก่า แล้วตั้งทุก 2 วินาที
+บรรทัด 573–574: ข้ามถ้าไม่มีเซสชัน กำลังส่งอยู่ (busy) หรือแท็บถูกซ่อน
+บรรทัด 576–578: ถามเซสชันตามเลขรุ่น ถ้า 404 แจ้งว่าหมดอายุและหยุด
+บรรทัด 580–586: ถ้ามีการเปลี่ยน นำสถานะใหม่มาใช้ และแจ้ง "เพื่อนแก้ไขแผน — อัปเดตให้แล้ว" ถ้าแสดงผลไม่สำเร็จ บันทึกข้อผิดพลาดใน console และแจ้งผู้ใช้ครั้งเดียว (errShown) ให้รีเฟรชหน้า (เดิมล้มเงียบ ดูเหมือนไม่มีการอัปเดต)
+บรรทัด 587: เครือข่ายสะดุดข้ามไปลองรอบหน้า
+บรรทัด 592–609  ส่งการแก้ไขของเราขึ้นเซสชัน
+592  async function pushSession() {
+593    const ss = STATE.session;
+594    if (!ss) return;
+595    ss.busy = true;
+596    try {
+597      const res = await fetch(`${API_BASE}/api/sessions/${ss.id}`, {
+598        method: 'PUT', headers: {'Content-Type': 'application/json'},
+599        body: JSON.stringify({base_version: ss.version, package: STATE.selectedPkg, settings: sessionSettings()}),
+600      });
+601      if (res.status === 409) {
+602        const err = await res.json();
+603        applySharedState(err.detail, 'มีคนแก้ไขพร้อมกัน — ใช้ฉบับล่าสุดของเพื่อน');
+604      } else if (res.ok) {
+605        ss.version = (await res.json()).version;
+606      }
+607    } catch (e) { console.warn('pushSession', e); /* ออฟไลน์: เก็บไว้ในเครื่อง */ }
+608    finally { ss.busy = false; }
+609  }
+บรรทัด 592–595: pushSession ออกถ้าไม่มีเซสชัน ตั้ง busy ให้โพลล์ไม่ซ้อน
+บรรทัด 597–600: ส่ง PUT พร้อมเลขรุ่นฐาน แผน และค่าตั้ง ไป ➜ update_session() ใน backend/main.py
+บรรทัด 601–603: ถ้า 409 (มีคนแก้ก่อน) ใช้ฉบับล่าสุดของเพื่อนแทน และแจ้งผู้ใช้
+บรรทัด 604–606: ถ้าสำเร็จ จดเลขรุ่นใหม่
+บรรทัด 607–608: ถ้าออฟไลน์เก็บในเครื่องและบันทึกคำเตือนใน console และปลดสถานะ busy เสมอ
+บรรทัด 611–650  เข้าร่วมเซสชันจากลิงก์
+611  async function joinSession(id) {
+612    try {
+613      const res = await fetch(`${API_BASE}/api/sessions/${id}`);
+614      if (!res.ok) throw new Error(res.status === 404 ? 'ลิงก์หมดอายุหรือไม่ถูกต้อง' : `HTTP ${res.status}`);
+615      const data = await res.json();
+616      const st = data.settings || {};
+617      const item = [...document.querySelectorAll('#provList .prov-item')].find(i => i.dataset.value === data.province);
+618      if (item) {                                   // ตั้งจังหวัดโดยไม่ล้างผลซ้ำ แล้วโหลดข้อมูลจังหวัดนั้น
+619        document.querySelectorAll('.prov-item').forEach(i => i.classList.remove('prov-active'));
+620        item.classList.add('prov-active');
+621        document.getElementById('province').value = data.province;
+622        document.getElementById('provName').textContent = item.dataset.label;
+623      }
+624      await loadPois();
+625      if (st.budget) document.getElementById('budget').value = st.budget;
+626      if (st.travelers) document.getElementById('travelers').value = st.travelers;
+627      if (st.start_date && DATE_PICKER) {
+628        const d0 = new Date(st.start_date + 'T00:00:00');
+629        const d1 = new Date(d0.getTime() + (data.package.days.length - 1) * 86400000);
+630        DATE_PICKER.setDate([d0, d1], true);
+631      }
+632      STATE.includeHotel = st.include_hotel !== false;
+633      STATE.session = {id: data.id, version: data.version, timer: null, busy: false};
+634      document.getElementById('detailPanel').style.display = 'block';
+635      STATE.selectedPkg = applyBaseWarn(cleanShared(data.package), st);
+636      STATE.locked = new Set(st.locked || []); STATE.excluded = new Set(st.excluded || []);
+637      renderDetail(STATE.selectedPkg);
+638      setTimeout(() => {
+639        STATE.map.invalidateSize();
+640        drawOnMap(STATE.selectedPkg);
+641        document.getElementById('detailPanel').scrollIntoView({behavior: 'smooth', block: 'start'});
+642        setTimeout(syncMapHeight, 150);
+643      }, 150);
+644      startSessionPolling();
+645      showToast('เข้าร่วมแผนที่เพื่อนแชร์มา — แก้ไขแล้วทุกคนเห็นพร้อมกัน', 'ok', 4500);
+646    } catch (e) {
+647      showToast(`เข้าร่วมไม่ได้: ${e.message}`, 'error', 6000);
+648      await loadPois();
+649    }
+650  }
+บรรทัด 611–615: joinSession ขอข้อมูลเซสชัน ถ้า 404 แจ้งว่าลิงก์หมดอายุหรือไม่ถูกต้อง
+บรรทัด 616–623: ตั้งจังหวัดในเมนูและช่องซ่อนโดยไม่ล้างผลซ้ำ
+บรรทัด 624: โหลดสถานที่ของจังหวัดนั้น (➜ loadPois() ใน frontend/app.js)
+บรรทัด 625–631: คืนค่างบ จำนวนคน และช่วงวันที่จากค่าตั้งที่แชร์
+บรรทัด 632–637: ตั้งสถานะโรงแรม เซสชัน แผน (ผ่าน cleanShared และ applyBaseWarn) จุดที่ล็อกและลบ แล้วแสดงรายละเอียด
+บรรทัด 638–643: หน่วง 150 มิลลิวินาที แล้ววาดแผนที่ เลื่อนหน้า และปรับความสูงแผนที่
+บรรทัด 644–645: เริ่มโพลล์ และแจ้งว่าเข้าร่วมแล้ว
+บรรทัด 646–649: ถ้าผิดพลาดแจ้งข้อความและโหลดสถานที่ตามปกติ
+บรรทัด 655–693  ตัวช่วยเวลา และประวัติย้อนกลับ/เดินหน้า (undo/redo)
+655  function fmtClock(min) {
+656    return `${String(Math.floor(min / 60) % 24).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+657  }
+658
+659  // เก็บแผนตั้งต้นไว้เป็นคุณสมบัติที่ไม่ถูก serialize (ไม่ปนใน session/ไฟล์บันทึก)
+660  function setHidden(obj, key, value) { Object.defineProperty(obj, key, {value, enumerable: false, writable: true, configurable: true}); }
+661  const routeIds = p => JSON.stringify((p?.days || []).map(d => d.pois.map(x => x.id)));
+662  // ย้อนกลับ / เดินหน้า (undo / redo) ทีละการแก้ไขเหมือนโปรแกรมแต่งภาพ: เก็บสำเนาแผนหลังการแก้แต่ละครั้ง (ลาก ลบ สลับ เพิ่ม สลับเป็นในร่ม) ผูกกับแผนตั้งต้น (_orig) ถ้าสร้างแผนใหม่ประวัติจะเริ่มใหม่
+663  const HIST = {orig: null, base: null, stack: [], idx: -1, applying: false};
+664  const histSnap = pkg => ({sig: routeIds(pkg) + JSON.stringify([...STATE.locked].sort()) + JSON.stringify([...STATE.excluded].sort()), pkg: JSON.parse(JSON.stringify(pkg)), locked: [...STATE.locked], excluded: [...STATE.excluded]});
+665  function recordHistory(pkg) {
+666    if (HIST.applying || !pkg._orig) return;
+667    const s = histSnap(pkg);
+668    if (HIST.orig !== pkg._orig) { HIST.orig = pkg._orig; HIST.stack = [s]; HIST.idx = 0; }
+669    else if (s.sig !== HIST.stack[HIST.idx].sig) { HIST.stack = HIST.stack.slice(0, HIST.idx + 1); HIST.stack.push(s); HIST.idx++; if (HIST.stack.length > 50) { HIST.stack.shift(); HIST.idx--; } }
+670    HIST.base = pkg._base;
+671    updateHistBtns();
+672  }
+673  function updateHistBtns() {
+674    const u = document.getElementById('undoBtn'), r = document.getElementById('redoBtn');
+675    if (u) u.classList.toggle('disabled', HIST.idx <= 0);
+676    if (r) r.classList.toggle('disabled', HIST.idx >= HIST.stack.length - 1);
+677  }
+678  function stepHistory(dir) {
+679    const n = HIST.idx + dir; if (n < 0 || n >= HIST.stack.length || !STATE.selectedPkg) return;
+680    HIST.idx = n; const e = HIST.stack[n], c = JSON.parse(JSON.stringify(e.pkg));
+681    setHidden(c, '_orig', HIST.orig); if (HIST.base instanceof Set) setHidden(c, '_base', HIST.base);
+682    STATE.selectedPkg = c; STATE.locked = new Set(e.locked); STATE.excluded = new Set(e.excluded);
+683    HIST.applying = true;
+684    try { drawOnMap(c); renderDetail(c); } finally { HIST.applying = false; }
+685    updateHistBtns(); pushSession();
+686    showToast(dir < 0 ? 'ย้อนกลับแล้ว' : 'ทำซ้ำแล้ว', 'ok', 1800);
+687  }
+688  const undoEdit = () => stepHistory(-1), redoEdit = () => stepHistory(1);
+689  document.addEventListener('keydown', e => {
+690    if (!(e.ctrlKey || e.metaKey) || e.target.closest?.('input, textarea, select, [contenteditable]') || document.querySelector('.modal.open')) return;
+691    const k = e.key.toLowerCase();
+692    if (k === 'z' && !e.shiftKey) { e.preventDefault(); undoEdit(); } else if (k === 'y' || (k === 'z' && e.shiftKey)) { e.preventDefault(); redoEdit(); }
+693  });
+บรรทัด 655–657: fmtClock แปลงนาทีจากเที่ยงคืนเป็นข้อความ HH:MM
+บรรทัด 659–660: setHidden ตั้งคุณสมบัติที่ไม่ถูกนับตอนแปลงเป็น JSON (enumerable เป็นเท็จ) ใช้เก็บแผนตั้งต้นโดยไม่ปนไปกับเซสชันหรือไฟล์บันทึก
+บรรทัด 661: routeIds ลายเซ็นลำดับ id ของสถานที่ทุกวัน
+บรรทัด 662–664: HIST ตัวแปรสถานะประวัติ (แผนตั้งต้น ฐานคำเตือน กองประวัติ ตำแหน่ง และธง applying) และ histSnap สร้างสำเนาแผนพร้อมลายเซ็นของแผน ชุดล็อกและชุดลบ
+บรรทัด 665–672: recordHistory ถ้ากำลังเรียกจาก undo/redo หรือไม่มีแผนตั้งต้นก็ข้าม ถ้าเป็นแผนใหม่เริ่มกองประวัติใหม่ ถ้าลายเซ็นเปลี่ยนตัดส่วนที่เดินหน้าทิ้ง เพิ่มรายการ (เก็บสูงสุด 50) แล้วอัปเดตปุ่ม (ถูกเรียกจากตัวห่อ renderDetail ใน ➜ recordHistory() ใน frontend/app.js )
+บรรทัด 673–677: updateHistBtns ปิดปุ่มย้อนกลับเมื่ออยู่ต้นกอง และปุ่มเดินหน้าเมื่ออยู่ท้ายกอง
+บรรทัด 678–687: stepHistory ขยับตำแหน่งในกอง คืนแผน (ตั้งคำเตือนตั้งต้น _base กลับเฉพาะเมื่อเป็น Set) ชุดล็อก/ลบ จากสำเนา วาดใหม่ในขณะตั้งธง applying แล้วส่งขึ้นเซสชัน (➜ pushSession() ใน frontend/app.js) และแจ้งผู้ใช้
+บรรทัด 688: undoEdit และ redoEdit (ปุ่มที่ ➜ frontend/extras.js แทรกเรียกฟังก์ชันนี้)
+บรรทัด 689–693: ปุ่มลัด Ctrl/Cmd+Z ย้อนกลับ และ Ctrl+Y หรือ Ctrl+Shift+Z เดินหน้า (ไม่ทำงานเมื่อกำลังพิมพ์หรือมีหน้าต่างเปิดอยู่)
+บรรทัด 697–714  คำเตือนเวลาเปิด-ปิด
+697  function uiWarnings(pkg, raw = false) {
+698    const out = [], speed = (STATE.provinces[getProvince()] || {}).speed_kmh || 40;
+699    (pkg.days || []).forEach((day, d) => {
+700      let endT = 480, lat = pkg.hotel.lat, lng = pkg.hotel.lng;
+701      day.pois.forEach(p => {
+702        const full = {...(STATE.pois.find(q => q.id === p.id) || {}), ...p}, at = arriveOf(day, p);
+703        const km = haversineKm(lat, lng, p.lat, p.lng), early = endT + km / speed * 60 * 1.25 + (km >= 0.3 ? 10 : 0);   // เวลาถึงก่อนรอร้านเปิด (ตัวคูณจราจร 1.25 + เผื่อจอด/เดิน 10 นาที ตรงกับ algorithm/utils.py)
+704        if (full.close_min !== undefined && at >= 0 && at > full.close_min) out.push({d, id: p.id, type: 'late', poi: full});
+705        else if (full.open_min > 0 && early < full.open_min - 10) out.push({d, id: p.id, type: 'early', poi: full});
+706        endT = (at >= 0 ? at : early) + (p.duration_min || 0); lat = p.lat; lng = p.lng;
+707      });
+708    });
+709    const key = w => `${w.id}:${w.type}`;
+710    if (raw) return out;
+711    // แผนที่ระบบสร้างเองมีการรอร้านเปิดตามปกติ จึงไม่เตือน: จำคำเตือนตั้งต้นของแผนไว้ (_base) แล้วแสดงเฉพาะที่เกิดใหม่หลังผู้ใช้แก้แผน
+712    if (!(pkg._base instanceof Set)) { setHidden(pkg, '_base', new Set(out.map(key))); return []; }   // _base ต้องเป็น Set ที่ไม่ถูก serialize (ถ้าไปอยู่ใน JSON ของ session จะกลายเป็น {} แล้วเครื่องอื่นพัง)
+713    return out.filter(w => !pkg._base.has(key(w)));
+714  }
+บรรทัด 697–698: uiWarnings เตรียมรายการ และความเร็วเดินทางของจังหวัด (ตั้งต้น 40 กม./ชม.)
+บรรทัด 699–700: แต่ละวัน เริ่มที่ 8:00 (480 นาที) จากพิกัดโรงแรม
+บรรทัด 701–703: แต่ละสถานที่ รวมข้อมูลเวลาเปิด-ปิดจาก STATE.pois หาเวลาถึงที่คำนวณไว้ (➜ arriveOf() ใน frontend/app.js) และประมาณเวลาถึงก่อนรอร้านเปิดด้วยระยะทาง haversineKm ตัวคูณจราจร 1.25 และเวลาเตรียม 10 นาที
+บรรทัด 704–705: ถ้าเวลาถึงเกินเวลาปิด เป็นคำเตือน late ถ้าถึงก่อนร้านเปิดเกิน 10 นาที เป็น early
+บรรทัด 706–708: อัปเดตเวลาสิ้นสุดและตำแหน่งปัจจุบัน
+บรรทัด 709–710: key กุญแจคำเตือน และคืนทั้งหมดถ้า raw
+บรรทัด 712: แผนที่ระบบสร้างมีการรอร้านเปิดตามปกติ จึงจำคำเตือนตั้งต้นเป็นฐาน (เก็บใน _base ที่เป็น Set ซ่อนจาก JSON ด้วย setHidden) และไม่เตือนครั้งแรก
+บรรทัด 713–714: ครั้งต่อไปแสดงเฉพาะคำเตือนที่ผู้ใช้ทำเกิดใหม่ (ตัวแสดงผลคือ decorateWarnings ใน ➜ decorateWarnings() ใน frontend/extras.js)
+บรรทัด 717–738  ตัวช่วยจัดรูปและเวลาถึง
+717  function fmtDur(min) {
+718    const m = Math.round(min), h = Math.floor(m / 60), r = m % 60;
+719    return h ? (r ? `${h}H ${r}m` : `${h}H`) : `${r}m`;
 720  }
 721
-722  function strHash(str) {
-723    let h = 2166136261;
-724    for (const ch of str) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); }
-725    return h >>> 0;
-726  }
-บรรทัด 705–708: fmtDur แสดงระยะเวลาเป็น 45m หรือ 1H 30m
-บรรทัด 710–713: arriveOf หาเวลาถึงของสถานที่จาก day.arrivals (ที่ backend คำนวณ) คืน -1 ถ้าไม่มี
-บรรทัด 715–720: hoursText ข้อความเวลาเปิด-ปิด ดึงจาก STATE.pois ถ้า POI ในแผนไม่มี คืน "ไม่ระบุ" หรือ "ทั้งวัน"
-บรรทัด 722–726: strHash แฮช FNV-1a ของข้อความ ใช้สร้างรีวิวจำลองที่ได้ผลเดิมทุกครั้ง
-บรรทัด 728–747  รีวิวจำลอง
-728  const MOCK_REVIEWS = {
-729    beach: ['ทรายสะอาด น้ำใส เหมาะมาช่วงเช้าที่คนยังน้อย', 'วิวสวย มีร้านอาหารริมหาด แต่ช่วงบ่ายแดดแรง', 'เดินเล่นสบาย จอดรถง่าย บรรยากาศผ่อนคลาย'],
-730    temple: ['สถาปัตยกรรมสวยงาม ควรแต่งกายสุภาพ', 'บรรยากาศสงบ เหมาะกับการมาช่วงเช้า', 'มีประวัติน่าสนใจ ใช้เวลาเดินชมไม่นาน'],
-731    viewpoint: ['วิวกว้างมาก ถ่ายรูปสวยโดยเฉพาะช่วงเย็น', 'ทางขึ้นค่อนข้างชัน ควรใส่รองเท้าเดินสบาย', 'คุ้มกับการมา อากาศเย็นสบาย'],
-732    culture: ['ให้ความรู้ดี เจ้าหน้าที่แนะนำเป็นกันเอง', 'จัดแสดงน่าสนใจ เหมาะกับครอบครัว', 'ค่าเข้าไม่แพง ใช้เวลาชมประมาณชั่วโมงกว่า'],
-733    market: ['ของกินหลากหลาย ราคาไม่แพง', 'คนเยอะช่วงเย็น ควรมาก่อนหัวค่ำ', 'ของฝากน่าซื้อ บรรยากาศคึกคัก'],
-734    activity: ['กิจกรรมสนุก เจ้าหน้าที่ดูแลดี', 'ควรจองล่วงหน้าช่วงวันหยุด', 'เหมาะกับกลุ่มเพื่อนและครอบครัว'],
-735    restaurant: ['รสชาติดี ราคาเหมาะสม บริการรวดเร็ว', 'ร้านบรรยากาศดี ช่วงเที่ยงคนค่อนข้างเยอะ', 'เมนูแนะนำอร่อย ที่นั่งสบาย'],
-736  };
-737
-738  function mockReviewsFor(poi) {   // สร้างจาก id ของสถานที่ ได้ผลเดิมทุกครั้ง; คะแนนอิงคะแนนของระบบ
-739    const h = strHash(poi.id + poi.name_en);
-740    const rating = Math.max(3.0, Math.min(5.0, poi.score / 2 + ((h % 7) - 3) * 0.05));
-741    const pool = MOCK_REVIEWS[poi.category] || MOCK_REVIEWS.culture;
-742    const picks = [0, 1, 2].map(i => ({
-743      text: pool[(h + i) % pool.length],
-744      stars: Math.max(3, Math.min(5, Math.round(rating + (((h >> (i + 3)) % 3) - 1) * 0.6))),
-745    }));
-746    return {rating, count: 40 + (h % 860), reviews: picks};
-747  }
-บรรทัด 728–736: MOCK_REVIEWS ประโยครีวิวตัวอย่างต่อหมวด
-บรรทัด 738–747: mockReviewsFor สร้างคะแนน จำนวนรีวิว และรีวิวสามอัน จากแฮชของ id และชื่อสถานที่ (คะแนนอิงคะแนนของระบบ) ข้อมูลเหล่านี้เป็นตัวอย่างสำหรับสาธิต และหน้าเว็บมีป้าย "ข้อมูลจำลอง" กำกับ
-บรรทัด 749–787  หน้าต่างรายละเอียดสถานที่
-749  function showPoiDetail(poiId, arriveMin) {
-750    const poi = STATE.pois.find(p => p.id === poiId);
-751    if (!poi) return;
-752    let m = document.getElementById('poiModal');
-753    if (!m) {
-754      m = document.createElement('div');
-755      m.className = 'modal';
-756      m.id = 'poiModal';
-757      m.innerHTML = `<div class="modal-backdrop" onclick="closePoiDetail()"></div>
-758        <div class="modal-card"><div class="modal-head"><div><div class="modal-title" id="poiTitle"></div>
-759        <div class="modal-sub" id="poiSub"></div></div>
-760        <button class="icon-btn" onclick="closePoiDetail()" title="ปิด"><svg class="ic "><use href="#i-close"/></svg></button></div>
-761        <div class="modal-body" id="poiBody"></div></div>`;
-762      document.body.appendChild(m);
-763    }
-764    const r = mockReviewsFor(poi);
-765    const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
-766    document.getElementById('poiTitle').textContent = poi.name_th;
-767    document.getElementById('poiSub').textContent = `${poi.name_en} · ${CAT_LABELS[poi.category] || poi.category}`;
-768    document.getElementById('poiBody').innerHTML = `
-769      <div class="poi-facts">
-770        <div><span>เวลาเปิด-ปิด</span><b>${hoursText(poi)}</b></div>
-771        ${arriveMin >= 0 ? `<div><span>เวลาถึงตามแผน</span><b>${fmtClock(arriveMin)}</b></div>` : ''}
-772        <div><span>เวลาที่ใช้ ณ สถานที่</span><b>${poi.duration_min} นาที</b></div>
-773        <div><span>ค่าใช้จ่าย</span><b>${poi.cost ? fmt(poi.cost) + ' ฿' : 'ฟรี'}</b></div>
-774      </div>
-775      <p class="poi-note">เวลาเปิด-ปิดมาจากข้อมูล OpenStreetMap หรือเป็นค่าประมาณตามประเภทสถานที่ ควรตรวจสอบกับสถานที่อีกครั้งก่อนเดินทาง</p>
-776      <div class="rev-head"><span class="rev-score">${ic('star')} ${r.rating.toFixed(1)}</span>
-777        <span class="rev-count">${r.count} รีวิว</span><span class="mock-chip">ข้อมูลจำลอง</span></div>
-778      ${r.reviews.map(v => `<div class="rev-item"><div class="rev-stars">${stars(v.stars)}</div><div>${v.text}</div></div>`).join('')}
-779      <p class="poi-note">รีวิวและจำนวนรีวิวเป็นข้อมูลตัวอย่างที่สร้างขึ้นเพื่อสาธิตฟีเจอร์ ไม่ใช่ความเห็นของนักท่องเที่ยวจริง (รีวิวจริงเป็นแนวทางต่อยอดผ่านบริการข้อมูลสถานที่)</p>`;
-780    m.classList.add('open');
-781    document.body.style.overflow = 'hidden';
-782  }
-783
-784  function closePoiDetail() {
-785    document.getElementById('poiModal').classList.remove('open');
-786    document.body.style.overflow = '';
-787  }
-บรรทัด 749–751: showPoiDetail หาสถานที่จากรหัส ถ้าไม่พบออก
-บรรทัด 752–763: ถ้ายังไม่มีหน้าต่าง สร้างโครงโมดัลต่อท้าย body
-บรรทัด 764–767: สร้างรีวิวจำลอง ตัวช่วยดาว และตั้งชื่อ ชื่ออังกฤษ และหมวด
-บรรทัด 768–779: เติมเนื้อหา: ตารางข้อมูล (เวลาเปิด-ปิด เวลาถึง เวลาที่ใช้ ค่าใช้จ่าย) หมายเหตุว่ามาจาก OpenStreetMap คะแนน รีวิว และหมายเหตุว่าเป็นข้อมูลตัวอย่าง
-บรรทัด 780–781: เปิดโมดัลและล็อกการเลื่อนหน้า
-บรรทัด 784–787: closePoiDetail ปิดโมดัลและคืนการเลื่อน
-บรรทัด 792–820  เปิดแผนทางเลือก (Pareto)
-792  async function openPareto() {
-793    const pkg = STATE.selectedPkg;
-794    if (!pkg) return;
-795    const t = showToast('กำลังหาทางเลือกที่ดีที่สุดในแต่ละด้าน...', 'loading', 20000);
-796    try {
-797      const res = await fetch(`${API_BASE}/api/pareto`, {
-798        method: 'POST',
-799        headers: {'Content-Type': 'application/json'},
-800        body: JSON.stringify({
-801          province: getProvince(), preferences: getPreferences(),
-802          budget: +document.getElementById('budget').value, days: pkg.days.length,
-803          travelers: +document.getElementById('travelers').value,
-804          include_hotel: STATE.includeHotel !== false, seed: Math.floor(Math.random() * 1000000),
-805        }),
-806      });
-807      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-808      const data = await res.json();
-809      STATE.paretoPlans = data.packages;
-810      renderParetoCards(data.packages);
-811      t.remove();
-812      (data.packages[0]?.notes || []).forEach(n => showToast(n, 'error', 6000));
-813      if (!data.packages.length) { showToast('ไม่พบทางเลือกที่ผ่านข้อจำกัด ลองเพิ่มงบหรือลดความชอบ', 'error', 5000); return; }
-814      document.getElementById('paretoModal').classList.add('open');
-815      document.body.style.overflow = 'hidden';
-816    } catch (e) {
-817      t.remove();
-818      showToast(`ผิดพลาด: ${e.message}`, 'error');
-819    }
-820  }
-บรรทัด 792–794: openPareto (ผูกกับปุ่มใน ➜ frontend/index.html) ถ้าไม่มีแผนออก
-บรรทัด 795: แจ้งว่ากำลังหาทางเลือก
-บรรทัด 797–806: ส่ง POST ไป /api/pareto (➜ pareto() ใน backend/main.py) ด้วยจังหวัด ความชอบ งบ จำนวนวัน จำนวนคน ตัวเลือกโรงแรม และ seed สุ่ม ฝั่ง backend ใช้ ➜ algorithm/pareto.py หาแผนที่แลกกันระหว่างคะแนน ความหลากหลาย และระยะทาง
-บรรทัด 807–811: ตรวจสถานะ เก็บแผนใน STATE.paretoPlans วาดการ์ด (➜ renderParetoCards() ใน frontend/app.js) และลบข้อความรอ
-บรรทัด 812: แจ้งหมายเหตุของ backend ทุกข้อ
-บรรทัด 813: ถ้าไม่มีแผนผ่านข้อจำกัด แจ้งให้เพิ่มงบหรือลดความชอบ แล้วออก
-บรรทัด 814–815: เปิดโมดัลและล็อกการเลื่อน
-บรรทัด 816–819: ถ้าผิดพลาดลบข้อความรอและแจ้ง
-บรรทัด 823–872  วาดการ์ดแผนทางเลือก
-823  function renderParetoCards(plans) {
-824    const cur = STATE.selectedPkg, days = Math.max(cur.days.length, 1);
-825    const km = p => p.objectives.distance_km, div = p => p.objectives.diversity, cost = p => p.objectives.cost, sc = p => p.objectives.score;
-826    const best = (fn, dir) => plans.reduce((m, p, i) => (dir * fn(p) > dir * fn(plans[m]) ? i : m), 0);
-827    const labels = {};   // index → [ป้าย, คำอธิบาย]
-828    const put = (i, tag, why) => { (labels[i] ||= []).push([tag, why]); };
-829    put(best(sc, 1), 'แนะนำ', 'ได้สถานที่น่าสนใจโดยรวมสูงสุด');
-830    put(best(km, -1), 'ขับน้อยที่สุด', 'เดินทางสั้น เหนื่อยน้อย ประหยัดค่าเดินทาง');
-831    put(best(div, 1), 'หลากหลายที่สุด', 'ได้เที่ยวหลายประเภทในแต่ละวัน');
-832    put(best(cost, -1), 'ประหยัดที่สุด', 'ค่าใช้จ่ายรวมต่ำสุด');
-833    const picks = Object.keys(labels).map(Number);
-834    const rest = plans.map((_, i) => i).filter(i => !picks.includes(i));
-835    const dots = d => { const n = Math.max(1, Math.min(5, Math.round(d))); return [1, 2, 3, 4, 5].map(k => `<i class="${k <= n ? 'on' : ''}"></i>`).join(''); };
-836    const kmDay = p => km(p) / days;
-837    const diff = (v, base, unit, lessGood) => { const d = v - base; if (Math.abs(d) < 0.5) return '<span class="pc-same">เท่าแผนปัจจุบัน</span>'; const good = lessGood ? d < 0 : d > 0; return `<span class="${good ? 'pc-good' : 'pc-bad'}">${d < 0 ? '−' : '+'}${Math.abs(d).toFixed(0)} ${unit}</span>`; };
-838    const baseKm = cur.days.reduce((a, d) => a + d.distance_km, 0) / days;
-839    const card = (i, extra) => {
-840      const p = plans[i], tags = (labels[i] || []).map(x => x[0]), why = (labels[i] || [])[0]?.[1] || 'อีกทางเลือกที่สมดุลระหว่างระยะทาง ความหลากหลายและค่าใช้จ่าย';
-841      const hi = p.days.flatMap(d => d.pois).filter(x => x.category !== 'restaurant').sort((a, b) => b.score - a.score).slice(0, 3).map(x => x.name_th);
-842      return `<div class="pc ${tags.includes('แนะนำ') ? 'pc-main' : ''}">
-843        <div class="pc-top"><div>${(tags.length ? tags : ['ทางเลือก']).map(t => `<span class="pc-tag">${t}</span>`).join('')}<span class="score-chip" style="margin-left:6px">★ ${sc(p)}</span></div></div>
-844        <div class="pc-why">${why}</div>
-845        <div class="pc-metrics">
-846          <div><small>ขับเฉลี่ย/วัน</small><b>${kmDay(p).toFixed(0)} กม.</b>${diff(kmDay(p), baseKm, 'กม./วัน', true)}</div>
-847          <div><small>ความหลากหลาย</small><b class="pc-dots">${dots(div(p))}</b></div>
-848          <div><small>ค่าใช้จ่าย/คน</small><b>${fmt(cost(p))} ฿</b></div>
-849        </div>
-850        <div class="pc-hi">${hi.map(n => `<span>${n}</span>`).join('')}</div>
-851        <button class="pareto-use" onclick="usePareto(${i})">ใช้แผนนี้</button></div>`;
-852    };
-853    const box = document.getElementById('paretoTable');
-854    box.className = 'pc-wrap';
-855    box.innerHTML = picks.sort((a, b) => a - b).map(i => card(i)).join('') +
-856      (rest.length ? `<button class="pc-more" onclick="this.nextElementSibling.hidden=false;this.hidden=true">ดูแผนอื่นอีก ${rest.length} แบบ</button><div class="pc-wrap-in" hidden>${rest.map(i => card(i)).join('')}</div>` : '');
-857  }
-858
-859  function closePareto() {
-860    document.getElementById('paretoModal').classList.remove('open');
-861    document.body.style.overflow = '';
-862  }
-863
-864  function usePareto(i) {
-865    STATE.selectedPkg = JSON.parse(JSON.stringify(STATE.paretoPlans[i]));
-866    STATE.locked.clear(); STATE.excluded.clear();
-867    closePareto();
-868    drawOnMap(STATE.selectedPkg);
-869    renderDetail(STATE.selectedPkg);
-870    pushSession();
-871    showToast(`ใช้แผนทางเลือกที่ ${i + 1}`, 'ok');
-872  }
-บรรทัด 823–826: renderParetoCards อ่านแผนปัจจุบันและจำนวนวัน ตัวดึงเป้าหมายแต่ละด้าน (ระยะทาง ความหลากหลาย ค่าใช้จ่าย คะแนน) และ best หาแผนที่ดีที่สุดในด้านหนึ่ง
-บรรทัด 827–828: labels เก็บป้ายและเหตุผลของแต่ละแผน และ put เพิ่มป้าย
-บรรทัด 829–832: ติดป้าย: แนะนำ (คะแนนสูงสุด) ขับน้อยที่สุด หลากหลายที่สุด และประหยัดที่สุด พร้อมคำอธิบาย
-บรรทัด 833–834: แผนที่ได้ป้ายแสดงก่อน ที่เหลือพับไว้ใน "ดูแผนอื่น"
-บรรทัด 835: dots สร้างจุดห้าดวงบอกระดับความหลากหลาย
-บรรทัด 836–838: ระยะขับเฉลี่ยต่อวัน และ diff ตัวแสดงส่วนต่างจากแผนปัจจุบัน (เขียวเมื่อดีขึ้น) พร้อมระยะเฉลี่ยของแผนปัจจุบัน
-บรรทัด 839–841: card สร้างการ์ดหนึ่งใบ: ป้าย คำอธิบาย และสถานที่เด่น 3 อันดับ (ไม่รวมร้านอาหาร)
-บรรทัด 842–851: HTML ของการ์ด: ป้าย คะแนน ตัวชี้วัด (ขับเฉลี่ย ความหลากหลาย ค่าใช้จ่ายต่อคน) สถานที่เด่น และปุ่ม "ใช้แผนนี้" เรียก usePareto
-บรรทัด 853–856: ใส่การ์ดที่ได้ป้ายก่อน แล้วปุ่ม "ดูแผนอื่นอีก N แบบ" ที่คลิกแล้วแสดงส่วนที่พับ
-บรรทัด 859–862: closePareto ปิดโมดัลและคืนการเลื่อน (ผูกกับ ➜ frontend/index.html)
-บรรทัด 864–872: usePareto ใช้แผนที่เลือก (สำเนาลึก) ล้างชุดล็อกและลบ วาดแผนที่และรายละเอียดใหม่ ส่งขึ้นเซสชัน และแจ้ง
-บรรทัด 875–909  โหลดรายการจังหวัด
-875  const REGION_ORDER = ['ภาคเหนือ', 'ภาคตะวันออกเฉียงเหนือ', 'ภาคกลาง', 'ภาคตะวันออก', 'ภาคตะวันตก', 'ภาคใต้'];
-876
-877  async function loadProvinces() {
-878    try {
-879      const res = await fetch(`${API_BASE}/api/provinces`);
-880      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-881      const data = await res.json();
-882      const list = document.getElementById('provList');
-883      const active = getProvince();
-884      list.innerHTML = '';
-885      const regions = {};
-886      data.provinces.forEach(pv => {
-887        STATE.provinces[pv.slug] = pv;
-888        (regions[pv.region || 'อื่น ๆ'] ||= []).push({...pv, ready: true});
-889      });
-890      data.planned.forEach(pv => (regions[pv.region] ||= []).push({...pv, ready: false}));
-891      const esc = t => String(t).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
-892      [...REGION_ORDER, ...Object.keys(regions).filter(r => !REGION_ORDER.includes(r))].forEach(r => {
-893        const items = (regions[r] || []).sort((a, b) => (b.ready - a.ready) || a.name_th.localeCompare(b.name_th, 'th'));
-894        if (!items.length) return;
-895        list.insertAdjacentHTML('beforeend', `<div class="prov-group-label">${esc(r)}</div>`);
-896        items.forEach(pv => {
-897          const el = document.createElement('div');
-898          el.className = 'prov-item' + (pv.ready ? '' : ' prov-disabled') + (pv.ready && pv.slug === active ? ' prov-active' : '');
-899          el.dataset.label = pv.name_th;
-900          if (pv.ready) { el.dataset.value = pv.slug; el.onclick = () => selectProvince(el); }
-901          el.innerHTML = `<span class="prov-item-name">${esc(pv.name_th)}</span>` +
-902            (pv.ready ? (pv.sparse ? `<span class="prov-item-sparse" title="${pv.pois} สถานที่ ${pv.hotels} โรงแรม — ตัวเลือกอาจน้อย">ข้อมูลน้อย</span>` : '') + '<span class="prov-item-badge">พร้อมใช้งาน</span>' : '<span class="prov-item-soon">เร็วๆ นี้</span>');
-903          list.appendChild(el);
-904        });
-905      });
-906    } catch (e) {
-907      showToast('โหลดรายการจังหวัดไม่สำเร็จ', 'error', 4000);
-908    }
-909  }
-บรรทัด 875: REGION_ORDER ลำดับภาคที่แสดงในเมนู
-บรรทัด 877–881: loadProvinces ขอ /api/provinces (➜ get_provinces() ใน backend/main.py) และอ่านผล
-บรรทัด 882–884: ล้างรายการในเมนู (➜ frontend/index.html #provList) และจำจังหวัดที่เลือกอยู่
-บรรทัด 885–890: จัดกลุ่มตามภาค: จังหวัดที่พร้อม (provinces) ลง STATE.provinces ส่วนจังหวัดที่ยังไม่มีข้อมูล (planned) แสดงแบบกดไม่ได้
-บรรทัด 891: esc หลีกอักขระพิเศษ HTML
-บรรทัด 892–895: ไล่ตามลำดับภาค เรียงจังหวัดที่พร้อมก่อน แล้วตามชื่อไทย และใส่ป้ายภาค
-บรรทัด 896–904: สร้างรายการจังหวัด: คลาสตามสถานะ (พร้อม กดไม่ได้ กำลังเลือก) ผูกการคลิกกับ selectProvince ใน ➜ frontend/index.html และแสดงป้าย "ข้อมูลน้อย" ถ้าเป็นจังหวัด sparse (สถานะที่ ➜ data/build_all_provinces.py ตัดสินไว้)
-บรรทัด 906–908: ถ้าผิดพลาดแจ้งผู้ใช้
-บรรทัด 912–940  เปลี่ยนจังหวัดและโหลดสถานที่
-912  async function onProvinceChange(slug) {
-913    STATE.poisById = {};
-914    STATE.packages = [];
-915    STATE.selectedPkg = null;
-916    STATE.selectedIdx = null;
-917    ['packagesSection', 'detailPanel'].forEach(id => { document.getElementById(id).style.display = 'none'; });
-918    const pv = STATE.provinces[slug];
-919    if (pv && STATE.map) STATE.map.setView(pv.center, pv.zoom);
-920    await loadPois();
-921  }
-922
-923  async function loadPois() {
-924    try {
-925      setApiStatus('loading', 'connecting...');
-926      const ctrl = new AbortController();
-927      const timer = setTimeout(() => ctrl.abort(), 5000);
-928      const res = await fetch(`${API_BASE}/api/pois?province=${encodeURIComponent(getProvince())}`, { signal: ctrl.signal });
-929      clearTimeout(timer);
-930      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-931      const data = await res.json();
-932      STATE.pois = data.pois;
-933      STATE.hotels = data.hotels;
-934      [...data.pois, ...data.hotels].forEach(p => STATE.poisById[p.id] = p);
-935      setApiStatus('ok', `${data.pois.length} สถานที่ · ${data.hotels.length} โรงแรม`);
-936    } catch (e) {
-937      setApiStatus('error', 'backend offline');
-938      showToast(`โหลดข้อมูลไม่สำเร็จ — ตรวจสอบว่า backend รันที่ ${API_BASE}`, 'error', 6000);
-939    }
-940  }
-บรรทัด 912–921: onProvinceChange ล้างตารางสถานที่ แพ็กเกจ และแผนที่เลือก (เพราะ id ของ POI ซ้ำกันข้ามจังหวัด) ซ่อนส่วนแพ็กเกจและรายละเอียด ย้ายแผนที่ไปจังหวัดใหม่ แล้วโหลดสถานที่ (ถูก ➜ frontend/extras.js ห่อเพื่อเปลี่ยนแบนเนอร์และปุ่มจังหวัดข้างเคียง)
-บรรทัด 923–928: loadPois ตั้งสถานะ connecting ขอ /api/pois (➜ get_pois() ใน backend/main.py) พร้อมตัวตัดเวลา 5 วินาที
-บรรทัด 929–935: ถ้าสำเร็จ เก็บสถานที่ โรงแรม และตารางค้นหาตาม id แล้วแสดงจำนวนในป้ายสถานะ
-บรรทัด 936–939: ถ้าล้มเหลว ตั้งสถานะ offline และแจ้งให้ตรวจสอบว่า backend รันอยู่
-บรรทัด 945–959  แจ้งเตือน (toast)
-945  function showToast(msg, kind = 'ok', duration = 3500) {
-946    const container = document.getElementById('toastContainer');
-947    const el = document.createElement('div');
-948    el.className = `toast ${kind}`;
-949    const iconMap = {ok: ICON.check, error: ICON.alert, loading: ICON.spin};
-950    el.innerHTML = `<span class="toast-icon">${iconMap[kind] || ICON.check}</span><span>${msg}</span>`;
-951    container.appendChild(el);
-952    setTimeout(() => {
-953      el.style.opacity = '0';
-954      el.style.transform = 'translateX(20px)';
-955      el.style.transition = 'all 200ms';
-956      setTimeout(() => el.remove(), 220);
-957    }, duration);
-958    return el;
-959  }
-บรรทัด 945–950: showToast สร้างกล่องแจ้งเตือนตามชนิด (ok error loading) ใส่ไอคอนและข้อความ แล้วต่อเข้าถาด #toastContainer ใน ➜ frontend/index.html (ถูก ➜ frontend/extras.js ห่อเพื่อบันทึกประวัติ)
-บรรทัด 952–957: หลังครบเวลา ค่อยเฟดและเลื่อนออกแล้วลบ
-บรรทัด 958: คืนองค์ประกอบ ให้ผู้เรียกลบเองได้ (ข้อความ loading)
-บรรทัด 965–993  ตรวจข้อมูลที่กรอก
-965  const VALIDATION = {
-966    budget: { min: 1000,  max: 100000, label: 'งบประมาณ' },
-967    days:   { min: 1,     max: 7,      label: 'จำนวนวัน' },
-968    travelers: { min: 1,  max: 10,     label: 'จำนวนคน' },
-969  };
-970
-971  function validateInputs(budget, days, travelers) {
-972    const errors = [];
-973    if (!Number.isFinite(budget) || budget < VALIDATION.budget.min) {
-974      errors.push(`${VALIDATION.budget.label}ต้องอย่างน้อย ${fmt(VALIDATION.budget.min)} บาท (ใส่ไว้ ${fmt(budget || 0)} บาท)`);
-975    }
-976    if (budget > VALIDATION.budget.max) {
-977      errors.push(`${VALIDATION.budget.label}สูงสุด ${fmt(VALIDATION.budget.max)} บาท`);
-978    }
-979    if (days < VALIDATION.days.min || days > VALIDATION.days.max) {
-980      errors.push(`${VALIDATION.days.label}ต้องอยู่ระหว่าง ${VALIDATION.days.min}-${VALIDATION.days.max} วัน (ตอนนี้ ${days})`);
-981    }
-982    if (travelers < VALIDATION.travelers.min || travelers > VALIDATION.travelers.max) {
-983      errors.push(`${VALIDATION.travelers.label}ต้อง ${VALIDATION.travelers.min}-${VALIDATION.travelers.max} คน`);
-984    }
-985    return errors;
-986  }
-987
-988  function highlightField(id, hasError) {
-989    const wrapper = document.getElementById(id)?.closest('.input-with-unit, .date-range-input, .counter-control, .select-input');
-990    if (wrapper) wrapper.classList.toggle('has-error', hasError);
-991    const input = document.getElementById(id);
-992    if (input) input.classList.toggle('has-error', hasError);
-993  }
-บรรทัด 965–969: VALIDATION กฎตรวจฝั่งหน้าเว็บ (งบ 1,000–100,000 จำนวนวัน 1–7 จำนวนคน 1–10) ซึ่งต้องตรงกับ schema Pydantic ของ ➜ create_packages() ใน backend/main.py
-บรรทัด 971–986: validateInputs ตรวจงบ จำนวนวัน และจำนวนคน คืนรายการข้อความผิดพลาด (ถูก ➜ frontend/extras.js ห่อเพิ่มกฎจำนวนวันสูงสุดของจังหวัด)
-บรรทัด 988–993: highlightField ใส่หรือเอาคลาส has-error ที่ช่องกรอกและกรอบของมัน
-บรรทัด 995–1009  เริ่มค้นหา
-995  async function searchPackages() {
-996    const budget = +document.getElementById('budget').value;
-997    const days = getSelectedDays();
-998    const travelers = +document.getElementById('travelers').value;
-999    // One Day Trip → บังคับไม่รวมโรงแรม
-1000    const includeHotel = days === 1 ? false : (document.getElementById('includeHotel')?.checked !== false);
-1001
-1002    // === Client-side validation FIRST ===
-1003    const errors = validateInputs(budget, days, travelers);
-1004    highlightField('budget', errors.some(e => e.includes('งบประมาณ')));
-1005    highlightField('dateRange', errors.some(e => e.includes('จำนวนวัน')));
-1006    if (errors.length > 0) {
-1007      showToast(errors[0], 'error', 5000);
-1008      return;
-1009    }
-บรรทัด 995–998: searchPackages (ผูกกับปุ่มค้นหาใน ➜ frontend/index.html) อ่านงบ จำนวนวัน และจำนวนคน
-บรรทัด 999–1000: ทริปวันเดียวบังคับไม่รวมโรงแรม ไม่เช่นนั้นอ่านจากช่องติ๊ก
-บรรทัด 1002–1005: ตรวจข้อมูลก่อน และไฮไลต์ช่องที่ผิด
-บรรทัด 1006–1009: ถ้ามีข้อผิดพลาด แจ้งข้อแรกและหยุด
-บรรทัด 1011–1041  เตรียมหน้าจอรอผล
-1011    // === Clear previous results ===
-1012    if (STATE.map) {
-1013      STATE.mapMarkers.forEach(m => STATE.map.removeLayer(m));
-1014      STATE.mapPolylines.forEach(p => STATE.map.removeLayer(p));
-1015      if (STATE.hotelMarker) STATE.map.removeLayer(STATE.hotelMarker);
-1016      STATE.mapMarkers = [];
-1017      STATE.mapPolylines = [];
-1018      STATE.mapDayLayers = {};
-1019      STATE.hotelMarker = null;
-1020    }
-1021    STATE.packages = [];
-1022    STATE.selectedPkg = null;
-1023    STATE.selectedIdx = null;
-1024    document.getElementById('detailPanel').style.display = 'none';
-1025    document.getElementById('dayToggles').innerHTML = '';
-1026    document.getElementById('dayPanels').innerHTML = '';
-1027
-1028    const btn = document.getElementById('searchBtn');
-1029    btn.classList.add('loading');
-1030    btn.disabled = true;
+722  function arriveOf(day, poi) {   // เวลาถึงที่อัลกอริทึมคำนวณ (นาทีจากเที่ยงคืน) หรือ -1 ถ้าไม่มี
+723    const a = (day.arrivals || []).find(x => x[0] === poi.id);
+724    return a ? a[1] : -1;
+725  }
+726
+727  function hoursText(poi) {
+728    if (poi.open_min === undefined) poi = STATE.pois.find(p => p.id === poi.id) || poi;   // POI ในแผนจาก API ไม่มีเวลาเปิด-ปิด
+729    if (poi.open_min === undefined) return 'ไม่ระบุ';
+730    if (poi.open_min <= 0 && poi.close_min >= 1439) return 'ทั้งวัน';
+731    return `${fmtClock(poi.open_min)}–${fmtClock(poi.close_min)}`;
+732  }
+733
+734  function strHash(str) {
+735    let h = 2166136261;
+736    for (const ch of str) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); }
+737    return h >>> 0;
+738  }
+บรรทัด 717–720: fmtDur แสดงระยะเวลาเป็น 45m หรือ 1H 30m
+บรรทัด 722–725: arriveOf หาเวลาถึงของสถานที่จาก day.arrivals (ที่ backend คำนวณ) คืน -1 ถ้าไม่มี
+บรรทัด 727–732: hoursText ข้อความเวลาเปิด-ปิด ดึงจาก STATE.pois ถ้า POI ในแผนไม่มี คืน "ไม่ระบุ" หรือ "ทั้งวัน"
+บรรทัด 734–738: strHash แฮช FNV-1a ของข้อความ ใช้สร้างรีวิวจำลองที่ได้ผลเดิมทุกครั้ง
+บรรทัด 740–760  รีวิวจำลอง
+740  const MOCK_REVIEWS = {
+741    beach: ['ทรายสะอาด น้ำใส เหมาะมาช่วงเช้าที่คนยังน้อย', 'วิวสวย มีร้านอาหารริมหาด แต่ช่วงบ่ายแดดแรง', 'เดินเล่นสบาย จอดรถง่าย บรรยากาศผ่อนคลาย'],
+742    temple: ['สถาปัตยกรรมสวยงาม ควรแต่งกายสุภาพ', 'บรรยากาศสงบ เหมาะกับการมาช่วงเช้า', 'มีประวัติน่าสนใจ ใช้เวลาเดินชมไม่นาน'],
+743    viewpoint: ['วิวกว้างมาก ถ่ายรูปสวยโดยเฉพาะช่วงเย็น', 'ทางขึ้นค่อนข้างชัน ควรใส่รองเท้าเดินสบาย', 'คุ้มกับการมา อากาศเย็นสบาย'],
+744    culture: ['ให้ความรู้ดี เจ้าหน้าที่แนะนำเป็นกันเอง', 'จัดแสดงน่าสนใจ เหมาะกับครอบครัว', 'ค่าเข้าไม่แพง ใช้เวลาชมประมาณชั่วโมงกว่า'],
+745    market: ['ของกินหลากหลาย ราคาไม่แพง', 'คนเยอะช่วงเย็น ควรมาก่อนหัวค่ำ', 'ของฝากน่าซื้อ บรรยากาศคึกคัก'],
+746    activity: ['กิจกรรมสนุก เจ้าหน้าที่ดูแลดี', 'ควรจองล่วงหน้าช่วงวันหยุด', 'เหมาะกับกลุ่มเพื่อนและครอบครัว'],
+747    hotel: ['ห้องพักสะอาด พนักงานบริการดี', 'ทำเลสะดวก เดินทางไปที่เที่ยวง่าย', 'อาหารเช้าหลากหลาย เตียงนอนสบาย', 'ราคาคุ้มค่า เหมาะกับการพักผ่อน', 'ห้องค่อนข้างเล็กแต่ครบครัน เช็คอินรวดเร็ว'],
+748    restaurant: ['รสชาติดี ราคาเหมาะสม บริการรวดเร็ว', 'ร้านบรรยากาศดี ช่วงเที่ยงคนค่อนข้างเยอะ', 'เมนูแนะนำอร่อย ที่นั่งสบาย'],
+749  };
+750
+751  function mockReviewsFor(poi) {   // สร้างจาก id ของสถานที่ ได้ผลเดิมทุกครั้ง; คะแนนอิงคะแนนของระบบ
+752    const h = strHash(poi.id + poi.name_en);
+753    const rating = Math.max(3.0, Math.min(5.0, poi.score / 2 + ((h % 7) - 3) * 0.05));
+754    const pool = MOCK_REVIEWS[poi.category] || MOCK_REVIEWS.culture;
+755    const picks = [0, 1, 2].map(i => ({
+756      text: pool[(h + i) % pool.length],
+757      stars: Math.max(3, Math.min(5, Math.round(rating + (((h >> (i + 3)) % 3) - 1) * 0.6))),
+758    }));
+759    return {rating, count: 40 + (h % 860), reviews: picks};
+760  }
+บรรทัด 740–749: MOCK_REVIEWS ประโยครีวิวตัวอย่างต่อหมวด (รวมโรงแรม hotel)
+บรรทัด 751–760: mockReviewsFor สร้างคะแนน จำนวนรีวิว และรีวิวสามอัน จากแฮชของ id และชื่อสถานที่ (คะแนนอิงคะแนนของระบบ) ข้อมูลเหล่านี้เป็นตัวอย่างสำหรับสาธิต และหน้าเว็บมีป้าย "ข้อมูลจำลอง" กำกับ
+บรรทัด 762–831  หน้าต่างรายละเอียดสถานที่และโรงแรม
+762  function ensurePoiModal() {
+763    let m = document.getElementById('poiModal');
+764    if (!m) {
+765      m = document.createElement('div');
+766      m.className = 'modal';
+767      m.id = 'poiModal';
+768      m.innerHTML = `<div class="modal-backdrop" onclick="closePoiDetail()"></div>
+769        <div class="modal-card"><div class="modal-head"><div><div class="modal-title" id="poiTitle"></div>
+770        <div class="modal-sub" id="poiSub"></div></div>
+771        <div class="modal-head-actions"><a class="icon-btn" id="poiMap" target="_blank" rel="noopener" title="ดูใน Google Maps">${ICON.pin}</a>
+772        <button class="icon-btn" onclick="closePoiDetail()" title="ปิด"><svg class="ic "><use href="#i-close"/></svg></button></div></div>
+773        <div class="modal-body" id="poiBody"></div></div>`;
+774      document.body.appendChild(m);
+775    }
+776    return m;
+777  }
+778
+779  function reviewBlock(r) {
+780    const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+781    return `<div class="rev-head"><span class="rev-score">${ic('star')} ${r.rating.toFixed(1)}</span>
+782        <span class="rev-count">${r.count} รีวิว</span><span class="mock-chip">ข้อมูลจำลอง</span></div>
+783      ${r.reviews.map(v => `<div class="rev-item"><div class="rev-stars">${stars(v.stars)}</div><div>${v.text}</div></div>`).join('')}
+784      <p class="poi-note">รีวิวและจำนวนรีวิวเป็นข้อมูลตัวอย่างที่สร้างขึ้นเพื่อสาธิตฟีเจอร์ ไม่ใช่ความเห็นของนักท่องเที่ยวจริง (รีวิวจริงเป็นแนวทางต่อยอดผ่านบริการข้อมูลสถานที่)</p>`;
+785  }
+786
+787  function showPoiDetail(poiId, arriveMin) {
+788    const poi = STATE.pois.find(p => p.id === poiId);
+789    if (!poi) return;
+790    const m = ensurePoiModal();
+791    document.getElementById('poiMap').href = gmapsUrl(poi);
+792    document.getElementById('poiTitle').textContent = poi.name_th;
+793    document.getElementById('poiSub').textContent = `${poi.name_en} · ${CAT_LABELS[poi.category] || poi.category}`;
+794    document.getElementById('poiBody').innerHTML = `
+795      <div class="poi-facts">
+796        <div><span>เวลาเปิด-ปิด</span><b>${hoursText(poi)}</b></div>
+797        ${arriveMin >= 0 ? `<div><span>เวลาถึงตามแผน</span><b>${fmtClock(arriveMin)}</b></div>` : ''}
+798        <div><span>เวลาที่ใช้ ณ สถานที่</span><b>${poi.duration_min} นาที</b></div>
+799        <div><span>ค่าใช้จ่าย</span><b>${poi.cost ? fmt(poi.cost) + ' ฿' : 'ฟรี'}</b></div>
+800      </div>
+801      <p class="poi-note">เวลาเปิด-ปิดมาจากข้อมูล OpenStreetMap หรือเป็นค่าประมาณตามประเภทสถานที่ ควรตรวจสอบกับสถานที่อีกครั้งก่อนเดินทาง</p>
+802      ${reviewBlock(mockReviewsFor(poi))}`;
+803    m.classList.add('open');
+804    document.body.style.overflow = 'hidden';
+805  }
+806
+807  // โรงแรม: ดาว/ราคาจากข้อมูลจริง ส่วนรีวิวเป็นข้อมูลจำลองเหมือนสถานที่ท่องเที่ยว (ติดป้ายกำกับ)
+808  function showHotelDetail(hotelId) {
+809    const h = (STATE.hotels || []).find(x => x.id === hotelId) || (STATE.selectedPkg && STATE.selectedPkg.hotel);
+810    if (!h) return;
+811    const m = ensurePoiModal();
+812    const stars = Math.max(1, Math.min(5, Math.round(h.stars || 3)));
+813    const r = mockReviewsFor({id: h.id, name_en: h.name_en, category: 'hotel', score: (h.score || 7)});
+814    document.getElementById('poiMap').href = gmapsUrl({...h, name_th: h.name_en});
+815    document.getElementById('poiTitle').textContent = h.name_th || h.name_en;
+816    document.getElementById('poiSub').textContent = `${h.name_en} · โรงแรม`;
+817    document.getElementById('poiBody').innerHTML = `
+818      <div class="poi-facts">
+819        <div><span>ระดับดาว</span><b>${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</b></div>
+820        <div><span>ราคาต่อคืน</span><b>${fmt(h.cost)} ฿</b></div>
+821      </div>
+822      <p class="poi-note">ราคาต่อคืนเป็นค่าประมาณจากระดับดาวของโรงแรมใน OpenStreetMap ไม่ใช่ราคาจริง ควรตรวจสอบราคาและห้องว่างกับโรงแรมหรือเว็บจองห้องพักก่อนเดินทาง</p>
+823      ${reviewBlock(r)}`;
+824    m.classList.add('open');
+825    document.body.style.overflow = 'hidden';
+826  }
+827
+828  function closePoiDetail() {
+829    document.getElementById('poiModal').classList.remove('open');
+830    document.body.style.overflow = '';
+831  }
+บรรทัด 762–777: ensurePoiModal สร้างโครงโมดัลต่อท้าย body ครั้งแรก (หัวชื่อ ชื่อรอง กลุ่มปุ่มมุมขวาบนคือลิงก์หมุด Google Maps #poiMap และปุ่มปิด) แล้วคืนโมดัล ใช้ร่วมกันระหว่างหน้ารายละเอียดสถานที่และโรงแรม
+บรรทัด 779–785: reviewBlock สร้าง HTML ส่วนคะแนนและรีวิวจำลอง พร้อมตัวช่วยดาว ป้าย "ข้อมูลจำลอง" และหมายเหตุว่าเป็นข้อมูลตัวอย่าง
+บรรทัด 787–790: showPoiDetail หาสถานที่จากรหัส ถ้าไม่พบออก แล้วเตรียมโมดัลด้วย ensurePoiModal
+บรรทัด 791–793: ตั้งลิงก์หมุดด้วย gmapsUrl และตั้งชื่อ ชื่ออังกฤษ และหมวด
+บรรทัด 794–802: เติมเนื้อหา: ตารางข้อมูล (เวลาเปิด-ปิด เวลาถึง เวลาที่ใช้ ค่าใช้จ่าย) หมายเหตุว่ามาจาก OpenStreetMap และส่วนรีวิวจาก reviewBlock
+บรรทัด 803–805: เปิดโมดัลและล็อกการเลื่อนหน้า
+บรรทัด 807–826: showHotelDetail หาโรงแรมจากรหัส (หรือโรงแรมของแผนที่เลือก) แล้วแสดงชื่อ ระดับดาว ราคาต่อคืน (ค่าประมาณจากระดับดาว มีหมายเหตุกำกับ) และรีวิวจำลองที่สร้างจากแฮชของรหัสและชื่อโรงแรม พร้อมลิงก์หมุด Google Maps เปิดได้จากหมุดโรงแรมบนแผนที่และปุ่มหมุดข้างชื่อโรงแรมในการ์ดแพ็กเกจ
+บรรทัด 828–831: closePoiDetail ปิดโมดัลและคืนการเลื่อน
+บรรทัด 836–864  เปิดแผนทางเลือก (Pareto)
+836  async function openPareto() {
+837    const pkg = STATE.selectedPkg;
+838    if (!pkg) return;
+839    const t = showToast('กำลังหาทางเลือกที่ดีที่สุดในแต่ละด้าน...', 'loading', 20000);
+840    try {
+841      const res = await fetch(`${API_BASE}/api/pareto`, {
+842        method: 'POST',
+843        headers: {'Content-Type': 'application/json'},
+844        body: JSON.stringify({
+845          province: getProvince(), preferences: getPreferences(),
+846          budget: +document.getElementById('budget').value, days: pkg.days.length,
+847          travelers: +document.getElementById('travelers').value,
+848          include_hotel: STATE.includeHotel !== false, seed: Math.floor(Math.random() * 1000000),
+849        }),
+850      });
+851      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+852      const data = await res.json();
+853      STATE.paretoPlans = data.packages;
+854      renderParetoCards(data.packages);
+855      t.remove();
+856      (data.packages[0]?.notes || []).forEach(n => showToast(n, 'error', 6000));
+857      if (!data.packages.length) { showToast('ไม่พบทางเลือกที่ผ่านข้อจำกัด ลองเพิ่มงบหรือลดความชอบ', 'error', 5000); return; }
+858      document.getElementById('paretoModal').classList.add('open');
+859      document.body.style.overflow = 'hidden';
+860    } catch (e) {
+861      t.remove();
+862      showToast(`ผิดพลาด: ${e.message}`, 'error');
+863    }
+864  }
+บรรทัด 836–838: openPareto (ผูกกับปุ่มใน ➜ frontend/index.html) ถ้าไม่มีแผนออก
+บรรทัด 839: แจ้งว่ากำลังหาทางเลือก
+บรรทัด 841–850: ส่ง POST ไป /api/pareto (➜ pareto() ใน backend/main.py) ด้วยจังหวัด ความชอบ งบ จำนวนวัน จำนวนคน ตัวเลือกโรงแรม และ seed สุ่ม ฝั่ง backend ใช้ ➜ algorithm/pareto.py หาแผนที่แลกกันระหว่างคะแนน ความหลากหลาย และระยะทาง
+บรรทัด 851–855: ตรวจสถานะ เก็บแผนใน STATE.paretoPlans วาดการ์ด (➜ renderParetoCards() ใน frontend/app.js) และลบข้อความรอ
+บรรทัด 856: แจ้งหมายเหตุของ backend ทุกข้อ
+บรรทัด 857: ถ้าไม่มีแผนผ่านข้อจำกัด แจ้งให้เพิ่มงบหรือลดความชอบ แล้วออก
+บรรทัด 858–859: เปิดโมดัลและล็อกการเลื่อน
+บรรทัด 860–863: ถ้าผิดพลาดลบข้อความรอและแจ้ง
+บรรทัด 867–916  วาดการ์ดแผนทางเลือก
+867  function renderParetoCards(plans) {
+868    const cur = STATE.selectedPkg, days = Math.max(cur.days.length, 1);
+869    const km = p => p.objectives.distance_km, div = p => p.objectives.diversity, cost = p => p.objectives.cost, sc = p => p.objectives.score;
+870    const best = (fn, dir) => plans.reduce((m, p, i) => (dir * fn(p) > dir * fn(plans[m]) ? i : m), 0);
+871    const labels = {};   // index → [ป้าย, คำอธิบาย]
+872    const put = (i, tag, why) => { (labels[i] ||= []).push([tag, why]); };
+873    put(best(sc, 1), 'แนะนำ', 'ได้สถานที่น่าสนใจโดยรวมสูงสุด');
+874    put(best(km, -1), 'ขับน้อยที่สุด', 'เดินทางสั้น เหนื่อยน้อย ประหยัดค่าเดินทาง');
+875    put(best(div, 1), 'หลากหลายที่สุด', 'ได้เที่ยวหลายประเภทในแต่ละวัน');
+876    put(best(cost, -1), 'ประหยัดที่สุด', 'ค่าใช้จ่ายรวมต่ำสุด');
+877    const picks = Object.keys(labels).map(Number);
+878    const rest = plans.map((_, i) => i).filter(i => !picks.includes(i));
+879    const dots = d => { const n = Math.max(1, Math.min(5, Math.round(d))); return [1, 2, 3, 4, 5].map(k => `<i class="${k <= n ? 'on' : ''}"></i>`).join(''); };
+880    const kmDay = p => km(p) / days;
+881    const diff = (v, base, unit, lessGood) => { const d = v - base; if (Math.abs(d) < 0.5) return '<span class="pc-same">เท่าแผนปัจจุบัน</span>'; const good = lessGood ? d < 0 : d > 0; return `<span class="${good ? 'pc-good' : 'pc-bad'}">${d < 0 ? '−' : '+'}${Math.abs(d).toFixed(0)} ${unit}</span>`; };
+882    const baseKm = cur.days.reduce((a, d) => a + d.distance_km, 0) / days;
+883    const card = (i, extra) => {
+884      const p = plans[i], tags = (labels[i] || []).map(x => x[0]), why = (labels[i] || [])[0]?.[1] || 'อีกทางเลือกที่สมดุลระหว่างระยะทาง ความหลากหลายและค่าใช้จ่าย';
+885      const hi = p.days.flatMap(d => d.pois).filter(x => x.category !== 'restaurant').sort((a, b) => b.score - a.score).slice(0, 3).map(x => x.name_th);
+886      return `<div class="pc ${tags.includes('แนะนำ') ? 'pc-main' : ''}">
+887        <div class="pc-top"><div>${(tags.length ? tags : ['ทางเลือก']).map(t => `<span class="pc-tag">${t}</span>`).join('')}<span class="score-chip" style="margin-left:6px">★ ${sc(p)}</span></div></div>
+888        <div class="pc-why">${why}</div>
+889        <div class="pc-metrics">
+890          <div><small>ขับเฉลี่ย/วัน</small><b>${kmDay(p).toFixed(0)} กม.</b>${diff(kmDay(p), baseKm, 'กม./วัน', true)}</div>
+891          <div><small>ความหลากหลาย</small><b class="pc-dots">${dots(div(p))}</b></div>
+892          <div><small>ค่าใช้จ่าย/คน</small><b>${fmt(cost(p))} ฿</b></div>
+893        </div>
+894        <div class="pc-hi">${hi.map(n => `<span>${n}</span>`).join('')}</div>
+895        <button class="pareto-use" onclick="usePareto(${i})">ใช้แผนนี้</button></div>`;
+896    };
+897    const box = document.getElementById('paretoTable');
+898    box.className = 'pc-wrap';
+899    box.innerHTML = picks.sort((a, b) => a - b).map(i => card(i)).join('') +
+900      (rest.length ? `<button class="pc-more" onclick="this.nextElementSibling.hidden=false;this.hidden=true">ดูแผนอื่นอีก ${rest.length} แบบ</button><div class="pc-wrap-in" hidden>${rest.map(i => card(i)).join('')}</div>` : '');
+901  }
+902
+903  function closePareto() {
+904    document.getElementById('paretoModal').classList.remove('open');
+905    document.body.style.overflow = '';
+906  }
+907
+908  function usePareto(i) {
+909    STATE.selectedPkg = JSON.parse(JSON.stringify(STATE.paretoPlans[i]));
+910    STATE.locked.clear(); STATE.excluded.clear();
+911    closePareto();
+912    drawOnMap(STATE.selectedPkg);
+913    renderDetail(STATE.selectedPkg);
+914    pushSession();
+915    showToast(`ใช้แผนทางเลือกที่ ${i + 1}`, 'ok');
+916  }
+บรรทัด 867–870: renderParetoCards อ่านแผนปัจจุบันและจำนวนวัน ตัวดึงเป้าหมายแต่ละด้าน (ระยะทาง ความหลากหลาย ค่าใช้จ่าย คะแนน) และ best หาแผนที่ดีที่สุดในด้านหนึ่ง
+บรรทัด 871–872: labels เก็บป้ายและเหตุผลของแต่ละแผน และ put เพิ่มป้าย
+บรรทัด 873–876: ติดป้าย: แนะนำ (คะแนนสูงสุด) ขับน้อยที่สุด หลากหลายที่สุด และประหยัดที่สุด พร้อมคำอธิบาย
+บรรทัด 877–878: แผนที่ได้ป้ายแสดงก่อน ที่เหลือพับไว้ใน "ดูแผนอื่น"
+บรรทัด 879: dots สร้างจุดห้าดวงบอกระดับความหลากหลาย
+บรรทัด 880–882: ระยะขับเฉลี่ยต่อวัน และ diff ตัวแสดงส่วนต่างจากแผนปัจจุบัน (เขียวเมื่อดีขึ้น) พร้อมระยะเฉลี่ยของแผนปัจจุบัน
+บรรทัด 883–885: card สร้างการ์ดหนึ่งใบ: ป้าย คำอธิบาย และสถานที่เด่น 3 อันดับ (ไม่รวมร้านอาหาร)
+บรรทัด 886–895: HTML ของการ์ด: ป้าย คะแนน ตัวชี้วัด (ขับเฉลี่ย ความหลากหลาย ค่าใช้จ่ายต่อคน) สถานที่เด่น และปุ่ม "ใช้แผนนี้" เรียก usePareto
+บรรทัด 897–900: ใส่การ์ดที่ได้ป้ายก่อน แล้วปุ่ม "ดูแผนอื่นอีก N แบบ" ที่คลิกแล้วแสดงส่วนที่พับ
+บรรทัด 903–906: closePareto ปิดโมดัลและคืนการเลื่อน (ผูกกับ ➜ frontend/index.html)
+บรรทัด 908–916: usePareto ใช้แผนที่เลือก (สำเนาลึก) ล้างชุดล็อกและลบ วาดแผนที่และรายละเอียดใหม่ ส่งขึ้นเซสชัน และแจ้ง
+บรรทัด 919–953  โหลดรายการจังหวัด
+919  const REGION_ORDER = ['ภาคเหนือ', 'ภาคตะวันออกเฉียงเหนือ', 'ภาคกลาง', 'ภาคตะวันออก', 'ภาคตะวันตก', 'ภาคใต้'];
+920
+921  async function loadProvinces() {
+922    try {
+923      const res = await fetch(`${API_BASE}/api/provinces`);
+924      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+925      const data = await res.json();
+926      const list = document.getElementById('provList');
+927      const active = getProvince();
+928      list.innerHTML = '';
+929      const regions = {};
+930      data.provinces.forEach(pv => {
+931        STATE.provinces[pv.slug] = pv;
+932        (regions[pv.region || 'อื่น ๆ'] ||= []).push({...pv, ready: true});
+933      });
+934      data.planned.forEach(pv => (regions[pv.region] ||= []).push({...pv, ready: false}));
+935      const esc = t => String(t).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+936      [...REGION_ORDER, ...Object.keys(regions).filter(r => !REGION_ORDER.includes(r))].forEach(r => {
+937        const items = (regions[r] || []).sort((a, b) => (b.ready - a.ready) || a.name_th.localeCompare(b.name_th, 'th'));
+938        if (!items.length) return;
+939        list.insertAdjacentHTML('beforeend', `<div class="prov-group-label">${esc(r)}</div>`);
+940        items.forEach(pv => {
+941          const el = document.createElement('div');
+942          el.className = 'prov-item' + (pv.ready ? '' : ' prov-disabled') + (pv.ready && pv.slug === active ? ' prov-active' : '');
+943          el.dataset.label = pv.name_th;
+944          if (pv.ready) { el.dataset.value = pv.slug; el.onclick = () => selectProvince(el); }
+945          el.innerHTML = `<span class="prov-item-name">${esc(pv.name_th)}</span>` +
+946            (pv.ready ? (pv.sparse ? `<span class="prov-item-sparse" title="${pv.pois} สถานที่ ${pv.hotels} โรงแรม — ตัวเลือกอาจน้อย">ข้อมูลน้อย</span>` : '') + '<span class="prov-item-badge">พร้อมใช้งาน</span>' : '<span class="prov-item-soon">เร็วๆ นี้</span>');
+947          list.appendChild(el);
+948        });
+949      });
+950    } catch (e) {
+951      showToast('โหลดรายการจังหวัดไม่สำเร็จ', 'error', 4000);
+952    }
+953  }
+บรรทัด 919: REGION_ORDER ลำดับภาคที่แสดงในเมนู
+บรรทัด 921–925: loadProvinces ขอ /api/provinces (➜ get_provinces() ใน backend/main.py) และอ่านผล
+บรรทัด 926–928: ล้างรายการในเมนู (➜ frontend/index.html #provList) และจำจังหวัดที่เลือกอยู่
+บรรทัด 929–934: จัดกลุ่มตามภาค: จังหวัดที่พร้อม (provinces) ลง STATE.provinces ส่วนจังหวัดที่ยังไม่มีข้อมูล (planned) แสดงแบบกดไม่ได้
+บรรทัด 935: esc หลีกอักขระพิเศษ HTML
+บรรทัด 936–939: ไล่ตามลำดับภาค เรียงจังหวัดที่พร้อมก่อน แล้วตามชื่อไทย และใส่ป้ายภาค
+บรรทัด 940–948: สร้างรายการจังหวัด: คลาสตามสถานะ (พร้อม กดไม่ได้ กำลังเลือก) ผูกการคลิกกับ selectProvince ใน ➜ frontend/index.html และแสดงป้าย "ข้อมูลน้อย" ถ้าเป็นจังหวัด sparse (สถานะที่ ➜ data/build_all_provinces.py ตัดสินไว้)
+บรรทัด 950–952: ถ้าผิดพลาดแจ้งผู้ใช้
+บรรทัด 956–984  เปลี่ยนจังหวัดและโหลดสถานที่
+956  async function onProvinceChange(slug) {
+957    STATE.poisById = {};
+958    STATE.packages = [];
+959    STATE.selectedPkg = null;
+960    STATE.selectedIdx = null;
+961    ['packagesSection', 'detailPanel'].forEach(id => { document.getElementById(id).style.display = 'none'; });
+962    const pv = STATE.provinces[slug];
+963    if (pv && STATE.map) STATE.map.setView(pv.center, pv.zoom);
+964    await loadPois();
+965  }
+966
+967  async function loadPois() {
+968    try {
+969      setApiStatus('loading', 'connecting...');
+970      const ctrl = new AbortController();
+971      const timer = setTimeout(() => ctrl.abort(), 5000);
+972      const res = await fetch(`${API_BASE}/api/pois?province=${encodeURIComponent(getProvince())}`, { signal: ctrl.signal });
+973      clearTimeout(timer);
+974      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+975      const data = await res.json();
+976      STATE.pois = data.pois;
+977      STATE.hotels = data.hotels;
+978      [...data.pois, ...data.hotels].forEach(p => STATE.poisById[p.id] = p);
+979      setApiStatus('ok', `${data.pois.length} สถานที่ · ${data.hotels.length} โรงแรม`);
+980    } catch (e) {
+981      setApiStatus('error', 'backend offline');
+982      showToast(`โหลดข้อมูลไม่สำเร็จ — ตรวจสอบว่า backend รันที่ ${API_BASE}`, 'error', 6000);
+983    }
+984  }
+บรรทัด 956–965: onProvinceChange ล้างตารางสถานที่ แพ็กเกจ และแผนที่เลือก (เพราะ id ของ POI ซ้ำกันข้ามจังหวัด) ซ่อนส่วนแพ็กเกจและรายละเอียด ย้ายแผนที่ไปจังหวัดใหม่ แล้วโหลดสถานที่ (ถูก ➜ frontend/extras.js ห่อเพื่อเปลี่ยนแบนเนอร์และปุ่มจังหวัดข้างเคียง)
+บรรทัด 967–972: loadPois ตั้งสถานะ connecting ขอ /api/pois (➜ get_pois() ใน backend/main.py) พร้อมตัวตัดเวลา 5 วินาที
+บรรทัด 973–979: ถ้าสำเร็จ เก็บสถานที่ โรงแรม และตารางค้นหาตาม id แล้วแสดงจำนวนในป้ายสถานะ
+บรรทัด 980–983: ถ้าล้มเหลว ตั้งสถานะ offline และแจ้งให้ตรวจสอบว่า backend รันอยู่
+บรรทัด 989–1003  แจ้งเตือน (toast)
+989  function showToast(msg, kind = 'ok', duration = 3500) {
+990    const container = document.getElementById('toastContainer');
+991    const el = document.createElement('div');
+992    el.className = `toast ${kind}`;
+993    const iconMap = {ok: ICON.check, error: ICON.alert, loading: ICON.spin};
+994    el.innerHTML = `<span class="toast-icon">${iconMap[kind] || ICON.check}</span><span>${msg}</span>`;
+995    container.appendChild(el);
+996    setTimeout(() => {
+997      el.style.opacity = '0';
+998      el.style.transform = 'translateX(20px)';
+999      el.style.transition = 'all 200ms';
+1000      setTimeout(() => el.remove(), 220);
+1001    }, duration);
+1002    return el;
+1003  }
+บรรทัด 989–994: showToast สร้างกล่องแจ้งเตือนตามชนิด (ok error loading) ใส่ไอคอนและข้อความ แล้วต่อเข้าถาด #toastContainer ใน ➜ frontend/index.html (ถูก ➜ frontend/extras.js ห่อเพื่อบันทึกประวัติ)
+บรรทัด 996–1001: หลังครบเวลา ค่อยเฟดและเลื่อนออกแล้วลบ
+บรรทัด 1002: คืนองค์ประกอบ ให้ผู้เรียกลบเองได้ (ข้อความ loading)
+บรรทัด 1009–1037  ตรวจข้อมูลที่กรอก
+1009  const VALIDATION = {
+1010    budget: { min: 1000,  max: 100000, label: 'งบประมาณ' },
+1011    days:   { min: 1,     max: 7,      label: 'จำนวนวัน' },
+1012    travelers: { min: 1,  max: 10,     label: 'จำนวนคน' },
+1013  };
+1014
+1015  function validateInputs(budget, days, travelers) {
+1016    const errors = [];
+1017    if (!Number.isFinite(budget) || budget < VALIDATION.budget.min) {
+1018      errors.push(`${VALIDATION.budget.label}ต้องอย่างน้อย ${fmt(VALIDATION.budget.min)} บาท (ใส่ไว้ ${fmt(budget || 0)} บาท)`);
+1019    }
+1020    if (budget > VALIDATION.budget.max) {
+1021      errors.push(`${VALIDATION.budget.label}สูงสุด ${fmt(VALIDATION.budget.max)} บาท`);
+1022    }
+1023    if (days < VALIDATION.days.min || days > VALIDATION.days.max) {
+1024      errors.push(`${VALIDATION.days.label}ต้องอยู่ระหว่าง ${VALIDATION.days.min}-${VALIDATION.days.max} วัน (ตอนนี้ ${days})`);
+1025    }
+1026    if (travelers < VALIDATION.travelers.min || travelers > VALIDATION.travelers.max) {
+1027      errors.push(`${VALIDATION.travelers.label}ต้อง ${VALIDATION.travelers.min}-${VALIDATION.travelers.max} คน`);
+1028    }
+1029    return errors;
+1030  }
 1031
-1032    const sec = document.getElementById('packagesSection');
-1033    sec.style.display = 'block';
-1034    document.getElementById('metaSummary').textContent = STATE.dev ? `กำลังคำนวณด้วย ${ALGO_NAMES[SELECTED_ALGO]}...` : 'กำลังวางแผนทริป...';
-1035    const grid = document.getElementById('packagesRow');
-1036    grid.innerHTML = '';
-1037    const skTpl = document.getElementById('skeletonTemplate');
-1038    for (let i = 0; i < 3; i++) grid.appendChild(skTpl.content.cloneNode(true));
-1039    sec.scrollIntoView({behavior: 'smooth', block: 'start'});
-1040
-1041    const loadingToast = showToast(STATE.dev ? `กำลังเรียก ${ALGO_NAMES[SELECTED_ALGO]} 3 รอบ...` : 'กำลังวางแผนทริป 3 แบบ...', 'loading', 30000);
-บรรทัด 1011–1020: ล้างหมุดและเส้นบนแผนที่และตารางต่อวัน (ผลก่อนหน้า)
-บรรทัด 1021–1026: ล้างแพ็กเกจ แผนที่เลือก ซ่อนรายละเอียด และล้างตัวสลับวัน/รายการวัน
-บรรทัด 1028–1030: ทำให้ปุ่มค้นหาเป็นสถานะกำลังโหลดและกดไม่ได้
-บรรทัด 1032–1039: แสดงส่วนแพ็กเกจ ตั้งข้อความสถานะ (โหมด Developer บอกชื่ออัลกอริทึม) ใส่โครงรอโหลด 3 ใบจาก <template> และเลื่อนหน้าลงไป
-บรรทัด 1041: แสดงข้อความ loading
-บรรทัด 1043–1064  ส่งคำขอสร้างแพ็กเกจ
-1043    try {
-1044      const res = await fetch(`${API_BASE}/api/packages`, {
-1045        method: 'POST',
-1046        headers: devHeaders(),
-1047        body: JSON.stringify({province: getProvince(), preferences: getPreferences(), budget, days, travelers, seed: Math.floor(Math.random() * 100000), algorithm: STATE.dev ? SELECTED_ALGO : 'hybrid', include_hotel: includeHotel}),
-1048      });
-1049      if (!res.ok) {
-1050        // Parse FastAPI/Pydantic 422 detail
-1051        let detail = `HTTP ${res.status}`;
-1052        try {
-1053          const errData = await res.json();
-1054          if (errData.detail && Array.isArray(errData.detail)) {
-1055            detail = errData.detail.map(d => {
-1056              const field = d.loc ? d.loc[d.loc.length - 1] : '?';
-1057              return `${field}: ${d.msg}`;
-1058            }).join(' · ');
-1059          } else if (errData.detail) {
-1060            detail = errData.detail;
-1061          }
-1062        } catch {}
-1063        throw new Error(detail);
-1064      }
-บรรทัด 1043–1048: ส่ง POST ไป /api/packages (➜ create_packages() ใน backend/main.py) พร้อมจังหวัด ความชอบ งบ วัน คน seed สุ่ม อัลกอริทึม (โหมดปกติบังคับ Hybrid) และตัวเลือกโรงแรม ส่วนหัวมีโทเค็นนักพัฒนา (➜ devHeaders() ใน frontend/app.js) backend จะเรียก ➜ algorithm/hybrid.py (หรืออัลกอริทึมที่เลือกในโหมด Developer)
-บรรทัด 1049–1064: ถ้าตอบผิดพลาด อ่านรายละเอียดตามรูปแบบ 422 ของ FastAPI (รายการ field: ข้อความ) หรือข้อความเดี่ยว แล้วโยนข้อผิดพลาด
-บรรทัด 1065–1084  ใช้ผลที่ได้
-1065      const data = await res.json();
-1066      STATE.packages = data.packages;
-1067      STATE.includeHotel = includeHotel && !data.packages.every(p => !p.total_hotel_cost);   // งบไม่พอที่พัก: เซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรมให้
-1068      (data.packages[0]?.notes || []).forEach(n => showToast(n, 'error', 7000));   // เช่น ร้านอาหารตามความชอบมีไม่พอ
-1069      renderPackages();
-1070      const totalRuntime = data.packages.reduce((s, p) => s + p.runtime_ms, 0);
-1071      document.getElementById('metaSummary').textContent =
-1072        `งบ ${fmt(budget)} ฿ · ${days} วัน · ${travelers} คน` + (STATE.dev ? ` · ${ALGO_NAMES[SELECTED_ALGO]} · ${(totalRuntime/1000).toFixed(1)} วินาที` : '');
-1073      loadingToast.remove();
-1074      showToast(`สร้าง ${data.packages.length} แพ็กเกจสำเร็จ`, 'ok');
-1075    } catch (e) {
-1076      loadingToast.remove();
-1077      showToast(`ผิดพลาด: ${e.message}`, 'error', 6000);
-1078      grid.innerHTML = '';
-1079      document.getElementById('metaSummary').textContent = '';
-1080    } finally {
-1081      btn.classList.remove('loading');
-1082      btn.disabled = false;
-1083    }
-1084  }
-บรรทัด 1065–1066: เก็บแพ็กเกจที่ได้
-บรรทัด 1067: ตั้งธงรวมโรงแรม: ถ้าทุกแพ็กเกจไม่มีค่าโรงแรม แปลว่างบไม่พอและเซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรม
-บรรทัด 1068: แสดงหมายเหตุของ backend (เช่น ร้านอาหารตามความชอบไม่พอ)
-บรรทัด 1069–1074: วาดการ์ด (➜ renderPackages() ใน frontend/app.js) สรุปเงื่อนไข (และเวลาในโหมด Developer) ลบข้อความ loading และแจ้งสำเร็จ
-บรรทัด 1075–1079: ถ้าผิดพลาดแจ้งข้อความ ล้างการ์ด
-บรรทัด 1080–1083: คืนปุ่มค้นหาให้กดได้เสมอ
-บรรทัด 1089–1122  แสดงการ์ดแพ็กเกจ
-1089  function renderPackages() {
-1090    const grid = document.getElementById('packagesRow');
-1091    grid.innerHTML = '';
-1092
-1093    const showHotel = STATE.includeHotel !== false;
-1094
-1095    STATE.packages.forEach((pkg, idx) => {
-1096      const card = document.createElement('div');
-1097      card.className = `package-card ${pkg.valid ? '' : 'invalid'}`;
-1098      card.onclick = () => pkg.valid && selectPackage(idx);
-1099      const totalPois = pkg.days.reduce((s, d) => s + d.pois.length, 0);
-1100      card.innerHTML = `
-1101        <div class="tier-row">
-1102          <span class="tier-badge tier-${pkg.tier}">${pkg.tier}</span>
-1103          <span class="runtime">${pkg.runtime_ms.toFixed(0)} ms</span>
-1104        </div>
-1105        ${showHotel
-1106          ? `<div class="hotel-name">${CAT_ICON.hotel} ${pkg.hotel.name_en}</div>`
-1107          : `<div class="hotel-name no-hotel">${ic('hotel-off')} ไม่รวมที่พัก</div>`}
-1108        ${pkg.valid ? `
-1109          <div class="score-display">
-1110            <span class="score-num">${pkg.total_score}</span>
-1111            <span class="score-label"><span class="dev-txt">รวมคะแนน · </span>${totalPois} จุดท่องเที่ยว</span>
-1112          </div>
-1113          ${showHotel ? `<div class="stat-row"><span class="label">ค่าโรงแรม</span><span class="val">${fmt(pkg.total_hotel_cost)} ฿</span></div>` : ''}
-1114          <div class="stat-row"><span class="label">ค่ากิจกรรม</span><span class="val">${fmt(pkg.total_activity_cost)} ฿</span></div>
-1115          <div class="stat-row total"><span class="label">รวมทั้งหมด</span><span class="val">${fmt(pkg.total_cost)} ฿</span></div>
-1116        ` : `
-1117          <div class="invalid-msg">${pkg.violations[0] || 'งบไม่พอสำหรับแพ็กเกจนี้'}</div>
-1118        `}
-1119      `;
-1120      grid.appendChild(card);
-1121    });
-1122  }
-บรรทัด 1089–1093: renderPackages ล้างตาราง และอ่านว่าจะแสดงข้อมูลโรงแรมหรือไม่
-บรรทัด 1095–1099: แต่ละแพ็กเกจสร้างการ์ด (ถ้าไม่ผ่านข้อจำกัดเป็นสีเทา) คลิกแล้วเรียก selectPackage เมื่อแพ็กเกจผ่านข้อจำกัด และนับจำนวนสถานที่
-บรรทัด 1100–1107: หัวการ์ด: ระดับ (ประหยัด มาตรฐาน พรีเมียม) เวลาคำนวณ และชื่อโรงแรม (หรือ "ไม่รวมที่พัก")
-บรรทัด 1108–1115: ถ้าผ่านข้อจำกัด แสดงคะแนน จำนวนจุดท่องเที่ยว ค่าโรงแรม ค่ากิจกรรม และรวมทั้งหมด
-บรรทัด 1116–1118: ถ้าไม่ผ่าน แสดงข้อความละเมิดข้อแรก หรือ "งบไม่พอสำหรับแพ็กเกจนี้"
-บรรทัด 1120–1121: ต่อการ์ดเข้าตาราง
-บรรทัด 1127–1144  เลือกแพ็กเกจ
-1127  function selectPackage(idx) {
-1128    STATE.selectedPkg = JSON.parse(JSON.stringify(STATE.packages[idx]));
-1129    STATE.locked.clear(); STATE.excluded.clear();
-1130    STATE.selectedIdx = idx;
-1131    document.querySelectorAll('.package-card').forEach((c, i) =>
-1132      c.classList.toggle('selected', i === idx)
-1133    );
-1134    document.getElementById('detailPanel').style.display = 'block';
-1135    renderDetail(STATE.selectedPkg);
-1136    // CRITICAL: must invalidate size after detail panel becomes visible,
-1137    // otherwise map container has 0px and fitBounds fails
-1138    setTimeout(() => {
-1139      STATE.map.invalidateSize();
-1140      drawOnMap(STATE.selectedPkg);
-1141      document.getElementById('detailPanel').scrollIntoView({behavior: 'smooth', block: 'start'});
-1142      setTimeout(syncMapHeight, 150);
-1143    }, 120);
-1144  }
-บรรทัด 1127–1130: selectPackage ทำสำเนาลึกของแพ็กเกจที่เลือก ล้างชุดล็อกและลบ และจดตำแหน่ง
-บรรทัด 1131–1133: ไฮไลต์การ์ดที่เลือก
-บรรทัด 1134–1135: แสดงส่วนรายละเอียดและวาดด้วย ➜ renderDetail() ใน frontend/app.js
-บรรทัด 1136–1143: ต้องคำนวณขนาดแผนที่ใหม่หลังที่แสดงส่วนรายละเอียด (ไม่เช่นนั้นแผนที่สูง 0 พิกเซลและ fitBounds ล้มเหลว) แล้ววาดเส้นทาง เลื่อนหน้า และปรับความสูงแผนที่
-บรรทัด 1149–1238  วาดแผนที่
-1149  function drawOnMap(pkg) {
-1150    // Clear all old layers
-1151    STATE.mapMarkers.forEach(m => STATE.map.removeLayer(m));
-1152    STATE.mapPolylines.forEach(p => STATE.map.removeLayer(p));
-1153    if (STATE.hotelMarker) STATE.map.removeLayer(STATE.hotelMarker);
-1154    STATE.mapMarkers = [];
-1155    STATE.mapPolylines = [];
-1156    STATE.mapDayLayers = {};
-1157
-1158    const showHotel = STATE.includeHotel !== false;
-1159
-1160    // Hotel marker — แสดงเฉพาะเมื่อรวมโรงแรม
-1161    if (showHotel) {
-1162      const hotelIcon = L.divIcon({
-1163        html: `<div class="map-hotel-marker">${ic('hotel')}</div>`,
-1164        className: '',
-1165        iconSize: [40, 40], iconAnchor: [20, 20],
-1166      });
-1167      STATE.hotelMarker = L.marker([pkg.hotel.lat, pkg.hotel.lng], {icon: hotelIcon})
-1168        .bindPopup(`<b>${pkg.hotel.name_en}</b><br><small>${pkg.hotel.cost} ฿/คืน</small>`)
-1169        .addTo(STATE.map);
-1170    } else {
-1171      STATE.hotelMarker = null;
-1172    }
-1173
-1174    // allLatLngs: รวม hotel ไว้ใน bounds เฉพาะเมื่อรวมโรงแรม
-1175    const allLatLngs = showHotel ? [[pkg.hotel.lat, pkg.hotel.lng]] : [];
-1176
-1177    pkg.days.forEach((day, dIdx) => {
-1178      const color = DAY_COLORS[dIdx % DAY_COLORS.length];
-1179      // path: เริ่ม/จบที่โรงแรมเฉพาะเมื่อรวมโรงแรม
-1180      const path = showHotel ? [[pkg.hotel.lat, pkg.hotel.lng]] : [];
-1181      const dayMarkers = [];
-1182
-1183      day.pois.forEach((poi, pIdx) => {
-1184        const icon = L.divIcon({
-1185          html: `<div class="map-poi-marker" style="--c:${color};">
-1186                   <span class="d">${dIdx + 1}</span>
-1187                   <span class="p">${pIdx + 1}</span>
-1188                 </div>`,
-1189          className: '',
-1190          iconSize: [36, 36], iconAnchor: [18, 18],
-1191        });
-1192        const m = L.marker([poi.lat, poi.lng], {icon}).bindPopup(
-1193          `<b>${poi.name_th}</b><br>
-1194           <small>${poi.name_en}</small><br>
-1195           <span style="opacity:0.7;">วันที่ ${dIdx + 1} · ลำดับ ${pIdx + 1}</span><br>
-1196           ${STATE.dev ? poi.score + ' คะแนน · ' : ''}${poi.cost} ฿ · ${poi.duration_min} นาที<br>
-1197           <a href="#" onclick="showPoiDetail('${poi.id}', ${arriveOf(day, poi)}); return false;">ดูรายละเอียดและรีวิว</a>`
-1198        ).addTo(STATE.map);
-1199        dayMarkers.push(m);
-1200        STATE.mapMarkers.push(m);
-1201        path.push([poi.lat, poi.lng]);
-1202        allLatLngs.push([poi.lat, poi.lng]);
-1203      });
+1032  function highlightField(id, hasError) {
+1033    const wrapper = document.getElementById(id)?.closest('.input-with-unit, .date-range-input, .counter-control, .select-input');
+1034    if (wrapper) wrapper.classList.toggle('has-error', hasError);
+1035    const input = document.getElementById(id);
+1036    if (input) input.classList.toggle('has-error', hasError);
+1037  }
+บรรทัด 1009–1013: VALIDATION กฎตรวจฝั่งหน้าเว็บ (งบ 1,000–100,000 จำนวนวัน 1–7 จำนวนคน 1–10) ซึ่งต้องตรงกับ schema Pydantic ของ ➜ create_packages() ใน backend/main.py
+บรรทัด 1015–1030: validateInputs ตรวจงบ จำนวนวัน และจำนวนคน คืนรายการข้อความผิดพลาด (ถูก ➜ frontend/extras.js ห่อเพิ่มกฎจำนวนวันสูงสุดของจังหวัด)
+บรรทัด 1032–1037: highlightField ใส่หรือเอาคลาส has-error ที่ช่องกรอกและกรอบของมัน
+บรรทัด 1039–1053  เริ่มค้นหา
+1039  async function searchPackages() {
+1040    const budget = +document.getElementById('budget').value;
+1041    const days = getSelectedDays();
+1042    const travelers = +document.getElementById('travelers').value;
+1043    // One Day Trip → บังคับไม่รวมโรงแรม
+1044    const includeHotel = days === 1 ? false : (document.getElementById('includeHotel')?.checked !== false);
+1045
+1046    // === Client-side validation FIRST ===
+1047    const errors = validateInputs(budget, days, travelers);
+1048    highlightField('budget', errors.some(e => e.includes('งบประมาณ')));
+1049    highlightField('dateRange', errors.some(e => e.includes('จำนวนวัน')));
+1050    if (errors.length > 0) {
+1051      showToast(errors[0], 'error', 5000);
+1052      return;
+1053    }
+บรรทัด 1039–1042: searchPackages (ผูกกับปุ่มค้นหาใน ➜ frontend/index.html) อ่านงบ จำนวนวัน และจำนวนคน
+บรรทัด 1043–1044: ทริปวันเดียวบังคับไม่รวมโรงแรม ไม่เช่นนั้นอ่านจากช่องติ๊ก
+บรรทัด 1046–1049: ตรวจข้อมูลก่อน และไฮไลต์ช่องที่ผิด
+บรรทัด 1050–1053: ถ้ามีข้อผิดพลาด แจ้งข้อแรกและหยุด
+บรรทัด 1055–1085  เตรียมหน้าจอรอผล
+1055    // === Clear previous results ===
+1056    if (STATE.map) {
+1057      STATE.mapMarkers.forEach(m => STATE.map.removeLayer(m));
+1058      STATE.mapPolylines.forEach(p => STATE.map.removeLayer(p));
+1059      if (STATE.hotelMarker) STATE.map.removeLayer(STATE.hotelMarker);
+1060      STATE.mapMarkers = [];
+1061      STATE.mapPolylines = [];
+1062      STATE.mapDayLayers = {};
+1063      STATE.hotelMarker = null;
+1064    }
+1065    STATE.packages = [];
+1066    STATE.selectedPkg = null;
+1067    STATE.selectedIdx = null;
+1068    document.getElementById('detailPanel').style.display = 'none';
+1069    document.getElementById('dayToggles').innerHTML = '';
+1070    document.getElementById('dayPanels').innerHTML = '';
+1071
+1072    const btn = document.getElementById('searchBtn');
+1073    btn.classList.add('loading');
+1074    btn.disabled = true;
+1075
+1076    const sec = document.getElementById('packagesSection');
+1077    sec.style.display = 'block';
+1078    document.getElementById('metaSummary').textContent = STATE.dev ? `กำลังคำนวณด้วย ${ALGO_NAMES[SELECTED_ALGO]}...` : 'กำลังวางแผนทริป...';
+1079    const grid = document.getElementById('packagesRow');
+1080    grid.innerHTML = '';
+1081    const skTpl = document.getElementById('skeletonTemplate');
+1082    for (let i = 0; i < 3; i++) grid.appendChild(skTpl.content.cloneNode(true));
+1083    sec.scrollIntoView({behavior: 'smooth', block: 'start'});
+1084
+1085    const loadingToast = showToast(STATE.dev ? `กำลังเรียก ${ALGO_NAMES[SELECTED_ALGO]} 3 รอบ...` : 'กำลังวางแผนทริป 3 แบบ...', 'loading', 30000);
+บรรทัด 1055–1064: ล้างหมุดและเส้นบนแผนที่และตารางต่อวัน (ผลก่อนหน้า)
+บรรทัด 1065–1070: ล้างแพ็กเกจ แผนที่เลือก ซ่อนรายละเอียด และล้างตัวสลับวัน/รายการวัน
+บรรทัด 1072–1074: ทำให้ปุ่มค้นหาเป็นสถานะกำลังโหลดและกดไม่ได้
+บรรทัด 1076–1083: แสดงส่วนแพ็กเกจ ตั้งข้อความสถานะ (โหมด Developer บอกชื่ออัลกอริทึม) ใส่โครงรอโหลด 3 ใบจาก <template> และเลื่อนหน้าลงไป
+บรรทัด 1085: แสดงข้อความ loading
+บรรทัด 1087–1108  ส่งคำขอสร้างแพ็กเกจ
+1087    try {
+1088      const res = await fetch(`${API_BASE}/api/packages`, {
+1089        method: 'POST',
+1090        headers: devHeaders(),
+1091        body: JSON.stringify({province: getProvince(), preferences: getPreferences(), budget, days, travelers, seed: Math.floor(Math.random() * 100000), algorithm: STATE.dev ? SELECTED_ALGO : 'hybrid', include_hotel: includeHotel}),
+1092      });
+1093      if (!res.ok) {
+1094        // Parse FastAPI/Pydantic 422 detail
+1095        let detail = `HTTP ${res.status}`;
+1096        try {
+1097          const errData = await res.json();
+1098          if (errData.detail && Array.isArray(errData.detail)) {
+1099            detail = errData.detail.map(d => {
+1100              const field = d.loc ? d.loc[d.loc.length - 1] : '?';
+1101              return `${field}: ${d.msg}`;
+1102            }).join(' · ');
+1103          } else if (errData.detail) {
+1104            detail = errData.detail;
+1105          }
+1106        } catch {}
+1107        throw new Error(detail);
+1108      }
+บรรทัด 1087–1092: ส่ง POST ไป /api/packages (➜ create_packages() ใน backend/main.py) พร้อมจังหวัด ความชอบ งบ วัน คน seed สุ่ม อัลกอริทึม (โหมดปกติบังคับ Hybrid) และตัวเลือกโรงแรม ส่วนหัวมีโทเค็นนักพัฒนา (➜ devHeaders() ใน frontend/app.js) backend จะเรียก ➜ algorithm/hybrid.py (หรืออัลกอริทึมที่เลือกในโหมด Developer)
+บรรทัด 1093–1108: ถ้าตอบผิดพลาด อ่านรายละเอียดตามรูปแบบ 422 ของ FastAPI (รายการ field: ข้อความ) หรือข้อความเดี่ยว แล้วโยนข้อผิดพลาด
+บรรทัด 1109–1128  ใช้ผลที่ได้
+1109      const data = await res.json();
+1110      STATE.packages = data.packages;
+1111      STATE.includeHotel = includeHotel && !data.packages.every(p => !p.total_hotel_cost);   // งบไม่พอที่พัก: เซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรมให้
+1112      (data.packages[0]?.notes || []).forEach(n => showToast(n, 'error', 7000));   // เช่น ร้านอาหารตามความชอบมีไม่พอ
+1113      renderPackages();
+1114      const totalRuntime = data.packages.reduce((s, p) => s + p.runtime_ms, 0);
+1115      document.getElementById('metaSummary').textContent =
+1116        `งบ ${fmt(budget)} ฿ · ${days} วัน · ${travelers} คน` + (STATE.dev ? ` · ${ALGO_NAMES[SELECTED_ALGO]} · ${(totalRuntime/1000).toFixed(1)} วินาที` : '');
+1117      loadingToast.remove();
+1118      showToast(`สร้าง ${data.packages.length} แพ็กเกจสำเร็จ`, 'ok');
+1119    } catch (e) {
+1120      loadingToast.remove();
+1121      showToast(`ผิดพลาด: ${e.message}`, 'error', 6000);
+1122      grid.innerHTML = '';
+1123      document.getElementById('metaSummary').textContent = '';
+1124    } finally {
+1125      btn.classList.remove('loading');
+1126      btn.disabled = false;
+1127    }
+1128  }
+บรรทัด 1109–1110: เก็บแพ็กเกจที่ได้
+บรรทัด 1111: ตั้งธงรวมโรงแรม: ถ้าทุกแพ็กเกจไม่มีค่าโรงแรม แปลว่างบไม่พอและเซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรม
+บรรทัด 1112: แสดงหมายเหตุของ backend (เช่น ร้านอาหารตามความชอบไม่พอ)
+บรรทัด 1113–1118: วาดการ์ด (➜ renderPackages() ใน frontend/app.js) สรุปเงื่อนไข (และเวลาในโหมด Developer) ลบข้อความ loading และแจ้งสำเร็จ
+บรรทัด 1119–1123: ถ้าผิดพลาดแจ้งข้อความ ล้างการ์ด
+บรรทัด 1124–1127: คืนปุ่มค้นหาให้กดได้เสมอ
+บรรทัด 1133–1167  แสดงการ์ดแพ็กเกจ
+1133  function renderPackages() {
+1134    const grid = document.getElementById('packagesRow');
+1135    grid.innerHTML = '';
+1136
+1137    const showHotel = STATE.includeHotel !== false;
+1138
+1139    STATE.packages.forEach((pkg, idx) => {
+1140      const card = document.createElement('div');
+1141      card.className = `package-card ${pkg.valid ? '' : 'invalid'}`;
+1142      card.onclick = () => pkg.valid && selectPackage(idx);
+1143      const totalPois = pkg.days.reduce((s, d) => s + d.pois.length, 0);
+1144      card.innerHTML = `
+1145        <div class="tier-row">
+1146          <span class="tier-badge tier-${pkg.tier}">${pkg.tier}</span>
+1147          <span class="runtime">${pkg.runtime_ms.toFixed(0)} ms</span>
+1148        </div>
+1149        ${showHotel
+1150          ? `<div class="hotel-name">${CAT_ICON.hotel} ${pkg.hotel.name_en}
+1151              <button type="button" class="hotel-info-btn" title="ดูรายละเอียดและรีวิว" onclick="event.stopPropagation(); showHotelDetail('${pkg.hotel.id}')">${ICON.pin}</button></div>`
+1152          : `<div class="hotel-name no-hotel">${ic('hotel-off')} ไม่รวมที่พัก</div>`}
+1153        ${pkg.valid ? `
+1154          <div class="score-display">
+1155            <span class="score-num">${pkg.total_score}</span>
+1156            <span class="score-label"><span class="dev-txt">รวมคะแนน · </span>${totalPois} จุดท่องเที่ยว</span>
+1157          </div>
+1158          ${showHotel ? `<div class="stat-row"><span class="label">ค่าโรงแรม</span><span class="val">${fmt(pkg.total_hotel_cost)} ฿</span></div>` : ''}
+1159          <div class="stat-row"><span class="label">ค่ากิจกรรม</span><span class="val">${fmt(pkg.total_activity_cost)} ฿</span></div>
+1160          <div class="stat-row total"><span class="label">รวมทั้งหมด</span><span class="val">${fmt(pkg.total_cost)} ฿</span></div>
+1161        ` : `
+1162          <div class="invalid-msg">${pkg.violations[0] || 'งบไม่พอสำหรับแพ็กเกจนี้'}</div>
+1163        `}
+1164      `;
+1165      grid.appendChild(card);
+1166    });
+1167  }
+บรรทัด 1133–1137: renderPackages ล้างตาราง และอ่านว่าจะแสดงข้อมูลโรงแรมหรือไม่
+บรรทัด 1139–1143: แต่ละแพ็กเกจสร้างการ์ด (ถ้าไม่ผ่านข้อจำกัดเป็นสีเทา) คลิกแล้วเรียก selectPackage เมื่อแพ็กเกจผ่านข้อจำกัด และนับจำนวนสถานที่
+บรรทัด 1144–1152: หัวการ์ด: ระดับ (ประหยัด มาตรฐาน พรีเมียม) เวลาคำนวณ และชื่อโรงแรมพร้อมปุ่มหมุดเล็ก (.hotel-info-btn) ที่เปิด showHotelDetail โดยไม่เลือกแพ็กเกจ (stopPropagation) หรือ "ไม่รวมที่พัก"
+บรรทัด 1153–1160: ถ้าผ่านข้อจำกัด แสดงคะแนน จำนวนจุดท่องเที่ยว ค่าโรงแรม ค่ากิจกรรม และรวมทั้งหมด
+บรรทัด 1161–1163: ถ้าไม่ผ่าน แสดงข้อความละเมิดข้อแรก หรือ "งบไม่พอสำหรับแพ็กเกจนี้"
+บรรทัด 1165–1166: ต่อการ์ดเข้าตาราง
+บรรทัด 1172–1189  เลือกแพ็กเกจ
+1172  function selectPackage(idx) {
+1173    STATE.selectedPkg = JSON.parse(JSON.stringify(STATE.packages[idx]));
+1174    STATE.locked.clear(); STATE.excluded.clear();
+1175    STATE.selectedIdx = idx;
+1176    document.querySelectorAll('.package-card').forEach((c, i) =>
+1177      c.classList.toggle('selected', i === idx)
+1178    );
+1179    document.getElementById('detailPanel').style.display = 'block';
+1180    renderDetail(STATE.selectedPkg);
+1181    // CRITICAL: must invalidate size after detail panel becomes visible,
+1182    // otherwise map container has 0px and fitBounds fails
+1183    setTimeout(() => {
+1184      STATE.map.invalidateSize();
+1185      drawOnMap(STATE.selectedPkg);
+1186      document.getElementById('detailPanel').scrollIntoView({behavior: 'smooth', block: 'start'});
+1187      setTimeout(syncMapHeight, 150);
+1188    }, 120);
+1189  }
+บรรทัด 1172–1175: selectPackage ทำสำเนาลึกของแพ็กเกจที่เลือก ล้างชุดล็อกและลบ และจดตำแหน่ง
+บรรทัด 1176–1178: ไฮไลต์การ์ดที่เลือก
+บรรทัด 1179–1180: แสดงส่วนรายละเอียดและวาดด้วย ➜ renderDetail() ใน frontend/app.js
+บรรทัด 1181–1188: ต้องคำนวณขนาดแผนที่ใหม่หลังที่แสดงส่วนรายละเอียด (ไม่เช่นนั้นแผนที่สูง 0 พิกเซลและ fitBounds ล้มเหลว) แล้ววาดเส้นทาง เลื่อนหน้า และปรับความสูงแผนที่
+บรรทัด 1194–1284  วาดแผนที่
+1194  function drawOnMap(pkg) {
+1195    // Clear all old layers
+1196    STATE.mapMarkers.forEach(m => STATE.map.removeLayer(m));
+1197    STATE.mapPolylines.forEach(p => STATE.map.removeLayer(p));
+1198    if (STATE.hotelMarker) STATE.map.removeLayer(STATE.hotelMarker);
+1199    STATE.mapMarkers = [];
+1200    STATE.mapPolylines = [];
+1201    STATE.mapDayLayers = {};
+1202
+1203    const showHotel = STATE.includeHotel !== false;
 1204
-1205      if (showHotel) path.push([pkg.hotel.lat, pkg.hotel.lng]);
-1206      const line = L.polyline(path, {
-1207        color, weight: 3, opacity: 0.8, dashArray: '6, 8',
-1208      }).bindTooltip(`Day ${dIdx + 1}`).addTo(STATE.map);
-1209      STATE.mapPolylines.push(line);
-1210
-1211      // Save layers for this day
-1212      STATE.mapDayLayers[dIdx] = {
-1213        markers: dayMarkers,
-1214        polyline: line,
-1215        visible: true,
-1216        color,
-1217      };
-1218    });
+1205    // Hotel marker — แสดงเฉพาะเมื่อรวมโรงแรม
+1206    if (showHotel) {
+1207      const hotelIcon = L.divIcon({
+1208        html: `<div class="map-hotel-marker">${ic('hotel')}</div>`,
+1209        className: '',
+1210        iconSize: [40, 40], iconAnchor: [20, 20],
+1211      });
+1212      STATE.hotelMarker = L.marker([pkg.hotel.lat, pkg.hotel.lng], {icon: hotelIcon})
+1213        .bindPopup(`<b>${pkg.hotel.name_en}</b><br><small>${pkg.hotel.cost} ฿/คืน</small><br>
+1214           <a href="#" onclick="showHotelDetail('${pkg.hotel.id}'); return false;">ดูรายละเอียดและรีวิว</a>`)
+1215        .addTo(STATE.map);
+1216    } else {
+1217      STATE.hotelMarker = null;
+1218    }
 1219
-1220    // Default: show only day 1, hide the rest
-1221    pkg.days.forEach((_, dIdx) => {
-1222      if (dIdx === 0) return;
-1223      const layer = STATE.mapDayLayers[dIdx];
-1224      if (!layer) return;
-1225      layer.markers.forEach(m => STATE.map.removeLayer(m));
-1226      STATE.map.removeLayer(layer.polyline);
-1227      layer.visible = false;
-1228    });
-1229
-1230    renderDayToggles(pkg);
-1231
-1232    // fitBounds to day 1 only
-1233    const day0Latlngs = showHotel ? [[pkg.hotel.lat, pkg.hotel.lng]] : [];
-1234    pkg.days[0].pois.forEach(p => day0Latlngs.push([p.lat, p.lng]));
-1235    if (day0Latlngs.length > 1) {
-1236      STATE.map.fitBounds(L.latLngBounds(day0Latlngs).pad(0.15));
-1237    }
-1238  }
-บรรทัด 1149–1156: drawOnMap ล้างหมุด เส้น และหมุดโรงแรมเดิม และตารางชั้นต่อวัน (ถูก ➜ frontend/extras.js ห่อให้คงสถานะวันที่เปิดอยู่)
-บรรทัด 1158–1172: ถ้ารวมโรงแรม สร้างหมุดโรงแรมรูปเตียงพร้อมป๊อปอัปชื่อและราคาต่อคืน ไม่เช่นนั้นไม่มีหมุด
-บรรทัด 1175: เตรียมรายการพิกัดสำหรับจัดมุมมอง (รวมโรงแรมเฉพาะเมื่อรวมโรงแรม)
-บรรทัด 1177–1181: แต่ละวัน เลือกสีประจำวัน และเริ่มเส้นทางที่โรงแรม (ถ้ารวมโรงแรม)
-บรรทัด 1183–1191: แต่ละสถานที่ สร้างหมุดวงกลมสีของวัน แสดงเลขวันและลำดับ
-บรรทัด 1192–1198: ผูกป๊อปอัปแสดงชื่อ ชื่ออังกฤษ วันและลำดับ (โหมด Developer แสดงคะแนนด้วย) ค่าใช้จ่ายและเวลา และลิงก์ไป ➜ showPoiDetail() ใน frontend/app.js
-บรรทัด 1199–1202: จดหมุด จุดบนเส้นทาง และพิกัดทั้งหมด
-บรรทัด 1205–1209: ปิดเส้นทางกลับโรงแรม แล้ววาดเส้นประสีของวัน
-บรรทัด 1211–1217: เก็บชั้นของวันนั้นไว้ใน STATE.mapDayLayers (หมุด เส้น สถานะมองเห็น สี)
-บรรทัด 1220–1228: ค่าตั้งต้นแสดงเฉพาะวันที่ 1 ซ่อนวันอื่นโดยถอดจากแผนที่
-บรรทัด 1230: วาดปุ่มสลับวัน
-บรรทัด 1232–1237: จัดมุมมองให้พอดีกับจุดของวันที่ 1 เว้นขอบ 15%
-บรรทัด 1243–1296  ปุ่มสลับแต่ละวัน
-1243  function renderDayToggles(pkg) {
-1244    const root = document.getElementById('dayToggles');
-1245    if (!root) return;
-1246
-1247    let html = `<button class="day-toggle show-all" onclick="toggleAllDays(true)" title="แสดงทุกวัน">
-1248                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-1249                  <span>แสดงทุกวัน</span>
-1250                </button>`;
-1251    html += `<button class="day-toggle hide-all" onclick="toggleAllDays(false)" title="ซ่อนทุกวัน">
-1252               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
-1253               <span>ซ่อนทุกวัน</span>
-1254             </button>`;
-1255    html += `<button class="day-toggle reset-view" onclick="resetMapView()" title="รีเซ็ตตำแหน่ง">
-1256               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-1257               <span>รีเซ็ต</span>
-1258             </button>`;
-1259    html += pkg.days.map((day, dIdx) => {
-1260      const color = DAY_COLORS[dIdx % DAY_COLORS.length];
-1261      const visible = STATE.mapDayLayers[dIdx] ? STATE.mapDayLayers[dIdx].visible : true;
-1262      return `<button class="day-toggle ${visible ? 'active' : ''}"
-1263                      style="--c:${color};"
-1264                      onclick="toggleDay(${dIdx})">
-1265                <span class="day-dot"></span>
-1266                <span>วัน ${dIdx + 1} (${day.pois.length})</span>
-1267              </button>`;
-1268    }).join('');
-1269    root.innerHTML = html;
-1270  }
-1271
-1272  function toggleDay(dIdx) {
-1273    const layer = STATE.mapDayLayers[dIdx];
-1274    if (!layer) return;
-1275    layer.visible = !layer.visible;
-1276    if (layer.visible) {
-1277      layer.markers.forEach(m => m.addTo(STATE.map));
-1278      layer.polyline.addTo(STATE.map);
-1279    } else {
-1280      layer.markers.forEach(m => STATE.map.removeLayer(m));
-1281      STATE.map.removeLayer(layer.polyline);
-1282    }
-1283    renderDayToggles(STATE.selectedPkg);
+1220    // allLatLngs: รวม hotel ไว้ใน bounds เฉพาะเมื่อรวมโรงแรม
+1221    const allLatLngs = showHotel ? [[pkg.hotel.lat, pkg.hotel.lng]] : [];
+1222
+1223    pkg.days.forEach((day, dIdx) => {
+1224      const color = DAY_COLORS[dIdx % DAY_COLORS.length];
+1225      // path: เริ่ม/จบที่โรงแรมเฉพาะเมื่อรวมโรงแรม
+1226      const path = showHotel ? [[pkg.hotel.lat, pkg.hotel.lng]] : [];
+1227      const dayMarkers = [];
+1228
+1229      day.pois.forEach((poi, pIdx) => {
+1230        const icon = L.divIcon({
+1231          html: `<div class="map-poi-marker" style="--c:${color};">
+1232                   <span class="d">${dIdx + 1}</span>
+1233                   <span class="p">${pIdx + 1}</span>
+1234                 </div>`,
+1235          className: '',
+1236          iconSize: [36, 36], iconAnchor: [18, 18],
+1237        });
+1238        const m = L.marker([poi.lat, poi.lng], {icon}).bindPopup(
+1239          `<b>${poi.name_th}</b><br>
+1240           <small>${poi.name_en}</small><br>
+1241           <span style="opacity:0.7;">วันที่ ${dIdx + 1} · ลำดับ ${pIdx + 1}</span><br>
+1242           ${STATE.dev ? poi.score + ' คะแนน · ' : ''}${poi.cost} ฿ · ${poi.duration_min} นาที<br>
+1243           <a href="#" onclick="showPoiDetail('${poi.id}', ${arriveOf(day, poi)}); return false;">ดูรายละเอียดและรีวิว</a>`
+1244        ).addTo(STATE.map);
+1245        dayMarkers.push(m);
+1246        STATE.mapMarkers.push(m);
+1247        path.push([poi.lat, poi.lng]);
+1248        allLatLngs.push([poi.lat, poi.lng]);
+1249      });
+1250
+1251      if (showHotel) path.push([pkg.hotel.lat, pkg.hotel.lng]);
+1252      const line = L.polyline(path, {
+1253        color, weight: 3, opacity: 0.8, dashArray: '6, 8',
+1254      }).bindTooltip(`Day ${dIdx + 1}`).addTo(STATE.map);
+1255      STATE.mapPolylines.push(line);
+1256
+1257      // Save layers for this day
+1258      STATE.mapDayLayers[dIdx] = {
+1259        markers: dayMarkers,
+1260        polyline: line,
+1261        visible: true,
+1262        color,
+1263      };
+1264    });
+1265
+1266    // Default: show only day 1, hide the rest
+1267    pkg.days.forEach((_, dIdx) => {
+1268      if (dIdx === 0) return;
+1269      const layer = STATE.mapDayLayers[dIdx];
+1270      if (!layer) return;
+1271      layer.markers.forEach(m => STATE.map.removeLayer(m));
+1272      STATE.map.removeLayer(layer.polyline);
+1273      layer.visible = false;
+1274    });
+1275
+1276    renderDayToggles(pkg);
+1277
+1278    // fitBounds to day 1 only
+1279    const day0Latlngs = showHotel ? [[pkg.hotel.lat, pkg.hotel.lng]] : [];
+1280    pkg.days[0].pois.forEach(p => day0Latlngs.push([p.lat, p.lng]));
+1281    if (day0Latlngs.length > 1) {
+1282      STATE.map.fitBounds(L.latLngBounds(day0Latlngs).pad(0.15));
+1283    }
 1284  }
-1285
-1286  function resetMapView() {
-1287    const latlngs = [];
-1288    Object.values(STATE.mapDayLayers).forEach(layer => {
-1289      if (!layer.visible) return;
-1290      layer.markers.forEach(m => latlngs.push(m.getLatLng()));
-1291    });
-1292    if (STATE.hotelMarker) latlngs.push(STATE.hotelMarker.getLatLng());
-1293    if (latlngs.length > 1) {
-1294      STATE.map.fitBounds(L.latLngBounds(latlngs).pad(0.15));
-1295    }
-1296  }
-บรรทัด 1243–1245: renderDayToggles หาที่วางปุ่ม #dayToggles ใน ➜ frontend/index.html
-บรรทัด 1247–1258: สร้างปุ่ม "แสดงทุกวัน" "ซ่อนทุกวัน" และ "รีเซ็ต"
-บรรทัด 1259–1269: สร้างปุ่มของแต่ละวัน (สีและจำนวนจุด) ตามสถานะมองเห็น แล้วใส่ใน DOM
-บรรทัด 1272–1284: toggleDay สลับการมองเห็นของวันหนึ่ง (เพิ่มหรือถอดหมุดและเส้นจากแผนที่) แล้ววาดปุ่มใหม่
-บรรทัด 1286–1296: resetMapView รวมพิกัดหมุดของวันที่มองเห็นและโรงแรม แล้วปรับมุมมองให้พอดี
-บรรทัด 1298–1312  แสดงหรือซ่อนทุกวัน
-1298  function toggleAllDays(showAll) {
-1299    Object.keys(STATE.mapDayLayers).forEach(k => {
-1300      const layer = STATE.mapDayLayers[k];
-1301      if (showAll && !layer.visible) {
-1302        layer.markers.forEach(m => m.addTo(STATE.map));
-1303        layer.polyline.addTo(STATE.map);
-1304        layer.visible = true;
-1305      } else if (!showAll && layer.visible) {
-1306        layer.markers.forEach(m => STATE.map.removeLayer(m));
-1307        STATE.map.removeLayer(layer.polyline);
-1308        layer.visible = false;
-1309      }
-1310    });
-1311    renderDayToggles(STATE.selectedPkg);
-1312  }
-บรรทัด 1298–1312: toggleAllDays แสดงหรือซ่อนทุกวันพร้อมกัน เฉพาะวันที่สถานะต่างจากเป้าหมาย แล้ววาดปุ่มใหม่
-บรรทัด 1318–1349  จัดขนาดส่วนรายละเอียดให้พอดีจอ
-1318  function fitDetail() {
-1319    const sec = document.querySelector('.detail-section'), dayList = document.querySelector('.day-list'), grid = document.querySelector('.detail-grid');
-1320    if (!sec || !dayList || !grid || sec.offsetParent === null) return;
-1321    if (window.innerWidth <= 1000) { sec.style.minHeight = ''; dayList.style.maxHeight = ''; return; }
-1322    const GAP = 36;   // ที่ว่างใต้กรอบ ไม่ให้ติดขอบล่างของเบราว์เซอร์
-1323    const top = grid.getBoundingClientRect().top - sec.getBoundingClientRect().top;
-1324    sec.style.minHeight = window.innerHeight + 'px';
-1325    dayList.style.maxHeight = Math.max(360, window.innerHeight - top - GAP) + 'px';
-1326    // ย่อการ์ดเท่าที่จำเป็น (ไม่ขยายเกินขนาดปกติ) ให้เห็นครบทุกจุดของวันที่ยาวที่สุดรวมปุ่มเพิ่มสถานที่โดยไม่ต้องเลื่อน
-1327    // ลำดับ: บีบระยะห่าง --sp (1→0) ก่อน ถ้ายังไม่พอจึงลดตัวอักษร --fs (1→0.8)
-1328    dayList.classList.add('fit');
-1329    const need = () => Math.max(...[...dayList.querySelectorAll('.day-panel')].map(p => p.offsetHeight), 0);
-1330    const room = dayList.clientHeight, setD = (sp, fs) => { dayList.style.setProperty('--sp', sp); dayList.style.setProperty('--fs', fs); };
-1331    const MAXSP = 1.25;   // ที่ว่างที่เหลือ (เช่น จากกล่องฝนที่เล็กลง) ให้การ์ดขยายได้ถึง 1.25 เท่า ตัวอักษรโตสูงสุด 3%
-1332    const tryD = (sp, fs = sp > 1 ? 1 + 0.03 * (sp - 1) / (MAXSP - 1) : 1) => { setD(sp.toFixed(3), fs.toFixed(3)); return need() <= room; };
-1333    if (!tryD(MAXSP)) {
-1334      if (tryD(0)) { let lo = 0, hi = MAXSP; for (let i = 0; i < 8; i++) { const m = (lo + hi) / 2; if (tryD(m)) lo = m; else hi = m; } tryD(lo); }
-1335      else { let fs = 1; while (fs > 0.8 && need() > room) { fs -= 0.03; setD(0, fs.toFixed(3)); } }
-1336    }
-1337  }
-1338  window.addEventListener('resize', () => { fitDetail(); syncMapHeight(); });
-1339
-1340  function syncMapHeight() {
-1341    fitDetail();
-1342    const dayList = document.querySelector('.day-list');
-1343    const mapEl   = document.getElementById('map');
-1344    if (!dayList || !mapEl) return;
-1345    const listBottom = dayList.getBoundingClientRect().bottom;
-1346    const mapTop     = mapEl.getBoundingClientRect().top;
-1347    const mapH       = Math.max(listBottom - mapTop, 200);
-1348    mapEl.style.height = mapH + 'px';
-1349  }
-บรรทัด 1318–1320: fitDetail หาองค์ประกอบ ถ้าไม่มีหรือซ่อนอยู่ออก
-บรรทัด 1321: บนจอแคบ (ไม่เกิน 1000 พิกเซล) ล้างค่าบังคับความสูงแล้วออก
-บรรทัด 1322–1325: คำนวณที่ว่างใต้กรอบ ตั้งความสูงขั้นต่ำเท่าจอ และจำกัดความสูงรายการวัน (ไม่ต่ำกว่า 360)
-บรรทัด 1326–1336: ย่อการ์ดเท่าที่จำเป็นให้เห็นครบทุกจุดของวันที่ยาวที่สุด: ตัวแปร CSS --sp (ระยะห่าง 1.25 → 0) ก่อน ถ้ายังไม่พอจึงลด --fs (ขนาดอักษร 1 → 0.8) โดยค้นหาแบบแบ่งครึ่ง 8 รอบ
-บรรทัด 1338: เมื่อปรับขนาดหน้าต่าง จัดขนาดและความสูงแผนที่ใหม่
-บรรทัด 1340–1349: syncMapHeight จัดรายการวันก่อน แล้วตั้งความสูงแผนที่ให้เท่ารายการวัน (ไม่ต่ำกว่า 200 พิกเซล)
-บรรทัด 1352–1446  วาดรายละเอียดแผน
-1352  function renderDetail(pkg) {
-1353    const showHotel = STATE.includeHotel !== false;
-1354    document.getElementById('detailTitle').textContent = showHotel
-1355      ? `${pkg.tier} — ${pkg.hotel.name_en}`
-1356      : `${pkg.tier} — ไม่รวมที่พัก`;
-1357
-1358    // KPIs
-1359    const totalPois = pkg.days.reduce((s, d) => s + d.pois.length, 0);
-1360    document.querySelector('#kpiScore .kpi-val').textContent = pkg.total_score;
-1361    document.querySelector('#kpiCost .kpi-val').textContent = `${fmt(pkg.total_activity_cost)} ฿`;
-1362    document.querySelector('#kpiPois .kpi-val').textContent = totalPois;
-1363
-1364    const root = document.getElementById('dayPanels');
-1365    root.innerHTML = '';
-1366
-1367    pkg.days.forEach((day, dIdx) => {
-1368      const color = DAY_COLORS[dIdx % DAY_COLORS.length];
-1369      const panel = document.createElement('div');
-1370      panel.className = 'day-panel';
-1371      panel.innerHTML = `
-1372        <div class="day-head">
-1373          <div class="day-title">
-1374            <div class="day-color" style="background:${color};box-shadow:0 0 8px ${color};"></div>
-1375            <h3>วันที่ ${dIdx + 1}</h3>
-1376          </div>
-1377          <div class="day-stats">
-1378            <span class="day-score">${ICON.star} ${day.score}</span>
-1379            <span>${ICON.coin} ${fmt(day.cost)}</span>
-1380            <span>${ICON.clock} ${fmtDur(day.time_min)}</span>
-1381            <span>${ICON.route} ${day.distance_km.toFixed(1)}km</span>
-1382          </div>
-1383        </div>
-1384        <ul class="poi-list" id="day-${dIdx}-list"></ul>
-1385        <button class="day-add" onclick="addPoiToDay(${dIdx})">
-1386          <div class="add-num">${ICON.plus}</div>
-1387          <span>เพิ่มสถานที่</span>
-1388        </button>
-1389      `;
-1390      root.appendChild(panel);
-1391
-1392      const list = panel.querySelector('.poi-list');
-1393      if (!day.pois.length) {
-1394        list.innerHTML = '<li style="text-align:center;color:var(--text-muted);padding:1rem 0;font-size:0.85rem;">ยังไม่มีจุดในวันนี้</li>';
-1395      }
-1396      day.pois.forEach((poi, pIdx) => {
-1397        // Distance connector before this POI
-1398        if (pIdx === 0 && showHotel) {
-1399          const distKm = haversineKm(pkg.hotel.lat, pkg.hotel.lng, poi.lat, poi.lng);
-1400          const distEl = document.createElement('li');
-1401          distEl.className = 'dist-connector';
-1402          distEl.innerHTML = `<span class="dist-line"></span><span class="dist-badge">${ic('hotel')} ${ic('arrow-right')} ${distKm.toFixed(1)} km</span><span class="dist-line"></span>`;
-1403          list.appendChild(distEl);
-1404        } else if (pIdx > 0) {
-1405          const prev = day.pois[pIdx - 1];
-1406          const distKm = haversineKm(prev.lat, prev.lng, poi.lat, poi.lng);
-1407          const distEl = document.createElement('li');
-1408          distEl.className = 'dist-connector';
-1409          distEl.innerHTML = `<span class="dist-line"></span><span class="dist-badge">${ic('arrow-down')} ${distKm.toFixed(1)} km</span><span class="dist-line"></span>`;
-1410          list.appendChild(distEl);
-1411        }
+บรรทัด 1194–1201: drawOnMap ล้างหมุด เส้น และหมุดโรงแรมเดิม และตารางชั้นต่อวัน (ถูก ➜ frontend/extras.js ห่อให้คงสถานะวันที่เปิดอยู่)
+บรรทัด 1203–1218: ถ้ารวมโรงแรม สร้างหมุดโรงแรมรูปเตียงพร้อมป๊อปอัปชื่อ ราคาต่อคืน และลิงก์ "ดูรายละเอียดและรีวิว" (เรียก showHotelDetail) ไม่เช่นนั้นไม่มีหมุด
+บรรทัด 1221: เตรียมรายการพิกัดสำหรับจัดมุมมอง (รวมโรงแรมเฉพาะเมื่อรวมโรงแรม)
+บรรทัด 1223–1227: แต่ละวัน เลือกสีประจำวัน และเริ่มเส้นทางที่โรงแรม (ถ้ารวมโรงแรม)
+บรรทัด 1229–1237: แต่ละสถานที่ สร้างหมุดวงกลมสีของวัน แสดงเลขวันและลำดับ
+บรรทัด 1238–1244: ผูกป๊อปอัปแสดงชื่อ ชื่ออังกฤษ วันและลำดับ (โหมด Developer แสดงคะแนนด้วย) ค่าใช้จ่ายและเวลา และลิงก์ไป ➜ showPoiDetail() ใน frontend/app.js
+บรรทัด 1245–1248: จดหมุด จุดบนเส้นทาง และพิกัดทั้งหมด
+บรรทัด 1251–1255: ปิดเส้นทางกลับโรงแรม แล้ววาดเส้นประสีของวัน
+บรรทัด 1257–1263: เก็บชั้นของวันนั้นไว้ใน STATE.mapDayLayers (หมุด เส้น สถานะมองเห็น สี)
+บรรทัด 1266–1274: ค่าตั้งต้นแสดงเฉพาะวันที่ 1 ซ่อนวันอื่นโดยถอดจากแผนที่
+บรรทัด 1276: วาดปุ่มสลับวัน
+บรรทัด 1278–1283: จัดมุมมองให้พอดีกับจุดของวันที่ 1 เว้นขอบ 15%
+บรรทัด 1289–1342  ปุ่มสลับแต่ละวัน
+1289  function renderDayToggles(pkg) {
+1290    const root = document.getElementById('dayToggles');
+1291    if (!root) return;
+1292
+1293    let html = `<button class="day-toggle show-all" onclick="toggleAllDays(true)" title="แสดงทุกวัน">
+1294                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+1295                  <span>แสดงทุกวัน</span>
+1296                </button>`;
+1297    html += `<button class="day-toggle hide-all" onclick="toggleAllDays(false)" title="ซ่อนทุกวัน">
+1298               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+1299               <span>ซ่อนทุกวัน</span>
+1300             </button>`;
+1301    html += `<button class="day-toggle reset-view" onclick="resetMapView()" title="รีเซ็ตตำแหน่ง">
+1302               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+1303               <span>รีเซ็ต</span>
+1304             </button>`;
+1305    html += pkg.days.map((day, dIdx) => {
+1306      const color = DAY_COLORS[dIdx % DAY_COLORS.length];
+1307      const visible = STATE.mapDayLayers[dIdx] ? STATE.mapDayLayers[dIdx].visible : true;
+1308      return `<button class="day-toggle ${visible ? 'active' : ''}"
+1309                      style="--c:${color};"
+1310                      onclick="toggleDay(${dIdx})">
+1311                <span class="day-dot"></span>
+1312                <span>วัน ${dIdx + 1} (${day.pois.length})</span>
+1313              </button>`;
+1314    }).join('');
+1315    root.innerHTML = html;
+1316  }
+1317
+1318  function toggleDay(dIdx) {
+1319    const layer = STATE.mapDayLayers[dIdx];
+1320    if (!layer) return;
+1321    layer.visible = !layer.visible;
+1322    if (layer.visible) {
+1323      layer.markers.forEach(m => m.addTo(STATE.map));
+1324      layer.polyline.addTo(STATE.map);
+1325    } else {
+1326      layer.markers.forEach(m => STATE.map.removeLayer(m));
+1327      STATE.map.removeLayer(layer.polyline);
+1328    }
+1329    renderDayToggles(STATE.selectedPkg);
+1330  }
+1331
+1332  function resetMapView() {
+1333    const latlngs = [];
+1334    Object.values(STATE.mapDayLayers).forEach(layer => {
+1335      if (!layer.visible) return;
+1336      layer.markers.forEach(m => latlngs.push(m.getLatLng()));
+1337    });
+1338    if (STATE.hotelMarker) latlngs.push(STATE.hotelMarker.getLatLng());
+1339    if (latlngs.length > 1) {
+1340      STATE.map.fitBounds(L.latLngBounds(latlngs).pad(0.15));
+1341    }
+1342  }
+บรรทัด 1289–1291: renderDayToggles หาที่วางปุ่ม #dayToggles ใน ➜ frontend/index.html
+บรรทัด 1293–1304: สร้างปุ่ม "แสดงทุกวัน" "ซ่อนทุกวัน" และ "รีเซ็ต"
+บรรทัด 1305–1315: สร้างปุ่มของแต่ละวัน (สีและจำนวนจุด) ตามสถานะมองเห็น แล้วใส่ใน DOM
+บรรทัด 1318–1330: toggleDay สลับการมองเห็นของวันหนึ่ง (เพิ่มหรือถอดหมุดและเส้นจากแผนที่) แล้ววาดปุ่มใหม่
+บรรทัด 1332–1342: resetMapView รวมพิกัดหมุดของวันที่มองเห็นและโรงแรม แล้วปรับมุมมองให้พอดี
+บรรทัด 1344–1358  แสดงหรือซ่อนทุกวัน
+1344  function toggleAllDays(showAll) {
+1345    Object.keys(STATE.mapDayLayers).forEach(k => {
+1346      const layer = STATE.mapDayLayers[k];
+1347      if (showAll && !layer.visible) {
+1348        layer.markers.forEach(m => m.addTo(STATE.map));
+1349        layer.polyline.addTo(STATE.map);
+1350        layer.visible = true;
+1351      } else if (!showAll && layer.visible) {
+1352        layer.markers.forEach(m => STATE.map.removeLayer(m));
+1353        STATE.map.removeLayer(layer.polyline);
+1354        layer.visible = false;
+1355      }
+1356    });
+1357    renderDayToggles(STATE.selectedPkg);
+1358  }
+บรรทัด 1344–1358: toggleAllDays แสดงหรือซ่อนทุกวันพร้อมกัน เฉพาะวันที่สถานะต่างจากเป้าหมาย แล้ววาดปุ่มใหม่
+บรรทัด 1364–1395  จัดขนาดส่วนรายละเอียดให้พอดีจอ
+1364  function fitDetail() {
+1365    const sec = document.querySelector('.detail-section'), dayList = document.querySelector('.day-list'), grid = document.querySelector('.detail-grid');
+1366    if (!sec || !dayList || !grid || sec.offsetParent === null) return;
+1367    if (window.innerWidth <= 1000) { sec.style.minHeight = ''; dayList.style.maxHeight = ''; return; }
+1368    const GAP = 36;   // ที่ว่างใต้กรอบ ไม่ให้ติดขอบล่างของเบราว์เซอร์
+1369    const top = grid.getBoundingClientRect().top - sec.getBoundingClientRect().top;
+1370    sec.style.minHeight = window.innerHeight + 'px';
+1371    dayList.style.maxHeight = Math.max(360, window.innerHeight - top - GAP) + 'px';
+1372    // ย่อการ์ดเท่าที่จำเป็น (ไม่ขยายเกินขนาดปกติ) ให้เห็นครบทุกจุดของวันที่ยาวที่สุดรวมปุ่มเพิ่มสถานที่โดยไม่ต้องเลื่อน
+1373    // ลำดับ: บีบระยะห่าง --sp (1→0) ก่อน ถ้ายังไม่พอจึงลดตัวอักษร --fs (1→0.8)
+1374    dayList.classList.add('fit');
+1375    const need = () => Math.max(...[...dayList.querySelectorAll('.day-panel')].map(p => p.offsetHeight), 0);
+1376    const room = dayList.clientHeight, setD = (sp, fs) => { dayList.style.setProperty('--sp', sp); dayList.style.setProperty('--fs', fs); };
+1377    const MAXSP = 1.25;   // ที่ว่างที่เหลือ (เช่น จากกล่องฝนที่เล็กลง) ให้การ์ดขยายได้ถึง 1.25 เท่า ตัวอักษรโตสูงสุด 3%
+1378    const tryD = (sp, fs = sp > 1 ? 1 + 0.03 * (sp - 1) / (MAXSP - 1) : 1) => { setD(sp.toFixed(3), fs.toFixed(3)); return need() <= room; };
+1379    if (!tryD(MAXSP)) {
+1380      if (tryD(0)) { let lo = 0, hi = MAXSP; for (let i = 0; i < 8; i++) { const m = (lo + hi) / 2; if (tryD(m)) lo = m; else hi = m; } tryD(lo); }
+1381      else { let fs = 1; while (fs > 0.8 && need() > room) { fs -= 0.03; setD(0, fs.toFixed(3)); } }
+1382    }
+1383  }
+1384  window.addEventListener('resize', () => { fitDetail(); syncMapHeight(); });
+1385
+1386  function syncMapHeight() {
+1387    fitDetail();
+1388    const dayList = document.querySelector('.day-list');
+1389    const mapEl   = document.getElementById('map');
+1390    if (!dayList || !mapEl) return;
+1391    const listBottom = dayList.getBoundingClientRect().bottom;
+1392    const mapTop     = mapEl.getBoundingClientRect().top;
+1393    const mapH       = Math.max(listBottom - mapTop, 200);
+1394    mapEl.style.height = mapH + 'px';
+1395  }
+บรรทัด 1364–1366: fitDetail หาองค์ประกอบ ถ้าไม่มีหรือซ่อนอยู่ออก
+บรรทัด 1367: บนจอแคบ (ไม่เกิน 1000 พิกเซล) ล้างค่าบังคับความสูงแล้วออก
+บรรทัด 1368–1371: คำนวณที่ว่างใต้กรอบ ตั้งความสูงขั้นต่ำเท่าจอ และจำกัดความสูงรายการวัน (ไม่ต่ำกว่า 360)
+บรรทัด 1372–1382: ย่อการ์ดเท่าที่จำเป็นให้เห็นครบทุกจุดของวันที่ยาวที่สุด: ตัวแปร CSS --sp (ระยะห่าง 1.25 → 0) ก่อน ถ้ายังไม่พอจึงลด --fs (ขนาดอักษร 1 → 0.8) โดยค้นหาแบบแบ่งครึ่ง 8 รอบ
+บรรทัด 1384: เมื่อปรับขนาดหน้าต่าง จัดขนาดและความสูงแผนที่ใหม่
+บรรทัด 1386–1395: syncMapHeight จัดรายการวันก่อน แล้วตั้งความสูงแผนที่ให้เท่ารายการวัน (ไม่ต่ำกว่า 200 พิกเซล)
+บรรทัด 1398–1492  วาดรายละเอียดแผน
+1398  function renderDetail(pkg) {
+1399    const showHotel = STATE.includeHotel !== false;
+1400    document.getElementById('detailTitle').textContent = showHotel
+1401      ? `${pkg.tier} — ${pkg.hotel.name_en}`
+1402      : `${pkg.tier} — ไม่รวมที่พัก`;
+1403
+1404    // KPIs
+1405    const totalPois = pkg.days.reduce((s, d) => s + d.pois.length, 0);
+1406    document.querySelector('#kpiScore .kpi-val').textContent = pkg.total_score;
+1407    document.querySelector('#kpiCost .kpi-val').textContent = `${fmt(pkg.total_activity_cost)} ฿`;
+1408    document.querySelector('#kpiPois .kpi-val').textContent = totalPois;
+1409
+1410    const root = document.getElementById('dayPanels');
+1411    root.innerHTML = '';
 1412
-1413        const li = document.createElement('li');
-1414        li.className = 'poi-item';
-1415        li.dataset.id = poi.id;
-1416        li.innerHTML = `
-1417          <div class="poi-num">${pIdx + 1}</div>
-1418          <div class="poi-info">
-1419            <div class="poi-name poi-link" onclick="showPoiDetail('${poi.id}', ${arriveOf(day, poi)})" title="ดูรายละเอียดและรีวิว">${CAT_ICON[poi.category] || ''} ${poi.name_th}</div>
-1420            <div class="poi-meta">
-1421              <span class="pill">${CAT_LABELS[poi.category] || poi.category}</span>
-1422              ${arriveOf(day, poi) >= 0 ? `<span class="time-chip"><span class="tc-lbl">ตั้งแต่</span> ${fmtClock(arriveOf(day, poi))}–${fmtClock(arriveOf(day, poi) + (poi.duration_min || 0))} · เปิด ${hoursText(poi)}</span>` : ''}
-1423              <span class="score-chip">${ic('star')} ${poi.score}</span>
-1424              <span>${poi.cost} ฿</span>
-1425              <span class="dur"><span class="dur-lbl">ใช้เวลา</span> ${fmtDur(poi.duration_min)}</span>
-1426            </div>
-1427          </div>
-1428          <div class="poi-actions">
-1429            <a class="btn-loc" href="${gmapsUrl(poi)}" target="_blank" rel="noopener" title="ดูใน Google Maps">${ICON.pin}</a>
-1430            <button class="btn-swap" onclick="openSwapModal(${dIdx}, ${pIdx})" title="เปลี่ยน">${ICON.swap}</button>
-1431            <button class="btn-remove" onclick="removePoi(${dIdx}, ${pIdx})" title="ลบ">${ICON.trash}</button>
-1432          </div>
-1433        `;
-1434        list.appendChild(li);
-1435
-1436        // Return connector after last POI
-1437        if (pIdx === day.pois.length - 1 && showHotel) {
-1438          const distKm = haversineKm(poi.lat, poi.lng, pkg.hotel.lat, pkg.hotel.lng);
-1439          const distEl = document.createElement('li');
-1440          distEl.className = 'dist-connector';
-1441          distEl.innerHTML = `<span class="dist-line"></span><span class="dist-badge">${ic('arrow-down')} ${distKm.toFixed(1)} km ${ic('arrow-right')} ${ic('hotel')}</span><span class="dist-line"></span>`;
-1442          list.appendChild(distEl);
-1443        }
-1444      });
-1445    });
-1446  }
-บรรทัด 1352–1356: renderDetail ตั้งหัวเรื่องเป็น "ระดับ — ชื่อโรงแรม" หรือ "ไม่รวมที่พัก" (ถูกห่อโดย ➜ frontend/extras.js และ ➜ frontend/tutorial.js เพื่อเพิ่มพยากรณ์ คำเตือน การลากวาง ประวัติ และวิธีใช้)
-บรรทัด 1358–1362: ใส่ตัวเลขสรุป (คะแนน ค่ากิจกรรม จำนวนจุด)
-บรรทัด 1364–1365: ล้างรายการวันเดิม
-บรรทัด 1367–1370: แต่ละวัน สร้างแผงวัน
-บรรทัด 1371–1389: โครงแผง: ชื่อวันที่ สถิติของวัน (คะแนน ค่าใช้จ่าย เวลา ระยะทาง) รายการสถานที่ และปุ่ม "เพิ่มสถานที่" ที่เรียก addPoiToDay
-บรรทัด 1390–1395: ต่อแผงเข้าหน้า ถ้าวันนั้นไม่มีจุด แสดงข้อความว่าง
-บรรทัด 1396–1403: ก่อนจุดแรก (ถ้ารวมโรงแรม) แทรกป้ายระยะทางจากโรงแรม (haversineKm)
-บรรทัด 1404–1411: ก่อนจุดถัด ๆ ไป แทรกป้ายระยะทางจากจุดก่อนหน้า
-บรรทัด 1413–1426: สร้างการ์ดสถานที่: เลขลำดับ ชื่อ (คลิกดูรายละเอียด) หมวด เวลา (ตั้งแต่-ถึง และเวลาเปิด-ปิด) คะแนน ราคา และเวลาที่ใช้
-บรรทัด 1428–1433: ปุ่มของการ์ด: ลิงก์ Google Maps ปุ่มเปลี่ยน (➜ openSwapModal() ใน frontend/app.js) และปุ่มลบ (➜ removePoi() ใน frontend/app.js) ต่อการ์ดเข้ารายการ
-บรรทัด 1436–1443: หลังจุดสุดท้าย (ถ้ารวมโรงแรม) แทรกป้ายระยะทางกลับโรงแรม
-บรรทัด 1444–1446: ปิดการวนและฟังก์ชัน
-บรรทัด 1451–1476  เปิดหน้าต่างเปลี่ยนหรือเพิ่มสถานที่
-1451  function openSwapModal(dayIdx, poiIdx) {
-1452    const currentPoi = STATE.selectedPkg.days[dayIdx].pois[poiIdx];
-1453    STATE.swapContext = {dayIdx, poiIdx, currentPoi, mode: 'swap', categoryFilter: 'all'};
-1454    document.getElementById('swapTitle').textContent = 'เปลี่ยนสถานที่';
-1455    document.getElementById('swapCurrentInfo').innerHTML =
-1456      `ปัจจุบัน: ${CAT_ICON[currentPoi.category] || ''} ${currentPoi.name_th}`;
-1457    document.getElementById('swapFilter').value = '';
-1458    renderSwapList();
-1459    document.getElementById('swapModal').classList.add('open');
-1460    document.body.style.overflow = 'hidden';
-1461  }
-1462
-1463  function addPoiToDay(dayIdx) {
-1464    STATE.swapContext = {dayIdx, poiIdx: null, currentPoi: null, mode: 'add', categoryFilter: 'all'};
-1465    document.getElementById('swapTitle').textContent = 'เพิ่มจุดใหม่';
-1466    document.getElementById('swapCurrentInfo').textContent = `เพิ่มในวันที่ ${dayIdx + 1}`;
-1467    document.getElementById('swapFilter').value = '';
-1468    renderSwapList();
-1469    document.getElementById('swapModal').classList.add('open');
-1470    document.body.style.overflow = 'hidden';
-1471  }
-1472
-1473  function setCategoryFilter(cat) {
-1474    STATE.swapContext.categoryFilter = cat;
-1475    renderSwapList();
-1476  }
-บรรทัด 1451–1461: openSwapModal (ผูกกับปุ่มเปลี่ยนของการ์ด) จดบริบท: วัน ตำแหน่ง สถานที่ปัจจุบัน โหมด "swap" และตัวกรองหมวด ตั้งหัวเรื่องและบรรทัดข้อมูลปัจจุบัน ล้างช่องค้นหา วาดรายการ (➜ renderSwapList() ใน frontend/app.js) แล้วเปิดโมดัลของ ➜ frontend/index.html
-บรรทัด 1463–1471: addPoiToDay ทำเช่นเดียวกันแต่โหมด "add" เพื่อเพิ่มจุดท้ายวัน
-บรรทัด 1473–1476: setCategoryFilter เปลี่ยนตัวกรองหมวดและวาดรายการใหม่
-บรรทัด 1479–1493  ตัวช่วยรายการสถานที่
-1479  function swapRainIcon(p) {
-1480    const ctx = STATE.swapContext;
-1481    if (!ctx || !window.dayRainPop || window.dayRainPop(ctx.dayIdx) < 60 || !(window.OUTDOOR_CATS || []).includes(p.category)) return '';
-1482    const tip = window.WET_LANG === 'en' ? 'Outdoor place, it may rain' : 'สถานที่กลางแจ้ง อาจมีฝนตกได้';
-1483    return `<span class="rain-ic" title="${tip}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.6 1.5A3.5 3.5 0 0 0 7 14"/><path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3"/></svg></span>`;
-1484  }
-1485
-1486  // ลิงก์ Google Maps ค้นหาด้วยชื่อสถานที่ + ชื่อจังหวัด เพื่อให้ปักหมุดที่สถานที่จริงของ Google (ไม่ใช่พิกัดจากข้อมูล OSM ที่อาจเลื่อน)
-1487  // ทริปข้ามจังหวัดใช้จังหวัดที่ใกล้จุดนั้นที่สุด; ถ้าไม่มีชื่อไทยใช้ชื่ออังกฤษ
-1488  function gmapsUrl(p) {
-1489    const provs = getProvince().split('+').map(s => STATE.provinces[s]).filter(Boolean);
-1490    const near = provs.slice().sort((a, b) => haversineKm(p.lat, p.lng, ...(a.center || [p.lat, p.lng])) - haversineKm(p.lat, p.lng, ...(b.center || [p.lat, p.lng])))[0];
-1491    const q = [p.name_th || p.name_en, near?.name_th].filter(Boolean).join(' ');
-1492    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
-1493  }
-บรรทัด 1479–1484: swapRainIcon ถ้าวันนั้นโอกาสฝน ≥ 60% (dayRainPop จาก ➜ frontend/extras.js) และสถานที่เป็นกลางแจ้ง คืนไอคอนฝนพร้อม tooltip สองภาษา ไม่เช่นนั้นคืนข้อความว่าง
-บรรทัด 1486–1493: gmapsUrl สร้างลิงก์ค้นหาใน Google Maps ด้วยชื่อสถานที่ผนวกชื่อจังหวัดที่ใกล้ที่สุด (กรณีทริปข้ามจังหวัด) เพื่อปักหมุดที่สถานที่จริง
-บรรทัด 1495–1542  วาดรายการสถานที่ให้เลือก
-1495  function renderSwapList() {
-1496    const ctx = STATE.swapContext;
-1497    const usedIds = new Set();
-1498    STATE.selectedPkg.days.forEach(d => d.pois.forEach(p => usedIds.add(p.id)));
-1499    const all = STATE.pois.filter(p => !usedIds.has(p.id));
-1500
-1501    const counts = {all: all.length};
-1502    all.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
-1503
-1504    const filterCat = ctx.categoryFilter || 'all';
-1505    const candidates = (filterCat === 'all' ? all : all.filter(p => p.category === filterCat))
-1506      .sort((a, b) => b.score - a.score);
-1507
-1508    const cats = ['all', 'beach', 'temple', 'viewpoint', 'culture', 'market', 'activity', 'restaurant'];
-1509    const filterButtons = cats
-1510      .filter(c => counts[c])
-1511          .map(c => `<button class="cat-btn ${c === filterCat ? 'active' : ''}" onclick="setCategoryFilter('${c}')">
-1512                   ${c === 'all' ? '' : CAT_ICON[c] + ' '}${CAT_LABELS[c]} <span style="opacity:0.7">${counts[c]}</span>
-1513                 </button>`).join('');
-1514
-1515    const list = document.getElementById('swapList');
-1516    list.innerHTML = `
-1517      <div class="cat-filter">${filterButtons}</div>
-1518      ${candidates.length === 0
-1519        ? '<div class="empty-msg">ไม่มีจุดที่ตรงเงื่อนไข</div>'
-1520        : candidates.map(p => `
-1521          <div class="swap-option" onclick="confirmSwap('${p.id}')">
-1522            <div class="opt-info">
-1523              <b>${CAT_ICON[p.category] || ''} ${p.name_th}${swapRainIcon(p)}</b>
-1524              <span class="meta">${CAT_LABELS[p.category]} · ${p.cost} ฿ · ${p.duration_min} นาที</span>
-1525              <span class="meta">เปิด-ปิด ${hoursText(p)}</span>
-1526            </div>
-1527            <div class="opt-actions">
-1528              <button type="button" class="opt-btn" title="ดูรีวิว" onclick="event.stopPropagation(); showPoiDetail('${p.id}', -1)"><svg class="ic" viewBox="0 0 24 24"><use href="#i-star"/></svg></button>
-1529              <a class="opt-btn" title="ดูใน Google Maps" target="_blank" rel="noopener" href="${gmapsUrl(p)}" onclick="event.stopPropagation()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
-1530            </div>
-1531          </div>
-1532        `).join('')
-1533      }
-1534    `;
-1535  }
-1536
-1537  function filterSwapList() {
-1538    const q = document.getElementById('swapFilter').value.toLowerCase();
-1539    document.querySelectorAll('.swap-option').forEach(el => {
-1540      el.style.display = el.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
-1541    });
-1542  }
-บรรทัด 1495–1499: renderSwapList หาสถานที่ที่ยังไม่อยู่ในแผน
-บรรทัด 1501–1502: นับจำนวนต่อหมวด
-บรรทัด 1504–1506: กรองตามหมวดที่เลือก แล้วเรียงตามคะแนนมากไปน้อย
-บรรทัด 1508–1513: สร้างปุ่มกรองหมวด (เฉพาะหมวดที่มีสถานที่) พร้อมจำนวน
-บรรทัด 1515–1534: ใส่ตัวกรองและรายการ ถ้าไม่มีแสดงข้อความ ไม่เช่นนั้นแต่ละตัวเลือกแสดงชื่อ (พร้อมไอคอนฝน) หมวด ราคา เวลาที่ใช้ เวลาเปิด-ปิด ปุ่มดูรีวิว และลิงก์ Google Maps คลิกที่ตัวเลือกเรียก confirmSwap
-บรรทัด 1537–1542: filterSwapList (ผูกกับช่องค้นหาใน ➜ frontend/index.html) ซ่อนตัวเลือกที่ข้อความไม่ตรงคำค้น
-บรรทัด 1546–1576  ยืนยันสลับ เพิ่ม ลบ
-1546  function snapshotEdit() { return {days: STATE.selectedPkg.days.map(d => d.pois.slice()), locked: new Set(STATE.locked), excluded: new Set(STATE.excluded)}; }
-1547  function restoreEdit(sn) { STATE.selectedPkg.days.forEach((d, i) => { d.pois = sn.days[i].slice(); }); STATE.locked = sn.locked; STATE.excluded = sn.excluded; }
+1413    pkg.days.forEach((day, dIdx) => {
+1414      const color = DAY_COLORS[dIdx % DAY_COLORS.length];
+1415      const panel = document.createElement('div');
+1416      panel.className = 'day-panel';
+1417      panel.innerHTML = `
+1418        <div class="day-head">
+1419          <div class="day-title">
+1420            <div class="day-color" style="background:${color};box-shadow:0 0 8px ${color};"></div>
+1421            <h3>วันที่ ${dIdx + 1}</h3>
+1422          </div>
+1423          <div class="day-stats">
+1424            <span class="day-score">${ICON.star} ${day.score}</span>
+1425            <span>${ICON.coin} ${fmt(day.cost)}</span>
+1426            <span>${ICON.clock} ${fmtDur(day.time_min)}</span>
+1427            <span>${ICON.route} ${day.distance_km.toFixed(1)}km</span>
+1428          </div>
+1429        </div>
+1430        <ul class="poi-list" id="day-${dIdx}-list"></ul>
+1431        <button class="day-add" onclick="addPoiToDay(${dIdx})">
+1432          <div class="add-num">${ICON.plus}</div>
+1433          <span>เพิ่มสถานที่</span>
+1434        </button>
+1435      `;
+1436      root.appendChild(panel);
+1437
+1438      const list = panel.querySelector('.poi-list');
+1439      if (!day.pois.length) {
+1440        list.innerHTML = '<li style="text-align:center;color:var(--text-muted);padding:1rem 0;font-size:0.85rem;">ยังไม่มีจุดในวันนี้</li>';
+1441      }
+1442      day.pois.forEach((poi, pIdx) => {
+1443        // Distance connector before this POI
+1444        if (pIdx === 0 && showHotel) {
+1445          const distKm = haversineKm(pkg.hotel.lat, pkg.hotel.lng, poi.lat, poi.lng);
+1446          const distEl = document.createElement('li');
+1447          distEl.className = 'dist-connector';
+1448          distEl.innerHTML = `<span class="dist-line"></span><span class="dist-badge">${ic('hotel')} ${ic('arrow-right')} ${distKm.toFixed(1)} km</span><span class="dist-line"></span>`;
+1449          list.appendChild(distEl);
+1450        } else if (pIdx > 0) {
+1451          const prev = day.pois[pIdx - 1];
+1452          const distKm = haversineKm(prev.lat, prev.lng, poi.lat, poi.lng);
+1453          const distEl = document.createElement('li');
+1454          distEl.className = 'dist-connector';
+1455          distEl.innerHTML = `<span class="dist-line"></span><span class="dist-badge">${ic('arrow-down')} ${distKm.toFixed(1)} km</span><span class="dist-line"></span>`;
+1456          list.appendChild(distEl);
+1457        }
+1458
+1459        const li = document.createElement('li');
+1460        li.className = 'poi-item';
+1461        li.dataset.id = poi.id;
+1462        li.innerHTML = `
+1463          <div class="poi-num">${pIdx + 1}</div>
+1464          <div class="poi-info">
+1465            <div class="poi-name poi-link" onclick="showPoiDetail('${poi.id}', ${arriveOf(day, poi)})" title="ดูรายละเอียดและรีวิว">${CAT_ICON[poi.category] || ''} ${poi.name_th}</div>
+1466            <div class="poi-meta">
+1467              <span class="pill">${CAT_LABELS[poi.category] || poi.category}</span>
+1468              ${arriveOf(day, poi) >= 0 ? `<span class="time-chip"><span class="tc-lbl">ตั้งแต่</span> ${fmtClock(arriveOf(day, poi))}–${fmtClock(arriveOf(day, poi) + (poi.duration_min || 0))} · เปิด ${hoursText(poi)}</span>` : ''}
+1469              <span class="score-chip">${ic('star')} ${poi.score}</span>
+1470              <span>${poi.cost} ฿</span>
+1471              <span class="dur"><span class="dur-lbl">ใช้เวลา</span> ${fmtDur(poi.duration_min)}</span>
+1472            </div>
+1473          </div>
+1474          <div class="poi-actions">
+1475            <a class="btn-loc" href="${gmapsUrl(poi)}" target="_blank" rel="noopener" title="ดูใน Google Maps">${ICON.pin}</a>
+1476            <button class="btn-swap" onclick="openSwapModal(${dIdx}, ${pIdx})" title="เปลี่ยน">${ICON.swap}</button>
+1477            <button class="btn-remove" onclick="removePoi(${dIdx}, ${pIdx})" title="ลบ">${ICON.trash}</button>
+1478          </div>
+1479        `;
+1480        list.appendChild(li);
+1481
+1482        // Return connector after last POI
+1483        if (pIdx === day.pois.length - 1 && showHotel) {
+1484          const distKm = haversineKm(poi.lat, poi.lng, pkg.hotel.lat, pkg.hotel.lng);
+1485          const distEl = document.createElement('li');
+1486          distEl.className = 'dist-connector';
+1487          distEl.innerHTML = `<span class="dist-line"></span><span class="dist-badge">${ic('arrow-down')} ${distKm.toFixed(1)} km ${ic('arrow-right')} ${ic('hotel')}</span><span class="dist-line"></span>`;
+1488          list.appendChild(distEl);
+1489        }
+1490      });
+1491    });
+1492  }
+บรรทัด 1398–1402: renderDetail ตั้งหัวเรื่องเป็น "ระดับ — ชื่อโรงแรม" หรือ "ไม่รวมที่พัก" (ถูกห่อโดย ➜ frontend/extras.js และ ➜ frontend/tutorial.js เพื่อเพิ่มพยากรณ์ คำเตือน การลากวาง ประวัติ และวิธีใช้)
+บรรทัด 1404–1408: ใส่ตัวเลขสรุป (คะแนน ค่ากิจกรรม จำนวนจุด)
+บรรทัด 1410–1411: ล้างรายการวันเดิม
+บรรทัด 1413–1416: แต่ละวัน สร้างแผงวัน
+บรรทัด 1417–1435: โครงแผง: ชื่อวันที่ สถิติของวัน (คะแนน ค่าใช้จ่าย เวลา ระยะทาง) รายการสถานที่ และปุ่ม "เพิ่มสถานที่" ที่เรียก addPoiToDay
+บรรทัด 1436–1441: ต่อแผงเข้าหน้า ถ้าวันนั้นไม่มีจุด แสดงข้อความว่าง
+บรรทัด 1442–1449: ก่อนจุดแรก (ถ้ารวมโรงแรม) แทรกป้ายระยะทางจากโรงแรม (haversineKm)
+บรรทัด 1450–1457: ก่อนจุดถัด ๆ ไป แทรกป้ายระยะทางจากจุดก่อนหน้า
+บรรทัด 1459–1472: สร้างการ์ดสถานที่: เลขลำดับ ชื่อ (คลิกดูรายละเอียด) หมวด เวลา (ตั้งแต่-ถึง และเวลาเปิด-ปิด) คะแนน ราคา และเวลาที่ใช้
+บรรทัด 1474–1479: ปุ่มของการ์ด: ลิงก์ Google Maps ปุ่มเปลี่ยน (➜ openSwapModal() ใน frontend/app.js) และปุ่มลบ (➜ removePoi() ใน frontend/app.js) ต่อการ์ดเข้ารายการ
+บรรทัด 1482–1489: หลังจุดสุดท้าย (ถ้ารวมโรงแรม) แทรกป้ายระยะทางกลับโรงแรม
+บรรทัด 1490–1492: ปิดการวนและฟังก์ชัน
+บรรทัด 1497–1522  เปิดหน้าต่างเปลี่ยนหรือเพิ่มสถานที่
+1497  function openSwapModal(dayIdx, poiIdx) {
+1498    const currentPoi = STATE.selectedPkg.days[dayIdx].pois[poiIdx];
+1499    STATE.swapContext = {dayIdx, poiIdx, currentPoi, mode: 'swap', categoryFilter: 'all'};
+1500    document.getElementById('swapTitle').textContent = 'เปลี่ยนสถานที่';
+1501    document.getElementById('swapCurrentInfo').innerHTML =
+1502      `ปัจจุบัน: ${CAT_ICON[currentPoi.category] || ''} ${currentPoi.name_th}`;
+1503    document.getElementById('swapFilter').value = '';
+1504    renderSwapList();
+1505    document.getElementById('swapModal').classList.add('open');
+1506    document.body.style.overflow = 'hidden';
+1507  }
+1508
+1509  function addPoiToDay(dayIdx) {
+1510    STATE.swapContext = {dayIdx, poiIdx: null, currentPoi: null, mode: 'add', categoryFilter: 'all'};
+1511    document.getElementById('swapTitle').textContent = 'เพิ่มจุดใหม่';
+1512    document.getElementById('swapCurrentInfo').textContent = `เพิ่มในวันที่ ${dayIdx + 1}`;
+1513    document.getElementById('swapFilter').value = '';
+1514    renderSwapList();
+1515    document.getElementById('swapModal').classList.add('open');
+1516    document.body.style.overflow = 'hidden';
+1517  }
+1518
+1519  function setCategoryFilter(cat) {
+1520    STATE.swapContext.categoryFilter = cat;
+1521    renderSwapList();
+1522  }
+บรรทัด 1497–1507: openSwapModal (ผูกกับปุ่มเปลี่ยนของการ์ด) จดบริบท: วัน ตำแหน่ง สถานที่ปัจจุบัน โหมด "swap" และตัวกรองหมวด ตั้งหัวเรื่องและบรรทัดข้อมูลปัจจุบัน ล้างช่องค้นหา วาดรายการ (➜ renderSwapList() ใน frontend/app.js) แล้วเปิดโมดัลของ ➜ frontend/index.html
+บรรทัด 1509–1517: addPoiToDay ทำเช่นเดียวกันแต่โหมด "add" เพื่อเพิ่มจุดท้ายวัน
+บรรทัด 1519–1522: setCategoryFilter เปลี่ยนตัวกรองหมวดและวาดรายการใหม่
+บรรทัด 1525–1538  ตัวช่วยรายการสถานที่
+1525  function swapRainIcon(p) {
+1526    const ctx = STATE.swapContext;
+1527    if (!ctx || !window.dayRainPop || window.dayRainPop(ctx.dayIdx) < 60 || !(window.OUTDOOR_CATS || []).includes(p.category)) return '';
+1528    const tip = window.WET_LANG === 'en' ? 'Outdoor place, it may rain' : 'สถานที่กลางแจ้ง อาจมีฝนตกได้';
+1529    return `<span class="rain-ic" title="${tip}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.6 1.5A3.5 3.5 0 0 0 7 14"/><path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3"/></svg></span>`;
+1530  }
+1531
+1532  // ลิงก์ Google Maps ค้นหาด้วยชื่อสถานที่ + ชื่อจังหวัด เพื่อให้ปักหมุดที่สถานที่จริงของ Google (ไม่ใช่พิกัดจากข้อมูล OSM ที่อาจเลื่อน)
+1533  // ถ้าไม่มีชื่อไทยใช้ชื่ออังกฤษ
+1534  function gmapsUrl(p) {
+1535    const prov = STATE.provinces[getProvince()];
+1536    const q = [p.name_th || p.name_en, prov?.name_th].filter(Boolean).join(' ');
+1537    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+1538  }
+บรรทัด 1525–1530: swapRainIcon ถ้าวันนั้นโอกาสฝน ≥ 60% (dayRainPop จาก ➜ frontend/extras.js) และสถานที่เป็นกลางแจ้ง คืนไอคอนฝนพร้อม tooltip สองภาษา ไม่เช่นนั้นคืนข้อความว่าง
+บรรทัด 1532–1538: gmapsUrl สร้างลิงก์ค้นหาใน Google Maps ด้วยชื่อสถานที่ (หรือชื่ออังกฤษถ้าไม่มีชื่อไทย) ผนวกชื่อจังหวัดที่เลือก เพื่อปักหมุดที่สถานที่จริง
+บรรทัด 1540–1587  วาดรายการสถานที่ให้เลือก
+1540  function renderSwapList() {
+1541    const ctx = STATE.swapContext;
+1542    const usedIds = new Set();
+1543    STATE.selectedPkg.days.forEach(d => d.pois.forEach(p => usedIds.add(p.id)));
+1544    const all = STATE.pois.filter(p => !usedIds.has(p.id));
+1545
+1546    const counts = {all: all.length};
+1547    all.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
 1548
-1549  async function confirmSwap(newPoiId) {
-1550    const ctx = STATE.swapContext;
-1551    const newPoi = STATE.poisById[newPoiId];
-1552    const sn = snapshotEdit();
-1553    if (ctx.mode === 'swap') {
-1554      STATE.selectedPkg.days[ctx.dayIdx].pois[ctx.poiIdx] = newPoi;
-1555    } else {
-1556      STATE.selectedPkg.days[ctx.dayIdx].pois.push(newPoi);
-1557    }
-1558    STATE.locked.add(newPoiId);
-1559    STATE.excluded.delete(newPoiId);
-1560    closeSwapModal();
-1561    await recomputeAndRefresh(() => restoreEdit(sn));
-1562  }
-1563
-1564  function removePoi(dayIdx, poiIdx) {
-1565    const sn = snapshotEdit();
-1566    const [removed] = STATE.selectedPkg.days[dayIdx].pois.splice(poiIdx, 1);
-1567    STATE.locked.delete(removed.id);
-1568    STATE.excluded.add(removed.id);
-1569    recomputeAndRefresh(() => restoreEdit(sn));
-1570  }
-1571
-1572  function closeSwapModal() {
-1573    document.getElementById('swapModal').classList.remove('open');
-1574    document.body.style.overflow = '';
-1575    STATE.swapContext = null;
-1576  }
-บรรทัด 1544–1545: คอมเมนต์: การเพิ่ม สลับ ลบ ทำตามที่ผู้ใช้สั่งตรง ๆ แล้วให้ backend คำนวณเวลาและค่าใช้จ่ายใหม่ (เดิมเรียก Hybrid ทุกครั้ง ซึ่งทำให้สถานที่อื่นหายเมื่อเพิ่มกิจกรรมยาว)
-บรรทัด 1546–1547: snapshotEdit และ restoreEdit จำและคืนลำดับสถานที่ ชุดล็อก และชุดลบ เพื่อย้อนกลับเมื่อ backend ล้มเหลว
-บรรทัด 1549–1562: confirmSwap หาสถานที่ใหม่ จำสถานะ แทนที่หรือต่อท้ายวัน ใส่ในชุดล็อก เอาออกจากชุดลบ ปิดโมดัล แล้วเรียก recomputeAndRefresh
-บรรทัด 1564–1570: removePoi จำสถานะ ตัดจุดออก เอาออกจากชุดล็อกใส่ในชุดลบ (ห้าม reoptimize ใส่กลับ) แล้วคำนวณใหม่
-บรรทัด 1572–1576: closeSwapModal ปิดโมดัล คืนการเลื่อน และล้างบริบท
-บรรทัด 1581–1660  สุ่มแพ็กเกจใหม่
-1581  async function reshufflePackage() {
-1582    if (!STATE.selectedPkg) return;
-1583    const targetTier = STATE.selectedPkg.tier;
-1584
-1585    const budget    = +document.getElementById('budget').value;
-1586    const days      = getSelectedDays();
-1587    const travelers = +document.getElementById('travelers').value;
-1588    const includeHotel = days === 1 ? false : (document.getElementById('includeHotel')?.checked !== false);
-1589
-1590    const detailEl = document.getElementById('detailPanel');
-1591    // Inject animated overlay
-1592    const overlay = document.createElement('div');
-1593    overlay.id = 'reshuffleOverlay';
-1594    overlay.innerHTML = `<div class="reshuffle-overlay-inner">
-1595      <svg class="reshuffle-ring" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-1596        <circle cx="25" cy="25" r="20" stroke="rgba(34,211,238,0.25)" stroke-width="3"/>
-1597        <circle cx="25" cy="25" r="20" stroke="#22d3ee" stroke-width="3" stroke-dasharray="40 90" stroke-linecap="round"/>
-1598      </svg>
-1599      <span>กำลังสุ่มสถานที่ใหม่...</span>
-1600    </div>`;
-1601    detailEl.appendChild(overlay);
-1602    detailEl.classList.add('reshuffling');
-1603    const t = showToast('กำลังสุ่มสถานที่ใหม่...', 'loading', 30000);
-1604
-1605    try {
-1606      const ctrl = new AbortController();
-1607      const timer = setTimeout(() => ctrl.abort(), 25000);
-1608      const res = await fetch(`${API_BASE}/api/packages`, {
-1609        method: 'POST',
-1610        headers: devHeaders(),
-1611        body: JSON.stringify({
-1612          province: getProvince(),
-1613          preferences: getPreferences(),
-1614          budget, days, travelers,
-1615          seed: Math.floor(Math.random() * 1000000),
-1616          algorithm: STATE.dev ? SELECTED_ALGO : 'hybrid',
-1617          include_hotel: includeHotel,
-1618        }),
-1619        signal: ctrl.signal,
-1620      });
-1621      clearTimeout(timer);
-1622      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-1623      const data = await res.json();
-1624
-1625      // Update global package list
-1626      STATE.packages = data.packages;
-1627      STATE.includeHotel = includeHotel && !data.packages.every(p => !p.total_hotel_cost);   // งบไม่พอที่พัก: เซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรมให้
-1628
-1629      // Find the matching tier (or fall back to same index)
-1630      const tierIdx = data.packages.findIndex(p => p.tier === targetTier);
-1631      const newIdx  = tierIdx >= 0 ? tierIdx : STATE.selectedIdx;
-1632      STATE.selectedIdx = newIdx;
-1633      STATE.selectedPkg = JSON.parse(JSON.stringify(data.packages[newIdx]));
-1634      STATE.locked.clear(); STATE.excluded.clear();
-1635      setTimeout(pushSession, 600);
-1636
-1637      // Refresh package cards without clearing detail section
-1638      renderPackages();
-1639      document.querySelectorAll('.package-card').forEach((c, i) =>
-1640        c.classList.toggle('selected', i === newIdx)
-1641      );
-1642
-1643      // Update detail in-place
-1644      renderDetail(STATE.selectedPkg);
-1645      setTimeout(() => {
-1646        STATE.map.invalidateSize();
-1647        drawOnMap(STATE.selectedPkg);
-1648        setTimeout(syncMapHeight, 100);
-1649      }, 80);
-1650
-1651      t.remove();
-1652      showToast(STATE.dev ? `สุ่มใหม่แล้ว! Score ${STATE.selectedPkg.total_score}` : 'สุ่มใหม่แล้ว!', 'ok');
-1653    } catch (e) {
-1654      t.remove();
-1655      showToast(`ผิดพลาด: ${e.message}`, 'error');
-1656    } finally {
-1657      detailEl.classList.remove('reshuffling');
-1658      document.getElementById('reshuffleOverlay')?.remove();
-1659    }
-1660  }
-บรรทัด 1581–1583: reshufflePackage (ผูกกับปุ่ม Re-shuffle) จำระดับของแพ็กเกจที่เลือก
-บรรทัด 1585–1588: อ่านงบ วัน คน และตัวเลือกโรงแรมจากฟอร์ม
-บรรทัด 1590–1603: ใส่ overlay หมุนทับส่วนรายละเอียด และแสดงข้อความ loading
-บรรทัด 1605–1620: ตั้งตัวตัดเวลา 25 วินาที แล้วส่ง POST ไป /api/packages (➜ create_packages() ใน backend/main.py) ด้วย seed ใหม่ และอัลกอริทึมเดิม
-บรรทัด 1621–1623: ตรวจผลและอ่านข้อมูล
-บรรทัด 1626–1627: ตั้งรายการแพ็กเกจใหม่และธงรวมโรงแรม
-บรรทัด 1629–1635: หาแพ็กเกจระดับเดียวกัน (ไม่มีใช้ตำแหน่งเดิม) ทำสำเนา ล้างชุดล็อกและลบ และส่งขึ้นเซสชันหลัง 0.6 วินาที (➜ pushSession() ใน frontend/app.js)
-บรรทัด 1637–1644: วาดการ์ดแพ็กเกจใหม่โดยไม่ล้างส่วนรายละเอียด ไฮไลต์ใบที่เลือก และวาดรายละเอียด
-บรรทัด 1645–1649: หลังหน่วงเล็กน้อย คำนวณขนาดและวาดแผนที่ใหม่
-บรรทัด 1651–1652: ลบข้อความ loading และแจ้งผล
-บรรทัด 1653–1659: ถ้าผิดพลาดแจ้งข้อความ และไม่ว่าอย่างไรเอา overlay ออก
-บรรทัด 1662–1696  คำนวณใหม่หลังแก้
-1662  async function recomputeAndRefresh(rollback) {
-1663    const t = showToast('กำลังคำนวณเส้นทางใหม่...', 'loading', 10000);
-1664    try {
-1665      const routes = STATE.selectedPkg.days.map(d => d.pois.map(p => p.id));
-1666      const res = await fetch(`${API_BASE}/api/recompute`, {
-1667        method: 'POST',
-1668        headers: {'Content-Type': 'application/json'},
-1669        body: JSON.stringify({
-1670          province: getProvince(),
-1671          hotel_id: STATE.selectedPkg.hotel.id,
-1672          days: STATE.selectedPkg.days.length,
-1673          budget: 100000,
-1674          routes,
-1675          travelers: +document.getElementById('travelers').value,
-1676        }),
-1677      });
-1678      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-1679      const data = await res.json();
-1680      data._base = STATE.selectedPkg._base;   // คำเตือนตั้งต้นของแผนเดิม
-1681      if (STATE.selectedPkg._orig) setHidden(data, '_orig', STATE.selectedPkg._orig);   // แผนตั้งต้นสำหรับปุ่มคืนค่าเดิม
-1682      STATE.selectedPkg = data;
-1683      drawOnMap(data);
-1684      renderDetail(data);
-1685      t.remove();
-1686      if (uiWarnings(data).length) {
-1687        showToast(`อัปเดตแล้ว · ${uiWarnings(data).length} คำเตือน (ดูการ์ดสีแดง)`, 'error', 5000);
-1688      } else {
-1689        showToast((STATE.dev ? `อัปเดต! Score ${data.total_score}` : 'อัปเดตแผนแล้ว'), 'ok');
-1690      }
-1691    } catch (e) {
-1692      t.remove();
-1693      if (rollback) { rollback(); drawOnMap(STATE.selectedPkg); renderDetail(STATE.selectedPkg); }   // คืนแผนเดิม ไม่ให้หมุด/การ์ดค้างผิดที่
-1694      showToast(`ผิดพลาด: ${e.message}${rollback ? ' (คืนแผนเดิมแล้ว)' : ''}`, 'error');
-1695    }
-1696  }
-บรรทัด 1662–1665: recomputeAndRefresh (ฟังก์ชันที่ ➜ moveStop() ใน frontend/extras.js และการลาก/สลับเรียกใช้) รับฟังก์ชัน rollback สำหรับคืนค่า แล้วรวบรวมเส้นทางของแต่ละวัน
-บรรทัด 1666–1677: ส่ง POST ไป /api/recompute (➜ recompute() ใน backend/main.py) พร้อมจังหวัด โรงแรม วัน งบ (ตั้ง 100,000 เพื่อไม่ให้งบตัดจุดที่ผู้ใช้เลือก) เส้นทาง และจำนวนคน ฝั่ง backend คำนวณเวลาถึง ค่าใช้จ่าย และระยะทางตามลำดับที่ผู้ใช้กำหนด
-บรรทัด 1678–1682: ตรวจผล ส่งต่อคำเตือนตั้งต้นและแผนตั้งต้น (ซ่อนจาก JSON) แล้วตั้งเป็นแผนที่เลือก
-บรรทัด 1683–1690: วาดแผนที่และรายละเอียด ลบข้อความ loading และแจ้งผล (ถ้ามีคำเตือนเป็นสีแดงให้ดูการ์ดสีแดง)
-บรรทัด 1691–1695: ถ้าผิดพลาด เรียก rollback คืนแผนเดิมแล้ววาดใหม่ และแจ้งข้อผิดพลาด
-บรรทัด 1701–1713  ฟังก์ชันเบ็ดเตล็ด
-1701  function fmt(n) { return Math.round(n).toLocaleString((window.WET_LANG === 'en' ? 'en-GB' : 'th-TH')); }
-1702
-1703  function haversineKm(lat1, lng1, lat2, lng2) {
-1704    const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLng = (lng2-lng1)*Math.PI/180;
-1705    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
-1706    // × road_factor ของจังหวัด (จาก /api/provinces) ให้ตรงกับระยะที่ backend ใช้คำนวณเวลาและค่าเดินทาง
-1707    return R * 2 * Math.asin(Math.sqrt(a)) * (STATE.provinces[getProvince()]?.road_factor || 1);
-1708  }
-1709
-1710
-1711  document.addEventListener('keydown', e => {
-1712    if (e.key === 'Escape') closeSwapModal();
-1713  });
-บรรทัด 1701: fmt จัดรูปตัวเลขตามภาษา (ไทยหรืออังกฤษ ตาม WET_LANG ของ ➜ frontend/i18n.js)
-บรรทัด 1703–1708: haversineKm คำนวณระยะทางบนผิวโลกด้วยสูตร haversine (รัศมี 6371 กม.) คูณ road_factor ของจังหวัดที่ ➜ data/calibrate_travel.py ปรับเทียบไว้ ให้ตรงกับระยะที่ backend ใช้คำนวณเวลาเดินทางและค่าเดินทาง
-บรรทัด 1711–1713: กด Esc เพื่อปิดหน้าต่างเปลี่ยนสถานที่
+1549    const filterCat = ctx.categoryFilter || 'all';
+1550    const candidates = (filterCat === 'all' ? all : all.filter(p => p.category === filterCat))
+1551      .sort((a, b) => b.score - a.score);
+1552
+1553    const cats = ['all', 'beach', 'temple', 'viewpoint', 'culture', 'market', 'activity', 'restaurant'];
+1554    const filterButtons = cats
+1555      .filter(c => counts[c])
+1556          .map(c => `<button class="cat-btn ${c === filterCat ? 'active' : ''}" onclick="setCategoryFilter('${c}')">
+1557                   ${c === 'all' ? '' : CAT_ICON[c] + ' '}${CAT_LABELS[c]} <span style="opacity:0.7">${counts[c]}</span>
+1558                 </button>`).join('');
+1559
+1560    const list = document.getElementById('swapList');
+1561    list.innerHTML = `
+1562      <div class="cat-filter">${filterButtons}</div>
+1563      ${candidates.length === 0
+1564        ? '<div class="empty-msg">ไม่มีจุดที่ตรงเงื่อนไข</div>'
+1565        : candidates.map(p => `
+1566          <div class="swap-option" onclick="confirmSwap('${p.id}')">
+1567            <div class="opt-info">
+1568              <b>${CAT_ICON[p.category] || ''} ${p.name_th}${swapRainIcon(p)}</b>
+1569              <span class="meta">${CAT_LABELS[p.category]} · ${p.cost} ฿ · ${p.duration_min} นาที</span>
+1570              <span class="meta">เปิด-ปิด ${hoursText(p)}</span>
+1571            </div>
+1572            <div class="opt-actions">
+1573              <button type="button" class="opt-btn" title="ดูรีวิว" onclick="event.stopPropagation(); showPoiDetail('${p.id}', -1)"><svg class="ic" viewBox="0 0 24 24"><use href="#i-star"/></svg></button>
+1574              <a class="opt-btn" title="ดูใน Google Maps" target="_blank" rel="noopener" href="${gmapsUrl(p)}" onclick="event.stopPropagation()"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
+1575            </div>
+1576          </div>
+1577        `).join('')
+1578      }
+1579    `;
+1580  }
+1581
+1582  function filterSwapList() {
+1583    const q = document.getElementById('swapFilter').value.toLowerCase();
+1584    document.querySelectorAll('.swap-option').forEach(el => {
+1585      el.style.display = el.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
+1586    });
+1587  }
+บรรทัด 1540–1544: renderSwapList หาสถานที่ที่ยังไม่อยู่ในแผน
+บรรทัด 1546–1547: นับจำนวนต่อหมวด
+บรรทัด 1549–1551: กรองตามหมวดที่เลือก แล้วเรียงตามคะแนนมากไปน้อย
+บรรทัด 1553–1558: สร้างปุ่มกรองหมวด (เฉพาะหมวดที่มีสถานที่) พร้อมจำนวน
+บรรทัด 1560–1579: ใส่ตัวกรองและรายการ ถ้าไม่มีแสดงข้อความ ไม่เช่นนั้นแต่ละตัวเลือกแสดงชื่อ (พร้อมไอคอนฝน) หมวด ราคา เวลาที่ใช้ เวลาเปิด-ปิด ปุ่มดูรีวิว และลิงก์ Google Maps คลิกที่ตัวเลือกเรียก confirmSwap
+บรรทัด 1582–1587: filterSwapList (ผูกกับช่องค้นหาใน ➜ frontend/index.html) ซ่อนตัวเลือกที่ข้อความไม่ตรงคำค้น
+บรรทัด 1591–1621  ยืนยันสลับ เพิ่ม ลบ
+1591  function snapshotEdit() { return {days: STATE.selectedPkg.days.map(d => d.pois.slice()), locked: new Set(STATE.locked), excluded: new Set(STATE.excluded)}; }
+1592  function restoreEdit(sn) { STATE.selectedPkg.days.forEach((d, i) => { d.pois = sn.days[i].slice(); }); STATE.locked = sn.locked; STATE.excluded = sn.excluded; }
+1593
+1594  async function confirmSwap(newPoiId) {
+1595    const ctx = STATE.swapContext;
+1596    const newPoi = STATE.poisById[newPoiId];
+1597    const sn = snapshotEdit();
+1598    if (ctx.mode === 'swap') {
+1599      STATE.selectedPkg.days[ctx.dayIdx].pois[ctx.poiIdx] = newPoi;
+1600    } else {
+1601      STATE.selectedPkg.days[ctx.dayIdx].pois.push(newPoi);
+1602    }
+1603    STATE.locked.add(newPoiId);
+1604    STATE.excluded.delete(newPoiId);
+1605    closeSwapModal();
+1606    await recomputeAndRefresh(() => restoreEdit(sn));
+1607  }
+1608
+1609  function removePoi(dayIdx, poiIdx) {
+1610    const sn = snapshotEdit();
+1611    const [removed] = STATE.selectedPkg.days[dayIdx].pois.splice(poiIdx, 1);
+1612    STATE.locked.delete(removed.id);
+1613    STATE.excluded.add(removed.id);
+1614    recomputeAndRefresh(() => restoreEdit(sn));
+1615  }
+1616
+1617  function closeSwapModal() {
+1618    document.getElementById('swapModal').classList.remove('open');
+1619    document.body.style.overflow = '';
+1620    STATE.swapContext = null;
+1621  }
+บรรทัด 1589–1590: คอมเมนต์: การเพิ่ม สลับ ลบ ทำตามที่ผู้ใช้สั่งตรง ๆ แล้วให้ backend คำนวณเวลาและค่าใช้จ่ายใหม่ (เดิมเรียก Hybrid ทุกครั้ง ซึ่งทำให้สถานที่อื่นหายเมื่อเพิ่มกิจกรรมยาว)
+บรรทัด 1591–1592: snapshotEdit และ restoreEdit จำและคืนลำดับสถานที่ ชุดล็อก และชุดลบ เพื่อย้อนกลับเมื่อ backend ล้มเหลว
+บรรทัด 1594–1607: confirmSwap หาสถานที่ใหม่ จำสถานะ แทนที่หรือต่อท้ายวัน ใส่ในชุดล็อก เอาออกจากชุดลบ ปิดโมดัล แล้วเรียก recomputeAndRefresh
+บรรทัด 1609–1615: removePoi จำสถานะ ตัดจุดออก เอาออกจากชุดล็อกใส่ในชุดลบ (ห้าม reoptimize ใส่กลับ) แล้วคำนวณใหม่
+บรรทัด 1617–1621: closeSwapModal ปิดโมดัล คืนการเลื่อน และล้างบริบท
+บรรทัด 1626–1705  สุ่มแพ็กเกจใหม่
+1626  async function reshufflePackage() {
+1627    if (!STATE.selectedPkg) return;
+1628    const targetTier = STATE.selectedPkg.tier;
+1629
+1630    const budget    = +document.getElementById('budget').value;
+1631    const days      = getSelectedDays();
+1632    const travelers = +document.getElementById('travelers').value;
+1633    const includeHotel = days === 1 ? false : (document.getElementById('includeHotel')?.checked !== false);
+1634
+1635    const detailEl = document.getElementById('detailPanel');
+1636    // Inject animated overlay
+1637    const overlay = document.createElement('div');
+1638    overlay.id = 'reshuffleOverlay';
+1639    overlay.innerHTML = `<div class="reshuffle-overlay-inner">
+1640      <svg class="reshuffle-ring" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+1641        <circle cx="25" cy="25" r="20" stroke="rgba(34,211,238,0.25)" stroke-width="3"/>
+1642        <circle cx="25" cy="25" r="20" stroke="#22d3ee" stroke-width="3" stroke-dasharray="40 90" stroke-linecap="round"/>
+1643      </svg>
+1644      <span>กำลังสุ่มสถานที่ใหม่...</span>
+1645    </div>`;
+1646    detailEl.appendChild(overlay);
+1647    detailEl.classList.add('reshuffling');
+1648    const t = showToast('กำลังสุ่มสถานที่ใหม่...', 'loading', 30000);
+1649
+1650    try {
+1651      const ctrl = new AbortController();
+1652      const timer = setTimeout(() => ctrl.abort(), 25000);
+1653      const res = await fetch(`${API_BASE}/api/packages`, {
+1654        method: 'POST',
+1655        headers: devHeaders(),
+1656        body: JSON.stringify({
+1657          province: getProvince(),
+1658          preferences: getPreferences(),
+1659          budget, days, travelers,
+1660          seed: Math.floor(Math.random() * 1000000),
+1661          algorithm: STATE.dev ? SELECTED_ALGO : 'hybrid',
+1662          include_hotel: includeHotel,
+1663        }),
+1664        signal: ctrl.signal,
+1665      });
+1666      clearTimeout(timer);
+1667      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+1668      const data = await res.json();
+1669
+1670      // Update global package list
+1671      STATE.packages = data.packages;
+1672      STATE.includeHotel = includeHotel && !data.packages.every(p => !p.total_hotel_cost);   // งบไม่พอที่พัก: เซิร์ฟเวอร์สร้างแบบไม่รวมโรงแรมให้
+1673
+1674      // Find the matching tier (or fall back to same index)
+1675      const tierIdx = data.packages.findIndex(p => p.tier === targetTier);
+1676      const newIdx  = tierIdx >= 0 ? tierIdx : STATE.selectedIdx;
+1677      STATE.selectedIdx = newIdx;
+1678      STATE.selectedPkg = JSON.parse(JSON.stringify(data.packages[newIdx]));
+1679      STATE.locked.clear(); STATE.excluded.clear();
+1680      setTimeout(pushSession, 600);
+1681
+1682      // Refresh package cards without clearing detail section
+1683      renderPackages();
+1684      document.querySelectorAll('.package-card').forEach((c, i) =>
+1685        c.classList.toggle('selected', i === newIdx)
+1686      );
+1687
+1688      // Update detail in-place
+1689      renderDetail(STATE.selectedPkg);
+1690      setTimeout(() => {
+1691        STATE.map.invalidateSize();
+1692        drawOnMap(STATE.selectedPkg);
+1693        setTimeout(syncMapHeight, 100);
+1694      }, 80);
+1695
+1696      t.remove();
+1697      showToast(STATE.dev ? `สุ่มใหม่แล้ว! Score ${STATE.selectedPkg.total_score}` : 'สุ่มใหม่แล้ว!', 'ok');
+1698    } catch (e) {
+1699      t.remove();
+1700      showToast(`ผิดพลาด: ${e.message}`, 'error');
+1701    } finally {
+1702      detailEl.classList.remove('reshuffling');
+1703      document.getElementById('reshuffleOverlay')?.remove();
+1704    }
+1705  }
+บรรทัด 1626–1628: reshufflePackage (ผูกกับปุ่ม Re-shuffle) จำระดับของแพ็กเกจที่เลือก
+บรรทัด 1630–1633: อ่านงบ วัน คน และตัวเลือกโรงแรมจากฟอร์ม
+บรรทัด 1635–1648: ใส่ overlay หมุนทับส่วนรายละเอียด และแสดงข้อความ loading
+บรรทัด 1650–1665: ตั้งตัวตัดเวลา 25 วินาที แล้วส่ง POST ไป /api/packages (➜ create_packages() ใน backend/main.py) ด้วย seed ใหม่ และอัลกอริทึมเดิม
+บรรทัด 1666–1668: ตรวจผลและอ่านข้อมูล
+บรรทัด 1671–1672: ตั้งรายการแพ็กเกจใหม่และธงรวมโรงแรม
+บรรทัด 1674–1680: หาแพ็กเกจระดับเดียวกัน (ไม่มีใช้ตำแหน่งเดิม) ทำสำเนา ล้างชุดล็อกและลบ และส่งขึ้นเซสชันหลัง 0.6 วินาที (➜ pushSession() ใน frontend/app.js)
+บรรทัด 1682–1689: วาดการ์ดแพ็กเกจใหม่โดยไม่ล้างส่วนรายละเอียด ไฮไลต์ใบที่เลือก และวาดรายละเอียด
+บรรทัด 1690–1694: หลังหน่วงเล็กน้อย คำนวณขนาดและวาดแผนที่ใหม่
+บรรทัด 1696–1697: ลบข้อความ loading และแจ้งผล
+บรรทัด 1698–1704: ถ้าผิดพลาดแจ้งข้อความ และไม่ว่าอย่างไรเอา overlay ออก
+บรรทัด 1707–1742  คำนวณใหม่หลังแก้
+1707  async function recomputeAndRefresh(rollback) {
+1708    const t = showToast('กำลังคำนวณเส้นทางใหม่...', 'loading', 10000);
+1709    try {
+1710      const routes = STATE.selectedPkg.days.map(d => d.pois.map(p => p.id));
+1711      const res = await fetch(`${API_BASE}/api/recompute`, {
+1712        method: 'POST',
+1713        headers: {'Content-Type': 'application/json'},
+1714        body: JSON.stringify({
+1715          province: getProvince(),
+1716          hotel_id: STATE.selectedPkg.hotel.id,
+1717          days: STATE.selectedPkg.days.length,
+1718          budget: 100000,
+1719          routes,
+1720          travelers: +document.getElementById('travelers').value,
+1721        }),
+1722      });
+1723      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+1724      const data = await res.json();
+1725      if (STATE.selectedPkg._base instanceof Set) setHidden(data, '_base', STATE.selectedPkg._base);   // คำเตือนตั้งต้นของแผนเดิม (ไม่ให้ถูก serialize)
+1726      if (STATE.selectedPkg._orig) setHidden(data, '_orig', STATE.selectedPkg._orig);   // แผนตั้งต้นสำหรับปุ่มคืนค่าเดิม
+1727      STATE.selectedPkg = data;
+1728      drawOnMap(data);
+1729      renderDetail(data);
+1730      pushSession();   // ส่งแผนที่ผู้ใช้แก้ (ลาก/สลับ/ลบ/เพิ่ม) ขึ้นเซสชัน ให้เครื่องอื่นเห็น (ถ้าไม่ได้แชร์จะไม่ทำอะไร)
+1731      t.remove();
+1732      if (uiWarnings(data).length) {
+1733        showToast(`อัปเดตแล้ว · ${uiWarnings(data).length} คำเตือน (ดูการ์ดสีแดง)`, 'error', 5000);
+1734      } else {
+1735        showToast((STATE.dev ? `อัปเดต! Score ${data.total_score}` : 'อัปเดตแผนแล้ว'), 'ok');
+1736      }
+1737    } catch (e) {
+1738      t.remove();
+1739      if (rollback) { rollback(); drawOnMap(STATE.selectedPkg); renderDetail(STATE.selectedPkg); }   // คืนแผนเดิม ไม่ให้หมุด/การ์ดค้างผิดที่
+1740      showToast(`ผิดพลาด: ${e.message}${rollback ? ' (คืนแผนเดิมแล้ว)' : ''}`, 'error');
+1741    }
+1742  }
+บรรทัด 1707–1710: recomputeAndRefresh (ฟังก์ชันที่ ➜ moveStop() ใน frontend/extras.js และการลาก/สลับเรียกใช้) รับฟังก์ชัน rollback สำหรับคืนค่า แล้วรวบรวมเส้นทางของแต่ละวัน
+บรรทัด 1711–1722: ส่ง POST ไป /api/recompute (➜ recompute() ใน backend/main.py) พร้อมจังหวัด โรงแรม วัน งบ (ตั้ง 100,000 เพื่อไม่ให้งบตัดจุดที่ผู้ใช้เลือก) เส้นทาง และจำนวนคน ฝั่ง backend คำนวณเวลาถึง ค่าใช้จ่าย และระยะทางตามลำดับที่ผู้ใช้กำหนด
+บรรทัด 1723–1727: ตรวจผล ส่งต่อคำเตือนตั้งต้น (เฉพาะเมื่อเป็น Set) และแผนตั้งต้น (ซ่อนจาก JSON) แล้วตั้งเป็นแผนที่เลือก
+บรรทัด 1728–1736: วาดแผนที่และรายละเอียด ส่งแผนที่ผู้ใช้แก้ขึ้นเซสชันด้วย pushSession (ให้เครื่องอื่นเห็น) ลบข้อความ loading และแจ้งผล (ถ้ามีคำเตือนเป็นสีแดงให้ดูการ์ดสีแดง)
+บรรทัด 1737–1741: ถ้าผิดพลาด เรียก rollback คืนแผนเดิมแล้ววาดใหม่ และแจ้งข้อผิดพลาด
+บรรทัด 1747–1759  ฟังก์ชันเบ็ดเตล็ด
+1747  function fmt(n) { return Math.round(n).toLocaleString((window.WET_LANG === 'en' ? 'en-GB' : 'th-TH')); }
+1748
+1749  function haversineKm(lat1, lng1, lat2, lng2) {
+1750    const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLng = (lng2-lng1)*Math.PI/180;
+1751    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+1752    // × road_factor ของจังหวัด (จาก /api/provinces) ให้ตรงกับระยะที่ backend ใช้คำนวณเวลาและค่าเดินทาง
+1753    return R * 2 * Math.asin(Math.sqrt(a)) * (STATE.provinces[getProvince()]?.road_factor || 1);
+1754  }
+1755
+1756
+1757  document.addEventListener('keydown', e => {
+1758    if (e.key === 'Escape') closeSwapModal();
+1759  });
+บรรทัด 1747: fmt จัดรูปตัวเลขตามภาษา (ไทยหรืออังกฤษ ตาม WET_LANG ของ ➜ frontend/i18n.js)
+บรรทัด 1749–1754: haversineKm คำนวณระยะทางบนผิวโลกด้วยสูตร haversine (รัศมี 6371 กม.) คูณ road_factor ของจังหวัดที่ ➜ data/calibrate_travel.py ปรับเทียบไว้ ให้ตรงกับระยะที่ backend ใช้คำนวณเวลาเดินทางและค่าเดินทาง
+บรรทัด 1757–1759: กด Esc เพื่อปิดหน้าต่างเปลี่ยนสถานที่
 
 ไฟล์ที่เชื่อมกับไฟล์นี้
 algorithm/genetic.py

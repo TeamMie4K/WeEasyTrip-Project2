@@ -21,13 +21,8 @@ R.TRIALS = TRIALS
 
 
 def load(slug):
-    parts = slug.split('+')
-    pois, hotels = [], []
-    for s in parts:
-        p, h = load_data(os.path.join(R.ROOT, 'data', 'provinces', f'{s}.json'))
-        pre = (lambda x: {**x, 'id': f'{s}.{x["id"]}'}) if len(parts) > 1 else (lambda x: x)
-        pois += [pre(x) for x in p]; hotels += [pre(x) for x in h]
-    cfg = R.PROV_CFG[parts[0]]
+    pois, hotels = load_data(os.path.join(R.ROOT, 'data', 'provinces', f'{slug}.json'))
+    cfg = R.PROV_CFG[slug]
     set_travel_profile(cfg.get('road_factor', 1.0), cfg.get('speed_kmh', 40))
     return pois, hotels
 

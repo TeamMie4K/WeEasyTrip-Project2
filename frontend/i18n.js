@@ -95,7 +95,7 @@
     const t = s.trim(); if (!t) return s;
     const lead = s.slice(0, s.indexOf(t)), tail = s.slice(s.indexOf(t) + t.length);
     let out = D[t];
-    if (out === undefined) { const nm = nameMap(); if (nm[t]) out = nm[t]; else if (t.includes(' + ') && t.split(' + ').every(x => nm[x])) out = t.split(' + ').map(x => nm[x]).join(' + '); }
+    if (out === undefined) { const nm = nameMap(); if (nm[t]) out = nm[t]; }
     if (out === undefined) for (const [re, rep] of P) if (re.test(t)) { out = t.replace(re, rep); break; }
     out = inline(out === undefined ? t : out);
     return out === t ? s : lead + out + tail;

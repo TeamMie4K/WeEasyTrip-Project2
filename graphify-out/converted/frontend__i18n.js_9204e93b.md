@@ -33,7 +33,7 @@
 20      'เลือกวันเช็คอินและเช็คเอาต์': 'Select check-in and check-out dates', 'กรุณาเลือกช่วงวันเดินทาง': 'Please select your travel dates',
 21      'อาหาร': 'Diet', 'ไม่จำกัด': 'No restriction', 'มังสวิรัติ': 'Vegetarian', 'ฮาลาล': 'Halal',
 22      'ใช้เท่าที่มีข้อมูลในฐานข้อมูล (OSM) ถ้าร้านไม่พอจะเสริมร้านทั่วไปและแจ้งเตือน': 'Uses what is in the OpenStreetMap data; if there are too few matching places, regular restaurants are added with a notice',
-23      'เที่ยวต่อจังหวัดข้างเคียง:': 'Add nearby provinces:', 'อัลกอริทึม': 'Algorithm',
+23      'อัลกอริทึม': 'Algorithm',
 24      'พร้อมใช้งาน': 'Ready', 'ข้อมูลน้อย': 'Limited data', 'เร็วๆ นี้': 'Soon', 'ค้นหาจังหวัด...': 'Search province...', 'ค้นหาสถานที่...': 'Search places...',
 25      'ภาคเหนือ': 'North', 'ภาคกลาง': 'Central', 'ภาคตะวันออก': 'East', 'ภาคตะวันตก': 'West', 'ภาคตะวันออกเฉียงเหนือ': 'Northeast', 'ภาคอีสาน': 'Northeast', 'ภาคใต้': 'South', 'อื่น ๆ': 'Other',
 26      'หาด': 'Beach', 'วัด': 'Temple', 'จุดชมวิว': 'Viewpoint', 'วัฒนธรรม': 'Culture', 'ตลาด': 'Market', 'กิจกรรม': 'Activity', 'ร้านอาหาร': 'Restaurant', 'ทั้งหมด': 'All',
@@ -45,7 +45,7 @@
 32      'งบไม่พอสำหรับแพ็กเกจนี้': 'Budget is too low for this package', 'ผ่านข้อจำกัด': 'Valid',
 33      'เพิ่มสถานที่': 'Add place', 'เพิ่มจุดใหม่': 'Add new place', 'เปลี่ยนสถานที่': 'Change place', 'ลบ': 'Remove', 'รีเซ็ต': 'Reset',
 34      'แสดงทุกวัน': 'Show all days', 'ซ่อนทุกวัน': 'Hide all days', 'แชร์': 'Share', 'ปฏิทิน': 'Calendar', 'ทางเลือก': 'Alternatives', 'เปิด': 'Opens', 'ทั้งวัน': 'All day', 'เปิดทั้งวัน': 'Open all day', 'ไม่ระบุ': 'N/A', 'ฟรี': 'Free', 'ไม่เสียค่าเข้า': 'Free entry',
-35      'เวลาเปิด-ปิด': 'Opening hours', 'เวลาถึงตามแผน': 'Planned arrival', 'ดูรายละเอียดและรีวิว': 'Details and reviews', 'ข้อมูลจำลอง': 'Sample data',
+35      'เวลาเปิด-ปิด': 'Opening hours', 'เวลาถึงตามแผน': 'Planned arrival', 'ดูรายละเอียดและรีวิว': 'Details and reviews', 'ข้อมูลจำลอง': 'Sample data', 'ระดับดาว': 'Star rating', 'ราคาต่อคืน': 'Price per night',
 36      'สุ่มสถานที่ใหม่ด้วย algorithm เดิม': 'Reshuffle places with the same algorithm', 'พิมพ์หรือบันทึกเป็น PDF': 'Print or save as PDF',
 37      'ดาวน์โหลดไฟล์ปฏิทิน (.ics) เปิดใน Google Calendar / Apple / Outlook': 'Download a calendar file (.ics) for Google Calendar / Apple / Outlook',
 38      'สร้างลิงก์ให้เพื่อนเปิดดูและแก้แผนเดียวกัน': 'Create a link so friends can view and edit the same plan',
@@ -121,14 +121,14 @@
 95      const t = s.trim(); if (!t) return s;
 96      const lead = s.slice(0, s.indexOf(t)), tail = s.slice(s.indexOf(t) + t.length);
 97      let out = D[t];
-98      if (out === undefined) { const nm = nameMap(); if (nm[t]) out = nm[t]; else if (t.includes(' + ') && t.split(' + ').every(x => nm[x])) out = t.split(' + ').map(x => nm[x]).join(' + '); }
+98      if (out === undefined) { const nm = nameMap(); if (nm[t]) out = nm[t]; }
 99      if (out === undefined) for (const [re, rep] of P) if (re.test(t)) { out = t.replace(re, rep); break; }
 100      out = inline(out === undefined ? t : out);
 101      return out === t ? s : lead + out + tail;
 102    }
 บรรทัด 94–96: tr ตัดช่องว่างหน้าท้ายออกไว้ก่อนแล้วประกอบกลับตอนท้าย ข้อความว่างคืนตามเดิม
 บรรทัด 97: ลองหาในพจนานุกรม D ตรงตัวก่อน
-บรรทัด 98: ถ้าไม่เจอ ลองชื่อจังหวัดเดี่ยว หรือชื่อหลายจังหวัดคั่นด้วย " + " (กรณีเที่ยวต่อจังหวัดข้างเคียง)
+บรรทัด 98: ถ้าไม่เจอ ลองหาชื่อจังหวัดในตารางชื่อ (nameMap)
 บรรทัด 99: ถ้ายังไม่เจอ ลองไล่ regex ใน P จนตรงตัวแรก
 บรรทัด 100: ส่งผลผ่าน inline เพื่อแปลส่วนย่อยที่เหลือ
 บรรทัด 101: ถ้าผลไม่เปลี่ยนจากต้นฉบับ คืนข้อความเดิม ไม่ก็ใส่ช่องว่างหน้าท้ายกลับ

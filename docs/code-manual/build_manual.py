@@ -236,8 +236,8 @@ def build_index():
     groups = {}
     for f in files:
         groups.setdefault(f.split('/')[0], []).append(f)
-    names = {'algorithm': 'อัลกอริทึม (algorithm/)', 'backend': 'เซิร์ฟเวอร์ (backend/)', 'frontend': 'หน้าเว็บ (frontend/)', 'experiments': 'การทดลอง (experiments/)', 'data': 'ข้อมูลและท่อประมวลผล (data/)'}
-    for g in ('algorithm', 'backend', 'frontend', 'experiments', 'data'):
+    names = {'algorithm': 'อัลกอริทึม (algorithm/)', 'backend': 'เซิร์ฟเวอร์ (backend/)', 'frontend': 'หน้าเว็บ (frontend/)', 'experiments': 'การทดลอง (experiments/)', 'data': 'ข้อมูลและท่อประมวลผล (data/)', 'tests': 'ชุดทดสอบ (tests/)'}
+    for g in ('algorithm', 'backend', 'frontend', 'experiments', 'data', 'tests'):
         if g not in groups: continue
         p = d.add_paragraph(); para_fmt(p, 12, 4); set_font(p.add_run(names[g]), TH_FONT, 18, True, 'C55A11')
         for f in groups[g]:
@@ -246,8 +246,6 @@ def build_index():
             add_link(lp, docname(f), f)
             if meta['title']:
                 set_font(lp.add_run('  — ' + meta['title']), TH_FONT, 13, False, '595959')
-    p = d.add_paragraph(); para_fmt(p, 14, 0)
-    set_font(p.add_run('หมายเหตุ: ไฟล์ frontend/app.backup.js เป็นสำเนาสำรองของ app.js รุ่นเก่า จึงไม่อธิบายซ้ำ'), TH_FONT, 12, False, '7F7F7F')
     out = os.path.join(OUT, docname('INDEX'))
     d.save(out)
     return out

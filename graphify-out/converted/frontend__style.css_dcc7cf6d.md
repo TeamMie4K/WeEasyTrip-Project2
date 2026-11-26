@@ -490,7 +490,7 @@
 บรรทัด 325–357: .detail-section .detail-grid และตัวเลข KPI
 บรรทัด 358–439: .day-list (เลื่อนในตัวและแถบเลื่อนเล็ก) .day-panel .day-head .day-stats รายการสถานที่ .poi-list .poi-item เลขลำดับ ข้อมูลเมตา และปุ่มของการ์ด (➜ renderDetail() ใน frontend/app.js)
 บรรทัด 440–462: ส่วนแผนที่: .leaflet-container และฟิลเตอร์ให้ภาพแผนที่มืดในธีมมืด
-บรรทัด 463–633  หน้าต่าง โมดัล และการสุ่มใหม่
+บรรทัด 463–636  หน้าต่าง โมดัล และการสุ่มใหม่
 463  .modal {
 464    position: fixed; inset: 0; z-index: 1000;
 465    display: none;
@@ -533,1537 +533,1538 @@
 502    display: flex; justify-content: space-between; align-items: flex-start;
 503    margin-bottom: 0.75rem;
 504  }
-505  .modal-sub { font-size: 0.85rem; color: var(--text-tertiary); margin-top: 0.25rem; }
-506  /* swap modal search bar */
-507  .modal-search { margin-bottom: 0.75rem; }
-508  .modal-search input {
-509    width: 100%; box-sizing: border-box;
-510    padding: 0.6rem 1rem;
-511    background: var(--bg-elevated);
-512    border: 1px solid var(--border-subtle);
-513    border-radius: var(--radius-md);
-514    color: var(--text-primary);
-515    font-size: 0.93rem;
-516    outline: none;
-517    transition: var(--transition);
-518  }
-519  .modal-search input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(255,109,53,0.15); }
-520
-521  /* Re-shuffle button */
-522  .reshuffle-btn {
-523    display: inline-flex; align-items: center; gap: 0.45rem;
-524    padding: 0.5rem 1.1rem;
-525    background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(6,182,212,0.18));
-526    border: 1px solid rgba(99,102,241,0.4);
-527    border-radius: var(--radius-md);
-528    color: var(--text-primary);
-529    font-size: 0.85rem; font-weight: 600;
-530    cursor: pointer;
-531    transition: var(--transition);
-532  }
-533  .reshuffle-btn:hover { background: linear-gradient(135deg, rgba(99,102,241,0.32), rgba(6,182,212,0.28)); border-color: var(--accent-primary); }
-534  .reshuffle-btn svg { width: 15px; height: 15px; stroke: var(--accent-primary); }
-535  /* Blur overlay while reshuffling */
-536  .detail-section { transition: var(--transition); }
-537  .detail-section.reshuffling {
-538    pointer-events: none;
-539  }
-540  /* Blur everything EXCEPT the spinner overlay */
-541  .detail-section.reshuffling > *:not(#reshuffleOverlay) {
-542    filter: blur(6px) saturate(0.3) brightness(0.7);
-543    opacity: 0.45;
-544    transition: filter 0.35s ease, opacity 0.35s ease;
-545  }
-546
-547  /* Reshuffle animated overlay (injected by JS) */
-548  #reshuffleOverlay {
-549    position: absolute;
-550    inset: 0;
-551    display: flex;
-552    align-items: center;
-553    justify-content: center;
-554    z-index: 50;
-555    pointer-events: none;
-556    animation: fadeIn 250ms ease;
-557    border-radius: var(--radius-lg);
-558  }
-559  .reshuffle-overlay-inner {
-560    display: flex;
-561    flex-direction: column;
-562    align-items: center;
-563    gap: 0.8rem;
-564    padding: 1.5rem 2.8rem;
-565    background: rgba(10, 14, 26, 0.6);
-566    backdrop-filter: blur(8px);
-567    -webkit-backdrop-filter: blur(8px);
-568    border-radius: var(--radius-xl);
-569    border: 1px solid rgba(34, 211, 238, 0.35);
-570    box-shadow: 0 0 50px rgba(34, 211, 238, 0.15), inset 0 1px 0 rgba(255,255,255,0.06);
-571  }
-572  .reshuffle-ring {
-573    width: 54px; height: 54px;
-574    animation: spin 0.85s linear infinite;
-575    filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.7));
-576  }
-577  .reshuffle-overlay-inner span {
-578    font-size: 0.95rem;
-579    font-weight: 600;
-580    color: var(--accent-glow);
-581    letter-spacing: 0.03em;
-582  }
-583
-584  .cat-filter {
-585    display: flex; flex-wrap: wrap; gap: 0.4rem;
-586    padding-bottom: 0.85rem;
-587    margin-bottom: 0.75rem;
-588    border-bottom: 1px solid var(--border-subtle);
-589  }
-590  .cat-btn {
-591    padding: 0.35rem 0.75rem;
-592    background: var(--bg-elevated);
-593    border: 1px solid var(--border-subtle);
-594    border-radius: 999px;
-595    font-size: 0.78rem;
-596    color: var(--text-secondary);
-597    transition: var(--transition);
-598  }
-599  .cat-btn:hover { color: var(--text-primary); border-color: var(--border-default); }
-600  .cat-btn.active {
-601    background: var(--grad-cta); color: white; border-color: transparent;
-602    box-shadow: var(--shadow-sm);
-603  }
-604
-605  .swap-list {
-606    overflow-y: auto;
-607    flex: 1;
-608    list-style: none;
-609    margin: 0;
-610    padding: 0;
-611    width: 100%;
-612  }
-613  .swap-list::-webkit-scrollbar { width: 6px; }
-614  .swap-list::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
-615  .swap-option {
-616    display: flex; justify-content: space-between; align-items: center;
-617    padding: 0.7rem 0.85rem;
-618    margin: 0.3rem 1.75rem;
-619    background: var(--bg-elevated);
-620    border: 1px solid var(--border-subtle);
-621    border-radius: var(--radius-md);
-622    cursor: pointer;
-623    transition: var(--transition);
-624  }
-625  .swap-option:hover { border-color: var(--accent-primary); transform: scale(1.025); box-shadow: 0 4px 16px rgba(255,109,53,0.2); background: var(--bg-surface); }
-626  .swap-option .opt-info b { font-size: 0.92rem; }
-627  .swap-option .opt-info .meta { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.15rem; display: block; }
-628  .empty-msg {
-629    text-align: center; color: var(--text-muted);
-630    padding: 2rem 0; font-size: 0.9rem;
-631  }
-632
-633  /* --- Toasts --- */
-บรรทัด 463–504: .modal .modal-backdrop .modal-card .modal-head .modal-body และอนิเมชัน fadeIn scaleIn (ใช้กับโมดัลสลับสถานที่ แผนทางเลือก และรายละเอียดสถานที่)
-บรรทัด 505–518: ช่องค้นหาในโมดัลสลับสถานที่ (➜ filterSwapList() ใน frontend/app.js)
-บรรทัด 519–544: ปุ่ม Re-shuffle และการเบลอส่วนรายละเอียดระหว่างสุ่ม (.detail-section.reshuffling)
-บรรทัด 545–581: ตัวครอบและวงแหวนหมุนของ #reshuffleOverlay ที่ ➜ reshufflePackage() ใน frontend/app.js แทรกเข้ามา
-บรรทัด 582–633: ตัวกรองหมวด .cat-filter .cat-btn และรายการตัวเลือก .swap-option ของ ➜ renderSwapList() ใน frontend/app.js
-บรรทัด 634–708  แจ้งเตือน หน้าจอแคบ และหมุดแผนที่
-634  .toast-container {
-635    position: fixed; top: 90px; right: 1.5rem; z-index: 1100;
-636    display: flex; flex-direction: column; gap: 0.5rem;
-637    pointer-events: none;
-638  }
-639  .toast {
-640    padding: 0.85rem 1.1rem;
-641    background: var(--bg-elevated);
-642    border: 1px solid var(--border-default);
-643    border-radius: var(--radius-md);
-644    box-shadow: var(--shadow-lg);
-645    font-size: 0.9rem;
-646    color: var(--text-primary);
-647    display: flex; align-items: center; gap: 0.6rem;
-648    animation: toastIn 300ms ease both;
-649    pointer-events: auto;
-650    min-width: 240px;
-651  }
-652  .toast.ok { border-color: rgba(16,185,129,0.4); }
-653  .toast.error { border-color: rgba(239,68,68,0.4); }
-654  .toast.loading { border-color: rgba(245,158,11,0.4); }
-655  .toast .toast-icon { flex-shrink: 0; width: 18px; height: 18px; }
-656  .toast.ok .toast-icon { color: var(--accent-success); }
-657  .toast.error .toast-icon { color: var(--accent-danger); }
-658  .toast.loading .toast-icon { color: var(--accent-warning); animation: spin 1s linear infinite; }
-659  @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
-660  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-661
-662  /* --- Responsive --- */
-663  @media (max-width: 980px) {
+505  .modal-head-actions { display: flex; gap: 0.5rem; flex-shrink: 0; margin-left: 0.75rem; }
+506  .modal-head-actions a.icon-btn { text-decoration: none; }
+507  .modal-head-actions a.icon-btn:hover { color: var(--accent-primary); }
+508  .modal-sub { font-size: 0.85rem; color: var(--text-tertiary); margin-top: 0.25rem; }
+509  /* swap modal search bar */
+510  .modal-search { margin-bottom: 0.75rem; }
+511  .modal-search input {
+512    width: 100%; box-sizing: border-box;
+513    padding: 0.6rem 1rem;
+514    background: var(--bg-elevated);
+515    border: 1px solid var(--border-subtle);
+516    border-radius: var(--radius-md);
+517    color: var(--text-primary);
+518    font-size: 0.93rem;
+519    outline: none;
+520    transition: var(--transition);
+521  }
+522  .modal-search input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(255,109,53,0.15); }
+523
+524  /* Re-shuffle button */
+525  .reshuffle-btn {
+526    display: inline-flex; align-items: center; gap: 0.45rem;
+527    padding: 0.5rem 1.1rem;
+528    background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(6,182,212,0.18));
+529    border: 1px solid rgba(99,102,241,0.4);
+530    border-radius: var(--radius-md);
+531    color: var(--text-primary);
+532    font-size: 0.85rem; font-weight: 600;
+533    cursor: pointer;
+534    transition: var(--transition);
+535  }
+536  .reshuffle-btn:hover { background: linear-gradient(135deg, rgba(99,102,241,0.32), rgba(6,182,212,0.28)); border-color: var(--accent-primary); }
+537  .reshuffle-btn svg { width: 15px; height: 15px; stroke: var(--accent-primary); }
+538  /* Blur overlay while reshuffling */
+539  .detail-section { transition: var(--transition); }
+540  .detail-section.reshuffling {
+541    pointer-events: none;
+542  }
+543  /* Blur everything EXCEPT the spinner overlay */
+544  .detail-section.reshuffling > *:not(#reshuffleOverlay) {
+545    filter: blur(6px) saturate(0.3) brightness(0.7);
+546    opacity: 0.45;
+547    transition: filter 0.35s ease, opacity 0.35s ease;
+548  }
+549
+550  /* Reshuffle animated overlay (injected by JS) */
+551  #reshuffleOverlay {
+552    position: absolute;
+553    inset: 0;
+554    display: flex;
+555    align-items: center;
+556    justify-content: center;
+557    z-index: 50;
+558    pointer-events: none;
+559    animation: fadeIn 250ms ease;
+560    border-radius: var(--radius-lg);
+561  }
+562  .reshuffle-overlay-inner {
+563    display: flex;
+564    flex-direction: column;
+565    align-items: center;
+566    gap: 0.8rem;
+567    padding: 1.5rem 2.8rem;
+568    background: rgba(10, 14, 26, 0.6);
+569    backdrop-filter: blur(8px);
+570    -webkit-backdrop-filter: blur(8px);
+571    border-radius: var(--radius-xl);
+572    border: 1px solid rgba(34, 211, 238, 0.35);
+573    box-shadow: 0 0 50px rgba(34, 211, 238, 0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+574  }
+575  .reshuffle-ring {
+576    width: 54px; height: 54px;
+577    animation: spin 0.85s linear infinite;
+578    filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.7));
+579  }
+580  .reshuffle-overlay-inner span {
+581    font-size: 0.95rem;
+582    font-weight: 600;
+583    color: var(--accent-glow);
+584    letter-spacing: 0.03em;
+585  }
+586
+587  .cat-filter {
+588    display: flex; flex-wrap: wrap; gap: 0.4rem;
+589    padding-bottom: 0.85rem;
+590    margin-bottom: 0.75rem;
+591    border-bottom: 1px solid var(--border-subtle);
+592  }
+593  .cat-btn {
+594    padding: 0.35rem 0.75rem;
+595    background: var(--bg-elevated);
+596    border: 1px solid var(--border-subtle);
+597    border-radius: 999px;
+598    font-size: 0.78rem;
+599    color: var(--text-secondary);
+600    transition: var(--transition);
+601  }
+602  .cat-btn:hover { color: var(--text-primary); border-color: var(--border-default); }
+603  .cat-btn.active {
+604    background: var(--grad-cta); color: white; border-color: transparent;
+605    box-shadow: var(--shadow-sm);
+606  }
+607
+608  .swap-list {
+609    overflow-y: auto;
+610    flex: 1;
+611    list-style: none;
+612    margin: 0;
+613    padding: 0;
+614    width: 100%;
+615  }
+616  .swap-list::-webkit-scrollbar { width: 6px; }
+617  .swap-list::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+618  .swap-option {
+619    display: flex; justify-content: space-between; align-items: center;
+620    padding: 0.7rem 0.85rem;
+621    margin: 0.3rem 1.75rem;
+622    background: var(--bg-elevated);
+623    border: 1px solid var(--border-subtle);
+624    border-radius: var(--radius-md);
+625    cursor: pointer;
+626    transition: var(--transition);
+627  }
+628  .swap-option:hover { border-color: var(--accent-primary); transform: scale(1.025); box-shadow: 0 4px 16px rgba(255,109,53,0.2); background: var(--bg-surface); }
+629  .swap-option .opt-info b { font-size: 0.92rem; }
+630  .swap-option .opt-info .meta { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.15rem; display: block; }
+631  .empty-msg {
+632    text-align: center; color: var(--text-muted);
+633    padding: 2rem 0; font-size: 0.9rem;
+634  }
+635
+636  /* --- Toasts --- */
+บรรทัด 463–507: .modal .modal-backdrop .modal-card .modal-head .modal-body และอนิเมชัน fadeIn scaleIn (ใช้กับโมดัลสลับสถานที่ แผนทางเลือก และรายละเอียดสถานที่/โรงแรม) รวมถึงกลุ่มปุ่มมุมขวาบน .modal-head-actions (ปุ่มหมุด Google Maps และปุ่มปิด)
+บรรทัด 508–521: ช่องค้นหาในโมดัลสลับสถานที่ (➜ filterSwapList() ใน frontend/app.js)
+บรรทัด 522–547: ปุ่ม Re-shuffle และการเบลอส่วนรายละเอียดระหว่างสุ่ม (.detail-section.reshuffling)
+บรรทัด 548–584: ตัวครอบและวงแหวนหมุนของ #reshuffleOverlay ที่ ➜ reshufflePackage() ใน frontend/app.js แทรกเข้ามา
+บรรทัด 585–636: ตัวกรองหมวด .cat-filter .cat-btn และรายการตัวเลือก .swap-option ของ ➜ renderSwapList() ใน frontend/app.js
+บรรทัด 637–711  แจ้งเตือน หน้าจอแคบ และหมุดแผนที่
+637  .toast-container {
+638    position: fixed; top: 90px; right: 1.5rem; z-index: 1100;
+639    display: flex; flex-direction: column; gap: 0.5rem;
+640    pointer-events: none;
+641  }
+642  .toast {
+643    padding: 0.85rem 1.1rem;
+644    background: var(--bg-elevated);
+645    border: 1px solid var(--border-default);
+646    border-radius: var(--radius-md);
+647    box-shadow: var(--shadow-lg);
+648    font-size: 0.9rem;
+649    color: var(--text-primary);
+650    display: flex; align-items: center; gap: 0.6rem;
+651    animation: toastIn 300ms ease both;
+652    pointer-events: auto;
+653    min-width: 240px;
+654  }
+655  .toast.ok { border-color: rgba(16,185,129,0.4); }
+656  .toast.error { border-color: rgba(239,68,68,0.4); }
+657  .toast.loading { border-color: rgba(245,158,11,0.4); }
+658  .toast .toast-icon { flex-shrink: 0; width: 18px; height: 18px; }
+659  .toast.ok .toast-icon { color: var(--accent-success); }
+660  .toast.error .toast-icon { color: var(--accent-danger); }
+661  .toast.loading .toast-icon { color: var(--accent-warning); animation: spin 1s linear infinite; }
+662  @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+663  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 664
-665    .packages-grid { grid-template-columns: 1fr; }
-666    .detail-grid { grid-template-columns: 1fr; }
-667    .map-wrap { position: static; }
-668    #map { height: 400px; }
-669    .topbar { padding: 1rem; }
-670    .section-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-671    .detail-actions { flex-wrap: wrap; }
-672  }
-673
-674  /* --- Map custom markers --- */
-675  .map-hotel-marker {
-676    width: 40px; height: 40px;
-677    background: var(--grad-cta);
-678    border: 3px solid white;
-679    border-radius: 50%;
-680    display: flex; align-items: center; justify-content: center;
-681    font-size: 18px;
-682    box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 0 4px rgba(6,182,212,0.25);
-683  }
-684  .map-poi-marker {
-685    width: 36px; height: 36px;
-686    background: var(--c, #06b6d4);
-687    border: 2px solid white;
-688    border-radius: 50%;
-689    display: flex; align-items: center; justify-content: center;
-690    font-weight: 700;
-691    color: white;
-692    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
-693    font-feature-settings: 'tnum';
-694    position: relative;
-695  }
-696  .map-poi-marker .d {
-697    font-size: 11px;
-698    line-height: 1;
-699    margin-bottom: -2px;
-700    opacity: 0.85;
-701  }
-702  .map-poi-marker .p {
-703    font-size: 14px;
-704    line-height: 1;
-705    font-weight: 800;
-706  }
-707
-708  /* === User-requested fixes === */
-บรรทัด 634–662: .toast-container .toast (ok error loading) และอนิเมชัน toastIn slideUp ของ ➜ showToast() ใน frontend/app.js
-บรรทัด 663–674: @media (max-width: 980px) ปรับโครงเป็นคอลัมน์เดียว
-บรรทัด 675–708: หมุดแผนที่ .map-poi-marker (วงกลมสีของวันพร้อมเลขวันและลำดับ) และ .map-hotel-marker ที่ ➜ drawOnMap() ใน frontend/app.js สร้าง
-บรรทัด 709–780  ชุดแก้ไขตามคำขอ
-709
-710  /* 1) Remove number spinner arrows (Chrome/Safari/Firefox) */
-711  input[type=number]::-webkit-inner-spin-button,
-712  input[type=number]::-webkit-outer-spin-button {
-713    -webkit-appearance: none;
-714    margin: 0;
-715  }
-716  input[type=number] { -moz-appearance: textfield; appearance: textfield; }
-717
-718
-719  .date-summary {
-720    font-size: 0.78rem;
-721    color: var(--text-tertiary);
-722    margin-top: 0.5rem;
-723    padding: 0.4rem 0.6rem;
-724    background: var(--bg-elevated);
-725    border-radius: 6px;
-726    border-left: 3px solid var(--accent-primary);
-727  }
-728  .date-summary.invalid { border-left-color: var(--accent-danger); color: var(--accent-danger); }
-729  .date-summary.oneday {
-730    border-left-color: #10b981; color: #10b981;
-731    background: rgba(16,185,129,0.08);
-732  }
-733
-734  /* One-day-trip lock badge (inline beside title) */
-735  .hotel-lock-badge {
-736    display: inline-flex; align-items: center;
-737    font-size: 0.7rem; font-weight: 600;
-738    background: rgba(16,185,129,0.15); color: #10b981;
-739    border: 1px solid rgba(16,185,129,0.3);
-740    border-radius: 20px; padding: 2px 9px; white-space: nowrap; flex-shrink: 0;
-741  }
-742
-743  /* 4) Smaller "เพิ่มสถานที่" button - looks like POI item with + icon */
-744  .day-add {
-745    display: flex; align-items: center; gap: 0.6rem;
-746    width: 100%;
-747    margin-top: 0.5rem;
-748    padding: 0.55rem 0.75rem;
-749    background: transparent;
-750    border: 1px dashed var(--border-default);
-751    border-radius: var(--radius-sm);
-752    color: var(--text-tertiary);
-753    font-size: 0.88rem;
-754    text-align: left;
-755    transition: var(--transition);
-756  }
-757  .day-add:hover {
-758    border-color: var(--accent-primary);
-759    border-style: solid;
-760    color: var(--accent-primary);
-761    background: var(--bg-elevated);
-762  }
-763  .day-add svg { width: 16px; height: 16px; flex-shrink: 0; }
-764  .day-add .add-num {
-765    width: 28px; height: 28px; flex-shrink: 0;
-766    border: 1px dashed currentColor;
-767    border-radius: 50%;
-768    display: flex; align-items: center; justify-content: center;
-769    opacity: 0.7;
-770  }
-771
-772  /* 5) FIX: gentler dark mode tile filter (was breaking map appearance) */
-773  [data-theme="dark"] .leaflet-tile-pane {
-774    filter: brightness(0.85) saturate(0.7) hue-rotate(180deg) invert(0.92);
-775  }
-776  .leaflet-control-zoom a {
-777    background: var(--bg-elevated) !important;
-778    color: var(--text-primary) !important;
-779    border-color: var(--border-default) !important;
-780  }
-บรรทัด 709–734: การปรับช่องตัวเลข สรุปวันที่ (.date-summary สถานะ oneday/invalid) และรายละเอียดเล็กน้อยที่ปรับตามคำขอ
-บรรทัด 735–763: ป้ายล็อกของทริปวันเดียวและการ์ดโรงแรมแบบล็อก (➜ setOneDayTripMode() ใน frontend/app.js)
-บรรทัด 764–780: ปุ่ม .day-add (เพิ่มสถานที่) และการปรับภาพแผนที่ในธีมมืด
-บรรทัด 781–840  พื้นหลังออโรรา
-781  .leaflet-control-attribution {
-782    background: var(--bg-elevated) !important;
-783    color: var(--text-tertiary) !important;
-784    border-radius: 4px;
-785    font-size: 10px;
-786  }
-787
-788  /* === V3 Updates: Aurora background, Flatpickr, scrollable select === */
-789
+665  /* --- Responsive --- */
+666  @media (max-width: 980px) {
+667
+668    .packages-grid { grid-template-columns: 1fr; }
+669    .detail-grid { grid-template-columns: 1fr; }
+670    .map-wrap { position: static; }
+671    #map { height: 400px; }
+672    .topbar { padding: 1rem; }
+673    .section-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+674    .detail-actions { flex-wrap: wrap; }
+675  }
+676
+677  /* --- Map custom markers --- */
+678  .map-hotel-marker {
+679    width: 40px; height: 40px;
+680    background: var(--grad-cta);
+681    border: 3px solid white;
+682    border-radius: 50%;
+683    display: flex; align-items: center; justify-content: center;
+684    font-size: 18px;
+685    box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 0 4px rgba(6,182,212,0.25);
+686  }
+687  .map-poi-marker {
+688    width: 36px; height: 36px;
+689    background: var(--c, #06b6d4);
+690    border: 2px solid white;
+691    border-radius: 50%;
+692    display: flex; align-items: center; justify-content: center;
+693    font-weight: 700;
+694    color: white;
+695    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+696    font-feature-settings: 'tnum';
+697    position: relative;
+698  }
+699  .map-poi-marker .d {
+700    font-size: 11px;
+701    line-height: 1;
+702    margin-bottom: -2px;
+703    opacity: 0.85;
+704  }
+705  .map-poi-marker .p {
+706    font-size: 14px;
+707    line-height: 1;
+708    font-weight: 800;
+709  }
+710
+711  /* === User-requested fixes === */
+บรรทัด 637–665: .toast-container .toast (ok error loading) และอนิเมชัน toastIn slideUp ของ ➜ showToast() ใน frontend/app.js
+บรรทัด 666–677: @media (max-width: 980px) ปรับโครงเป็นคอลัมน์เดียว
+บรรทัด 678–711: หมุดแผนที่ .map-poi-marker (วงกลมสีของวันพร้อมเลขวันและลำดับ) และ .map-hotel-marker ที่ ➜ drawOnMap() ใน frontend/app.js สร้าง
+บรรทัด 712–783  ชุดแก้ไขตามคำขอ
+712
+713  /* 1) Remove number spinner arrows (Chrome/Safari/Firefox) */
+714  input[type=number]::-webkit-inner-spin-button,
+715  input[type=number]::-webkit-outer-spin-button {
+716    -webkit-appearance: none;
+717    margin: 0;
+718  }
+719  input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+720
+721
+722  .date-summary {
+723    font-size: 0.78rem;
+724    color: var(--text-tertiary);
+725    margin-top: 0.5rem;
+726    padding: 0.4rem 0.6rem;
+727    background: var(--bg-elevated);
+728    border-radius: 6px;
+729    border-left: 3px solid var(--accent-primary);
+730  }
+731  .date-summary.invalid { border-left-color: var(--accent-danger); color: var(--accent-danger); }
+732  .date-summary.oneday {
+733    border-left-color: #10b981; color: #10b981;
+734    background: rgba(16,185,129,0.08);
+735  }
+736
+737  /* One-day-trip lock badge (inline beside title) */
+738  .hotel-lock-badge {
+739    display: inline-flex; align-items: center;
+740    font-size: 0.7rem; font-weight: 600;
+741    background: rgba(16,185,129,0.15); color: #10b981;
+742    border: 1px solid rgba(16,185,129,0.3);
+743    border-radius: 20px; padding: 2px 9px; white-space: nowrap; flex-shrink: 0;
+744  }
+745
+746  /* 4) Smaller "เพิ่มสถานที่" button - looks like POI item with + icon */
+747  .day-add {
+748    display: flex; align-items: center; gap: 0.6rem;
+749    width: 100%;
+750    margin-top: 0.5rem;
+751    padding: 0.55rem 0.75rem;
+752    background: transparent;
+753    border: 1px dashed var(--border-default);
+754    border-radius: var(--radius-sm);
+755    color: var(--text-tertiary);
+756    font-size: 0.88rem;
+757    text-align: left;
+758    transition: var(--transition);
+759  }
+760  .day-add:hover {
+761    border-color: var(--accent-primary);
+762    border-style: solid;
+763    color: var(--accent-primary);
+764    background: var(--bg-elevated);
+765  }
+766  .day-add svg { width: 16px; height: 16px; flex-shrink: 0; }
+767  .day-add .add-num {
+768    width: 28px; height: 28px; flex-shrink: 0;
+769    border: 1px dashed currentColor;
+770    border-radius: 50%;
+771    display: flex; align-items: center; justify-content: center;
+772    opacity: 0.7;
+773  }
+774
+775  /* 5) FIX: gentler dark mode tile filter (was breaking map appearance) */
+776  [data-theme="dark"] .leaflet-tile-pane {
+777    filter: brightness(0.85) saturate(0.7) hue-rotate(180deg) invert(0.92);
+778  }
+779  .leaflet-control-zoom a {
+780    background: var(--bg-elevated) !important;
+781    color: var(--text-primary) !important;
+782    border-color: var(--border-default) !important;
+783  }
+บรรทัด 712–737: การปรับช่องตัวเลข สรุปวันที่ (.date-summary สถานะ oneday/invalid) และรายละเอียดเล็กน้อยที่ปรับตามคำขอ
+บรรทัด 738–766: ป้ายล็อกของทริปวันเดียวและการ์ดโรงแรมแบบล็อก (➜ setOneDayTripMode() ใน frontend/app.js)
+บรรทัด 767–783: ปุ่ม .day-add (เพิ่มสถานที่) และการปรับภาพแผนที่ในธีมมืด
+บรรทัด 784–843  พื้นหลังออโรรา
+784  .leaflet-control-attribution {
+785    background: var(--bg-elevated) !important;
+786    color: var(--text-tertiary) !important;
+787    border-radius: 4px;
+788    font-size: 10px;
+789  }
 790
-791  /* New background layers */
-792  .bg-layers {
-793    position: fixed; inset: 0; z-index: -1;
-794    overflow: hidden;
-795    pointer-events: none;
-796  }
-797
-798  /* Subtle grid */
-799  .bg-grid {
-800    position: absolute; inset: 0;
-801    background-image:
-802      linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px),
-803      linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px);
-804    background-size: 60px 60px;
-805    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-806    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-807  }
-808  [data-theme="light"] .bg-grid {
-809    background-image:
-810      linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
-811      linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
-812  }
-813
-814  /* Aurora orbs - animated */
-815  .bg-aurora { position: absolute; inset: 0; }
-816  .bg-aurora .orb {
-817    position: absolute;
-818    border-radius: 50%;
-819    filter: blur(140px);
-820    opacity: 0.55;
-821    will-change: transform;
-822  }
-823  .bg-aurora .orb-1 { width: 520px; height: 520px; background: #ff6d35; top: -80px; left: -120px; animation: drift1 22s ease-in-out infinite alternate; }
-824  .bg-aurora .orb-2 { width: 600px; height: 600px; background: #b84000; top: 25%; right: -200px; animation: drift2 28s ease-in-out infinite alternate; }
-825  .bg-aurora .orb-3 { width: 460px; height: 460px; background: #f97316; bottom: -120px; left: 25%; opacity: 0.35; animation: drift3 30s ease-in-out infinite alternate; }
-826  .bg-aurora .orb-4 { width: 380px; height: 380px; background: #cc3300; top: 55%; left: 8%; opacity: 0.10; animation: drift4 26s ease-in-out infinite alternate; }
-827  .bg-aurora .orb-5 { width: 420px; height: 420px; background: #ff7722; top: 5%; left: 45%; opacity: 0.08; animation: drift5 32s ease-in-out infinite alternate; }
-828
-829  [data-theme="light"] .bg-aurora .orb { opacity: 0.22; }
-830  [data-theme="light"] .bg-aurora .orb-3,
-831  [data-theme="light"] .bg-aurora .orb-4,
-832  [data-theme="light"] .bg-aurora .orb-5 { opacity: 0.15; }
-833
-834  @keyframes drift1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(120px, 80px) scale(1.15); } }
-835  @keyframes drift2 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-150px, 100px) scale(1.1); } }
-836  @keyframes drift3 { from { transform: translate(0, 0) scale(1); } to { transform: translate(80px, -120px) scale(0.9); } }
-837  @keyframes drift4 { from { transform: translate(0, 0) scale(1); } to { transform: translate(180px, -80px) scale(1.2); } }
-838  @keyframes drift5 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-100px, 120px) scale(1.1); } }
-839
-840  /* Subtle film grain (SVG noise) */
-บรรทัด 781–840: .bg-layers ตาราง .bg-grid ลูกแสงห้าก้อนที่เคลื่อนช้า ๆ (@keyframes drift1–drift5) และเกรนฟิล์ม SVG (ลักษณะตามองค์ประกอบใน ➜ frontend/index.html)
-บรรทัด 841–1021  ช่องวันที่และธีมของ flatpickr
-841  .bg-grain {
-842    position: absolute; inset: 0;
-843    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjAwIDIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzAuOScgbnVtT2N0YXZlcz0nMScgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz48L3N2Zz4=");
-844    opacity: 0.04;
-845    mix-blend-mode: overlay;
-846  }
-847  [data-theme="light"] .bg-grain { opacity: 0.06; mix-blend-mode: multiply; }
-848
-849
-850  /* === New date range input (single field for Flatpickr) === */
-851  .date-range-input {
-852    display: flex; align-items: center; gap: 0.6rem;
-853    background: var(--bg-elevated);
-854    border: 1px solid var(--border-subtle);
-855    border-radius: var(--radius-md);
-856    padding: 0.65rem 1rem;
-857    cursor: pointer;
-858    transition: var(--transition);
-859  }
-860  .date-range-input:hover { border-color: var(--border-default); }
-861  .date-range-input:focus-within { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(255,109,53,0.15); }
-862  .date-range-input .date-icon { width: 18px; height: 18px; color: var(--text-tertiary); flex-shrink: 0; pointer-events: none; }
-863  .date-range-input input {
-864    flex: 1; padding: 0; border: none; outline: none;
-865    background: transparent;
-866    font-size: 0.95rem; font-weight: 600;
-867    color: var(--text-primary);
-868    cursor: pointer;
-869  }
-870  .date-range-input input::placeholder { color: var(--text-tertiary); font-weight: 500; }
-871
-872  /* === Flatpickr theming === */
-873  .flatpickr-calendar {
-874    background: #1a1208 !important;
-875    border: 1px solid var(--border-default) !important;
-876    border-radius: var(--radius-lg) !important;
-877    box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
-878    font-family: var(--font-sans) !important;
-879    width: 320px !important;
-880    padding: 0.5rem !important;
-881    z-index: 99999 !important;
-882  }
-883  [data-theme="light"] .flatpickr-calendar { background: #ffffff !important; }
-884
-885  /* Year input — ซ่อน default arrows, ใช้ปุ่ม custom แทน */
-886  .flatpickr-current-month .numInputWrapper { pointer-events: auto !important; }
-887  .flatpickr-current-month input.cur-year {
-888    pointer-events: auto !important;
-889    cursor: default !important;
-890    background: transparent !important;
-891    border: none !important;
-892    padding: 0 2px !important;
-893    color: var(--text-primary) !important;
-894    font-weight: 700 !important;
-895  }
-896  .numInputWrapper span.arrowUp,
-897  .numInputWrapper span.arrowDown { display: none !important; }
-898
-899  /* Custom year nav buttons */
-900  .fp-year-prev, .fp-year-next {
-901    display: inline-flex; align-items: center; justify-content: center;
-902    width: 22px; height: 22px; border-radius: 50%;
-903    cursor: pointer; font-size: 1rem; font-weight: 700;
-904    color: var(--text-secondary);
-905    background: transparent;
-906    border: none;
-907    transition: background 0.15s, color 0.15s;
-908    user-select: none;
-909    vertical-align: middle;
-910  }
-911  .fp-year-prev:hover, .fp-year-next:hover {
-912    background: rgba(255,109,53,0.15);
-913    color: var(--accent-primary);
-914  }
-915  .flatpickr-calendar.arrowTop:before,
-916  .flatpickr-calendar.arrowTop:after { border-bottom-color: var(--border-default) !important; }
-917  .flatpickr-calendar.arrowBottom:before,
-918  .flatpickr-calendar.arrowBottom:after { border-top-color: var(--border-default) !important; }
-919
-920  .flatpickr-months {
-921    padding: 0.5rem 0 0.75rem !important;
-922    border-bottom: 1px solid var(--border-subtle);
-923  }
-924  .flatpickr-month {
-925    background: transparent !important;
-926    color: var(--text-primary) !important;
-927    height: 36px !important;
-928    display: flex !important;
-929    align-items: center !important;
-930    justify-content: center !important;
-931  }
-932  .flatpickr-current-month {
-933    color: var(--text-primary) !important;
-934    font-size: 0.95rem !important;
-935    font-weight: 700 !important;
-936    padding: 0 !important;
-937    display: flex !important;
-938    align-items: center !important;
-939    justify-content: center !important;
-940    gap: 4px !important;
-941    width: 100% !important;
-942    position: static !important;
-943  }
-944  .flatpickr-current-month .numInputWrapper { color: var(--text-primary) !important; }
-945  .flatpickr-current-month input.cur-year {
-946    color: var(--text-primary) !important;
-947    font-weight: 700 !important;
-948  }
-949  .flatpickr-monthDropdown-months {
-950    background: #1a1208 !important;
-951    color: var(--text-primary) !important;
-952    font-weight: 600 !important;
-953    border-radius: 6px;
-954  }
-955  [data-theme="light"] .flatpickr-monthDropdown-months { background: #ffffff !important; }
-956  .flatpickr-monthDropdown-month { background: #1a1208 !important; }
-957  [data-theme="light"] .flatpickr-monthDropdown-month { background: #ffffff !important; }
-958
-959  .flatpickr-prev-month, .flatpickr-next-month {
-960    color: var(--text-secondary) !important;
-961    fill: var(--text-secondary) !important;
-962    padding: 8px !important;
-963    border-radius: 8px;
-964    transition: var(--transition);
-965  }
-966  .flatpickr-prev-month:hover, .flatpickr-next-month:hover {
-967    color: var(--accent-glow) !important;
-968    fill: var(--accent-glow) !important;
-969    background: var(--bg-base) !important;
-970  }
-971
-972  .flatpickr-weekdays { background: transparent !important; padding: 0.5rem 0; }
-973  .flatpickr-weekday {
-974    color: var(--text-tertiary) !important;
-975    font-weight: 600 !important;
-976    font-size: 0.75rem !important;
-977    text-transform: uppercase;
-978    letter-spacing: 0.04em;
-979  }
-980
-981  .flatpickr-day {
-982    color: var(--text-secondary) !important;
-983    border-radius: 8px !important;
-984    font-weight: 500 !important;
-985    transition: var(--transition);
-986    border: 1px solid transparent !important;
-987    height: 38px !important;
-988    line-height: 38px !important;
-989    margin: 1px 0;
-990  }
-991  .flatpickr-day:hover {
-992    background: var(--bg-base) !important;
-993    color: var(--text-primary) !important;
-994  }
-995  .flatpickr-day.today {
-996    border-color: var(--accent-primary) !important;
-997    color: var(--accent-glow) !important;
-998  }
-999  .flatpickr-day.today:hover { background: var(--accent-primary) !important; color: white !important; }
-1000  .flatpickr-day.selected,
-1001  .flatpickr-day.startRange,
-1002  .flatpickr-day.endRange,
-1003  .flatpickr-day.selected.inRange,
-1004  .flatpickr-day.startRange.inRange,
-1005  .flatpickr-day.endRange.inRange {
-1006    background: var(--accent-primary) !important;
-1007    border-color: var(--accent-primary) !important;
-1008    color: white !important;
-1009    box-shadow: 0 4px 12px rgba(255,109,53,0.3);
-1010  }
-1011  .flatpickr-day.inRange {
-1012    background: rgba(255,109,53,0.15) !important;
-1013    border-color: transparent !important;
-1014    color: var(--text-primary) !important;
-1015    box-shadow: none !important;
-1016  }
-1017  .flatpickr-day.startRange { border-radius: 8px 0 0 8px !important; }
-1018  .flatpickr-day.endRange { border-radius: 0 8px 8px 0 !important; }
-1019  .flatpickr-day.startRange.endRange { border-radius: 8px !important; }
-1020  .flatpickr-day.flatpickr-disabled,
-1021  .flatpickr-day.prevMonthDay,
-บรรทัด 841–862: .date-range-input ช่องวันที่ช่องเดียว (โฟกัส และ placeholder)
-บรรทัด 863–1021: ตกแต่งปฏิทิน flatpickr ให้เข้ากับธีม: เดือน ปี ปุ่ม ‹ › ที่เพิ่มด้วย ➜ initDateRange() ใน frontend/app.js ชื่อวัน วันที่ที่ชี้ ช่วงที่เลือก และวันของเดือนอื่น
-บรรทัด 1022–1115  รุ่น V4–V6
-1022  .flatpickr-day.nextMonthDay {
-1023    color: var(--text-muted) !important;
-1024    opacity: 0.4;
-1025  }
-1026
-1027  .numInput, .numInputWrapper span {
-1028    color: var(--text-primary) !important;
-1029  }
-1030  .flatpickr-time { background: var(--bg-elevated) !important; border-top: 1px solid var(--border-subtle); }
-1031
-1032  /* === V4 Updates === */
-1033
+791  /* === V3 Updates: Aurora background, Flatpickr, scrollable select === */
+792
+793
+794  /* New background layers */
+795  .bg-layers {
+796    position: fixed; inset: 0; z-index: -1;
+797    overflow: hidden;
+798    pointer-events: none;
+799  }
+800
+801  /* Subtle grid */
+802  .bg-grid {
+803    position: absolute; inset: 0;
+804    background-image:
+805      linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px),
+806      linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px);
+807    background-size: 60px 60px;
+808    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+809    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+810  }
+811  [data-theme="light"] .bg-grid {
+812    background-image:
+813      linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+814      linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
+815  }
+816
+817  /* Aurora orbs - animated */
+818  .bg-aurora { position: absolute; inset: 0; }
+819  .bg-aurora .orb {
+820    position: absolute;
+821    border-radius: 50%;
+822    filter: blur(140px);
+823    opacity: 0.55;
+824    will-change: transform;
+825  }
+826  .bg-aurora .orb-1 { width: 520px; height: 520px; background: #ff6d35; top: -80px; left: -120px; animation: drift1 22s ease-in-out infinite alternate; }
+827  .bg-aurora .orb-2 { width: 600px; height: 600px; background: #b84000; top: 25%; right: -200px; animation: drift2 28s ease-in-out infinite alternate; }
+828  .bg-aurora .orb-3 { width: 460px; height: 460px; background: #f97316; bottom: -120px; left: 25%; opacity: 0.35; animation: drift3 30s ease-in-out infinite alternate; }
+829  .bg-aurora .orb-4 { width: 380px; height: 380px; background: #cc3300; top: 55%; left: 8%; opacity: 0.10; animation: drift4 26s ease-in-out infinite alternate; }
+830  .bg-aurora .orb-5 { width: 420px; height: 420px; background: #ff7722; top: 5%; left: 45%; opacity: 0.08; animation: drift5 32s ease-in-out infinite alternate; }
+831
+832  [data-theme="light"] .bg-aurora .orb { opacity: 0.22; }
+833  [data-theme="light"] .bg-aurora .orb-3,
+834  [data-theme="light"] .bg-aurora .orb-4,
+835  [data-theme="light"] .bg-aurora .orb-5 { opacity: 0.15; }
+836
+837  @keyframes drift1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(120px, 80px) scale(1.15); } }
+838  @keyframes drift2 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-150px, 100px) scale(1.1); } }
+839  @keyframes drift3 { from { transform: translate(0, 0) scale(1); } to { transform: translate(80px, -120px) scale(0.9); } }
+840  @keyframes drift4 { from { transform: translate(0, 0) scale(1); } to { transform: translate(180px, -80px) scale(1.2); } }
+841  @keyframes drift5 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-100px, 120px) scale(1.1); } }
+842
+843  /* Subtle film grain (SVG noise) */
+บรรทัด 784–843: .bg-layers ตาราง .bg-grid ลูกแสงห้าก้อนที่เคลื่อนช้า ๆ (@keyframes drift1–drift5) และเกรนฟิล์ม SVG (ลักษณะตามองค์ประกอบใน ➜ frontend/index.html)
+บรรทัด 844–1024  ช่องวันที่และธีมของ flatpickr
+844  .bg-grain {
+845    position: absolute; inset: 0;
+846    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjAwIDIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzAuOScgbnVtT2N0YXZlcz0nMScgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz48L3N2Zz4=");
+847    opacity: 0.04;
+848    mix-blend-mode: overlay;
+849  }
+850  [data-theme="light"] .bg-grain { opacity: 0.06; mix-blend-mode: multiply; }
+851
+852
+853  /* === New date range input (single field for Flatpickr) === */
+854  .date-range-input {
+855    display: flex; align-items: center; gap: 0.6rem;
+856    background: var(--bg-elevated);
+857    border: 1px solid var(--border-subtle);
+858    border-radius: var(--radius-md);
+859    padding: 0.65rem 1rem;
+860    cursor: pointer;
+861    transition: var(--transition);
+862  }
+863  .date-range-input:hover { border-color: var(--border-default); }
+864  .date-range-input:focus-within { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(255,109,53,0.15); }
+865  .date-range-input .date-icon { width: 18px; height: 18px; color: var(--text-tertiary); flex-shrink: 0; pointer-events: none; }
+866  .date-range-input input {
+867    flex: 1; padding: 0; border: none; outline: none;
+868    background: transparent;
+869    font-size: 0.95rem; font-weight: 600;
+870    color: var(--text-primary);
+871    cursor: pointer;
+872  }
+873  .date-range-input input::placeholder { color: var(--text-tertiary); font-weight: 500; }
+874
+875  /* === Flatpickr theming === */
+876  .flatpickr-calendar {
+877    background: #1a1208 !important;
+878    border: 1px solid var(--border-default) !important;
+879    border-radius: var(--radius-lg) !important;
+880    box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+881    font-family: var(--font-sans) !important;
+882    width: 320px !important;
+883    padding: 0.5rem !important;
+884    z-index: 99999 !important;
+885  }
+886  [data-theme="light"] .flatpickr-calendar { background: #ffffff !important; }
+887
+888  /* Year input — ซ่อน default arrows, ใช้ปุ่ม custom แทน */
+889  .flatpickr-current-month .numInputWrapper { pointer-events: auto !important; }
+890  .flatpickr-current-month input.cur-year {
+891    pointer-events: auto !important;
+892    cursor: default !important;
+893    background: transparent !important;
+894    border: none !important;
+895    padding: 0 2px !important;
+896    color: var(--text-primary) !important;
+897    font-weight: 700 !important;
+898  }
+899  .numInputWrapper span.arrowUp,
+900  .numInputWrapper span.arrowDown { display: none !important; }
+901
+902  /* Custom year nav buttons */
+903  .fp-year-prev, .fp-year-next {
+904    display: inline-flex; align-items: center; justify-content: center;
+905    width: 22px; height: 22px; border-radius: 50%;
+906    cursor: pointer; font-size: 1rem; font-weight: 700;
+907    color: var(--text-secondary);
+908    background: transparent;
+909    border: none;
+910    transition: background 0.15s, color 0.15s;
+911    user-select: none;
+912    vertical-align: middle;
+913  }
+914  .fp-year-prev:hover, .fp-year-next:hover {
+915    background: rgba(255,109,53,0.15);
+916    color: var(--accent-primary);
+917  }
+918  .flatpickr-calendar.arrowTop:before,
+919  .flatpickr-calendar.arrowTop:after { border-bottom-color: var(--border-default) !important; }
+920  .flatpickr-calendar.arrowBottom:before,
+921  .flatpickr-calendar.arrowBottom:after { border-top-color: var(--border-default) !important; }
+922
+923  .flatpickr-months {
+924    padding: 0.5rem 0 0.75rem !important;
+925    border-bottom: 1px solid var(--border-subtle);
+926  }
+927  .flatpickr-month {
+928    background: transparent !important;
+929    color: var(--text-primary) !important;
+930    height: 36px !important;
+931    display: flex !important;
+932    align-items: center !important;
+933    justify-content: center !important;
+934  }
+935  .flatpickr-current-month {
+936    color: var(--text-primary) !important;
+937    font-size: 0.95rem !important;
+938    font-weight: 700 !important;
+939    padding: 0 !important;
+940    display: flex !important;
+941    align-items: center !important;
+942    justify-content: center !important;
+943    gap: 4px !important;
+944    width: 100% !important;
+945    position: static !important;
+946  }
+947  .flatpickr-current-month .numInputWrapper { color: var(--text-primary) !important; }
+948  .flatpickr-current-month input.cur-year {
+949    color: var(--text-primary) !important;
+950    font-weight: 700 !important;
+951  }
+952  .flatpickr-monthDropdown-months {
+953    background: #1a1208 !important;
+954    color: var(--text-primary) !important;
+955    font-weight: 600 !important;
+956    border-radius: 6px;
+957  }
+958  [data-theme="light"] .flatpickr-monthDropdown-months { background: #ffffff !important; }
+959  .flatpickr-monthDropdown-month { background: #1a1208 !important; }
+960  [data-theme="light"] .flatpickr-monthDropdown-month { background: #ffffff !important; }
+961
+962  .flatpickr-prev-month, .flatpickr-next-month {
+963    color: var(--text-secondary) !important;
+964    fill: var(--text-secondary) !important;
+965    padding: 8px !important;
+966    border-radius: 8px;
+967    transition: var(--transition);
+968  }
+969  .flatpickr-prev-month:hover, .flatpickr-next-month:hover {
+970    color: var(--accent-glow) !important;
+971    fill: var(--accent-glow) !important;
+972    background: var(--bg-base) !important;
+973  }
+974
+975  .flatpickr-weekdays { background: transparent !important; padding: 0.5rem 0; }
+976  .flatpickr-weekday {
+977    color: var(--text-tertiary) !important;
+978    font-weight: 600 !important;
+979    font-size: 0.75rem !important;
+980    text-transform: uppercase;
+981    letter-spacing: 0.04em;
+982  }
+983
+984  .flatpickr-day {
+985    color: var(--text-secondary) !important;
+986    border-radius: 8px !important;
+987    font-weight: 500 !important;
+988    transition: var(--transition);
+989    border: 1px solid transparent !important;
+990    height: 38px !important;
+991    line-height: 38px !important;
+992    margin: 1px 0;
+993  }
+994  .flatpickr-day:hover {
+995    background: var(--bg-base) !important;
+996    color: var(--text-primary) !important;
+997  }
+998  .flatpickr-day.today {
+999    border-color: var(--accent-primary) !important;
+1000    color: var(--accent-glow) !important;
+1001  }
+1002  .flatpickr-day.today:hover { background: var(--accent-primary) !important; color: white !important; }
+1003  .flatpickr-day.selected,
+1004  .flatpickr-day.startRange,
+1005  .flatpickr-day.endRange,
+1006  .flatpickr-day.selected.inRange,
+1007  .flatpickr-day.startRange.inRange,
+1008  .flatpickr-day.endRange.inRange {
+1009    background: var(--accent-primary) !important;
+1010    border-color: var(--accent-primary) !important;
+1011    color: white !important;
+1012    box-shadow: 0 4px 12px rgba(255,109,53,0.3);
+1013  }
+1014  .flatpickr-day.inRange {
+1015    background: rgba(255,109,53,0.15) !important;
+1016    border-color: transparent !important;
+1017    color: var(--text-primary) !important;
+1018    box-shadow: none !important;
+1019  }
+1020  .flatpickr-day.startRange { border-radius: 8px 0 0 8px !important; }
+1021  .flatpickr-day.endRange { border-radius: 0 8px 8px 0 !important; }
+1022  .flatpickr-day.startRange.endRange { border-radius: 8px !important; }
+1023  .flatpickr-day.flatpickr-disabled,
+1024  .flatpickr-day.prevMonthDay,
+บรรทัด 844–865: .date-range-input ช่องวันที่ช่องเดียว (โฟกัส และ placeholder)
+บรรทัด 866–1024: ตกแต่งปฏิทิน flatpickr ให้เข้ากับธีม: เดือน ปี ปุ่ม ‹ › ที่เพิ่มด้วย ➜ initDateRange() ใน frontend/app.js ชื่อวัน วันที่ที่ชี้ ช่วงที่เลือก และวันของเดือนอื่น
+บรรทัด 1025–1118  รุ่น V4–V6
+1025  .flatpickr-day.nextMonthDay {
+1026    color: var(--text-muted) !important;
+1027    opacity: 0.4;
+1028  }
+1029
+1030  .numInput, .numInputWrapper span {
+1031    color: var(--text-primary) !important;
+1032  }
+1033  .flatpickr-time { background: var(--bg-elevated) !important; border-top: 1px solid var(--border-subtle); }
 1034
-1035  /* 2) Custom scrollbars (whole page) */
-1036  * { scrollbar-width: thin; scrollbar-color: var(--border-default) transparent; }
-1037  *::-webkit-scrollbar { width: 10px; height: 10px; }
-1038  *::-webkit-scrollbar-track { background: transparent; }
-1039  *::-webkit-scrollbar-thumb {
-1040    background: linear-gradient(180deg, var(--border-default), var(--border-strong));
-1041    border-radius: 5px;
-1042    border: 2px solid transparent;
-1043    background-clip: padding-box;
-1044  }
-1045  *::-webkit-scrollbar-thumb:hover {
-1046    background: linear-gradient(180deg, var(--accent-primary), var(--accent-glow));
-1047    background-clip: padding-box;
-1048    border: 2px solid transparent;
-1049  }
-1050  *::-webkit-scrollbar-corner { background: transparent; }
-1051
-1052  /* 3) Day toggles (filter routes on map by day) */
-1053  .day-toggles {
-1054    display: flex; flex-wrap: wrap; gap: 0.5rem;
-1055    padding: 0.75rem;
-1056    background: var(--bg-surface);
-1057    backdrop-filter: blur(20px);
-1058    -webkit-backdrop-filter: blur(20px);
-1059    border: 1px solid var(--border-subtle);
-1060    border-radius: var(--radius-md);
-1061    margin-bottom: 0.75rem;
-1062  }
-1063  .day-toggle {
-1064    display: inline-flex; align-items: center; gap: 0.5rem;
-1065    padding: 0.4rem 0.85rem;
-1066    background: var(--bg-elevated);
-1067    border: 1px solid var(--border-subtle);
-1068    border-radius: 999px;
-1069    font-size: 0.82rem; font-weight: 600;
-1070    color: var(--text-tertiary);
-1071    transition: var(--transition);
-1072    cursor: pointer;
-1073  }
-1074  .day-toggle .day-dot {
-1075    width: 8px; height: 8px; border-radius: 50%;
-1076    background: var(--c, var(--accent-primary));
-1077    opacity: 0.4;
-1078    transition: var(--transition);
-1079  }
-1080  .day-toggle.active {
-1081    background: var(--bg-base);
-1082    color: var(--text-primary);
-1083    border-color: var(--c, var(--accent-primary));
-1084    box-shadow: 0 0 0 1px var(--c, var(--accent-primary));
-1085  }
-1086  .day-toggle.active .day-dot {
-1087    opacity: 1;
-1088    box-shadow: 0 0 8px var(--c, var(--accent-primary));
-1089  }
-1090  .day-toggle:hover { color: var(--text-primary); }
-1091  .day-toggle.show-all {
-1092    background: var(--grad-cta);
-1093    color: white;
-1094    border-color: transparent;
-1095  }
-1096  .day-toggle.show-all:hover { opacity: 0.9; }
-1097
-1098  /* === V5: Validation error state === */
-1099  .input-with-unit.has-error,
-1100  .date-range-input.has-error,
-1101  .select-input.has-error {
-1102    border-color: var(--accent-danger) !important;
-1103    box-shadow: 0 0 0 3px rgba(239,68,68,0.18) !important;
-1104  }
-1105  .input-with-unit.has-error .unit { color: var(--accent-danger); }
-1106
-1107  @keyframes shake {
-1108    0%, 100% { transform: translateX(0); }
-1109    20%, 60% { transform: translateX(-4px); }
-1110    40%, 80% { transform: translateX(4px); }
-1111  }
-1112  .has-error { animation: shake 320ms ease; }
-1113
-1114  /* === V6: Subtle gradient body background === */
-1115  [data-theme="dark"] body {
-บรรทัด 1022–1085: แถบเลื่อนทั้งหน้า ปุ่มสลับวัน .day-toggle และสถานะ active ของ ➜ renderDayToggles() ใน frontend/app.js
-บรรทัด 1086–1101: สถานะผิดพลาดของช่องกรอก .has-error พร้อมอนิเมชันสั่น shake (➜ highlightField() ใน frontend/app.js)
-บรรทัด 1102–1115: พื้นหลังไล่สีอ่อนของ body
-บรรทัด 1116–1246  รุ่น V7–V8
-1116    background:
-1117      radial-gradient(ellipse at top left,    rgba(6,182,212,0.08), transparent 50%),
-1118      radial-gradient(ellipse at bottom right, rgba(167,139,250,0.08), transparent 50%),
-1119      linear-gradient(180deg, #0a0e1a 0%, #0d1424 50%, #0a0e1a 100%);
-1120  }
-1121  [data-theme="light"] body {
-1122    background:
-1123      radial-gradient(ellipse at top left,    rgba(6,182,212,0.06), transparent 50%),
-1124      radial-gradient(ellipse at bottom right, rgba(167,139,250,0.06), transparent 50%),
-1125      linear-gradient(180deg, #f6f7fb 0%, #eef2f9 50%, #f6f7fb 100%);
-1126  }
-1127
-1128  /* === V7: Hide-all button & realistic schedule == */
-1129  .day-toggle.hide-all {
-1130    background: rgba(239, 68, 68, 0.15);
-1131    color: #fca5a5;
-1132    border-color: rgba(239, 68, 68, 0.4);
-1133  }
-1134  .day-toggle.hide-all:hover {
-1135    background: rgba(239, 68, 68, 0.25);
-1136    color: #fecaca;
-1137  }
-1138  .day-toggle svg { flex-shrink: 0; }
-1139
-1140  /* === V8: Algorithm selector === */
-1141  .algo-segment {
-1142    display: grid;
-1143    grid-template-columns: repeat(3, 1fr);
-1144    gap: 4px;
-1145    background: var(--bg-elevated);
-1146    padding: 4px;
-1147    border-radius: var(--radius-md);
-1148    border: 1px solid var(--border-subtle);
-1149  }
-1150  .algo-segment button {
-1151    padding: 0.65rem 0.5rem;
-1152    border-radius: 8px;
-1153    font-weight: 600;
-1154    font-size: 0.86rem;
-1155    color: var(--text-tertiary);
-1156    transition: var(--transition);
-1157  }
-1158  .algo-segment button:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
-1159  .algo-segment button.active {
-1160    background: var(--grad-cta);
-1161    color: white;
-1162    box-shadow: 0 4px 10px rgba(255,109,53,0.3);
-1163  }
-1164
-1165
-1166  /* ── Hotel option card ── */
-1167  .hotel-card {
-1168    display: flex; align-items: center; gap: 14px;
-1169    padding: 14px 16px; border-radius: var(--radius-md);
-1170    background: var(--bg-surface);
-1171    border: 1px solid var(--border-default);
-1172    cursor: pointer; transition: var(--transition);
-1173    user-select: none;
-1174  }
-1175  .hotel-card:hover { border-color: var(--accent-cyan); }
-1176  .hotel-card.hotel-card-locked {
-1177    border-color: #10b981;
-1178    background: rgba(16,185,129,0.06);
-1179    cursor: default;
-1180  }
-1181  .hotel-card-icon {
-1182    font-size: 1.5rem; flex-shrink: 0;
-1183    width: 42px; height: 42px;
-1184    display: flex; align-items: center; justify-content: center;
-1185    background: var(--bg-elevated);
-1186    border-radius: var(--radius-sm);
-1187  }
-1188  .hotel-card-body { flex: 1; min-width: 0; }
-1189  .hotel-card-title-row {
-1190    display: flex; align-items: center; gap: 8px;
-1191    margin-bottom: 2px;
-1192  }
-1193  .hotel-card-title {
-1194    font-weight: 600; font-size: 0.9rem;
-1195    color: var(--text-primary);
-1196  }
-1197  .hotel-card-switch {
-1198    flex-shrink: 0; display: flex; align-items: center;
+1035  /* === V4 Updates === */
+1036
+1037
+1038  /* 2) Custom scrollbars (whole page) */
+1039  * { scrollbar-width: thin; scrollbar-color: var(--border-default) transparent; }
+1040  *::-webkit-scrollbar { width: 10px; height: 10px; }
+1041  *::-webkit-scrollbar-track { background: transparent; }
+1042  *::-webkit-scrollbar-thumb {
+1043    background: linear-gradient(180deg, var(--border-default), var(--border-strong));
+1044    border-radius: 5px;
+1045    border: 2px solid transparent;
+1046    background-clip: padding-box;
+1047  }
+1048  *::-webkit-scrollbar-thumb:hover {
+1049    background: linear-gradient(180deg, var(--accent-primary), var(--accent-glow));
+1050    background-clip: padding-box;
+1051    border: 2px solid transparent;
+1052  }
+1053  *::-webkit-scrollbar-corner { background: transparent; }
+1054
+1055  /* 3) Day toggles (filter routes on map by day) */
+1056  .day-toggles {
+1057    display: flex; flex-wrap: wrap; gap: 0.5rem;
+1058    padding: 0.75rem;
+1059    background: var(--bg-surface);
+1060    backdrop-filter: blur(20px);
+1061    -webkit-backdrop-filter: blur(20px);
+1062    border: 1px solid var(--border-subtle);
+1063    border-radius: var(--radius-md);
+1064    margin-bottom: 0.75rem;
+1065  }
+1066  .day-toggle {
+1067    display: inline-flex; align-items: center; gap: 0.5rem;
+1068    padding: 0.4rem 0.85rem;
+1069    background: var(--bg-elevated);
+1070    border: 1px solid var(--border-subtle);
+1071    border-radius: 999px;
+1072    font-size: 0.82rem; font-weight: 600;
+1073    color: var(--text-tertiary);
+1074    transition: var(--transition);
+1075    cursor: pointer;
+1076  }
+1077  .day-toggle .day-dot {
+1078    width: 8px; height: 8px; border-radius: 50%;
+1079    background: var(--c, var(--accent-primary));
+1080    opacity: 0.4;
+1081    transition: var(--transition);
+1082  }
+1083  .day-toggle.active {
+1084    background: var(--bg-base);
+1085    color: var(--text-primary);
+1086    border-color: var(--c, var(--accent-primary));
+1087    box-shadow: 0 0 0 1px var(--c, var(--accent-primary));
+1088  }
+1089  .day-toggle.active .day-dot {
+1090    opacity: 1;
+1091    box-shadow: 0 0 8px var(--c, var(--accent-primary));
+1092  }
+1093  .day-toggle:hover { color: var(--text-primary); }
+1094  .day-toggle.show-all {
+1095    background: var(--grad-cta);
+1096    color: white;
+1097    border-color: transparent;
+1098  }
+1099  .day-toggle.show-all:hover { opacity: 0.9; }
+1100
+1101  /* === V5: Validation error state === */
+1102  .input-with-unit.has-error,
+1103  .date-range-input.has-error,
+1104  .select-input.has-error {
+1105    border-color: var(--accent-danger) !important;
+1106    box-shadow: 0 0 0 3px rgba(239,68,68,0.18) !important;
+1107  }
+1108  .input-with-unit.has-error .unit { color: var(--accent-danger); }
+1109
+1110  @keyframes shake {
+1111    0%, 100% { transform: translateX(0); }
+1112    20%, 60% { transform: translateX(-4px); }
+1113    40%, 80% { transform: translateX(4px); }
+1114  }
+1115  .has-error { animation: shake 320ms ease; }
+1116
+1117  /* === V6: Subtle gradient body background === */
+1118  [data-theme="dark"] body {
+บรรทัด 1025–1088: แถบเลื่อนทั้งหน้า ปุ่มสลับวัน .day-toggle และสถานะ active ของ ➜ renderDayToggles() ใน frontend/app.js
+บรรทัด 1089–1104: สถานะผิดพลาดของช่องกรอก .has-error พร้อมอนิเมชันสั่น shake (➜ highlightField() ใน frontend/app.js)
+บรรทัด 1105–1118: พื้นหลังไล่สีอ่อนของ body
+บรรทัด 1119–1249  รุ่น V7–V8
+1119    background:
+1120      radial-gradient(ellipse at top left,    rgba(6,182,212,0.08), transparent 50%),
+1121      radial-gradient(ellipse at bottom right, rgba(167,139,250,0.08), transparent 50%),
+1122      linear-gradient(180deg, #0a0e1a 0%, #0d1424 50%, #0a0e1a 100%);
+1123  }
+1124  [data-theme="light"] body {
+1125    background:
+1126      radial-gradient(ellipse at top left,    rgba(6,182,212,0.06), transparent 50%),
+1127      radial-gradient(ellipse at bottom right, rgba(167,139,250,0.06), transparent 50%),
+1128      linear-gradient(180deg, #f6f7fb 0%, #eef2f9 50%, #f6f7fb 100%);
+1129  }
+1130
+1131  /* === V7: Hide-all button & realistic schedule == */
+1132  .day-toggle.hide-all {
+1133    background: rgba(239, 68, 68, 0.15);
+1134    color: #fca5a5;
+1135    border-color: rgba(239, 68, 68, 0.4);
+1136  }
+1137  .day-toggle.hide-all:hover {
+1138    background: rgba(239, 68, 68, 0.25);
+1139    color: #fecaca;
+1140  }
+1141  .day-toggle svg { flex-shrink: 0; }
+1142
+1143  /* === V8: Algorithm selector === */
+1144  .algo-segment {
+1145    display: grid;
+1146    grid-template-columns: repeat(3, 1fr);
+1147    gap: 4px;
+1148    background: var(--bg-elevated);
+1149    padding: 4px;
+1150    border-radius: var(--radius-md);
+1151    border: 1px solid var(--border-subtle);
+1152  }
+1153  .algo-segment button {
+1154    padding: 0.65rem 0.5rem;
+1155    border-radius: 8px;
+1156    font-weight: 600;
+1157    font-size: 0.86rem;
+1158    color: var(--text-tertiary);
+1159    transition: var(--transition);
+1160  }
+1161  .algo-segment button:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
+1162  .algo-segment button.active {
+1163    background: var(--grad-cta);
+1164    color: white;
+1165    box-shadow: 0 4px 10px rgba(255,109,53,0.3);
+1166  }
+1167
+1168
+1169  /* ── Hotel option card ── */
+1170  .hotel-card {
+1171    display: flex; align-items: center; gap: 14px;
+1172    padding: 14px 16px; border-radius: var(--radius-md);
+1173    background: var(--bg-surface);
+1174    border: 1px solid var(--border-default);
+1175    cursor: pointer; transition: var(--transition);
+1176    user-select: none;
+1177  }
+1178  .hotel-card:hover { border-color: var(--accent-cyan); }
+1179  .hotel-card.hotel-card-locked {
+1180    border-color: #10b981;
+1181    background: rgba(16,185,129,0.06);
+1182    cursor: default;
+1183  }
+1184  .hotel-card-icon {
+1185    font-size: 1.5rem; flex-shrink: 0;
+1186    width: 42px; height: 42px;
+1187    display: flex; align-items: center; justify-content: center;
+1188    background: var(--bg-elevated);
+1189    border-radius: var(--radius-sm);
+1190  }
+1191  .hotel-card-body { flex: 1; min-width: 0; }
+1192  .hotel-card-title-row {
+1193    display: flex; align-items: center; gap: 8px;
+1194    margin-bottom: 2px;
+1195  }
+1196  .hotel-card-title {
+1197    font-weight: 600; font-size: 0.9rem;
+1198    color: var(--text-primary);
 1199  }
-1200  .hotel-card-switch input[type="checkbox"] { display: none; }
-1201  .toggle-track {
-1202    width: 44px; height: 24px;
-1203    background: var(--bg-elevated);
-1204    border: 1.5px solid var(--border-default);
-1205    border-radius: 12px;
-1206    position: relative; cursor: pointer;
-1207    transition: background 0.2s ease, border-color 0.2s ease;
-1208    display: block;
-1209  }
-1210  input[type="checkbox"]:checked + .toggle-track,
-1211  input[type="checkbox"]:checked + label.toggle-track {
-1212    background: var(--accent-primary);
-1213    border-color: var(--accent-primary);
-1214  }
-1215  .toggle-thumb {
-1216    position: absolute; top: 2px; left: 2px;
-1217    width: 18px; height: 18px;
-1218    background: white; border-radius: 50%;
-1219    transition: transform 0.2s ease;
-1220    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-1221  }
-1222  input[type="checkbox"]:checked + .toggle-track .toggle-thumb {
-1223    transform: translateX(18px);
+1200  .hotel-card-switch {
+1201    flex-shrink: 0; display: flex; align-items: center;
+1202  }
+1203  .hotel-card-switch input[type="checkbox"] { display: none; }
+1204  .toggle-track {
+1205    width: 44px; height: 24px;
+1206    background: var(--bg-elevated);
+1207    border: 1.5px solid var(--border-default);
+1208    border-radius: 12px;
+1209    position: relative; cursor: pointer;
+1210    transition: background 0.2s ease, border-color 0.2s ease;
+1211    display: block;
+1212  }
+1213  input[type="checkbox"]:checked + .toggle-track,
+1214  input[type="checkbox"]:checked + label.toggle-track {
+1215    background: var(--accent-primary);
+1216    border-color: var(--accent-primary);
+1217  }
+1218  .toggle-thumb {
+1219    position: absolute; top: 2px; left: 2px;
+1220    width: 18px; height: 18px;
+1221    background: white; border-radius: 50%;
+1222    transition: transform 0.2s ease;
+1223    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 1224  }
-1225  .hotel-lock-badge {
-1226    font-size: 0.68rem; font-weight: 700;
-1227    background: #10b981; color: white;
-1228    padding: 1px 7px; border-radius: 99px;
-1229    letter-spacing: 0.02em;
-1230  }
-1231  .date-summary.oneday { border-left-color: #10b981; color: #10b981; }
-1232
-1233  /* ── Distance connectors between POIs ── */
-1234  .dist-connector {
-1235    display: flex; align-items: center; gap: 0.4rem;
-1236    padding: 0.05rem 0.5rem;
-1237    list-style: none;
-1238  }
-1239  .dist-line {
-1240    flex: 1; height: 1px;
-1241    background: linear-gradient(90deg, transparent, var(--border-default), transparent);
-1242  }
-1243  .dist-badge {
-1244    font-size: 0.68rem; color: var(--text-muted);
-1245    white-space: nowrap;
-1246    padding: 1px 7px;
-บรรทัด 1116–1128: ปุ่มซ่อนทุกวันและตารางเวลาแบบสมจริง
-บรรทัด 1129–1163: ตัวเลือกอัลกอริทึม .algo-segment (ใน ➜ initAlgoControl() ใน frontend/app.js)
-บรรทัด 1164–1234: การ์ดโรงแรม .hotel-card สวิตช์ .toggle-track ป้ายล็อก และป้ายระยะทาง .dist-badge ในรายการ
-บรรทัด 1235–1246: รายละเอียดป้ายระยะทาง
-บรรทัด 1247–1584  โครงหน้าแบบใหม่ (หน้า landing และเมนูจังหวัด)
-1247    background: var(--bg-elevated);
-1248    border: 1px solid var(--border-subtle);
-1249    border-radius: 8px;
-1250    font-feature-settings: 'tnum';
-1251    letter-spacing: 0.01em;
-1252  }
-1253
-1254
-1255  /* ================================================================
-1256     NEW TRIPVENTURE LAYOUT
-1257     ================================================================ */
-1258
-1259  .brand-trip { color: var(--accent-primary); }
-1260  .topbar { padding: 0.65rem 2.5rem; }
+1225  input[type="checkbox"]:checked + .toggle-track .toggle-thumb {
+1226    transform: translateX(18px);
+1227  }
+1228  .hotel-lock-badge {
+1229    font-size: 0.68rem; font-weight: 700;
+1230    background: #10b981; color: white;
+1231    padding: 1px 7px; border-radius: 99px;
+1232    letter-spacing: 0.02em;
+1233  }
+1234  .date-summary.oneday { border-left-color: #10b981; color: #10b981; }
+1235
+1236  /* ── Distance connectors between POIs ── */
+1237  .dist-connector {
+1238    display: flex; align-items: center; gap: 0.4rem;
+1239    padding: 0.05rem 0.5rem;
+1240    list-style: none;
+1241  }
+1242  .dist-line {
+1243    flex: 1; height: 1px;
+1244    background: linear-gradient(90deg, transparent, var(--border-default), transparent);
+1245  }
+1246  .dist-badge {
+1247    font-size: 0.68rem; color: var(--text-muted);
+1248    white-space: nowrap;
+1249    padding: 1px 7px;
+บรรทัด 1119–1131: ปุ่มซ่อนทุกวันและตารางเวลาแบบสมจริง
+บรรทัด 1132–1166: ตัวเลือกอัลกอริทึม .algo-segment (ใน ➜ initAlgoControl() ใน frontend/app.js)
+บรรทัด 1167–1237: การ์ดโรงแรม .hotel-card สวิตช์ .toggle-track ป้ายล็อก และป้ายระยะทาง .dist-badge ในรายการ
+บรรทัด 1238–1249: รายละเอียดป้ายระยะทาง
+บรรทัด 1250–1587  โครงหน้าแบบใหม่ (หน้า landing และเมนูจังหวัด)
+1250    background: var(--bg-elevated);
+1251    border: 1px solid var(--border-subtle);
+1252    border-radius: 8px;
+1253    font-feature-settings: 'tnum';
+1254    letter-spacing: 0.01em;
+1255  }
+1256
+1257
+1258  /* ================================================================
+1259     NEW TRIPVENTURE LAYOUT
+1260     ================================================================ */
 1261
-1262  /* Body background */
-1263  html, body { background: #0d0b09 !important; }
-1264  html[data-theme="light"], html[data-theme="light"] body { background: #ffffff !important; }
-1265
-1266  /* ── Landing screen ── */
-1267  .landing-screen {
-1268    min-height: 100vh;
-1269    min-height: 100dvh;
-1270    position: relative;
-1271    background: #ffffff;
-1272    overflow: visible;   /* ไม่ตัดเมนูเลือกจังหวัดที่ยื่นลงมาเกินหน้าจอแรก (เดิม hidden ทำให้ STEP 2 ทับเมนู) */
-1273    display: flex; flex-direction: column;
-1274  }
-1275  [data-theme="dark"] .landing-screen {
-1276    background: #0d0b09;
+1262  .brand-trip { color: var(--accent-primary); }
+1263  .topbar { padding: 0.65rem 2.5rem; }
+1264
+1265  /* Body background */
+1266  html, body { background: #0d0b09 !important; }
+1267  html[data-theme="light"], html[data-theme="light"] body { background: #ffffff !important; }
+1268
+1269  /* ── Landing screen ── */
+1270  .landing-screen {
+1271    min-height: 100vh;
+1272    min-height: 100dvh;
+1273    position: relative;
+1274    background: #ffffff;
+1275    overflow: visible;   /* ไม่ตัดเมนูเลือกจังหวัดที่ยื่นลงมาเกินหน้าจอแรก (เดิม hidden ทำให้ STEP 2 ทับเมนู) */
+1276    display: flex; flex-direction: column;
 1277  }
-1278
-1279  /* ── Hero ── */
-1280  .hero-visual {
-1281    position: absolute;
-1282    top: 0; left: 0; right: 0;
-1283    width: 100%;
-1284    height: 75vh;
-1285    overflow: hidden;
-1286    display: flex;
-1287    align-items: center;
-1288    justify-content: center;
-1289    padding: 0;
-1290  }
-1291  .hero-bg {
-1292    position: absolute; inset: 0;
-1293    background-size: cover;
-1294    background-position: center bottom;
-1295    transform: scale(1.03);
-1296    transition: transform 8s ease;
-1297  }
-1298  .hero-visual:hover .hero-bg { transform: scale(1.0); }
-1299  .hero-overlay {
-1300    position: absolute; inset: 0;
-1301    background: linear-gradient(to bottom, rgba(8,5,2,0.42) 0%, rgba(8,5,2,0.28) 45%, rgba(8,5,2,0.68) 100%);
-1302  }
-1303  .hero-content {
-1304    position: absolute; z-index: 2;
-1305    top: 30%; left: 0; right: 0;
-1306    transform: translateY(-50%);
-1307    text-align: center;
-1308    width: 100%;
-1309    padding: 0 2rem;
-1310    animation: slideUp 700ms ease both;
-1311  }
-1312  .hero-label {
-1313    display: inline-block;
-1314    font-size: 1rem; font-weight: 700;
-1315    color: var(--accent-warm);
-1316    text-transform: uppercase; letter-spacing: 0.14em;
-1317    margin-bottom: 1.9rem;
-1318    padding: 0.25rem 0.9rem; border-radius: 999px;
-1319    background: rgba(255,255,255,0.88);
-1320  }
-1321  .hero-h1 {
-1322    font-size: clamp(2.6rem, 5.5vw, 4.4rem);
-1323    font-weight: 900; color: #fff;
-1324    letter-spacing: -0.03em; line-height: 1.1;
-1325    margin: 0 0 1rem; white-space: nowrap;
-1326    text-shadow: 0 2px 24px rgba(0,0,0,0.5);
-1327  }
-1328  .hero-desc {
-1329    font-size: 1rem; color: rgba(255,255,255,0.78);
-1330    line-height: 1.7; margin: 0 auto; max-width: none; white-space: nowrap;
-1331    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
-1332  }
-1333
-1334  /* ── Planner wrapper ── */
-1335  .planner-wrapper {
-1336    max-width: 1280px; width: 100%;
-1337    position: relative;
-1338    margin: auto auto 0; /* pins the panel to the bottom of the first screen */
-1339    padding: 330px 2rem 1rem; /* top padding = min clearance for hero text on short screens */
-1340    z-index: 10;
-1341    pointer-events: none;
-1342  }
-1343  .planner-wrapper > * { pointer-events: auto; }
-1344  .planner-panel {
-1345    zoom: 0.9; /* scales the whole box and its contents uniformly */
-1346    background: var(--bg-elevated);
-1347    border: 1px solid var(--border-subtle);
-1348    border-radius: var(--radius-xl);
-1349    padding: 1.5rem 1.75rem 1.25rem;
-1350    box-shadow: 0 16px 48px rgba(0,0,0,0.45);
-1351    backdrop-filter: blur(24px);
-1352    -webkit-backdrop-filter: blur(24px);
-1353  }
-1354  [data-theme="light"] .planner-panel {
-1355    background: rgba(255,255,255,0.97);
-1356    box-shadow: 0 16px 48px rgba(100,50,20,0.12);
-1357  }
-1358
-1359  /* Header row */
-1360  .planner-top-row {
-1361    display: flex; align-items: center; gap: 0.75rem;
-1362    margin-bottom: 1.1rem;
-1363    padding-bottom: 0.9rem;
-1364    border-bottom: 1px solid var(--border-subtle);
-1365  }
-1366  .planner-title { font-size: 1rem; font-weight: 700; flex: 1; }
-1367  .ml-auto { margin-left: auto; }
-1368
-1369  /* Divider */
-1370  .pf-divider {
-1371    height: 1px; background: var(--border-subtle);
-1372    margin: 1rem 0;
-1373  }
-1374
-1375  /* Grid rows */
-1376  .pf-grid {
-1377    display: grid;
-1378    grid-template-columns: 1fr 1fr 1.5fr 0.9fr;
-1379    gap: 1rem;
-1380    align-items: start;
-1381  }
-1382  .pf-grid-b {
-1383    grid-template-columns: auto 1fr auto;  /* ที่พัก (กว้างเท่าเนื้อหา) + กล่อง Tips (ยืดเต็มที่เหลือ) + ปุ่มค้นหา */
-1384    align-items: start;   /* ป้ายและปุ่มของทุกคอลัมน์อยู่ระนาบเดียวกัน */
-1385  }
-1386  .pf-col-search .pf-label { visibility: hidden; }
-1387  .pf-algo-row { display: none; margin-top: 0.9rem; }
-1388  .dev-mode .pf-algo-row { display: block; }
-1389  .dev-btn { font-family: ui-monospace, Consolas, monospace; font-size: 0.8rem; font-weight: 700; }
-1390  .dev-mode .dev-btn { color: #fff; background: var(--accent-primary, #ff6d35); border-color: transparent; }
-1391  .pf-col { position: relative; }
-1392  .pf-col-wide  { /* dates — wider */ }
-1393  .pf-col-hotel { /* hotel toggle */ }
-1394  .pf-col-algo  { /* algo segment */ }
-1395  .pf-col-search { min-width: 148px; }
-1396
-1397  /* Labels */
-1398  .pf-label {
-1399    display: block;
-1400    font-size: 0.73rem; font-weight: 600;
-1401    color: var(--text-tertiary);
-1402    text-transform: uppercase; letter-spacing: 0.07em;
-1403    margin-bottom: 0.45rem;
-1404    min-height: 1rem;
-1405  }
-1406
-1407  /* Hint text below each control — reserves space */
-1408  .pf-hint {
-1409    font-size: 0.72rem; color: var(--text-muted);
-1410    margin-top: 0.35rem; min-height: 1rem;
-1411    line-height: 1.3;
-1412  }
-1413
-1414  /* All controls same height */
-1415  .planner-panel .select-input,
-1416  .planner-panel .input-with-unit,
-1417  .planner-panel .date-range-input,
-1418  .planner-panel .counter-control,
-1419  .planner-panel .hotel-card,
-1420  .planner-panel .algo-segment { height: 48px; min-height: 48px; }
-1421
-1422  /* hotel card compact */
-1423  .planner-panel .hotel-card {
-1424    display: flex; align-items: center;
-1425    padding: 0 0.85rem; gap: 0.6rem;
-1426  }
-1427
-1428  /* algo segment height */
-1429  .planner-panel .algo-segment {
-1430    display: flex; align-items: center; padding: 4px;
-1431  }
-1432  .planner-panel .algo-segment button {
-1433    flex: 1; height: 100%;
-1434    display: flex; align-items: center; justify-content: center;
-1435    gap: 5px;
-1436    text-align: center;
-1437    letter-spacing: 0;
-1438  }
-1439  .planner-panel .algo-segment button .btn-icon {
-1440    display: inline-flex;
-1441    align-items: center;
-1442    width: 1em;
-1443    justify-content: center;
-1444    flex-shrink: 0;
-1445  }
-1446
-1447  /* search button */
-1448  .pf-col-search .cta-btn {
-1449    height: 48px; width: 100%;
-1450    padding: 0 1.25rem; font-size: 0.92rem;
-1451  }
-1452
-1453
-1454  /* Section backgrounds */
-1455  .packages-section, .detail-section { background: #0d0b09; }
-1456  html[data-theme="light"] .packages-section,
-1457  html[data-theme="light"] .detail-section { background: #ffffff; }
-1458
-1459
-1460  /* ── Province custom dropdown ── */
-1461  .prov-select {
-1462    position: relative;
-1463    display: flex; align-items: center; gap: 0.55rem;
-1464    height: 48px; min-height: 48px;
-1465    padding: 0 0.9rem;
-1466    background: var(--bg-elevated);
-1467    border: 1.5px solid var(--border-subtle);
-1468    border-radius: var(--radius-md);
-1469    cursor: pointer;
-1470    user-select: none;
-1471    transition: border-color 0.18s, box-shadow 0.18s;
-1472  }
-1473  .prov-select:hover { border-color: var(--accent-primary); }
-1474  .prov-select.open {
-1475    border-color: var(--accent-primary);
-1476    box-shadow: 0 0 0 3px rgba(255,109,53,0.18);
-1477  }
-1478  .prov-name { flex: 1; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
-1479  .prov-arrow {
-1480    width: 16px; height: 16px; flex-shrink: 0;
-1481    color: var(--text-tertiary);
-1482    transition: transform 0.2s;
-1483  }
-1484  .prov-select.open .prov-arrow { transform: rotate(180deg); }
-1485
-1486  /* Dropdown panel */
-1487  .prov-dropdown {
-1488    position: absolute;
-1489    top: calc(100% + 6px);
-1490    left: 0; transform: translateY(-8px) scale(0.98);
-1491    width: 280px; z-index: 999;
-1492    background: var(--bg-elevated);
-1493    border: 1.5px solid var(--border-subtle);
-1494    border-radius: var(--radius-lg);
-1495    box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.3);
-1496    backdrop-filter: blur(20px);
-1497    overflow: hidden;
-1498    opacity: 0;
-1499    pointer-events: none;
-1500    display: none;   /* ปิดอยู่ต้องไม่กินพื้นที่ (ไม่งั้นดันความสูงหน้าให้เลื่อนเกินจำเป็น) */
-1501  }
-1502  .prov-dropdown.open {
-1503    display: block;
-1504    opacity: 1; transform: translateY(0) scale(1);
-1505    pointer-events: all;
-1506    animation: provPop 0.18s ease both;
-1507  }
-1508  @keyframes provPop { from { opacity: 0; transform: translateY(-8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-1509  @keyframes provPopUp { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-1510  /* เปิดขึ้นด้านบนเมื่อพื้นที่ด้านล่างไม่พอ */
-1511  .prov-dropdown.drop-up {
-1512    top: auto;
-1513    bottom: calc(100% + 6px);
-1514    transform: translateY(8px) scale(0.98);
-1515  }
-1516  .prov-dropdown.drop-up.open {
-1517    transform: translateY(0) scale(1);
-1518    animation-name: provPopUp;
-1519  }
-1520  [data-theme="light"] .prov-dropdown {
-1521    background: #fff;
-1522    box-shadow: 0 16px 48px rgba(100,50,20,0.16), 0 4px 16px rgba(0,0,0,0.08);
-1523  }
-1524
-1525  /* Search box */
-1526  .prov-search-wrap {
-1527    display: flex; align-items: center; gap: 0.5rem;
-1528    padding: 0.7rem 0.9rem;
-1529    border-bottom: 1px solid var(--border-subtle);
-1530  }
-1531  .prov-search-wrap svg {
-1532    width: 15px; height: 15px; flex-shrink: 0;
-1533    color: var(--text-tertiary);
-1534  }
-1535  .prov-search-wrap input {
-1536    flex: 1; border: none; background: transparent;
-1537    font-size: 0.85rem; color: var(--text-primary);
-1538    outline: none;
-1539  }
-1540  .prov-search-wrap input::placeholder { color: var(--text-muted); }
-1541
-1542  /* Scrollable list */
-1543  .prov-list {
-1544    max-height: 260px; overflow-y: auto;
-1545    padding: 0.4rem 0;
-1546    scrollbar-width: thin;
-1547    scrollbar-color: rgba(255,109,53,0.3) transparent;
-1548  }
-1549  .prov-list::-webkit-scrollbar { width: 4px; }
-1550  .prov-list::-webkit-scrollbar-thumb { background: rgba(255,109,53,0.35); border-radius: 4px; }
-1551
-1552  /* Group label */
-1553  .prov-group-label {
-1554    padding: 0.45rem 0.9rem 0.25rem;
-1555    font-size: 0.68rem; font-weight: 700;
-1556    color: var(--text-tertiary);
-1557    text-transform: uppercase; letter-spacing: 0.08em;
-1558  }
-1559
-1560  /* Province item */
-1561  .prov-item {
-1562    display: flex; align-items: center; gap: 0.6rem;
-1563    padding: 0.5rem 0.9rem;
-1564    cursor: pointer;
-1565    transition: background 0.12s;
-1566    border-radius: 0;
-1567  }
-1568  .prov-item:hover:not(.prov-disabled) { background: rgba(255,109,53,0.12); }
-1569  .prov-item.prov-active {
-1570    background: rgba(255,109,53,0.15);
-1571  }
-1572  .prov-item.prov-active .prov-item-name {
-1573    color: var(--accent-primary); font-weight: 700;
+1278  [data-theme="dark"] .landing-screen {
+1279    background: #0d0b09;
+1280  }
+1281
+1282  /* ── Hero ── */
+1283  .hero-visual {
+1284    position: absolute;
+1285    top: 0; left: 0; right: 0;
+1286    width: 100%;
+1287    height: 75vh;
+1288    overflow: hidden;
+1289    display: flex;
+1290    align-items: center;
+1291    justify-content: center;
+1292    padding: 0;
+1293  }
+1294  .hero-bg {
+1295    position: absolute; inset: 0;
+1296    background-size: cover;
+1297    background-position: center bottom;
+1298    transform: scale(1.03);
+1299    transition: transform 8s ease;
+1300  }
+1301  .hero-visual:hover .hero-bg { transform: scale(1.0); }
+1302  .hero-overlay {
+1303    position: absolute; inset: 0;
+1304    background: linear-gradient(to bottom, rgba(8,5,2,0.42) 0%, rgba(8,5,2,0.28) 45%, rgba(8,5,2,0.68) 100%);
+1305  }
+1306  .hero-content {
+1307    position: absolute; z-index: 2;
+1308    top: 30%; left: 0; right: 0;
+1309    transform: translateY(-50%);
+1310    text-align: center;
+1311    width: 100%;
+1312    padding: 0 2rem;
+1313    animation: slideUp 700ms ease both;
+1314  }
+1315  .hero-label {
+1316    display: inline-block;
+1317    font-size: 1rem; font-weight: 700;
+1318    color: var(--accent-warm);
+1319    text-transform: uppercase; letter-spacing: 0.14em;
+1320    margin-bottom: 1.9rem;
+1321    padding: 0.25rem 0.9rem; border-radius: 999px;
+1322    background: rgba(255,255,255,0.88);
+1323  }
+1324  .hero-h1 {
+1325    font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+1326    font-weight: 900; color: #fff;
+1327    letter-spacing: -0.03em; line-height: 1.1;
+1328    margin: 0 0 1rem; white-space: nowrap;
+1329    text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+1330  }
+1331  .hero-desc {
+1332    font-size: 1rem; color: rgba(255,255,255,0.78);
+1333    line-height: 1.7; margin: 0 auto; max-width: none; white-space: nowrap;
+1334    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+1335  }
+1336
+1337  /* ── Planner wrapper ── */
+1338  .planner-wrapper {
+1339    max-width: 1280px; width: 100%;
+1340    position: relative;
+1341    margin: auto auto 0; /* pins the panel to the bottom of the first screen */
+1342    padding: 330px 2rem 1rem; /* top padding = min clearance for hero text on short screens */
+1343    z-index: 10;
+1344    pointer-events: none;
+1345  }
+1346  .planner-wrapper > * { pointer-events: auto; }
+1347  .planner-panel {
+1348    zoom: 0.9; /* scales the whole box and its contents uniformly */
+1349    background: var(--bg-elevated);
+1350    border: 1px solid var(--border-subtle);
+1351    border-radius: var(--radius-xl);
+1352    padding: 1.5rem 1.75rem 1.25rem;
+1353    box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+1354    backdrop-filter: blur(24px);
+1355    -webkit-backdrop-filter: blur(24px);
+1356  }
+1357  [data-theme="light"] .planner-panel {
+1358    background: rgba(255,255,255,0.97);
+1359    box-shadow: 0 16px 48px rgba(100,50,20,0.12);
+1360  }
+1361
+1362  /* Header row */
+1363  .planner-top-row {
+1364    display: flex; align-items: center; gap: 0.75rem;
+1365    margin-bottom: 1.1rem;
+1366    padding-bottom: 0.9rem;
+1367    border-bottom: 1px solid var(--border-subtle);
+1368  }
+1369  .planner-title { font-size: 1rem; font-weight: 700; flex: 1; }
+1370  .ml-auto { margin-left: auto; }
+1371
+1372  /* Divider */
+1373  .pf-divider {
+1374    height: 1px; background: var(--border-subtle);
+1375    margin: 1rem 0;
+1376  }
+1377
+1378  /* Grid rows */
+1379  .pf-grid {
+1380    display: grid;
+1381    grid-template-columns: 1fr 1fr 1.5fr 0.9fr;
+1382    gap: 1rem;
+1383    align-items: start;
+1384  }
+1385  .pf-grid-b {
+1386    grid-template-columns: auto 1fr auto;  /* ที่พัก (กว้างเท่าเนื้อหา) + กล่อง Tips (ยืดเต็มที่เหลือ) + ปุ่มค้นหา */
+1387    align-items: start;   /* ป้ายและปุ่มของทุกคอลัมน์อยู่ระนาบเดียวกัน */
+1388  }
+1389  .pf-col-search .pf-label { visibility: hidden; }
+1390  .pf-algo-row { display: none; margin-top: 0.9rem; }
+1391  .dev-mode .pf-algo-row { display: block; }
+1392  .dev-btn { font-family: ui-monospace, Consolas, monospace; font-size: 0.8rem; font-weight: 700; }
+1393  .dev-mode .dev-btn { color: #fff; background: var(--accent-primary, #ff6d35); border-color: transparent; }
+1394  .pf-col { position: relative; }
+1395  .pf-col-wide  { /* dates — wider */ }
+1396  .pf-col-hotel { /* hotel toggle */ }
+1397  .pf-col-algo  { /* algo segment */ }
+1398  .pf-col-search { min-width: 148px; }
+1399
+1400  /* Labels */
+1401  .pf-label {
+1402    display: block;
+1403    font-size: 0.73rem; font-weight: 600;
+1404    color: var(--text-tertiary);
+1405    text-transform: uppercase; letter-spacing: 0.07em;
+1406    margin-bottom: 0.45rem;
+1407    min-height: 1rem;
+1408  }
+1409
+1410  /* Hint text below each control — reserves space */
+1411  .pf-hint {
+1412    font-size: 0.72rem; color: var(--text-muted);
+1413    margin-top: 0.35rem; min-height: 1rem;
+1414    line-height: 1.3;
+1415  }
+1416
+1417  /* All controls same height */
+1418  .planner-panel .select-input,
+1419  .planner-panel .input-with-unit,
+1420  .planner-panel .date-range-input,
+1421  .planner-panel .counter-control,
+1422  .planner-panel .hotel-card,
+1423  .planner-panel .algo-segment { height: 48px; min-height: 48px; }
+1424
+1425  /* hotel card compact */
+1426  .planner-panel .hotel-card {
+1427    display: flex; align-items: center;
+1428    padding: 0 0.85rem; gap: 0.6rem;
+1429  }
+1430
+1431  /* algo segment height */
+1432  .planner-panel .algo-segment {
+1433    display: flex; align-items: center; padding: 4px;
+1434  }
+1435  .planner-panel .algo-segment button {
+1436    flex: 1; height: 100%;
+1437    display: flex; align-items: center; justify-content: center;
+1438    gap: 5px;
+1439    text-align: center;
+1440    letter-spacing: 0;
+1441  }
+1442  .planner-panel .algo-segment button .btn-icon {
+1443    display: inline-flex;
+1444    align-items: center;
+1445    width: 1em;
+1446    justify-content: center;
+1447    flex-shrink: 0;
+1448  }
+1449
+1450  /* search button */
+1451  .pf-col-search .cta-btn {
+1452    height: 48px; width: 100%;
+1453    padding: 0 1.25rem; font-size: 0.92rem;
+1454  }
+1455
+1456
+1457  /* Section backgrounds */
+1458  .packages-section, .detail-section { background: #0d0b09; }
+1459  html[data-theme="light"] .packages-section,
+1460  html[data-theme="light"] .detail-section { background: #ffffff; }
+1461
+1462
+1463  /* ── Province custom dropdown ── */
+1464  .prov-select {
+1465    position: relative;
+1466    display: flex; align-items: center; gap: 0.55rem;
+1467    height: 48px; min-height: 48px;
+1468    padding: 0 0.9rem;
+1469    background: var(--bg-elevated);
+1470    border: 1.5px solid var(--border-subtle);
+1471    border-radius: var(--radius-md);
+1472    cursor: pointer;
+1473    user-select: none;
+1474    transition: border-color 0.18s, box-shadow 0.18s;
+1475  }
+1476  .prov-select:hover { border-color: var(--accent-primary); }
+1477  .prov-select.open {
+1478    border-color: var(--accent-primary);
+1479    box-shadow: 0 0 0 3px rgba(255,109,53,0.18);
+1480  }
+1481  .prov-name { flex: 1; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+1482  .prov-arrow {
+1483    width: 16px; height: 16px; flex-shrink: 0;
+1484    color: var(--text-tertiary);
+1485    transition: transform 0.2s;
+1486  }
+1487  .prov-select.open .prov-arrow { transform: rotate(180deg); }
+1488
+1489  /* Dropdown panel */
+1490  .prov-dropdown {
+1491    position: absolute;
+1492    top: calc(100% + 6px);
+1493    left: 0; transform: translateY(-8px) scale(0.98);
+1494    width: 280px; z-index: 999;
+1495    background: var(--bg-elevated);
+1496    border: 1.5px solid var(--border-subtle);
+1497    border-radius: var(--radius-lg);
+1498    box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.3);
+1499    backdrop-filter: blur(20px);
+1500    overflow: hidden;
+1501    opacity: 0;
+1502    pointer-events: none;
+1503    display: none;   /* ปิดอยู่ต้องไม่กินพื้นที่ (ไม่งั้นดันความสูงหน้าให้เลื่อนเกินจำเป็น) */
+1504  }
+1505  .prov-dropdown.open {
+1506    display: block;
+1507    opacity: 1; transform: translateY(0) scale(1);
+1508    pointer-events: all;
+1509    animation: provPop 0.18s ease both;
+1510  }
+1511  @keyframes provPop { from { opacity: 0; transform: translateY(-8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+1512  @keyframes provPopUp { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+1513  /* เปิดขึ้นด้านบนเมื่อพื้นที่ด้านล่างไม่พอ */
+1514  .prov-dropdown.drop-up {
+1515    top: auto;
+1516    bottom: calc(100% + 6px);
+1517    transform: translateY(8px) scale(0.98);
+1518  }
+1519  .prov-dropdown.drop-up.open {
+1520    transform: translateY(0) scale(1);
+1521    animation-name: provPopUp;
+1522  }
+1523  [data-theme="light"] .prov-dropdown {
+1524    background: #fff;
+1525    box-shadow: 0 16px 48px rgba(100,50,20,0.16), 0 4px 16px rgba(0,0,0,0.08);
+1526  }
+1527
+1528  /* Search box */
+1529  .prov-search-wrap {
+1530    display: flex; align-items: center; gap: 0.5rem;
+1531    padding: 0.7rem 0.9rem;
+1532    border-bottom: 1px solid var(--border-subtle);
+1533  }
+1534  .prov-search-wrap svg {
+1535    width: 15px; height: 15px; flex-shrink: 0;
+1536    color: var(--text-tertiary);
+1537  }
+1538  .prov-search-wrap input {
+1539    flex: 1; border: none; background: transparent;
+1540    font-size: 0.85rem; color: var(--text-primary);
+1541    outline: none;
+1542  }
+1543  .prov-search-wrap input::placeholder { color: var(--text-muted); }
+1544
+1545  /* Scrollable list */
+1546  .prov-list {
+1547    max-height: 260px; overflow-y: auto;
+1548    padding: 0.4rem 0;
+1549    scrollbar-width: thin;
+1550    scrollbar-color: rgba(255,109,53,0.3) transparent;
+1551  }
+1552  .prov-list::-webkit-scrollbar { width: 4px; }
+1553  .prov-list::-webkit-scrollbar-thumb { background: rgba(255,109,53,0.35); border-radius: 4px; }
+1554
+1555  /* Group label */
+1556  .prov-group-label {
+1557    padding: 0.45rem 0.9rem 0.25rem;
+1558    font-size: 0.68rem; font-weight: 700;
+1559    color: var(--text-tertiary);
+1560    text-transform: uppercase; letter-spacing: 0.08em;
+1561  }
+1562
+1563  /* Province item */
+1564  .prov-item {
+1565    display: flex; align-items: center; gap: 0.6rem;
+1566    padding: 0.5rem 0.9rem;
+1567    cursor: pointer;
+1568    transition: background 0.12s;
+1569    border-radius: 0;
+1570  }
+1571  .prov-item:hover:not(.prov-disabled) { background: rgba(255,109,53,0.12); }
+1572  .prov-item.prov-active {
+1573    background: rgba(255,109,53,0.15);
 1574  }
-1575  .prov-item.prov-disabled {
-1576    cursor: default; opacity: 0.55;
+1575  .prov-item.prov-active .prov-item-name {
+1576    color: var(--accent-primary); font-weight: 700;
 1577  }
-1578  .prov-item-name { flex: 1; font-size: 0.875rem; color: var(--text-primary); }
-1579  .prov-item-sparse {
-1580    font-size: 0.65rem; font-weight: 700; margin-right: 6px;
-1581    color: var(--text-secondary, #aaa); padding: 2px 7px; border-radius: 20px;
-1582    border: 1px dashed currentColor;
-1583  }
-1584  .prov-item-badge {
-บรรทัด 1247–1253: ส่วนหัวของโครงใหม่ ชื่อแบรนด์ และการปรับ topbar
-บรรทัด 1254–1350: พื้นหลังของธีม ภาพหัวเรื่อง .hero-bg .hero-overlay .hero-content ป้าย .hero-label (ภาพถูกเปลี่ยนโดย ➜ setBanner() ใน frontend/extras.js) และตัวห่อแผงวางแผน
-บรรทัด 1351–1447: แผงวางแผน .planner-panel แถวบน เส้นคั่น กริดช่อง .pf-grid ป้าย ข้อความ hint และความสูงของตัวควบคุมให้เท่ากัน รวมถึงการ์ดโรงแรมและปุ่มค้นหา
-บรรทัด 1448–1478: พื้นหลังของส่วนแพ็กเกจและรายละเอียด
-บรรทัด 1479–1584: เมนูจังหวัดแบบเลื่อน: กล่อง .prov-select .prov-dropdown (เปิดขึ้นหรือลงด้วยคลาส drop-up และอนิเมชัน provPop) ช่องค้นหา รายการ .prov-list ป้ายภาค และรายการจังหวัด .prov-item (ทำงานร่วมกับสคริปต์ท้าย ➜ frontend/index.html)
-บรรทัด 1585–1647  พิมพ์ แผนทางเลือก และความชอบ
-1585    font-size: 0.65rem; font-weight: 700;
-1586    background: rgba(255,109,53,0.18);
-1587    color: var(--accent-primary);
-1588    padding: 2px 7px; border-radius: 20px;
-1589    border: 1px solid rgba(255,109,53,0.35);
-1590  }
-1591  /* ── Print / บันทึกเป็น PDF: แสดงเฉพาะรายละเอียดทริป (พื้นขาว ตัวดำ) ── */
-1592  @media print {
-1593    .bg-layers, .topbar, .landing-screen, .packages-section, .toast-container,
-1594    .detail-actions button, .map-wrap, .day-toggles, .modal,
-1595    .poi-actions, .day-add, .day-list .poi-item button { display: none !important; }
-1596    html, body { background: #fff !important; color: #000 !important; }
-1597    .detail-section { display: block !important; padding: 0 !important; background: #fff !important; }
-1598    .detail-grid { display: block !important; }
-1599    .day-list { max-height: none !important; overflow: visible !important; }
-1600    .day-panel { break-inside: avoid; border: 1px solid #999 !important; background: #fff !important; box-shadow: none !important; margin-bottom: 0.8rem; }
-1601    .detail-section * { color: #000 !important; text-shadow: none !important; background: transparent !important; box-shadow: none !important; }
-1602    .detail-section .kpi, .detail-section .dist-badge { border: 1px solid #999 !important; }
-1603    .detail-section .day-color { background: #666 !important; }
-1604  }
-1605
-1606  /* ── Pareto modal ── */
-1607  .pareto-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-1608  .pareto-table th, .pareto-table td { padding: 0.45rem 0.6rem; text-align: right; border-bottom: 1px solid var(--border-subtle); }
-1609  .pareto-table th:first-child, .pareto-table td:first-child { text-align: center; }
-1610  .pareto-table th { color: var(--text-muted); font-weight: 600; font-size: 0.75rem; }
-1611  .pareto-use { background: var(--grad-cta, #ff6d35); color: #fff; border: 0; border-radius: 8px; padding: 0.25rem 0.7rem; cursor: pointer; font-size: 0.8rem; white-space: nowrap; }
-1612  @media (max-width: 720px) { .pareto-table th, .pareto-table td { padding: 0.4rem 0.3rem; } .pareto-use { padding: 0.25rem 0.5rem; font-size: 0.75rem; } }
-1613
-1614  /* ── Preferences (ความชอบ) ── */
-1615  .pref-toggle {
-1616    background: var(--grad-cta, linear-gradient(135deg, #ff7a3d, #e8561f)); border: 0;
-1617    color: #fff; border-radius: 999px; padding: 0.4rem 1.1rem;
-1618    font-size: 0.85rem; font-weight: 700; cursor: pointer;
-1619    box-shadow: 0 4px 14px rgba(255,109,53,0.35); transition: transform .15s, box-shadow .15s;
-1620  }
-1621  .pref-toggle:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,109,53,0.5); }
-1622  .pref-toggle[aria-expanded="true"] { box-shadow: 0 0 0 3px rgba(255,109,53,0.3); }
-1623  .pref-summary { color: #fff; font-weight: 700; opacity: .9; }
-1624  .pref-panel { margin: -0.4rem 0 0.9rem; padding: 0.6rem 0.8rem; display: grid; gap: 0.5rem; border: 1px solid var(--border-subtle); border-radius: 12px; background: var(--bg-surface); }
-1625  .pref-panel[hidden] { display: none; }
-1626  .pref-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-1627  .pref-label { font-size: 0.8rem; color: var(--text-secondary); min-width: 5.5rem; }
-1628  .pref-label small, .pref-note { color: var(--text-muted); font-size: 0.7rem; }
-1629  .pref-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-1630  .pref-chip {
-1631    border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-secondary);
-1632    border-radius: 999px; padding: 0.2rem 0.7rem; font-size: 0.8rem; cursor: pointer;
-1633  }
-1634  .pref-chip[data-state="like"]  { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.6); color: var(--text-primary); }
-1635
-1636  .pref-chip[data-state="avoid"] { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.55); color: var(--text-primary); text-decoration: line-through; }
-1637
-1638  #prefDiet {
-1639    appearance: none; -webkit-appearance: none; outline: none; cursor: pointer;
-1640    background: var(--bg-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.7rem center;
-1641    color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: 999px;
-1642    padding: 0.3rem 2rem 0.3rem 0.9rem; font-size: 0.82rem; transition: border-color .15s;
-1643  }
-1644  #prefDiet:hover, #prefDiet:focus { border-color: var(--accent-primary); }
-1645  #prefDiet option { background: #2a211b; color: #fff; }
-1646  .prov-item-soon {
-1647    font-size: 0.65rem; font-weight: 600;
-บรรทัด 1585–1604: @media print ซ่อนองค์ประกอบที่ไม่ต้องพิมพ์ (ปุ่ม แผนที่ โมดัล พื้นหลัง) และทำหน้ากระดาษพื้นขาว ใช้กับปุ่ม PDF ที่เรียก window.print()
-บรรทัด 1605–1614: ตาราง .pareto-table และปุ่ม .pareto-use
-บรรทัด 1615–1647: ปุ่มและแผงความชอบ .pref-toggle .pref-panel ชิป .pref-chips และช่องเลือกอาหาร #prefDiet
-บรรทัด 1648–1819  ไอคอน มือถือ และฟีเจอร์เสริม
-1648    color: var(--text-muted);
-1649    padding: 2px 7px; border-radius: 20px;
-1650    border: 1px solid var(--border-subtle);
-1651  }
-1652
-1653
-1654  /* ---- ไอคอนเส้นบางแทน emoji ---- */
-1655  .ic { width: 1.1em; height: 1.1em; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.7;
-1656        stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.2em; }
-1657  .hotel-card-icon .ic { width: 22px; height: 22px; color: var(--accent-primary); }
-1658  .map-hotel-marker .ic { width: 20px; height: 20px; color: #fff; }
-1659  .dist-badge .ic { width: 0.95em; height: 0.95em; vertical-align: -0.12em; }
-1660  .poi-name .ic { color: var(--accent-primary); margin-right: 2px; }
-1661  .score-chip .ic { width: 0.95em; height: 0.95em; color: var(--accent-primary); fill: currentColor; stroke-width: 1.2; }
-1662  .btn-icon .ic { width: 1em; height: 1em; }
-1663  .export-btn .ic, .pref-toggle .ic { width: 1.05em; height: 1.05em; }
-1664
-1665  /* ---- ปุ่มการทำงานของแผน: โทนเดียวกับธีม (เส้นบาง ไม่มีสีน้ำเงิน/ฟ้า) ---- */
-1666  .detail-actions { gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-1667  .reshuffle-btn {
-1668    background: var(--bg-surface); border: 1px solid var(--border-default);
-1669    border-radius: 999px; padding: 0.45rem 0.95rem; font-weight: 500; white-space: nowrap; color: var(--text-secondary);
-1670  }
-1671  .reshuffle-btn:hover { background: rgba(255,109,53,0.10); border-color: var(--accent-primary); color: var(--text-primary); }
-1672  .reshuffle-btn .ic, .reshuffle-btn svg { width: 15px; height: 15px; stroke: var(--accent-primary); }
-1673  .day-title h3 { white-space: nowrap; }
-1674
-1675  /* ---- มือถือ: ฟอร์มเรียงคอลัมน์เดียว ไม่ล้นจอ ---- */
-1676  @media (max-width: 720px) {
-1677    .planner-panel { zoom: 1; padding: 1.1rem 1rem 1rem; }
-1678    .planner-top-row { flex-wrap: wrap; }
-1679    .planner-title { flex-basis: 60%; }
-1680    .pf-grid, .pf-grid-b, .dev-mode .pf-grid-b { grid-template-columns: 1fr; gap: 0.8rem; }
-1681    .pf-col-search { min-width: 0; }
-1682    .pf-col-search .cta-btn { width: 100%; justify-content: center; }
-1683    .planner-panel .hotel-card { height: auto; min-height: 48px; }
-1684    .hero-content h1 { font-size: clamp(1.7rem, 8vw, 2.4rem); line-height: 1.25; overflow-wrap: anywhere; }
-1685  }
-1686  @media (max-width: 720px) {
-1687    .hero-h1 { white-space: normal; font-size: clamp(1.8rem, 9vw, 2.6rem); }
-1688    .hero-desc { white-space: normal; font-size: 0.9rem; }
-1689    .hero-content { padding: 0 1.2rem; }
-1690    .hero-label { font-size: 0.8rem; margin-bottom: 1rem; }
-1691    .planner-wrapper { padding: 330px 0.9rem 1rem; }
-1692  }
-1693
-1694  /* ── รายละเอียดสถานที่ / รีวิวจำลอง ── */
-1695  .poi-link { cursor: pointer; }
-1696  .poi-link:hover { text-decoration: underline; text-underline-offset: 3px; }
-1697  .poi-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-bottom: 0.8rem; }
-1698  .poi-facts > div { border: 1px solid var(--border-subtle); border-radius: 12px; padding: 0.55rem 0.75rem; display: flex; flex-direction: column; gap: 0.15rem; }
-1699  .poi-facts span { font-size: 0.75rem; color: var(--text-tertiary); }
-1700  .poi-note { font-size: 0.78rem; color: var(--text-tertiary); margin: 0.6rem 0; line-height: 1.5; }
-1701  .rev-head { display: flex; align-items: center; gap: 0.6rem; margin: 0.8rem 0 0.4rem; }
-1702  .rev-score { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; font-size: 1.1rem; }
-1703  .rev-count { font-size: 0.82rem; color: var(--text-tertiary); }
-1704  .mock-chip { margin-left: auto; font-size: 0.7rem; padding: 0.15rem 0.55rem; border-radius: 999px; border: 1px dashed var(--border-default); color: var(--text-tertiary); }
-1705  .rev-item { border-top: 1px solid var(--border-subtle); padding: 0.55rem 0; font-size: 0.88rem; line-height: 1.5; }
-1706  .rev-stars { color: #f59e0b; letter-spacing: 1px; font-size: 0.85rem; }
-1707
-1708  /* ── ส่วนเสริม: จังหวัดข้างเคียง / ฤดูกาล / แผนที่บันทึก / เปรียบเทียบ ── */
-1709  .neighbor-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
-1710  .neighbor-label { font-size: 0.75rem; color: var(--text-secondary); }
-1711  .neighbor-chip { font: inherit; font-size: 0.78rem; padding: 4px 12px; background: transparent; border: 1px solid rgba(255,109,53,0.4); border-radius: 20px; cursor: pointer; color: var(--text-primary); transition: background .15s, color .15s; }
-1712  .neighbor-chip:hover { background: rgba(255,109,53,0.12); }
-1713  .neighbor-chip.on { background: var(--grad-cta, #ff6d35); border-color: transparent; color: #fff; font-weight: 700; box-shadow: 0 2px 10px rgba(255,109,53,0.35); }
-1714  .tips-card { height: 43px; box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 16px; background: rgba(255,109,53,0.08); border: 1px dashed rgba(255,109,53,0.45); overflow: hidden; }
-1715  .tips-badge { flex-shrink: 0; font-size: 0.62rem; font-weight: 800; letter-spacing: .04em; color: #fff; background: var(--accent-primary); border-radius: 999px; padding: 2px 8px; }
-1716  .tips-text { font-size: 0.8rem; line-height: 1.35; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: opacity .4s; }
-1717  .tips-text.fade { opacity: 0; }
-1718  .dev-modal-card { max-width: 340px; }
-1719  .dev-modal-card input { width: 100%; box-sizing: border-box; margin: 10px 0 6px; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-primary); font-size: 1rem; text-align: center; }
-1720  .dev-modal-card .dev-err { color: #f87171; font-size: 0.78rem; min-height: 1.1em; }
-1721  .season-note { font-size: 0.75rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.5; }
-1722  .saved-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(128,128,128,0.2); }
-1723  .saved-btn { font-size: 1.1rem; }
-1724  .pareto-table tr.cmp-main td { font-weight: 700; color: var(--accent-primary); }
-1725  @media (max-width: 640px) { .modal-body { overflow-x: auto; } .neighbor-row { gap: 4px; } }
-1726
-1727  /* ── ความชอบ: ชื่อหมวด + ปุ่มไอคอน 👍/👎 ด้านหลัง ── */
-1728  .pref-cat { display: inline-flex; align-items: center; gap: 2px; padding: 3px 4px 3px 14px; border-radius: 999px; border: 1.5px solid var(--border-subtle); background: var(--bg-surface); transition: border-color .15s, background .15s, box-shadow .15s; }
-1729  .pref-cat .pc-name { font-size: 0.85rem; color: var(--text-secondary); margin-right: 6px; transition: color .15s; }
-1730  .pref-cat button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 0; border-radius: 50%; background: none; color: var(--text-muted); cursor: pointer; transition: background .15s, color .15s, transform .15s; }
-1731  .pref-cat button .ic { width: 1.05em; height: 1.05em; }
-1732  .pref-cat .pc-dislike .ic { transform: scaleY(-1); }
-1733  .pref-cat .pc-like:hover { background: rgba(34,197,94,0.2); color: #22c55e; transform: scale(1.12); }
-1734  .pref-cat .pc-dislike:hover { background: rgba(239,68,68,0.2); color: #f87171; transform: scale(1.12); }
-1735  .pref-cat[data-state="like"] { border-color: transparent; background: linear-gradient(135deg, #22c55e, #15803d); box-shadow: 0 3px 14px rgba(34,197,94,0.45); }
-1736  .pref-cat[data-state="avoid"] { border-color: transparent; background: linear-gradient(135deg, #ef4444, #b91c1c); box-shadow: 0 3px 14px rgba(239,68,68,0.45); }
-1737  .pref-cat[data-state="like"] .pc-name, .pref-cat[data-state="avoid"] .pc-name { color: #fff; font-weight: 700; }
-1738  .pref-cat[data-state="like"] .pc-like, .pref-cat[data-state="avoid"] .pc-dislike { background: rgba(255,255,255,0.28); color: #fff; }
-1739  .pref-cat[data-state="like"] .pc-dislike, .pref-cat[data-state="avoid"] .pc-like { color: rgba(255,255,255,0.55); }
-1740
-1741  /* ── dropdown อาหาร ── */
-1742  .diet-wrap { position: relative; display: inline-block; }
-1743  .diet-btn { font: inherit; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.6rem; min-width: 9rem; justify-content: space-between; padding: 0.38rem 0.95rem; color: var(--text-primary); background: var(--bg-surface); border: 1.5px solid var(--border-subtle); border-radius: 999px; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
-1744  .diet-btn:hover, .diet-btn.open { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(255,109,53,0.15); }
-1745  .diet-btn svg { color: var(--accent-primary); transition: transform .18s; }
-1746  .diet-btn.open svg { transform: rotate(180deg); }
-1747  .diet-list { position: absolute; top: calc(100% + 6px); left: 0; min-width: 100%; z-index: 999; padding: 6px; background: var(--bg-elevated); border: 1.5px solid var(--border-subtle); border-radius: 18px; box-shadow: 0 16px 40px rgba(0,0,0,0.45); opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .16s, transform .16s; }
-1748  .diet-list.open { opacity: 1; transform: none; pointer-events: auto; }
-1749  .diet-item { padding: 0.4rem 0.9rem; border-radius: 12px; font-size: 0.85rem; cursor: pointer; color: var(--text-primary); white-space: nowrap; }
-1750  .diet-item:hover { background: rgba(255,109,53,0.14); }
-1751  .diet-item.on { background: rgba(255,109,53,0.2); color: var(--accent-primary); font-weight: 700; }
-1752  [data-theme="light"] .diet-list { background: #fff; box-shadow: 0 16px 40px rgba(100,50,20,0.16); }
-1753
-1754  .dev-only { display: none !important; }
-1755  .dev-mode .dev-only { display: inline-flex !important; }
-1756
-1757  .wx-chip { color: #7dd3fc; font-weight: 600; }
-1758  .rain-banner { margin: 0 0 8px; padding: 8px 12px; border-radius: 12px; font-size: 0.8rem; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.4); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-1759  .rain-banner button { font: inherit; font-size: 0.78rem; padding: 3px 12px; border-radius: 999px; border: 0; background: #0ea5e9; color: #fff; cursor: pointer; }
-1760
-1761  .poi-item[draggable="true"] { cursor: grab; }
-1762  .poi-item.dragging { opacity: .45; }
-1763
-1764  /* มือถือ: ปุ่มบนแถบบนเยอะขึ้น (ผลทดลอง/ภาษา/★/Dev/ธีม) — ย่อและตัดบรรทัดไม่ให้ล้นจอ */
-1765  @media (max-width: 560px) {
-1766    .topbar-actions { flex-wrap: wrap; justify-content: flex-end; gap: 4px; max-width: calc(100vw - 110px); flex-wrap: nowrap; }
-1767    .topbar-actions .icon-btn { min-width: 30px; width: auto; height: 30px; padding: 0 .35rem; font-size: .72rem; }
-1768    .topbar-actions .results-link { padding: 0 .45rem !important; display: inline-flex; align-items: center; }
-1769  }
-1770  @media (max-width: 560px) {
-1771    .topbar .brand h1 { font-size: 1.1rem; }
-1772    .topbar-actions .results-link { font-size: 0 !important; width: 30px !important; justify-content: center; padding: 0 !important; }
-1773    .topbar-actions .results-link::before { content: "📊"; font-size: .85rem; }
-1774  }
-1775  .neighbor-row .neighbor-chip { color: var(--text-primary); }
-1776  .neighbor-row .neighbor-chip.on { color: #fff; }
-1777  [data-theme="light"] .pref-cat .pc-like, [data-theme="light"] .pref-cat .pc-dislike { color: #64748b; }
-1778  [data-theme="light"] .pref-cat[data-state="like"] button, [data-theme="light"] .pref-cat[data-state="avoid"] button { color: rgba(255,255,255,.7); }
-1779  [data-theme="light"] .pref-cat[data-state="like"] .pc-like, [data-theme="light"] .pref-cat[data-state="avoid"] .pc-dislike { color: #fff; }
-1780
-1781  .plan-warn{margin:10px 0;padding:10px 14px;border-radius:12px;border:1px solid rgba(234,179,8,.5);background:rgba(234,179,8,.12);font-size:.85rem}
-1782  .plan-warn ul{margin:6px 0 0;padding-left:18px}
-1783
-1784  /* ซ่อนคะแนน/ตัวเลขภายในจากผู้ใช้ทั่วไป — แสดงเฉพาะโหมด Developer */
-1785  body:not(.dev-mode) :is(.score-num, .dev-txt, .score-chip, #kpiScore, .runtime, .day-score) { display: none !important; }
-1786
-1787  /* ลากการ์ดแบบ real-time */
-1788  .is-dragging .dist-connector { opacity: .45; }
-1789  .dist-connector.drag-hide { display: none; }
-1790  .poi-item.dragging { display: none; }
-1791  .drop-gap { list-style: none; border: 2px dashed rgba(239,68,68,.55); background: rgba(239,68,68,.09); border-radius: 14px; margin: 4px 0; position: relative; }
-1792  .drop-gap::before { content: ''; position: absolute; left: 10px; right: 10px; top: -5px; height: 3px; border-radius: 3px; background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,.7); }
-1793  /* การ์ดที่ผิดข้อจำกัด: สีแดง + กล่องข้อความใต้การ์ด */
-1794  .poi-item.poi-error { border-color: #ef4444 !important; background: rgba(239,68,68,.10) !important; box-shadow: 0 0 0 1px rgba(239,68,68,.4); }
-1795  .poi-item.poi-error .poi-num { background: #ef4444 !important; color: #fff !important; }
-1796  .poi-err-box { list-style: none; margin: -2px 0 6px; padding: 8px 12px; font-size: .8rem; line-height: 1.4; color: #b91c1c; background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.5); border-top: 0; border-radius: 0 0 12px 12px; }
-1797  [data-theme="dark"] .poi-err-box { color: #fca5a5; }
-1798  .plan-warn { margin: 6px 0 10px; padding: 8px 12px; font-size: .82rem; color: #92400e; background: rgba(245,158,11,.14); border: 1px solid rgba(245,158,11,.5); border-radius: 10px; }
-1799  [data-theme="dark"] .plan-warn { color: #fcd34d; }
-1800
-1801  .hero-visual .hero-bg { transition: opacity .6s ease, transform 8s ease; }
-1802
-1803  /* ทางเลือกอื่นของทริป (การ์ด) */
-1804  .pc-wrap, .pc-wrap-in { display: grid; gap: 12px; }
-1805  .pc { border: 1px solid var(--border-subtle); border-radius: 16px; padding: 14px 16px; background: var(--bg-surface); }
-1806  .pc-main { border-color: var(--accent-primary); box-shadow: 0 0 0 1px var(--accent-primary) inset; }
-1807  .pc-tag { display: inline-block; font-size: .75rem; font-weight: 700; padding: 3px 10px; margin-right: 6px; border-radius: 999px; background: rgba(255,109,53,.14); color: var(--accent-primary); }
-1808  .pc-why { margin: 6px 0 10px; font-size: .88rem; color: var(--text-secondary, var(--text-muted)); }
-1809  .pc-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-1810  .pc-metrics > div { display: flex; flex-direction: column; gap: 1px; }
-1811  .pc-metrics small { color: var(--text-muted); font-size: .72rem; }
-1812  .pc-metrics b { font-size: 1rem; }
-1813  .pc-dots { letter-spacing: 2px; color: var(--accent-primary); font-size: .85rem !important; }
-1814  .pc-good { color: #16a34a; font-size: .74rem; font-weight: 600; } .pc-bad { color: #dc2626; font-size: .74rem; font-weight: 600; } .pc-same { color: var(--text-muted); font-size: .74rem; }
-1815  .pc-hi { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
-1816  .pc-hi span { font-size: .75rem; padding: 3px 9px; border-radius: 999px; background: var(--bg-elevated, rgba(127,127,127,.12)); color: var(--text-secondary, inherit); }
-1817  .pc .pareto-use { width: 100%; padding: .5rem; font-size: .9rem; border-radius: 10px; }
-1818  .pc-more { margin: 4px auto 0; background: none; border: 1px dashed var(--border-subtle); color: var(--text-muted); border-radius: 999px; padding: .4rem 1rem; cursor: pointer; }
-1819  @media (max-width: 560px) { .pc-metrics { grid-template-columns: 1fr 1fr; } }
-บรรทัด 1648–1670: ไอคอนเส้นบาง .ic และปุ่มปฏิบัติการของแผน
-บรรทัด 1671–1691: @media (max-width: 720px) ฟอร์มเรียงคอลัมน์เดียว
-บรรทัด 1692–1705: ลิงก์ชื่อสถานที่และหน้าต่างรายละเอียดสถานที่ (.poi-facts, รีวิว) ของ ➜ showPoiDetail() ใน frontend/app.js
-บรรทัด 1706–1721: ชิปจังหวัดข้างเคียง .neighbor-chip กล่อง Tips .tips-text และหมายเหตุฤดูกาล .season-note ที่ ➜ frontend/extras.js สร้าง
-บรรทัด 1722–1750: ปรับโมดัลบนจอแคบ ชิปความชอบ .pref-cat (สถานะ like/avoid) และตัวเลือกอาหารที่แทน select (.diet-btn .diet-item)
-บรรทัด 1751–1778: .dev-only ซ่อนองค์ประกอบสำหรับโหมด Developer (เปิดด้วยคลาส dev-mode ที่ ➜ setDevMode() ใน frontend/app.js) แถบเตือนฝน .rain-banner และเป้าหมายการลาก .drop-over
-บรรทัด 1779–1804: กล่องคำเตือนของแผน .plan-warn การ์ดที่ผิดเวลา .poi-error และซ่อนเส้นเชื่อมระหว่างลาก
-บรรทัด 1805–1819: การ์ดแผนทางเลือก .pc .pc-metrics .pc-dots ที่ ➜ renderParetoCards() ใน frontend/app.js สร้าง
-บรรทัด 1820–1872  วิธีใช้ ลากการ์ด และ tooltip
-1820
-1821  /* Tutorial */
-1822  .tut { position: fixed; inset: 0; z-index: 3000; }
-1823  .tut-spot { position: fixed; border-radius: 14px; box-shadow: 0 0 0 9999px rgba(0,0,0,.62); transition: all .25s ease; pointer-events: none; outline: 2px solid var(--accent-primary); }
-1824  .tut-card { position: fixed; background: var(--bg-surface, #fff); color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 16px 18px; box-shadow: 0 18px 50px rgba(0,0,0,.35); max-width: 340px; }
-1825  .tut-card.center { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(360px, calc(100vw - 24px)); }
-1826  .tut-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 6px; }
-1827  .tut-text { font-size: .9rem; line-height: 1.55; color: var(--text-secondary, var(--text-muted)); }
-1828  .tut-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; gap: 10px; }
-1829  .tut-dots i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--border-subtle); margin-right: 5px; }
-1830  .tut-dots i.on { background: var(--accent-primary); }
-1831  .tut-btns { display: flex; gap: 6px; }
-1832  .tut-btns button { border: 0; border-radius: 999px; padding: .4rem .9rem; cursor: pointer; font: inherit; font-size: .82rem; background: var(--bg-elevated, rgba(127,127,127,.15)); color: var(--text-primary); }
-1833  .tut-btns .tut-next { background: var(--accent-primary); color: #fff; font-weight: 700; }
-1834  .tut-btns .tut-skip { background: none; color: var(--text-muted); }
-1835  .tut.dim { background: rgba(0,0,0,.6); }
-1836
-1837  .pc-dots { display: flex; gap: 5px; align-items: center; height: 1.4rem; }
-1838  .pc-dots i { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--accent-primary); box-sizing: border-box; }
-1839  .pc-dots i.on { background: var(--accent-primary); }
-1840  .drop-gap::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: -5px; height: 3px; border-radius: 3px; background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,.7); }
-1841  .is-dragging .poi-err-box { display: none; }
-1842
-1843  /* marker ตอนลากการ์ด: บางลง ปลายซ้าย-ขวาจาง กลางเข้ม */
-1844  .drop-gap::before, .drop-gap::after { left: 0 !important; right: 0 !important; height: 2px !important; border-radius: 2px;
-1845    background: linear-gradient(90deg, rgba(239,68,68,0) 0%, #ef4444 28%, #ef4444 72%, rgba(239,68,68,0) 100%) !important; box-shadow: 0 0 4px rgba(239,68,68,.45) !important; }
-1846  .drop-gap::before { top: -4px !important; } .drop-gap::after { bottom: -4px !important; }
-1847  .rain-ic { display: inline-flex; vertical-align: -3px; margin-left: 6px; color: #0ea5e9; cursor: help; }
-1848
-1849  .planner-panel .hotel-card { width: max-content; max-width: 100%; }
-1850  .planner-panel .hotel-card-body { flex: none; }
-1851  .planner-panel .hotel-card-switch { margin-left: 0.5rem; }
-1852  @media (max-width: 720px) { .planner-panel .hotel-card { width: 100%; } .planner-panel .hotel-card-body { flex: 1; } }
-1853
-1854  /* tutorial: ซ่อนการ์ดจนกว่าจะวางตำแหน่ง, ไม่ทำ transition บนเงาขนาดใหญ่ (ลด lag) */
-1855  .tut:not(.ready) .tut-card { visibility: hidden; }
-1856  .tut-spot { transition: none !important; will-change: top, left, width, height; }
-1857  /* tooltip แบบ minimal แทนกล่องดำของเบราว์เซอร์ */
-1858  .wet-tip { position: fixed; z-index: 4000; max-width: 260px; padding: 6px 11px; border-radius: 10px; font-size: .78rem; line-height: 1.4; pointer-events: none;
-1859    background: var(--bg-surface, #fff); color: var(--text-primary, #111); border: 1px solid var(--border-default, rgba(127,127,127,.3)); box-shadow: 0 6px 22px rgba(0,0,0,.18); opacity: 0; transform: translateY(3px); transition: opacity .12s, transform .12s; }
-1860  .wet-tip.show { opacity: 1; transform: none; }
-1861  /* คืนอนิเมชันของ tutorial (เลื่อนไลต์ไปยังเป้าหมายอย่างนุ่มนวล) โดยทำ transition เฉพาะตำแหน่ง/ขนาด */
-1862  .tut-spot { transition: top .25s ease, left .25s ease, width .25s ease, height .25s ease !important; }
-1863  /* ที่พักยาวขึ้น Tips สั้นลง */
-1864  .pf-grid-b { grid-template-columns: 1fr 1fr auto; }
-1865  .planner-panel .hotel-card { width: 100%; justify-content: flex-start; }
-1866  /* ที่พักกว้าง ~42% ของแถว สวิตช์ชิดขวา, Tips ยาวขึ้น */
-1867  .pf-grid-b { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr) auto; }
-1868  .planner-panel .hotel-card { justify-content: space-between; }
-1869  .planner-panel .hotel-card-body { flex: 1; }
-1870  .planner-panel .hotel-card-switch { margin-left: auto; }
-1871  .drop-gap { margin: 6px 0; }
-1872
-บรรทัด 1820–1841: สไตล์ของ tutorial: .tut .tut-spot .tut-card ปุ่มและจุดบอกขั้น ที่ ➜ frontend/tutorial.js สร้าง
-บรรทัด 1842–1852: ตัวบอกตำแหน่งตอนลากการ์ด .drop-gap (ช่องว่างสีแดงจาง) และการปรับการ์ดโรงแรมบนจอแคบ
-บรรทัด 1853–1855: ซ่อนการ์ด tutorial จนกว่าจะจัดตำแหน่งเสร็จ
-บรรทัด 1856–1872: กล่อง .wet-tip ที่ ➜ frontend/tooltip.js ใช้แทนกล่องข้อความของเบราว์เซอร์
-บรรทัด 1873–1947  จัดขนาดพอดีจอ ประวัติ และการแจ้งเตือน
-1873  @media (min-width: 1001px) { .detail-section { box-sizing: border-box; padding-bottom: 2.25rem; } }
-1874
-1875  /* ย่อการ์ดให้เห็นครบ 6 จุด + ปุ่มเพิ่มสถานที่ (ค่า --sp ระยะห่าง, --fs ตัวอักษร ตั้งจาก fitDetail) */
-1876  .day-list.fit { --sp: 1; --fs: 1; }
-1877  .day-list.fit .day-panel { padding: calc(0.6rem + 0.65rem * var(--sp)) 1.1rem; margin-bottom: calc(0.5rem + 0.5rem * var(--sp)); }
-1878  .day-list.fit .day-head { margin-bottom: calc(0.3rem + 0.45rem * var(--sp)); padding-bottom: calc(0.3rem + 0.45rem * var(--sp)); }
-1879  .day-list.fit .poi-item { padding: calc(0.3rem + 0.32rem * var(--sp)) 0.5rem; }
-1880  .day-list.fit .poi-num { width: calc(24px + 4px * var(--sp)); height: calc(24px + 4px * var(--sp)); }
-1881  .day-list.fit .poi-name { font-size: calc(0.95rem * var(--fs)); }
-1882  .day-list.fit .poi-meta { font-size: calc(0.75rem * var(--fs)); margin-top: calc(0.15rem * var(--sp)); }
-1883  .day-list.fit .poi-actions button, .day-list.fit .poi-actions a.btn-loc { width: calc(28px + 4px * var(--sp)); height: calc(28px + 4px * var(--sp)); }
-1884  .day-list.fit .rain-banner, .day-list.fit .plan-warn { padding: 5px 12px; margin-bottom: calc(3px + 5px * var(--sp)); }
-1885  .day-list.fit .dist-connector { height: 0; padding: 0 0.5rem; margin: 0; position: relative; overflow: visible; z-index: 2; }
-1886  .day-list.fit .dist-badge { background: var(--bg-surface); }
-1887  .day-list.fit .day-add { margin-top: calc(0.2rem + 0.3rem * var(--sp)); padding: calc(0.3rem + 0.25rem * var(--sp)) 0.75rem; }
-1888  /* ฟอนต์การ์ดเล็กลงอีก + ช่องไฟระหว่างข้อความการ์ดกับป้ายระยะทางมากขึ้น */
-1889  .day-list.fit .poi-name { font-size: calc(0.86rem * var(--fs)); }
-1890  .day-list.fit .poi-meta { font-size: calc(0.68rem * var(--fs)); }
-1891  .day-list.fit .poi-item { padding: calc(0.42rem + 0.3rem * var(--sp)) 0.5rem; }
-1892  .day-list.fit .dist-badge { font-size: calc(0.64rem * var(--fs)); }
-1893
-1894  /* กล่องเตือนฝนเล็กลง เพื่อให้พื้นที่กับการ์ด */
-1895  .day-list.fit .rain-banner { padding: 3px 10px; font-size: 0.72rem; gap: 6px; margin-bottom: calc(2px + 3px * var(--sp)); border-radius: 10px; }
-1896  .day-list.fit .rain-banner button { font-size: 0.68rem; padding: 1px 10px; }
-1897  /* กล่องฝน: เว้นระยะใต้กล่องให้เท่ากับด้านบน ไม่ชิดป้ายระยะทางแรก */
-1898  .day-list.fit .rain-banner { margin-bottom: 4px; }
-1899  .day-list.fit .poi-list { padding-top: 18px; }
-1900  /* ไอคอนโรงแรมในป้ายระยะทาง: ใหญ่ขึ้นและใช้สีส้มของธีม */
-1901  .dist-badge .ic:has(use[href="#i-hotel"]) { width: 1.7em; height: 1.7em; vertical-align: -0.4em; color: var(--accent-primary); stroke-width: 2.2; }
-1902  .dist-badge .ic:has(use[href="#i-arrow-right"]) { width: 1.1em; height: 1.1em; }
-1903  /* ชื่อสถานที่: พื้นที่คลิก/hover เท่าความยาวชื่อเท่านั้น ส่วนที่เหลือของการ์ดใช้สำหรับลาก */
-1904  .poi-item .poi-name { width: fit-content; max-width: 100%; }
-1905
-1906  /* หน้าเปลี่ยนสถานที่: ปุ่มรีวิว / Google Maps ด้านขวา */
-1907  .swap-option .opt-actions { display: flex; gap: 8px; margin-left: 12px; flex-shrink: 0; }
-1908  .opt-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border-radius: 9px; background: #fff; color: #475569;
-1909    border: 1px solid rgba(127,127,127,.3); cursor: pointer; text-decoration: none; transition: box-shadow .15s, transform .15s, color .15s, border-color .15s; }
-1910  .opt-btn .ic { width: 15px; height: 15px; }
-1911  .opt-btn:hover { color: var(--accent-primary); border-color: var(--accent-primary); box-shadow: 0 5px 16px rgba(0,0,0,.2); transform: translateY(-2px); }
-1912
-1913  /* ภาพการ์ดที่กำลังลาก: คมชัด ย่อลงเล็กน้อย ไม่มีแอนิเมชัน */
-1914  .poi-item.drag-ghost { position: fixed !important; z-index: 3500; margin: 0 !important; pointer-events: none; opacity: 1 !important; filter: none !important; background: var(--bg-surface, #fff);
-1915    box-shadow: 0 14px 34px rgba(0,0,0,.28), 0 0 0 2px rgba(255,109,53,.55); border-radius: 14px; transform: scale(.9);
-1916    animation: none; transition: none !important; }
+1578  .prov-item.prov-disabled {
+1579    cursor: default; opacity: 0.55;
+1580  }
+1581  .prov-item-name { flex: 1; font-size: 0.875rem; color: var(--text-primary); }
+1582  .prov-item-sparse {
+1583    font-size: 0.65rem; font-weight: 700; margin-right: 6px;
+1584    color: var(--text-secondary, #aaa); padding: 2px 7px; border-radius: 20px;
+1585    border: 1px dashed currentColor;
+1586  }
+1587  .prov-item-badge {
+บรรทัด 1250–1256: ส่วนหัวของโครงใหม่ ชื่อแบรนด์ และการปรับ topbar
+บรรทัด 1257–1353: พื้นหลังของธีม ภาพหัวเรื่อง .hero-bg .hero-overlay .hero-content ป้าย .hero-label (ภาพถูกเปลี่ยนโดย ➜ setBanner() ใน frontend/extras.js) และตัวห่อแผงวางแผน
+บรรทัด 1354–1450: แผงวางแผน .planner-panel แถวบน เส้นคั่น กริดช่อง .pf-grid ป้าย ข้อความ hint และความสูงของตัวควบคุมให้เท่ากัน รวมถึงการ์ดโรงแรมและปุ่มค้นหา
+บรรทัด 1451–1481: พื้นหลังของส่วนแพ็กเกจและรายละเอียด
+บรรทัด 1482–1587: เมนูจังหวัดแบบเลื่อน: กล่อง .prov-select .prov-dropdown (เปิดขึ้นหรือลงด้วยคลาส drop-up และอนิเมชัน provPop) ช่องค้นหา รายการ .prov-list ป้ายภาค และรายการจังหวัด .prov-item (ทำงานร่วมกับสคริปต์ท้าย ➜ frontend/index.html)
+บรรทัด 1588–1650  พิมพ์ แผนทางเลือก และความชอบ
+1588    font-size: 0.65rem; font-weight: 700;
+1589    background: rgba(255,109,53,0.18);
+1590    color: var(--accent-primary);
+1591    padding: 2px 7px; border-radius: 20px;
+1592    border: 1px solid rgba(255,109,53,0.35);
+1593  }
+1594  /* ── Print / บันทึกเป็น PDF: แสดงเฉพาะรายละเอียดทริป (พื้นขาว ตัวดำ) ── */
+1595  @media print {
+1596    .bg-layers, .topbar, .landing-screen, .packages-section, .toast-container,
+1597    .detail-actions button, .map-wrap, .day-toggles, .modal,
+1598    .poi-actions, .day-add, .day-list .poi-item button { display: none !important; }
+1599    html, body { background: #fff !important; color: #000 !important; }
+1600    .detail-section { display: block !important; padding: 0 !important; background: #fff !important; }
+1601    .detail-grid { display: block !important; }
+1602    .day-list { max-height: none !important; overflow: visible !important; }
+1603    .day-panel { break-inside: avoid; border: 1px solid #999 !important; background: #fff !important; box-shadow: none !important; margin-bottom: 0.8rem; }
+1604    .detail-section * { color: #000 !important; text-shadow: none !important; background: transparent !important; box-shadow: none !important; }
+1605    .detail-section .kpi, .detail-section .dist-badge { border: 1px solid #999 !important; }
+1606    .detail-section .day-color { background: #666 !important; }
+1607  }
+1608
+1609  /* ── Pareto modal ── */
+1610  .pareto-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+1611  .pareto-table th, .pareto-table td { padding: 0.45rem 0.6rem; text-align: right; border-bottom: 1px solid var(--border-subtle); }
+1612  .pareto-table th:first-child, .pareto-table td:first-child { text-align: center; }
+1613  .pareto-table th { color: var(--text-muted); font-weight: 600; font-size: 0.75rem; }
+1614  .pareto-use { background: var(--grad-cta, #ff6d35); color: #fff; border: 0; border-radius: 8px; padding: 0.25rem 0.7rem; cursor: pointer; font-size: 0.8rem; white-space: nowrap; }
+1615  @media (max-width: 720px) { .pareto-table th, .pareto-table td { padding: 0.4rem 0.3rem; } .pareto-use { padding: 0.25rem 0.5rem; font-size: 0.75rem; } }
+1616
+1617  /* ── Preferences (ความชอบ) ── */
+1618  .pref-toggle {
+1619    background: var(--grad-cta, linear-gradient(135deg, #ff7a3d, #e8561f)); border: 0;
+1620    color: #fff; border-radius: 999px; padding: 0.4rem 1.1rem;
+1621    font-size: 0.85rem; font-weight: 700; cursor: pointer;
+1622    box-shadow: 0 4px 14px rgba(255,109,53,0.35); transition: transform .15s, box-shadow .15s;
+1623  }
+1624  .pref-toggle:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,109,53,0.5); }
+1625  .pref-toggle[aria-expanded="true"] { box-shadow: 0 0 0 3px rgba(255,109,53,0.3); }
+1626  .pref-summary { color: #fff; font-weight: 700; opacity: .9; }
+1627  .pref-panel { margin: -0.4rem 0 0.9rem; padding: 0.6rem 0.8rem; display: grid; gap: 0.5rem; border: 1px solid var(--border-subtle); border-radius: 12px; background: var(--bg-surface); }
+1628  .pref-panel[hidden] { display: none; }
+1629  .pref-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+1630  .pref-label { font-size: 0.8rem; color: var(--text-secondary); min-width: 5.5rem; }
+1631  .pref-label small, .pref-note { color: var(--text-muted); font-size: 0.7rem; }
+1632  .pref-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+1633  .pref-chip {
+1634    border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-secondary);
+1635    border-radius: 999px; padding: 0.2rem 0.7rem; font-size: 0.8rem; cursor: pointer;
+1636  }
+1637  .pref-chip[data-state="like"]  { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.6); color: var(--text-primary); }
+1638
+1639  .pref-chip[data-state="avoid"] { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.55); color: var(--text-primary); text-decoration: line-through; }
+1640
+1641  #prefDiet {
+1642    appearance: none; -webkit-appearance: none; outline: none; cursor: pointer;
+1643    background: var(--bg-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.7rem center;
+1644    color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: 999px;
+1645    padding: 0.3rem 2rem 0.3rem 0.9rem; font-size: 0.82rem; transition: border-color .15s;
+1646  }
+1647  #prefDiet:hover, #prefDiet:focus { border-color: var(--accent-primary); }
+1648  #prefDiet option { background: #2a211b; color: #fff; }
+1649  .prov-item-soon {
+1650    font-size: 0.65rem; font-weight: 600;
+บรรทัด 1588–1607: @media print ซ่อนองค์ประกอบที่ไม่ต้องพิมพ์ (ปุ่ม แผนที่ โมดัล พื้นหลัง) และทำหน้ากระดาษพื้นขาว ใช้กับปุ่ม PDF ที่เรียก window.print()
+บรรทัด 1608–1617: ตาราง .pareto-table และปุ่ม .pareto-use
+บรรทัด 1618–1650: ปุ่มและแผงความชอบ .pref-toggle .pref-panel ชิป .pref-chips และช่องเลือกอาหาร #prefDiet
+บรรทัด 1651–1815  ไอคอน มือถือ และฟีเจอร์เสริม
+1651    color: var(--text-muted);
+1652    padding: 2px 7px; border-radius: 20px;
+1653    border: 1px solid var(--border-subtle);
+1654  }
+1655
+1656
+1657  /* ---- ไอคอนเส้นบางแทน emoji ---- */
+1658  .ic { width: 1.1em; height: 1.1em; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.7;
+1659        stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.2em; }
+1660  .hotel-card-icon .ic { width: 22px; height: 22px; color: var(--accent-primary); }
+1661  .map-hotel-marker .ic { width: 20px; height: 20px; color: #fff; }
+1662  .dist-badge .ic { width: 0.95em; height: 0.95em; vertical-align: -0.12em; }
+1663  .poi-name .ic { color: var(--accent-primary); margin-right: 2px; }
+1664  .score-chip .ic { width: 0.95em; height: 0.95em; color: var(--accent-primary); fill: currentColor; stroke-width: 1.2; }
+1665  .btn-icon .ic { width: 1em; height: 1em; }
+1666  .export-btn .ic, .pref-toggle .ic { width: 1.05em; height: 1.05em; }
+1667
+1668  /* ---- ปุ่มการทำงานของแผน: โทนเดียวกับธีม (เส้นบาง ไม่มีสีน้ำเงิน/ฟ้า) ---- */
+1669  .detail-actions { gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+1670  .reshuffle-btn {
+1671    background: var(--bg-surface); border: 1px solid var(--border-default);
+1672    border-radius: 999px; padding: 0.45rem 0.95rem; font-weight: 500; white-space: nowrap; color: var(--text-secondary);
+1673  }
+1674  .reshuffle-btn:hover { background: rgba(255,109,53,0.10); border-color: var(--accent-primary); color: var(--text-primary); }
+1675  .reshuffle-btn .ic, .reshuffle-btn svg { width: 15px; height: 15px; stroke: var(--accent-primary); }
+1676  .day-title h3 { white-space: nowrap; }
+1677
+1678  /* ---- มือถือ: ฟอร์มเรียงคอลัมน์เดียว ไม่ล้นจอ ---- */
+1679  @media (max-width: 720px) {
+1680    .planner-panel { zoom: 1; padding: 1.1rem 1rem 1rem; }
+1681    .planner-top-row { flex-wrap: wrap; }
+1682    .planner-title { flex-basis: 60%; }
+1683    .pf-grid, .pf-grid-b, .dev-mode .pf-grid-b { grid-template-columns: 1fr; gap: 0.8rem; }
+1684    .pf-col-search { min-width: 0; }
+1685    .pf-col-search .cta-btn { width: 100%; justify-content: center; }
+1686    .planner-panel .hotel-card { height: auto; min-height: 48px; }
+1687    .hero-content h1 { font-size: clamp(1.7rem, 8vw, 2.4rem); line-height: 1.25; overflow-wrap: anywhere; }
+1688  }
+1689  @media (max-width: 720px) {
+1690    .hero-h1 { white-space: normal; font-size: clamp(1.8rem, 9vw, 2.6rem); }
+1691    .hero-desc { white-space: normal; font-size: 0.9rem; }
+1692    .hero-content { padding: 0 1.2rem; }
+1693    .hero-label { font-size: 0.8rem; margin-bottom: 1rem; }
+1694    .planner-wrapper { padding: 330px 0.9rem 1rem; }
+1695  }
+1696
+1697  /* ── รายละเอียดสถานที่ / รีวิวจำลอง ── */
+1698  .poi-link { cursor: pointer; }
+1699  .poi-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+1700  .poi-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-bottom: 0.8rem; }
+1701  .poi-facts > div { border: 1px solid var(--border-subtle); border-radius: 12px; padding: 0.55rem 0.75rem; display: flex; flex-direction: column; gap: 0.15rem; }
+1702  .poi-facts span { font-size: 0.75rem; color: var(--text-tertiary); }
+1703  .poi-note { font-size: 0.78rem; color: var(--text-tertiary); margin: 0.6rem 0; line-height: 1.5; }
+1704  .rev-head { display: flex; align-items: center; gap: 0.6rem; margin: 0.8rem 0 0.4rem; }
+1705  .rev-score { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; font-size: 1.1rem; }
+1706  .rev-count { font-size: 0.82rem; color: var(--text-tertiary); }
+1707  .mock-chip { margin-left: auto; font-size: 0.7rem; padding: 0.15rem 0.55rem; border-radius: 999px; border: 1px dashed var(--border-default); color: var(--text-tertiary); }
+1708  .rev-item { border-top: 1px solid var(--border-subtle); padding: 0.55rem 0; font-size: 0.88rem; line-height: 1.5; }
+1709  .rev-stars { color: #f59e0b; letter-spacing: 1px; font-size: 0.85rem; }
+1710
+1711  /* ── ส่วนเสริม: ฤดูกาล / แผนที่บันทึก / เปรียบเทียบ ── */
+1712  .tips-card { height: 43px; box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 16px; background: rgba(255,109,53,0.08); border: 1px dashed rgba(255,109,53,0.45); overflow: hidden; }
+1713  .tips-badge { flex-shrink: 0; font-size: 0.62rem; font-weight: 800; letter-spacing: .04em; color: #fff; background: var(--accent-primary); border-radius: 999px; padding: 2px 8px; }
+1714  .tips-text { font-size: 0.8rem; line-height: 1.35; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: opacity .4s; }
+1715  .tips-text.fade { opacity: 0; }
+1716  .dev-modal-card { max-width: 340px; }
+1717  .dev-modal-card input { width: 100%; box-sizing: border-box; margin: 10px 0 6px; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-primary); font-size: 1rem; text-align: center; }
+1718  .dev-modal-card .dev-err { color: #f87171; font-size: 0.78rem; min-height: 1.1em; }
+1719  .season-note { font-size: 0.75rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.5; }
+1720  .saved-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(128,128,128,0.2); }
+1721  .saved-btn { font-size: 1.1rem; }
+1722  .pareto-table tr.cmp-main td { font-weight: 700; color: var(--accent-primary); }
+1723  @media (max-width: 640px) { .modal-body { overflow-x: auto; } }
+1724
+1725  /* ── ความชอบ: ชื่อหมวด + ปุ่มไอคอน 👍/👎 ด้านหลัง ── */
+1726  .pref-cat { display: inline-flex; align-items: center; gap: 2px; padding: 3px 4px 3px 14px; border-radius: 999px; border: 1.5px solid var(--border-subtle); background: var(--bg-surface); transition: border-color .15s, background .15s, box-shadow .15s; }
+1727  .pref-cat .pc-name { font-size: 0.85rem; color: var(--text-secondary); margin-right: 6px; transition: color .15s; }
+1728  .pref-cat button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 0; border-radius: 50%; background: none; color: var(--text-muted); cursor: pointer; transition: background .15s, color .15s, transform .15s; }
+1729  .pref-cat button .ic { width: 1.05em; height: 1.05em; }
+1730  .pref-cat .pc-dislike .ic { transform: scaleY(-1); }
+1731  .pref-cat .pc-like:hover { background: rgba(34,197,94,0.2); color: #22c55e; transform: scale(1.12); }
+1732  .pref-cat .pc-dislike:hover { background: rgba(239,68,68,0.2); color: #f87171; transform: scale(1.12); }
+1733  .pref-cat[data-state="like"] { border-color: transparent; background: linear-gradient(135deg, #22c55e, #15803d); box-shadow: 0 3px 14px rgba(34,197,94,0.45); }
+1734  .pref-cat[data-state="avoid"] { border-color: transparent; background: linear-gradient(135deg, #ef4444, #b91c1c); box-shadow: 0 3px 14px rgba(239,68,68,0.45); }
+1735  .pref-cat[data-state="like"] .pc-name, .pref-cat[data-state="avoid"] .pc-name { color: #fff; font-weight: 700; }
+1736  .pref-cat[data-state="like"] .pc-like, .pref-cat[data-state="avoid"] .pc-dislike { background: rgba(255,255,255,0.28); color: #fff; }
+1737  .pref-cat[data-state="like"] .pc-dislike, .pref-cat[data-state="avoid"] .pc-like { color: rgba(255,255,255,0.55); }
+1738
+1739  /* ── dropdown อาหาร ── */
+1740  .diet-wrap { position: relative; display: inline-block; }
+1741  .diet-btn { font: inherit; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.6rem; min-width: 9rem; justify-content: space-between; padding: 0.38rem 0.95rem; color: var(--text-primary); background: var(--bg-surface); border: 1.5px solid var(--border-subtle); border-radius: 999px; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+1742  .diet-btn:hover, .diet-btn.open { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(255,109,53,0.15); }
+1743  .diet-btn svg { color: var(--accent-primary); transition: transform .18s; }
+1744  .diet-btn.open svg { transform: rotate(180deg); }
+1745  .diet-list { position: absolute; top: calc(100% + 6px); left: 0; min-width: 100%; z-index: 999; padding: 6px; background: var(--bg-elevated); border: 1.5px solid var(--border-subtle); border-radius: 18px; box-shadow: 0 16px 40px rgba(0,0,0,0.45); opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .16s, transform .16s; }
+1746  .diet-list.open { opacity: 1; transform: none; pointer-events: auto; }
+1747  .diet-item { padding: 0.4rem 0.9rem; border-radius: 12px; font-size: 0.85rem; cursor: pointer; color: var(--text-primary); white-space: nowrap; }
+1748  .diet-item:hover { background: rgba(255,109,53,0.14); }
+1749  .diet-item.on { background: rgba(255,109,53,0.2); color: var(--accent-primary); font-weight: 700; }
+1750  [data-theme="light"] .diet-list { background: #fff; box-shadow: 0 16px 40px rgba(100,50,20,0.16); }
+1751
+1752  .dev-only { display: none !important; }
+1753  .dev-mode .dev-only { display: inline-flex !important; }
+1754
+1755  .wx-chip { color: #7dd3fc; font-weight: 600; }
+1756  .rain-banner { margin: 0 0 8px; padding: 8px 12px; border-radius: 12px; font-size: 0.8rem; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.4); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+1757  .rain-banner button { font: inherit; font-size: 0.78rem; padding: 3px 12px; border-radius: 999px; border: 0; background: #0ea5e9; color: #fff; cursor: pointer; }
+1758
+1759  .poi-item[draggable="true"] { cursor: grab; }
+1760  .poi-item.dragging { opacity: .45; }
+1761
+1762  /* มือถือ: ปุ่มบนแถบบนเยอะขึ้น (ผลทดลอง/ภาษา/★/Dev/ธีม) — ย่อและตัดบรรทัดไม่ให้ล้นจอ */
+1763  @media (max-width: 560px) {
+1764    .topbar-actions { flex-wrap: wrap; justify-content: flex-end; gap: 4px; max-width: calc(100vw - 110px); flex-wrap: nowrap; }
+1765    .topbar-actions .icon-btn { min-width: 30px; width: auto; height: 30px; padding: 0 .35rem; font-size: .72rem; }
+1766    .topbar-actions .results-link { padding: 0 .45rem !important; display: inline-flex; align-items: center; }
+1767  }
+1768  @media (max-width: 560px) {
+1769    .topbar .brand h1 { font-size: 1.1rem; }
+1770    .topbar-actions .results-link { font-size: 0 !important; width: 30px !important; justify-content: center; padding: 0 !important; }
+1771    .topbar-actions .results-link::before { content: "📊"; font-size: .85rem; }
+1772  }
+1773  [data-theme="light"] .pref-cat .pc-like, [data-theme="light"] .pref-cat .pc-dislike { color: #64748b; }
+1774  [data-theme="light"] .pref-cat[data-state="like"] button, [data-theme="light"] .pref-cat[data-state="avoid"] button { color: rgba(255,255,255,.7); }
+1775  [data-theme="light"] .pref-cat[data-state="like"] .pc-like, [data-theme="light"] .pref-cat[data-state="avoid"] .pc-dislike { color: #fff; }
+1776
+1777  .plan-warn{margin:10px 0;padding:10px 14px;border-radius:12px;border:1px solid rgba(234,179,8,.5);background:rgba(234,179,8,.12);font-size:.85rem}
+1778  .plan-warn ul{margin:6px 0 0;padding-left:18px}
+1779
+1780  /* ซ่อนคะแนน/ตัวเลขภายในจากผู้ใช้ทั่วไป — แสดงเฉพาะโหมด Developer */
+1781  body:not(.dev-mode) :is(.score-num, .dev-txt, .score-chip, #kpiScore, .runtime, .day-score) { display: none !important; }
+1782
+1783  /* ลากการ์ดแบบ real-time */
+1784  .is-dragging .dist-connector { opacity: .45; }
+1785  .dist-connector.drag-hide { display: none; }
+1786  .poi-item.dragging { display: none; }
+1787  .drop-gap { list-style: none; border: 2px dashed rgba(239,68,68,.55); background: rgba(239,68,68,.09); border-radius: 14px; margin: 4px 0; position: relative; }
+1788  .drop-gap::before { content: ''; position: absolute; left: 10px; right: 10px; top: -5px; height: 3px; border-radius: 3px; background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,.7); }
+1789  /* การ์ดที่ผิดข้อจำกัด: สีแดง + กล่องข้อความใต้การ์ด */
+1790  .poi-item.poi-error { border-color: #ef4444 !important; background: rgba(239,68,68,.10) !important; box-shadow: 0 0 0 1px rgba(239,68,68,.4); }
+1791  .poi-item.poi-error .poi-num { background: #ef4444 !important; color: #fff !important; }
+1792  .poi-err-box { list-style: none; margin: -2px 0 6px; padding: 8px 12px; font-size: .8rem; line-height: 1.4; color: #b91c1c; background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.5); border-top: 0; border-radius: 0 0 12px 12px; }
+1793  [data-theme="dark"] .poi-err-box { color: #fca5a5; }
+1794  .plan-warn { margin: 6px 0 10px; padding: 8px 12px; font-size: .82rem; color: #92400e; background: rgba(245,158,11,.14); border: 1px solid rgba(245,158,11,.5); border-radius: 10px; }
+1795  [data-theme="dark"] .plan-warn { color: #fcd34d; }
+1796
+1797  .hero-visual .hero-bg { transition: opacity .6s ease, transform 8s ease; }
+1798
+1799  /* ทางเลือกอื่นของทริป (การ์ด) */
+1800  .pc-wrap, .pc-wrap-in { display: grid; gap: 12px; }
+1801  .pc { border: 1px solid var(--border-subtle); border-radius: 16px; padding: 14px 16px; background: var(--bg-surface); }
+1802  .pc-main { border-color: var(--accent-primary); box-shadow: 0 0 0 1px var(--accent-primary) inset; }
+1803  .pc-tag { display: inline-block; font-size: .75rem; font-weight: 700; padding: 3px 10px; margin-right: 6px; border-radius: 999px; background: rgba(255,109,53,.14); color: var(--accent-primary); }
+1804  .pc-why { margin: 6px 0 10px; font-size: .88rem; color: var(--text-secondary, var(--text-muted)); }
+1805  .pc-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+1806  .pc-metrics > div { display: flex; flex-direction: column; gap: 1px; }
+1807  .pc-metrics small { color: var(--text-muted); font-size: .72rem; }
+1808  .pc-metrics b { font-size: 1rem; }
+1809  .pc-dots { letter-spacing: 2px; color: var(--accent-primary); font-size: .85rem !important; }
+1810  .pc-good { color: #16a34a; font-size: .74rem; font-weight: 600; } .pc-bad { color: #dc2626; font-size: .74rem; font-weight: 600; } .pc-same { color: var(--text-muted); font-size: .74rem; }
+1811  .pc-hi { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+1812  .pc-hi span { font-size: .75rem; padding: 3px 9px; border-radius: 999px; background: var(--bg-elevated, rgba(127,127,127,.12)); color: var(--text-secondary, inherit); }
+1813  .pc .pareto-use { width: 100%; padding: .5rem; font-size: .9rem; border-radius: 10px; }
+1814  .pc-more { margin: 4px auto 0; background: none; border: 1px dashed var(--border-subtle); color: var(--text-muted); border-radius: 999px; padding: .4rem 1rem; cursor: pointer; }
+1815  @media (max-width: 560px) { .pc-metrics { grid-template-columns: 1fr 1fr; } }
+บรรทัด 1651–1673: ไอคอนเส้นบาง .ic และปุ่มปฏิบัติการของแผน
+บรรทัด 1674–1694: @media (max-width: 720px) ฟอร์มเรียงคอลัมน์เดียว
+บรรทัด 1695–1708: ลิงก์ชื่อสถานที่และหน้าต่างรายละเอียดสถานที่ (.poi-facts, รีวิว) ของ ➜ showPoiDetail() ใน frontend/app.js
+บรรทัด 1709–1719: กล่อง Tips .tips-text และหมายเหตุฤดูกาล .season-note ที่ ➜ frontend/extras.js สร้าง
+บรรทัด 1720–1748: ปรับโมดัลบนจอแคบ ชิปความชอบ .pref-cat (สถานะ like/avoid) และตัวเลือกอาหารที่แทน select (.diet-btn .diet-item)
+บรรทัด 1749–1774: .dev-only ซ่อนองค์ประกอบสำหรับโหมด Developer (เปิดด้วยคลาส dev-mode ที่ ➜ setDevMode() ใน frontend/app.js) แถบเตือนฝน .rain-banner และเป้าหมายการลาก .drop-over
+บรรทัด 1775–1800: กล่องคำเตือนของแผน .plan-warn การ์ดที่ผิดเวลา .poi-error และซ่อนเส้นเชื่อมระหว่างลาก
+บรรทัด 1801–1815: การ์ดแผนทางเลือก .pc .pc-metrics .pc-dots ที่ ➜ renderParetoCards() ใน frontend/app.js สร้าง
+บรรทัด 1816–1868  วิธีใช้ ลากการ์ด และ tooltip
+1816
+1817  /* Tutorial */
+1818  .tut { position: fixed; inset: 0; z-index: 3000; }
+1819  .tut-spot { position: fixed; border-radius: 14px; box-shadow: 0 0 0 9999px rgba(0,0,0,.62); transition: all .25s ease; pointer-events: none; outline: 2px solid var(--accent-primary); }
+1820  .tut-card { position: fixed; background: var(--bg-surface, #fff); color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 16px 18px; box-shadow: 0 18px 50px rgba(0,0,0,.35); max-width: 340px; }
+1821  .tut-card.center { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(360px, calc(100vw - 24px)); }
+1822  .tut-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 6px; }
+1823  .tut-text { font-size: .9rem; line-height: 1.55; color: var(--text-secondary, var(--text-muted)); }
+1824  .tut-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; gap: 10px; }
+1825  .tut-dots i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--border-subtle); margin-right: 5px; }
+1826  .tut-dots i.on { background: var(--accent-primary); }
+1827  .tut-btns { display: flex; gap: 6px; }
+1828  .tut-btns button { border: 0; border-radius: 999px; padding: .4rem .9rem; cursor: pointer; font: inherit; font-size: .82rem; background: var(--bg-elevated, rgba(127,127,127,.15)); color: var(--text-primary); }
+1829  .tut-btns .tut-next { background: var(--accent-primary); color: #fff; font-weight: 700; }
+1830  .tut-btns .tut-skip { background: none; color: var(--text-muted); }
+1831  .tut.dim { background: rgba(0,0,0,.6); }
+1832
+1833  .pc-dots { display: flex; gap: 5px; align-items: center; height: 1.4rem; }
+1834  .pc-dots i { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--accent-primary); box-sizing: border-box; }
+1835  .pc-dots i.on { background: var(--accent-primary); }
+1836  .drop-gap::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: -5px; height: 3px; border-radius: 3px; background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,.7); }
+1837  .is-dragging .poi-err-box { display: none; }
+1838
+1839  /* marker ตอนลากการ์ด: บางลง ปลายซ้าย-ขวาจาง กลางเข้ม */
+1840  .drop-gap::before, .drop-gap::after { left: 0 !important; right: 0 !important; height: 2px !important; border-radius: 2px;
+1841    background: linear-gradient(90deg, rgba(239,68,68,0) 0%, #ef4444 28%, #ef4444 72%, rgba(239,68,68,0) 100%) !important; box-shadow: 0 0 4px rgba(239,68,68,.45) !important; }
+1842  .drop-gap::before { top: -4px !important; } .drop-gap::after { bottom: -4px !important; }
+1843  .rain-ic { display: inline-flex; vertical-align: -3px; margin-left: 6px; color: #0ea5e9; cursor: help; }
+1844
+1845  .planner-panel .hotel-card { width: max-content; max-width: 100%; }
+1846  .planner-panel .hotel-card-body { flex: none; }
+1847  .planner-panel .hotel-card-switch { margin-left: 0.5rem; }
+1848  @media (max-width: 720px) { .planner-panel .hotel-card { width: 100%; } .planner-panel .hotel-card-body { flex: 1; } }
+1849
+1850  /* tutorial: ซ่อนการ์ดจนกว่าจะวางตำแหน่ง, ไม่ทำ transition บนเงาขนาดใหญ่ (ลด lag) */
+1851  .tut:not(.ready) .tut-card { visibility: hidden; }
+1852  .tut-spot { transition: none !important; will-change: top, left, width, height; }
+1853  /* tooltip แบบ minimal แทนกล่องดำของเบราว์เซอร์ */
+1854  .wet-tip { position: fixed; z-index: 4000; max-width: 260px; padding: 6px 11px; border-radius: 10px; font-size: .78rem; line-height: 1.4; pointer-events: none;
+1855    background: var(--bg-surface, #fff); color: var(--text-primary, #111); border: 1px solid var(--border-default, rgba(127,127,127,.3)); box-shadow: 0 6px 22px rgba(0,0,0,.18); opacity: 0; transform: translateY(3px); transition: opacity .12s, transform .12s; }
+1856  .wet-tip.show { opacity: 1; transform: none; }
+1857  /* คืนอนิเมชันของ tutorial (เลื่อนไลต์ไปยังเป้าหมายอย่างนุ่มนวล) โดยทำ transition เฉพาะตำแหน่ง/ขนาด */
+1858  .tut-spot { transition: top .25s ease, left .25s ease, width .25s ease, height .25s ease !important; }
+1859  /* ที่พักยาวขึ้น Tips สั้นลง */
+1860  .pf-grid-b { grid-template-columns: 1fr 1fr auto; }
+1861  .planner-panel .hotel-card { width: 100%; justify-content: flex-start; }
+1862  /* ที่พักกว้าง ~42% ของแถว สวิตช์ชิดขวา, Tips ยาวขึ้น */
+1863  .pf-grid-b { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr) auto; }
+1864  .planner-panel .hotel-card { justify-content: space-between; }
+1865  .planner-panel .hotel-card-body { flex: 1; }
+1866  .planner-panel .hotel-card-switch { margin-left: auto; }
+1867  .drop-gap { margin: 6px 0; }
+1868
+บรรทัด 1816–1837: สไตล์ของ tutorial: .tut .tut-spot .tut-card ปุ่มและจุดบอกขั้น ที่ ➜ frontend/tutorial.js สร้าง
+บรรทัด 1838–1848: ตัวบอกตำแหน่งตอนลากการ์ด .drop-gap (ช่องว่างสีแดงจาง) และการปรับการ์ดโรงแรมบนจอแคบ
+บรรทัด 1849–1851: ซ่อนการ์ด tutorial จนกว่าจะจัดตำแหน่งเสร็จ
+บรรทัด 1852–1868: กล่อง .wet-tip ที่ ➜ frontend/tooltip.js ใช้แทนกล่องข้อความของเบราว์เซอร์
+บรรทัด 1869–1943  จัดขนาดพอดีจอ ประวัติ และการแจ้งเตือน
+1869  @media (min-width: 1001px) { .detail-section { box-sizing: border-box; padding-bottom: 2.25rem; } }
+1870
+1871  /* ย่อการ์ดให้เห็นครบ 6 จุด + ปุ่มเพิ่มสถานที่ (ค่า --sp ระยะห่าง, --fs ตัวอักษร ตั้งจาก fitDetail) */
+1872  .day-list.fit { --sp: 1; --fs: 1; }
+1873  .day-list.fit .day-panel { padding: calc(0.6rem + 0.65rem * var(--sp)) 1.1rem; margin-bottom: calc(0.5rem + 0.5rem * var(--sp)); }
+1874  .day-list.fit .day-head { margin-bottom: calc(0.3rem + 0.45rem * var(--sp)); padding-bottom: calc(0.3rem + 0.45rem * var(--sp)); }
+1875  .day-list.fit .poi-item { padding: calc(0.3rem + 0.32rem * var(--sp)) 0.5rem; }
+1876  .day-list.fit .poi-num { width: calc(24px + 4px * var(--sp)); height: calc(24px + 4px * var(--sp)); }
+1877  .day-list.fit .poi-name { font-size: calc(0.95rem * var(--fs)); }
+1878  .day-list.fit .poi-meta { font-size: calc(0.75rem * var(--fs)); margin-top: calc(0.15rem * var(--sp)); }
+1879  .day-list.fit .poi-actions button, .day-list.fit .poi-actions a.btn-loc { width: calc(28px + 4px * var(--sp)); height: calc(28px + 4px * var(--sp)); }
+1880  .day-list.fit .rain-banner, .day-list.fit .plan-warn { padding: 5px 12px; margin-bottom: calc(3px + 5px * var(--sp)); }
+1881  .day-list.fit .dist-connector { height: 0; padding: 0 0.5rem; margin: 0; position: relative; overflow: visible; z-index: 2; }
+1882  .day-list.fit .dist-badge { background: var(--bg-surface); }
+1883  .day-list.fit .day-add { margin-top: calc(0.2rem + 0.3rem * var(--sp)); padding: calc(0.3rem + 0.25rem * var(--sp)) 0.75rem; }
+1884  /* ฟอนต์การ์ดเล็กลงอีก + ช่องไฟระหว่างข้อความการ์ดกับป้ายระยะทางมากขึ้น */
+1885  .day-list.fit .poi-name { font-size: calc(0.86rem * var(--fs)); }
+1886  .day-list.fit .poi-meta { font-size: calc(0.68rem * var(--fs)); }
+1887  .day-list.fit .poi-item { padding: calc(0.42rem + 0.3rem * var(--sp)) 0.5rem; }
+1888  .day-list.fit .dist-badge { font-size: calc(0.64rem * var(--fs)); }
+1889
+1890  /* กล่องเตือนฝนเล็กลง เพื่อให้พื้นที่กับการ์ด */
+1891  .day-list.fit .rain-banner { padding: 3px 10px; font-size: 0.72rem; gap: 6px; margin-bottom: calc(2px + 3px * var(--sp)); border-radius: 10px; }
+1892  .day-list.fit .rain-banner button { font-size: 0.68rem; padding: 1px 10px; }
+1893  /* กล่องฝน: เว้นระยะใต้กล่องให้เท่ากับด้านบน ไม่ชิดป้ายระยะทางแรก */
+1894  .day-list.fit .rain-banner { margin-bottom: 4px; }
+1895  .day-list.fit .poi-list { padding-top: 18px; }
+1896  /* ไอคอนโรงแรมในป้ายระยะทาง: ใหญ่ขึ้นและใช้สีส้มของธีม */
+1897  .dist-badge .ic:has(use[href="#i-hotel"]) { width: 1.7em; height: 1.7em; vertical-align: -0.4em; color: var(--accent-primary); stroke-width: 2.2; }
+1898  .dist-badge .ic:has(use[href="#i-arrow-right"]) { width: 1.1em; height: 1.1em; }
+1899  /* ชื่อสถานที่: พื้นที่คลิก/hover เท่าความยาวชื่อเท่านั้น ส่วนที่เหลือของการ์ดใช้สำหรับลาก */
+1900  .poi-item .poi-name { width: fit-content; max-width: 100%; }
+1901
+1902  /* หน้าเปลี่ยนสถานที่: ปุ่มรีวิว / Google Maps ด้านขวา */
+1903  .swap-option .opt-actions { display: flex; gap: 8px; margin-left: 12px; flex-shrink: 0; }
+1904  .opt-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border-radius: 9px; background: #fff; color: #475569;
+1905    border: 1px solid rgba(127,127,127,.3); cursor: pointer; text-decoration: none; transition: box-shadow .15s, transform .15s, color .15s, border-color .15s; }
+1906  .opt-btn .ic { width: 15px; height: 15px; }
+1907  .opt-btn:hover { color: var(--accent-primary); border-color: var(--accent-primary); box-shadow: 0 5px 16px rgba(0,0,0,.2); transform: translateY(-2px); }
+1908
+1909  /* ภาพการ์ดที่กำลังลาก: คมชัด ย่อลงเล็กน้อย ไม่มีแอนิเมชัน */
+1910  .poi-item.drag-ghost { position: fixed !important; z-index: 3500; margin: 0 !important; pointer-events: none; opacity: 1 !important; filter: none !important; background: var(--bg-surface, #fff);
+1911    box-shadow: 0 14px 34px rgba(0,0,0,.28), 0 0 0 2px rgba(255,109,53,.55); border-radius: 14px; transform: scale(.9);
+1912    animation: none; transition: none !important; }
+1913
+1914  body.wet-dragging, body.wet-dragging * { user-select: none !important; cursor: grabbing !important; }
+1915  .poi-item { cursor: grab; }
+1916  .poi-item.drag-ghost { will-change: left, top; contain: layout; }
 1917
-1918  body.wet-dragging, body.wet-dragging * { user-select: none !important; cursor: grabbing !important; }
-1919  .poi-item { cursor: grab; }
-1920  .poi-item.drag-ghost { will-change: left, top; contain: layout; }
-1921
-1922  /* ปุ่มย้อนกลับ / เดินหน้า */
-1923  .hist-group { display: inline-flex; gap: 6px; }
-1924  .hist-btn { padding-left: .7rem; padding-right: .7rem; }
-1925  .hist-btn .ic { width: 16px; height: 16px; }
-1926  .hist-btn.disabled { opacity: .4; pointer-events: none; }
-1927
-1928  /* ── ปุ่มประวัติการแจ้งเตือน (ลอยมุมขวาล่าง) ── */
-1929  .notif-btn { position: fixed; right: 24px; bottom: 24px; z-index: 900; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
-1930    background: var(--bg-elevated, #fff); color: var(--text-primary); border: 1px solid var(--border-subtle); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .15s ease, box-shadow .15s ease; }
-1931  .notif-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.3); border-color: var(--accent-primary); }
-1932  .notif-btn svg { width: 22px; height: 22px; }
-1933  .notif-badge { position: absolute; top: -3px; right: -3px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--accent-primary, #ff6d35); color: #fff; font-size: .68rem; font-weight: 700; line-height: 18px; text-align: center; }
-1934  .notif-panel { position: fixed; right: 24px; bottom: 82px; z-index: 900; width: min(340px, calc(100vw - 32px)); max-height: 60vh; display: flex; flex-direction: column; overflow: hidden;
-1935    background: var(--bg-elevated, #fff); backdrop-filter: blur(16px); color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: 16px; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
-1936  .notif-panel[hidden] { display: none; }
-1937  .notif-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--border-subtle); font-size: .9rem; }
-1938  .notif-clear { background: none; border: 0; color: var(--text-muted); font-size: .78rem; cursor: pointer; }
-1939  .notif-clear:hover { color: var(--accent-primary); }
-1940  .notif-list { overflow-y: auto; padding: 6px 0; }
-1941  .notif-item { display: flex; gap: 10px; padding: 9px 14px; font-size: .82rem; line-height: 1.4; }
-1942  .notif-item + .notif-item { border-top: 1px solid var(--border-subtle); }
-1943  .notif-dot { flex: none; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: #22c55e; }
-1944  .notif-item.error .notif-dot { background: #ef4444; }
-1945  .notif-time { margin-top: 2px; font-size: .7rem; color: var(--text-muted); }
-1946  .notif-empty { padding: 22px 14px; text-align: center; font-size: .82rem; color: var(--text-muted); }
-1947  @media print { .notif-btn, .notif-panel { display: none !important; } }
-บรรทัด 1873–1900: ปรับความสูงและขนาดของส่วนรายละเอียดให้ตรงกับ ➜ fitDetail() ใน frontend/app.js ผ่านตัวแปร --sp (ระยะห่าง) และ --fs (ขนาดอักษร) ของ .day-list.fit
-บรรทัด 1901–1918: รายละเอียดของไอคอนและปุ่มในรายการตัวเลือก
-บรรทัด 1919–1935: ตัวผีขณะลาก .drag-ghost (ที่ ➜ enableDrag() ใน frontend/extras.js สร้าง) และปุ่มย้อนกลับ/เดินหน้า .hist-btn (➜ undoEdit() ใน frontend/app.js)
-บรรทัด 1936–1947: ปุ่มกระดิ่งและแผงประวัติการแจ้งเตือน .notif-* ของ ➜ frontend/extras.js และซ่อนปุ่มเหล่านี้ตอนพิมพ์
-บรรทัด 1948–1973  รองรับมือถือและจอสัมผัส
-1948
-1949  /* ── รองรับมือถือ / จอสัมผัส ── */
-1950  @media (max-width: 1000px) {
-1951    #map { height: min(62vh, 440px) !important; }
-1952    .day-list { max-height: none !important; overflow: visible !important; }   /* จอแคบ: ไม่ใช้กรอบเลื่อนซ้อนในหน้า */
-1953  }
-1954  @media (max-width: 640px) {
-1955    .icon-btn { width: 36px; height: 36px; }
-1956    input, select, textarea { font-size: 16px !important; }   /* กัน iOS ซูมเองเมื่อแตะช่องกรอก */
-1957    .neighbor-chip, .pref-toggle { min-height: 36px; }
-1958    .day-head { flex-wrap: wrap; gap: 0.4rem; }
-1959    .day-stats { flex-wrap: wrap; gap: 0.3rem 0.75rem; }
-1960    .wx-chip { white-space: nowrap; }
-1961    .poi-item { flex-wrap: wrap; row-gap: 0.2rem; }
-1962    .poi-info { flex: 1 1 calc(100% - 44px); }
-1963    .poi-actions { flex: 1 1 100%; justify-content: flex-end; gap: 0.5rem; }
-1964    .poi-actions button, .poi-actions a.btn-loc { width: 44px; height: 40px; }
-1965  }
-1966  @media (pointer: coarse) {
-1967    .poi-item { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: pan-y; }
-1968    .poi-actions button, .poi-actions a.btn-loc { min-width: 40px; min-height: 36px; }
-1969  }
-1970  @media (max-width: 640px) { .swap-option { margin-left: 0; } }
-1971  @media (max-width: 720px) {   /* กฎ pf-grid-b ด้านบนมาทีหลังกฎจอแคบ จึงต้องทับซ้ำ */
-1972    .pf-grid, .pf-grid-b, .dev-mode .pf-grid-b { grid-template-columns: 1fr !important; }
-1973  }
-บรรทัด 1948–1953: คอมเมนต์หัวส่วน และกฎสำหรับจอกว้างไม่เกิน 1000 พิกเซล: แผนที่สูง 62% ของความสูงจอแต่ไม่เกิน 440 พิกเซล (ใช้ !important เพราะ syncMapHeight ใน ➜ frontend/app.js ตั้งความสูงเป็นสไตล์ในบรรทัด) และ .day-list ไม่ใช้กรอบเลื่อนซ้อนในหน้า
-บรรทัด 1954–1965: จอกว้างไม่เกิน 640 พิกเซล: ปุ่มไอคอนบนแถบบนใหญ่ขึ้น ช่องกรอกใช้อักษร 16 พิกเซลกัน iOS ซูมเอง ปุ่มเลือกจังหวัดข้างเคียงและปุ่มความชอบสูงพอแตะ หัวของวันและตัวเลขสถิติขึ้นบรรทัดใหม่ได้ ชิปสภาพอากาศไม่ตัดบรรทัด และการ์ดสถานที่แยกปุ่มเป็นแถวใต้ชื่อพร้อมปุ่มขนาด 44x40 พิกเซล
-บรรทัด 1966–1969: อุปกรณ์สัมผัส (pointer: coarse): ปิดเมนูแตะค้างและการเลือกข้อความบนการ์ดเพื่อให้กดค้างแล้วลากได้ (➜ enableDrag() ใน frontend/extras.js) และตั้ง touch-action: pan-y ให้ปัดขึ้นลงเลื่อนหน้าได้ปกติ
-บรรทัด 1970: จอแคบ: ตัวเลือกในหน้าต่างเปลี่ยนสถานที่ไม่เยื้องซ้าย
-บรรทัด 1971–1973: จอกว้างไม่เกิน 720 พิกเซล: ทับกฎ .pf-grid-b (แถวที่พัก Tips ปุ่มค้นหา) ให้เป็นคอลัมน์เดียว เพราะกฎสามคอลัมน์ที่เขียนไว้ด้านบนอยู่หลังกฎจอแคบเดิมจึงทับกฎนั้น ทำให้ช่องที่พักแคบเกินไปบนมือถือ
+1918  /* ปุ่มย้อนกลับ / เดินหน้า */
+1919  .hist-group { display: inline-flex; gap: 6px; }
+1920  .hist-btn { padding-left: .7rem; padding-right: .7rem; }
+1921  .hist-btn .ic { width: 16px; height: 16px; }
+1922  .hist-btn.disabled { opacity: .4; pointer-events: none; }
+1923
+1924  /* ── ปุ่มประวัติการแจ้งเตือน (ลอยมุมขวาล่าง) ── */
+1925  .notif-btn { position: fixed; right: 24px; bottom: 24px; z-index: 900; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+1926    background: var(--bg-elevated, #fff); color: var(--text-primary); border: 1px solid var(--border-subtle); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .15s ease, box-shadow .15s ease; }
+1927  .notif-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.3); border-color: var(--accent-primary); }
+1928  .notif-btn svg { width: 22px; height: 22px; }
+1929  .notif-badge { position: absolute; top: -3px; right: -3px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--accent-primary, #ff6d35); color: #fff; font-size: .68rem; font-weight: 700; line-height: 18px; text-align: center; }
+1930  .notif-panel { position: fixed; right: 24px; bottom: 82px; z-index: 900; width: min(340px, calc(100vw - 32px)); max-height: 60vh; display: flex; flex-direction: column; overflow: hidden;
+1931    background: var(--bg-elevated, #fff); backdrop-filter: blur(16px); color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: 16px; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+1932  .notif-panel[hidden] { display: none; }
+1933  .notif-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--border-subtle); font-size: .9rem; }
+1934  .notif-clear { background: none; border: 0; color: var(--text-muted); font-size: .78rem; cursor: pointer; }
+1935  .notif-clear:hover { color: var(--accent-primary); }
+1936  .notif-list { overflow-y: auto; padding: 6px 0; }
+1937  .notif-item { display: flex; gap: 10px; padding: 9px 14px; font-size: .82rem; line-height: 1.4; }
+1938  .notif-item + .notif-item { border-top: 1px solid var(--border-subtle); }
+1939  .notif-dot { flex: none; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: #22c55e; }
+1940  .notif-item.error .notif-dot { background: #ef4444; }
+1941  .notif-time { margin-top: 2px; font-size: .7rem; color: var(--text-muted); }
+1942  .notif-empty { padding: 22px 14px; text-align: center; font-size: .82rem; color: var(--text-muted); }
+1943  @media print { .notif-btn, .notif-panel { display: none !important; } }
+บรรทัด 1869–1896: ปรับความสูงและขนาดของส่วนรายละเอียดให้ตรงกับ ➜ fitDetail() ใน frontend/app.js ผ่านตัวแปร --sp (ระยะห่าง) และ --fs (ขนาดอักษร) ของ .day-list.fit
+บรรทัด 1897–1914: รายละเอียดของไอคอนและปุ่มในรายการตัวเลือก
+บรรทัด 1915–1931: ตัวผีขณะลาก .drag-ghost (ที่ ➜ enableDrag() ใน frontend/extras.js สร้าง) และปุ่มย้อนกลับ/เดินหน้า .hist-btn (➜ undoEdit() ใน frontend/app.js)
+บรรทัด 1932–1943: ปุ่มกระดิ่งและแผงประวัติการแจ้งเตือน .notif-* ของ ➜ frontend/extras.js และซ่อนปุ่มเหล่านี้ตอนพิมพ์
+บรรทัด 1944–1968  รองรับมือถือและจอสัมผัส
+1944
+1945  /* ── รองรับมือถือ / จอสัมผัส ── */
+1946  @media (max-width: 1000px) {
+1947    #map { height: min(62vh, 440px) !important; }
+1948    .day-list { max-height: none !important; overflow: visible !important; }   /* จอแคบ: ไม่ใช้กรอบเลื่อนซ้อนในหน้า */
+1949  }
+1950  @media (max-width: 640px) {
+1951    .icon-btn { width: 36px; height: 36px; }
+1952    input, select, textarea { font-size: 16px !important; }   /* กัน iOS ซูมเองเมื่อแตะช่องกรอก */
+1953    .day-head { flex-wrap: wrap; gap: 0.4rem; }
+1954    .day-stats { flex-wrap: wrap; gap: 0.3rem 0.75rem; }
+1955    .wx-chip { white-space: nowrap; }
+1956    .poi-item { flex-wrap: wrap; row-gap: 0.2rem; }
+1957    .poi-info { flex: 1 1 calc(100% - 44px); }
+1958    .poi-actions { flex: 1 1 100%; justify-content: flex-end; gap: 0.5rem; }
+1959    .poi-actions button, .poi-actions a.btn-loc { width: 44px; height: 40px; }
+1960  }
+1961  @media (pointer: coarse) {
+1962    .poi-item { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: pan-y; }
+1963    .poi-actions button, .poi-actions a.btn-loc { min-width: 40px; min-height: 36px; }
+1964  }
+1965  @media (max-width: 640px) { .swap-option { margin-left: 0; } }
+1966  @media (max-width: 720px) {   /* กฎ pf-grid-b ด้านบนมาทีหลังกฎจอแคบ จึงต้องทับซ้ำ */
+1967    .pf-grid, .pf-grid-b, .dev-mode .pf-grid-b { grid-template-columns: 1fr !important; }
+1968  }
+บรรทัด 1944–1949: คอมเมนต์หัวส่วน และกฎสำหรับจอกว้างไม่เกิน 1000 พิกเซล: แผนที่สูง 62% ของความสูงจอแต่ไม่เกิน 440 พิกเซล (ใช้ !important เพราะ syncMapHeight ใน ➜ frontend/app.js ตั้งความสูงเป็นสไตล์ในบรรทัด) และ .day-list ไม่ใช้กรอบเลื่อนซ้อนในหน้า
+บรรทัด 1950–1960: จอกว้างไม่เกิน 640 พิกเซล: ปุ่มไอคอนบนแถบบนใหญ่ขึ้น ช่องกรอกใช้อักษร 16 พิกเซลกัน iOS ซูมเอง ปุ่มความชอบสูงพอแตะ หัวของวันและตัวเลขสถิติขึ้นบรรทัดใหม่ได้ ชิปสภาพอากาศไม่ตัดบรรทัด และการ์ดสถานที่แยกปุ่มเป็นแถวใต้ชื่อพร้อมปุ่มขนาด 44x40 พิกเซล
+บรรทัด 1961–1964: อุปกรณ์สัมผัส (pointer: coarse): ปิดเมนูแตะค้างและการเลือกข้อความบนการ์ดเพื่อให้กดค้างแล้วลากได้ (➜ enableDrag() ใน frontend/extras.js) และตั้ง touch-action: pan-y ให้ปัดขึ้นลงเลื่อนหน้าได้ปกติ
+บรรทัด 1965: จอแคบ: ตัวเลือกในหน้าต่างเปลี่ยนสถานที่ไม่เยื้องซ้าย
+บรรทัด 1966–1968: จอกว้างไม่เกิน 720 พิกเซล: ทับกฎ .pf-grid-b (แถวที่พัก Tips ปุ่มค้นหา) ให้เป็นคอลัมน์เดียว เพราะกฎสามคอลัมน์ที่เขียนไว้ด้านบนอยู่หลังกฎจอแคบเดิมจึงทับกฎนั้น ทำให้ช่องที่พักแคบเกินไปบนมือถือ
+บรรทัด 1970–1973  ปุ่มรายละเอียดโรงแรม
+1970  .hotel-info-btn { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-left: .35rem; vertical-align: middle;
+1971    border: 1px solid var(--border-subtle, rgba(255,255,255,.15)); border-radius: 8px; background: transparent; color: var(--text-muted); cursor: pointer; }
+1972  .hotel-info-btn svg { width: 15px; height: 15px; }
+1973  .hotel-info-btn:hover { color: var(--accent-primary); }
+บรรทัด 1970–1973: .hotel-info-btn ปุ่มหมุดเล็กข้างชื่อโรงแรมในการ์ดแพ็กเกจ (กดเปิดหน้ารายละเอียดและรีวิวของโรงแรมด้วย showHotelDetail ใน ➜ frontend/app.js) ขนาด 26 พิกเซล ขอบบาง และเปลี่ยนเป็นสีส้มของธีมเมื่อชี้
 
 ไฟล์ที่เชื่อมกับไฟล์นี้
 frontend/app.js

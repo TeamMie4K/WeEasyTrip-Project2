@@ -14,7 +14,7 @@ algorithm/utils.py  — ฟังก์ชันพื้นฐาน: ระย
 backend/main.py  — FastAPI Backend ของ WeEasyTrip (API สร้างแพ็กเกจ ปรับแผน เซสชันร่วมกัน และให้บริการหน้าเว็บ)
 หน้าเว็บ (frontend/)
 frontend/app.js  — ตรรกะหลักของหน้าเว็บ (app.js)
-frontend/extras.js  — ส่วนเสริมของหน้าเว็บ: จังหวัดข้างเคียง อากาศ ลากวาง Tips แผนที่บันทึก
+frontend/extras.js  — ส่วนเสริมของหน้าเว็บ: แบนเนอร์ อากาศ ลากวาง Tips แผนที่บันทึก
 frontend/i18n.js  — สลับภาษาไทย/อังกฤษด้วยพจนานุกรมและ regex
 frontend/index.html  — หน้าหลักของเว็บ (index.html)
 frontend/results.html  — หน้าแสดงผลการทดลอง (results.html)
@@ -23,13 +23,17 @@ frontend/tooltip.js  — กล่องคำอธิบาย (tooltip) แ�
 frontend/tutorial.js  — วิธีใช้แบบนำชม (Tutorial) สำหรับผู้ใช้ครั้งแรก
 การทดลอง (experiments/)
 experiments/make_results_json.py  — สรุปผลทดลองเป็น JSON สำหรับหน้าผลทดลอง
+experiments/run_diagnose.py  — วินิจฉัยผลที่ผิดคาด
 experiments/run_experiments.py  — การทดลองของ Project 1: Greedy / GA / Hybrid บนภูเก็ต (30 รอบ × 3 สถานการณ์)
 experiments/run_ils_experiments.py  — การทดลอง ILS: Hybrid เทียบ Hybrid+ILS
 experiments/run_pareto_experiments.py  — การทดลอง Pareto: NSGA-II เทียบ Hybrid แบบถ่วงน้ำหนัก
+experiments/run_phichit_cause.py  — ทดสอบสาเหตุที่ Hybrid แพ้ในพิจิตร
+experiments/run_preference_cause.py  — ทดสอบสาเหตุที่ความชอบไม่เพิ่มสัดส่วน
 experiments/run_preference_experiments.py  — การทดลองความชอบของผู้ใช้ (เฟส 3)
 experiments/run_province_experiments.py  — การทดลองหลักบทที่ 4: เปรียบเทียบอัลกอริทึมใน 4 จังหวัด และจำลองผู้ใช้แก้แผน
 experiments/run_rl_experiments.py  — การทดลอง RL: คุณภาพ seed และ Hybrid ที่ใช้ RL seed
-experiments/run_sparse_experiments.py  — การทดลองจังหวัดข้อมูลน้อย (sparse) และทริปข้ามจังหวัด
+experiments/run_sensitivity.py  — วิเคราะห์ความไวของพารามิเตอร์
+experiments/run_sparse_experiments.py  — การทดลองจังหวัดข้อมูลน้อย (sparse)
 experiments/train_rl.py  — ฝึกนโยบาย RL ในสภาพแวดล้อมจำลอง
 ข้อมูลและท่อประมวลผล (data/)
 data/apply_names.py  — เติมชื่ออังกฤษให้สถานที่ที่ OSM มีแต่ชื่อไทย
@@ -39,4 +43,6 @@ data/fetch_pois_osm.py  — ดึงสถานที่และโรงแ�
 data/make_banners.py  — สร้างภาพแบนเนอร์ SVG ประจำจังหวัด
 data/merge_pois.py  — รวมข้อมูล OSM ใหม่กับข้อมูลเดิมของภูเก็ต (legacy)
 data/thai_provinces.py  — ทะเบียนรายชื่อ 77 จังหวัด
-หมายเหตุ: ไฟล์ frontend/app.backup.js เป็นสำเนาสำรองของ app.js รุ่นเก่า จึงไม่อธิบายซ้ำ
+ชุดทดสอบ (tests/)
+tests/sweep_provinces.py  — กวาดทดสอบ API ทุกจังหวัด
+tests/test_system.py  — ชุดทดสอบซอฟต์แวร์ (unittest)

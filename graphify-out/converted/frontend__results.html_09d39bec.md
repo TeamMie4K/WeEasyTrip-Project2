@@ -2,7 +2,7 @@
 
 คู่มือโค้ด: frontend/results.html
 หน้าแสดงผลการทดลอง (results.html)
-ไฟล์ต้นฉบับ: frontend/results.html (125 บรรทัด)   ➜ กลับสารบัญคู่มือ
+ไฟล์ต้นฉบับ: frontend/results.html (124 บรรทัด)   ➜ กลับสารบัญคู่มือ
 บทบาทของไฟล์: หน้าเว็บอิสระที่แสดงผลการทดลองของ Project 2 เป็นกราฟแท่งและตาราง ดึงข้อมูลจากไฟล์ results.json ซึ่งสร้างโดย ➜ experiments/make_results_json.py จากผลของสคริปต์ทดลองต่าง ๆ (➜ experiments/run_experiments.py ➜ experiments/run_ils_experiments.py ➜ experiments/run_rl_experiments.py ➜ experiments/run_pareto_experiments.py ➜ experiments/run_sparse_experiments.py) หน้านี้เปิดจากปุ่ม "ผลทดลอง" ใน ➜ frontend/index.html (ปุ่มนั้นผูกในโค้ดของ ➜ frontend/app.js) ไฟล์นี้มี CSS และ JavaScript ฝังในตัวเอง ไม่ต้องพึ่ง ➜ frontend/style.css
 
 บรรทัด 1–8  หัวเอกสาร
@@ -101,7 +101,7 @@
 76    </section>
 77
 78    <section>
-79      <div class="sec-head"><h2>จังหวัดข้อมูลน้อยและทริปข้ามจังหวัด</h2><div class="muted">คะแนน Hybrid เทียบ GA ในแต่ละพื้นที่</div></div>
+79      <div class="sec-head"><h2>จังหวัดข้อมูลน้อย</h2><div class="muted">คะแนน Hybrid เทียบ GA ในแต่ละพื้นที่</div></div>
 80      <div class="card" style="overflow-x:auto"><table id="sp"></table></div>
 81    </section>
 82
@@ -114,76 +114,75 @@
 บรรทัด 60–63: หัวข้อปรับแผนใหม่หลังผู้ใช้แก้ (เทียบการคำนวณค่าใช้จ่ายใหม่กับการปรับแผนด้วย Hybrid ตามที่ ➜ reoptimize() ใน backend/main.py ทำ)
 บรรทัด 65–71: หัวข้อส่วนประกอบของ Hybrid: การ์ดสองใบสำหรับ Insertion Local Search (➜ algorithm/ils.py) และ RL เป็น seed (➜ algorithm/rl.py)
 บรรทัด 73–76: หัวข้อทางเลือกหลายเป้าหมาย NSGA-II (➜ algorithm/pareto.py) พร้อมตารางที่เติมด้วย JavaScript
-บรรทัด 78–81: หัวข้อจังหวัดข้อมูลน้อยและทริปข้ามจังหวัด พร้อมตาราง
+บรรทัด 78–81: หัวข้อจังหวัดข้อมูลน้อย พร้อมตาราง
 บรรทัด 83: หมายเหตุว่าแผนที่ผิดข้อจำกัดนับเป็นคะแนน 0 และทุกตัวเลขรันภายใต้กติกา 6 จุดต่อวัน
 บรรทัด 84: ปิด main
-บรรทัด 85–91  สคริปต์: ธีมและฟังก์ชันช่วย
+บรรทัด 85–90  สคริปต์: ธีมและฟังก์ชันช่วย
 85  <script>
 86  try { document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {}
-87  const TH = {phuket:'ภูเก็ต', chiangmai:'เชียงใหม่', krabi:'กระบี่', samui:'เกาะสมุย', nongbualamphu:'หนองบัวลำภู', phichit:'พิจิตร', lamphun:'ลำพูน', nakhonnayok:'นครนายก', singburi:'สิงห์บุรี', kalasin:'กาฬสินธุ์', chaiyaphum:'ชัยภูมิ', loei:'เลย',
-88    'chiangmai+lamphun':'เชียงใหม่ + ลำพูน', 'bangkok+nonthaburi':'กรุงเทพฯ + นนทบุรี', 'phuket+phangnga':'ภูเก็ต + พังงา', 'phuket+krabi':'ภูเก็ต + กระบี่'};
-89  const $ = id => document.getElementById(id), name = s => TH[s] || s;
-90  const fmtP = p => p < 0.0001 ? '<0.0001' : p.toFixed(4), avg = a => a.reduce((s, x) => s + x, 0) / a.length;
-91  const pair = (label, a, b, n, colA, colB) => `<div class="pair"><span>${label}</span><div><div class="track"><div style="width:${100 * a / n}%;background:${colA}"></div></div><div class="track" style="margin-top:3px"><div style="width:${100 * b / n}%;background:${colB}"></div></div></div><b style="font-size:.8rem;text-align:right">${a}→${b}</b></div>`;
+87  const TH = {phuket:'ภูเก็ต', chiangmai:'เชียงใหม่', krabi:'กระบี่', samui:'เกาะสมุย', nongbualamphu:'หนองบัวลำภู', phichit:'พิจิตร', lamphun:'ลำพูน', nakhonnayok:'นครนายก', singburi:'สิงห์บุรี', kalasin:'กาฬสินธุ์', chaiyaphum:'ชัยภูมิ', loei:'เลย'};
+88  const $ = id => document.getElementById(id), name = s => TH[s] || s;
+89  const fmtP = p => p < 0.0001 ? '<0.0001' : p.toFixed(4), avg = a => a.reduce((s, x) => s + x, 0) / a.length;
+90  const pair = (label, a, b, n, colA, colB) => `<div class="pair"><span>${label}</span><div><div class="track"><div style="width:${100 * a / n}%;background:${colA}"></div></div><div class="track" style="margin-top:3px"><div style="width:${100 * b / n}%;background:${colB}"></div></div></div><b style="font-size:.8rem;text-align:right">${a}→${b}</b></div>`;
 บรรทัด 85: เปิดแท็ก script
 บรรทัด 86: ตั้งธีมจากค่าที่เก็บใน localStorage ไม่มีก็ตามการตั้งค่าของระบบ (มืดหรือสว่าง) ถ้าผิดพลาดก็ข้าม ค่า theme ตัวเดียวกับที่ ➜ frontend/app.js เก็บ
-บรรทัด 87–88: TH ตารางชื่อจังหวัดและพื้นที่ (รวมคู่จังหวัด เช่น ภูเก็ต + พังงา) จาก slug เป็นชื่อไทย
-บรรทัด 89: $ ย่อ getElementById และ name แปลง slug เป็นชื่อไทย (ถ้าไม่มีใช้ slug เดิม)
-บรรทัด 90: fmtP จัดรูปค่า p (ถ้าน้อยกว่า 0.0001 แสดง "<0.0001") และ avg ค่าเฉลี่ย
-บรรทัด 91: pair สร้าง HTML ของแถวเทียบสองแท่ง (แท่งบนค่า a แท่งล่างค่า b จากจำนวนรวม n)
-บรรทัด 92–98  โหลดผลและตัวเลขสรุป
-92  fetch('results.json', {cache: 'no-cache'}).then(r => r.json()).then(D => {
-93    const rows = D.rows, ok = x => x > 0;
-94    const winGA = rows.filter(r => r.Hybrid.score > r.GA.score && r.p_vs_ga < 0.01).length, winGr = rows.filter(r => r.Hybrid.score > r.Greedy.score).length;
-95    const speed = avg(rows.map(r => r.GA.ms / r.Hybrid.ms)), valid = rows.reduce((s, r) => s + r.Hybrid.valid, 0), tot = rows.reduce((s, r) => s + r.Hybrid.n, 0);
-96    $('sub').textContent = `4 จังหวัดหลัก × 3 สถานการณ์ = ${rows.length} ชุด · GA และ Hybrid รันชุดละ ${D.trials} รอบ`;
-97    $('stats').innerHTML = [[`${winGA}/${rows.length}`, 'ชุดที่ Hybrid ชนะ GA อย่างมีนัยสำคัญ'], [`${winGr}/${rows.length}`, 'ชุดที่ Hybrid สูงกว่า Greedy'], [`${speed.toFixed(1)}×`, 'Hybrid เร็วกว่า GA โดยเฉลี่ย'], [`${valid}/${tot}`, 'แผน Hybrid ที่ผ่านข้อจำกัดครบ']]
-98      .map(([b, t]) => `<div class="stat"><b>${b}</b><span>${t}</span></div>`).join('');
-บรรทัด 92: ดึง results.json แบบไม่ใช้แคช แล้วเริ่มวาดทั้งหน้าเมื่อได้ข้อมูล D
-บรรทัด 93: rows แถวผลของแต่ละชุด
-บรรทัด 94: นับชุดที่ Hybrid ชนะ GA อย่างมีนัยสำคัญ (p < 0.01) และชุดที่สูงกว่า Greedy
-บรรทัด 95: คำนวณอัตราเร็ว (เวลา GA ÷ เวลา Hybrid) จำนวนแผนที่ผ่านข้อจำกัด และจำนวนแผนทั้งหมด
-บรรทัด 96: เขียนบรรทัดรอง: จำนวนชุดและจำนวนรอบทดลอง
-บรรทัด 97–98: วาดการ์ดตัวเลขสรุปทั้งหมด
-บรรทัด 100–102  กราฟคะแนนต่อจังหวัด
-100    const max = Math.max(...rows.flatMap(r => [r.Greedy.score, r.GA.score, r.Hybrid.score])), col = {Greedy: 'var(--y)', GA: 'var(--b)', Hybrid: 'var(--acc)'};
-101    $('scores').innerHTML = ['phuket', 'chiangmai', 'krabi', 'samui'].map(p => `<div class="card"><div class="prov">${name(p)}</div>` + rows.filter(r => r.province === p).map(r =>
-102      `<div class="sc"><span>${r.scenario.slice(0, 2)}</span><div class="bars">${['Greedy', 'GA', 'Hybrid'].map(a => `<div class="bar" style="width:${100 * r[a].score / max}%;background:${col[a]}"><i>${r[a].score.toFixed(0)}</i></div>`).join('')}</div></div>`).join('') + '</div>').join('');
-บรรทัด 100: หาคะแนนสูงสุดเพื่อใช้ปรับสเกลแท่ง และกำหนดสีของแต่ละอัลกอริทึม
-บรรทัด 101–102: สำหรับ 4 จังหวัดหลัก วาดการ์ด: แต่ละสถานการณ์มีสามแท่ง (Greedy GA Hybrid) ความกว้างตามสัดส่วนของคะแนนสูงสุด พร้อมตัวเลข
-บรรทัด 104–107  ปรับแผนใหม่หลังแก้
-104    const re = D.reopt, N = re.reduce((s, r) => s + r.n, 0); $('reN').textContent = N;
-105    const sum = k => re.reduce((s, r) => s + r[k], 0);
-106    $('reopt').innerHTML = pair('ผ่านข้อจำกัด', sum('recompute_valid'), sum('reoptimize_valid'), N, 'var(--y)', 'var(--acc)') + pair('มีมื้อครบทุกวัน', sum('recompute_meals'), sum('reoptimize_meals'), N, 'var(--y)', 'var(--acc)') +
-107      '<div class="muted" style="margin-top:6px">แถบบน = คำนวณค่าใช้จ่ายใหม่แบบเดิม · แถบล่าง = ปรับแผนด้วย Hybrid</div>';
-บรรทัด 104: อ่านผลการปรับแผนใหม่ รวมจำนวนแผนทั้งหมดและแสดงในหัวข้อ
-บรรทัด 105: sum รวมค่าตามคีย์ที่ระบุ
-บรรทัด 106–107: วาดสองแถวเทียบ (ผ่านข้อจำกัด และมีมื้อครบทุกวัน) แถบบนคือคำนวณค่าใช้จ่ายใหม่แบบเดิม แถบล่างคือปรับด้วย Hybrid
-บรรทัด 109–114  ส่วนประกอบของ Hybrid
-109    const gains = D.ils.map(x => x.gain);
-110    $('ilsSub').textContent = `เพิ่มคะแนน ${Math.min(...gains).toFixed(1)}–${Math.max(...gains).toFixed(1)}% (มีนัยสำคัญ ${D.ils.filter(x => x.p < 0.05).length}/${D.ils.length} ชุด) แลกกับเวลาเพิ่ม ${(D.ils.reduce((s, x) => s + x.ms_ils, 0) / D.ils.reduce((s, x) => s + x.ms_base, 0)).toFixed(1)} เท่า`;
-111    $('ils').innerHTML = ['phuket', 'chiangmai', 'krabi', 'samui'].map(p => { const g = avg(D.ils.filter(x => x.province === p).map(x => x.gain)); return `<div class="pair" style="grid-template-columns:90px 1fr 60px"><span>${name(p)}</span><div class="track"><div style="width:${Math.min(100, g * 14)}%;background:var(--acc)"></div></div><b style="text-align:right;font-size:.8rem">+${g.toFixed(1)}%</b></div>`; }).join('');
-112    const sig = D.rl.filter(x => x.p < 0.05).length, better = D.rl.filter(x => x.hybrid_rl > x.hybrid).length;
-113    $('rlSub').textContent = `ดีกว่า Hybrid อย่างมีนัยสำคัญเพียง ${sig}/${D.rl.length} ชุด (สูงกว่าเล็กน้อย ${better} ชุด) จึงไม่นำมาใช้เป็นค่าเริ่มต้น`;
-114    $('rl').innerHTML = ['phuket', 'chiangmai', 'krabi', 'samui'].map(p => { const r = D.rl.filter(x => x.province === p), d = avg(r.map(x => x.hybrid_rl - x.hybrid)); return `<div class="pair" style="grid-template-columns:90px 1fr 70px"><span>${name(p)}</span><div class="track"><div style="width:${Math.min(100, Math.abs(d) * 60 + 2)}%;background:var(--b)"></div></div><b style="text-align:right;font-size:.8rem">${d >= 0 ? '+' : ''}${d.toFixed(2)}</b></div>`; }).join('') + '<div class="muted">ผลต่างคะแนนเฉลี่ย Hybrid+RL − Hybrid</div>';
-บรรทัด 109–111: ILS: หาช่วงเปอร์เซ็นต์ที่เพิ่ม และนับชุดที่มีนัยสำคัญ แล้ววาดค่าเฉลี่ยของแต่ละจังหวัด
-บรรทัด 112–114: RL: นับชุดที่ดีกว่าอย่างมีนัยสำคัญและชุดที่สูงกว่าเล็กน้อย แล้ววาดผลต่างเฉลี่ยของแต่ละจังหวัด
-บรรทัด 116–117  ตาราง NSGA-II
-116    $('par').innerHTML = '<tr><th>จังหวัด</th><th>แผนทางเลือก NSGA-II</th><th>แผนทางเลือก Hybrid</th><th>เวลา NSGA-II</th><th>เวลา Hybrid</th><th>คุณภาพรวม (hypervolume)</th></tr>' +
-117      D.pareto.map(r => `<tr><td>${name(r.province)}</td><td><b>${r.plans_nsga.toFixed(0)}</b></td><td>${r.plans_ws.toFixed(0)}</td><td>${(r.ms_nsga / 1000).toFixed(1)} วินาที</td><td>${(r.ms_ws / 1000).toFixed(1)} วินาที</td><td class="${r.ratio > 1 && r.p < 0.05 ? 'win' : r.ratio < 1 ? 'lose' : ''}">${r.ratio.toFixed(2)}× ${r.ratio > 1 && r.p < 0.05 ? '(ดีกว่า)' : r.ratio < 1 ? '(ต่ำกว่า)' : '(ใกล้เคียง)'}</td></tr>`).join('');
-บรรทัด 116–117: ส่วนหัวตาราง (จำนวนแผน เวลา และคุณภาพของทั้งสองวิธี) และแถวของแต่ละจังหวัดจากผล Pareto
-บรรทัด 119–121  ตารางจังหวัดข้อมูลน้อย
-119    $('sp').innerHTML = '<tr><th>พื้นที่</th><th>ร้านอาหาร</th>' + ['S1', 'S2', 'S3'].map(s => `<th>${s} Hybrid / GA</th>`).join('') + '</tr>' +
-120      D.sparse.S1.map((r, i) => `<tr><td>${name(r.area)}</td><td>${r.rest}</td>` + ['S1', 'S2', 'S3'].map(s => { const x = D.sparse[s][i], w = x.Hybrid > x.GA && x.p < 0.05; return `<td class="${w ? 'win' : 'lose'}">${x.Hybrid.toFixed(0)} / ${x.GA.toFixed(0)}</td>`; }).join('') + '</tr>').join('') +
-121      '<tr><td colspan="5" class="muted" style="text-align:left">สีเขียว = Hybrid สูงกว่า GA อย่างมีนัยสำคัญ · สีแดง = ไม่ใช่ (พิจิตรมีร้านอาหาร 8 ร้านจึงไม่พอสำหรับทริป 5–7 วัน)</td></tr>';
-บรรทัด 119–121: ตารางพื้นที่ จำนวนร้านอาหาร และคะแนน Hybrid/GA ของสถานการณ์ S1 S2 S3 โดยเซลล์เป็นสีเขียวถ้า Hybrid ชนะอย่างมีนัยสำคัญ ไม่ก็สีแดง และท้ายตารางมีคำอธิบายสี
-บรรทัด 122–125  จัดการข้อผิดพลาด
-122  }).catch(e => { $('sub').textContent = 'โหลดข้อมูลผลทดลองไม่สำเร็จ: ' + e.message + ' (ต้องเปิดผ่านเซิร์ฟเวอร์ ไม่ใช่เปิดไฟล์ตรงๆ)'; });
-123  </script>
-124  </body>
-125  </html>
-บรรทัด 122: ถ้าโหลดไม่สำเร็จ แสดงข้อความผิดพลาด (ต้องเปิดผ่านเซิร์ฟเวอร์ ไม่ใช่เปิดไฟล์ตรง ๆ)
-บรรทัด 123–125: ปิด script body และ html
+บรรทัด 87: TH ตารางชื่อจังหวัดและพื้นที่ จาก slug เป็นชื่อไทย
+บรรทัด 88: $ ย่อ getElementById และ name แปลง slug เป็นชื่อไทย (ถ้าไม่มีใช้ slug เดิม)
+บรรทัด 89: fmtP จัดรูปค่า p (ถ้าน้อยกว่า 0.0001 แสดง "<0.0001") และ avg ค่าเฉลี่ย
+บรรทัด 90: pair สร้าง HTML ของแถวเทียบสองแท่ง (แท่งบนค่า a แท่งล่างค่า b จากจำนวนรวม n)
+บรรทัด 91–97  โหลดผลและตัวเลขสรุป
+91  fetch('results.json', {cache: 'no-cache'}).then(r => r.json()).then(D => {
+92    const rows = D.rows, ok = x => x > 0;
+93    const winGA = rows.filter(r => r.Hybrid.score > r.GA.score && r.p_vs_ga < 0.01).length, winGr = rows.filter(r => r.Hybrid.score > r.Greedy.score).length;
+94    const speed = avg(rows.map(r => r.GA.ms / r.Hybrid.ms)), valid = rows.reduce((s, r) => s + r.Hybrid.valid, 0), tot = rows.reduce((s, r) => s + r.Hybrid.n, 0);
+95    $('sub').textContent = `4 จังหวัดหลัก × 3 สถานการณ์ = ${rows.length} ชุด · GA และ Hybrid รันชุดละ ${D.trials} รอบ`;
+96    $('stats').innerHTML = [[`${winGA}/${rows.length}`, 'ชุดที่ Hybrid ชนะ GA อย่างมีนัยสำคัญ'], [`${winGr}/${rows.length}`, 'ชุดที่ Hybrid สูงกว่า Greedy'], [`${speed.toFixed(1)}×`, 'Hybrid เร็วกว่า GA โดยเฉลี่ย'], [`${valid}/${tot}`, 'แผน Hybrid ที่ผ่านข้อจำกัดครบ']]
+97      .map(([b, t]) => `<div class="stat"><b>${b}</b><span>${t}</span></div>`).join('');
+บรรทัด 91: ดึง results.json แบบไม่ใช้แคช แล้วเริ่มวาดทั้งหน้าเมื่อได้ข้อมูล D
+บรรทัด 92: rows แถวผลของแต่ละชุด
+บรรทัด 93: นับชุดที่ Hybrid ชนะ GA อย่างมีนัยสำคัญ (p < 0.01) และชุดที่สูงกว่า Greedy
+บรรทัด 94: คำนวณอัตราเร็ว (เวลา GA ÷ เวลา Hybrid) จำนวนแผนที่ผ่านข้อจำกัด และจำนวนแผนทั้งหมด
+บรรทัด 95: เขียนบรรทัดรอง: จำนวนชุดและจำนวนรอบทดลอง
+บรรทัด 96–97: วาดการ์ดตัวเลขสรุปทั้งหมด
+บรรทัด 99–101  กราฟคะแนนต่อจังหวัด
+99    const max = Math.max(...rows.flatMap(r => [r.Greedy.score, r.GA.score, r.Hybrid.score])), col = {Greedy: 'var(--y)', GA: 'var(--b)', Hybrid: 'var(--acc)'};
+100    $('scores').innerHTML = ['phuket', 'chiangmai', 'krabi', 'samui'].map(p => `<div class="card"><div class="prov">${name(p)}</div>` + rows.filter(r => r.province === p).map(r =>
+101      `<div class="sc"><span>${r.scenario.slice(0, 2)}</span><div class="bars">${['Greedy', 'GA', 'Hybrid'].map(a => `<div class="bar" style="width:${100 * r[a].score / max}%;background:${col[a]}"><i>${r[a].score.toFixed(0)}</i></div>`).join('')}</div></div>`).join('') + '</div>').join('');
+บรรทัด 99: หาคะแนนสูงสุดเพื่อใช้ปรับสเกลแท่ง และกำหนดสีของแต่ละอัลกอริทึม
+บรรทัด 100–101: สำหรับ 4 จังหวัดหลัก วาดการ์ด: แต่ละสถานการณ์มีสามแท่ง (Greedy GA Hybrid) ความกว้างตามสัดส่วนของคะแนนสูงสุด พร้อมตัวเลข
+บรรทัด 103–106  ปรับแผนใหม่หลังแก้
+103    const re = D.reopt, N = re.reduce((s, r) => s + r.n, 0); $('reN').textContent = N;
+104    const sum = k => re.reduce((s, r) => s + r[k], 0);
+105    $('reopt').innerHTML = pair('ผ่านข้อจำกัด', sum('recompute_valid'), sum('reoptimize_valid'), N, 'var(--y)', 'var(--acc)') + pair('มีมื้อครบทุกวัน', sum('recompute_meals'), sum('reoptimize_meals'), N, 'var(--y)', 'var(--acc)') +
+106      '<div class="muted" style="margin-top:6px">แถบบน = คำนวณค่าใช้จ่ายใหม่แบบเดิม · แถบล่าง = ปรับแผนด้วย Hybrid</div>';
+บรรทัด 103: อ่านผลการปรับแผนใหม่ รวมจำนวนแผนทั้งหมดและแสดงในหัวข้อ
+บรรทัด 104: sum รวมค่าตามคีย์ที่ระบุ
+บรรทัด 105–106: วาดสองแถวเทียบ (ผ่านข้อจำกัด และมีมื้อครบทุกวัน) แถบบนคือคำนวณค่าใช้จ่ายใหม่แบบเดิม แถบล่างคือปรับด้วย Hybrid
+บรรทัด 108–113  ส่วนประกอบของ Hybrid
+108    const gains = D.ils.map(x => x.gain);
+109    $('ilsSub').textContent = `เพิ่มคะแนน ${Math.min(...gains).toFixed(1)}–${Math.max(...gains).toFixed(1)}% (มีนัยสำคัญ ${D.ils.filter(x => x.p < 0.05).length}/${D.ils.length} ชุด) แลกกับเวลาเพิ่ม ${(D.ils.reduce((s, x) => s + x.ms_ils, 0) / D.ils.reduce((s, x) => s + x.ms_base, 0)).toFixed(1)} เท่า`;
+110    $('ils').innerHTML = ['phuket', 'chiangmai', 'krabi', 'samui'].map(p => { const g = avg(D.ils.filter(x => x.province === p).map(x => x.gain)); return `<div class="pair" style="grid-template-columns:90px 1fr 60px"><span>${name(p)}</span><div class="track"><div style="width:${Math.min(100, g * 14)}%;background:var(--acc)"></div></div><b style="text-align:right;font-size:.8rem">+${g.toFixed(1)}%</b></div>`; }).join('');
+111    const sig = D.rl.filter(x => x.p < 0.05).length, better = D.rl.filter(x => x.hybrid_rl > x.hybrid).length;
+112    $('rlSub').textContent = `ดีกว่า Hybrid อย่างมีนัยสำคัญเพียง ${sig}/${D.rl.length} ชุด (สูงกว่าเล็กน้อย ${better} ชุด) จึงไม่นำมาใช้เป็นค่าเริ่มต้น`;
+113    $('rl').innerHTML = ['phuket', 'chiangmai', 'krabi', 'samui'].map(p => { const r = D.rl.filter(x => x.province === p), d = avg(r.map(x => x.hybrid_rl - x.hybrid)); return `<div class="pair" style="grid-template-columns:90px 1fr 70px"><span>${name(p)}</span><div class="track"><div style="width:${Math.min(100, Math.abs(d) * 60 + 2)}%;background:var(--b)"></div></div><b style="text-align:right;font-size:.8rem">${d >= 0 ? '+' : ''}${d.toFixed(2)}</b></div>`; }).join('') + '<div class="muted">ผลต่างคะแนนเฉลี่ย Hybrid+RL − Hybrid</div>';
+บรรทัด 108–110: ILS: หาช่วงเปอร์เซ็นต์ที่เพิ่ม และนับชุดที่มีนัยสำคัญ แล้ววาดค่าเฉลี่ยของแต่ละจังหวัด
+บรรทัด 111–113: RL: นับชุดที่ดีกว่าอย่างมีนัยสำคัญและชุดที่สูงกว่าเล็กน้อย แล้ววาดผลต่างเฉลี่ยของแต่ละจังหวัด
+บรรทัด 115–116  ตาราง NSGA-II
+115    $('par').innerHTML = '<tr><th>จังหวัด</th><th>แผนทางเลือก NSGA-II</th><th>แผนทางเลือก Hybrid</th><th>เวลา NSGA-II</th><th>เวลา Hybrid</th><th>คุณภาพรวม (hypervolume)</th></tr>' +
+116      D.pareto.map(r => `<tr><td>${name(r.province)}</td><td><b>${r.plans_nsga.toFixed(0)}</b></td><td>${r.plans_ws.toFixed(0)}</td><td>${(r.ms_nsga / 1000).toFixed(1)} วินาที</td><td>${(r.ms_ws / 1000).toFixed(1)} วินาที</td><td class="${r.ratio > 1 && r.p < 0.05 ? 'win' : r.ratio < 1 ? 'lose' : ''}">${r.ratio.toFixed(2)}× ${r.ratio > 1 && r.p < 0.05 ? '(ดีกว่า)' : r.ratio < 1 ? '(ต่ำกว่า)' : '(ใกล้เคียง)'}</td></tr>`).join('');
+บรรทัด 115–116: ส่วนหัวตาราง (จำนวนแผน เวลา และคุณภาพของทั้งสองวิธี) และแถวของแต่ละจังหวัดจากผล Pareto
+บรรทัด 118–120  ตารางจังหวัดข้อมูลน้อย
+118    $('sp').innerHTML = '<tr><th>พื้นที่</th><th>ร้านอาหาร</th>' + ['S1', 'S2', 'S3'].map(s => `<th>${s} Hybrid / GA</th>`).join('') + '</tr>' +
+119      D.sparse.S1.map((r, i) => `<tr><td>${name(r.area)}</td><td>${r.rest}</td>` + ['S1', 'S2', 'S3'].map(s => { const x = D.sparse[s][i], w = x.Hybrid > x.GA && x.p < 0.05; return `<td class="${w ? 'win' : 'lose'}">${x.Hybrid.toFixed(0)} / ${x.GA.toFixed(0)}</td>`; }).join('') + '</tr>').join('') +
+120      '<tr><td colspan="5" class="muted" style="text-align:left">สีเขียว = Hybrid สูงกว่า GA อย่างมีนัยสำคัญ · สีแดง = ไม่ใช่ (พิจิตรมีร้านอาหาร 8 ร้านจึงไม่พอสำหรับทริป 5–7 วัน)</td></tr>';
+บรรทัด 118–120: ตารางพื้นที่ จำนวนร้านอาหาร และคะแนน Hybrid/GA ของสถานการณ์ S1 S2 S3 โดยเซลล์เป็นสีเขียวถ้า Hybrid ชนะอย่างมีนัยสำคัญ ไม่ก็สีแดง และท้ายตารางมีคำอธิบายสี
+บรรทัด 121–124  จัดการข้อผิดพลาด
+121  }).catch(e => { $('sub').textContent = 'โหลดข้อมูลผลทดลองไม่สำเร็จ: ' + e.message + ' (ต้องเปิดผ่านเซิร์ฟเวอร์ ไม่ใช่เปิดไฟล์ตรงๆ)'; });
+122  </script>
+123  </body>
+124  </html>
+บรรทัด 121: ถ้าโหลดไม่สำเร็จ แสดงข้อความผิดพลาด (ต้องเปิดผ่านเซิร์ฟเวอร์ ไม่ใช่เปิดไฟล์ตรง ๆ)
+บรรทัด 122–124: ปิด script body และ html
 
 ไฟล์ที่เชื่อมกับไฟล์นี้
 algorithm/ils.py

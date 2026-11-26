@@ -173,20 +173,3 @@ def nsga2_solve(pois: List[Dict], hotel: Dict, days: int, budget: float, scoring
             if not any(abs(a['score'] - k['score']) < 1e-9 and abs(a['distance_km'] - k['distance_km']) < 1e-6 and abs(a['diversity'] - k['diversity']) < 1e-9 for k in keep):
                 keep.append(a)
     return sorted(keep, key=lambda s: -s['score'])
-
-
-def hypervolume(points: List[tuple], ref: tuple, samples: int = 60000, rng: random.Random = None) -> float:
-    """ประมาณ hypervolume (minimization) ด้วย Monte Carlo ภายในกล่อง [min(points), ref]"""
-    if not points:
-        return 0.0
-    rng = rng or random.Random(0)
-    lo = [min(p[m] for p in points) for m in range(3)]
-    box = 1.0
-    for m in range(3):
-        box *= max(ref[m] - lo[m], 1e-12)
-    hit = 0
-    for _ in range(samples):
-        q = [rng.uniform(lo[m], ref[m]) for m in range(3)]
-        if any(all(p[m] <= q[m] for m in range(3)) for p in points):
-            hit += 1
-    return box * hit / samples

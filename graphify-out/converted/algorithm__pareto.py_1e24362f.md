@@ -2,7 +2,7 @@
 
 คู่มือโค้ด: algorithm/pareto.py
 NSGA-II หลายวัตถุประสงค์ (Pareto front)
-ไฟล์ต้นฉบับ: algorithm/pareto.py (192 บรรทัด)   ➜ กลับสารบัญคู่มือ
+ไฟล์ต้นฉบับ: algorithm/pareto.py (175 บรรทัด)   ➜ กลับสารบัญคู่มือ
 บทบาทของไฟล์: สร้างชุดแผนทางเลือกที่ "ไม่มีแผนใดดีกว่าทุกด้าน" ตามวัตถุประสงค์ 3 ข้อ คือคะแนนรวม (มากสุด) ความหลากหลายของหมวดต่อวัน (มากสุด) และระยะขับรวม (น้อยสุด) ให้ผู้ใช้เลือก trade-off เอง ยืมตัวดำเนินการ GA และตัวซ่อมแผนจาก ➜ algorithm/hybrid.py เริ่มประชากรด้วย ➜ greedy_solve() ใน algorithm/greedy.py และตรวจแผนด้วย ➜ evaluate_route() ใน algorithm/utils.py ถูกเรียกจาก ➜ backend/main.py และ ➜ experiments/run_pareto_experiments.py
 
 บรรทัด 1–20  หัวไฟล์และการนำเข้า
@@ -227,29 +227,6 @@ NSGA-II หลายวัตถุประสงค์ (Pareto front)
 บรรทัด 162–168: ซ่อมแต่ละคำตอบด้วย _repair_final ประเมินใหม่ เก็บเฉพาะที่ผ่านข้อจำกัด
 บรรทัด 169–174: กรองให้เหลือเฉพาะคำตอบที่ไม่ถูกครอบงำหลังซ่อม และตัดคำตอบที่ซ้ำกันทุกค่า
 บรรทัด 175: คืนรายการเรียงตามคะแนนมากไปน้อย
-บรรทัด 178–192  ประมาณ hypervolume
-178  def hypervolume(points: List[tuple], ref: tuple, samples: int = 60000, rng: random.Random = None) -> float:
-179      """ประมาณ hypervolume (minimization) ด้วย Monte Carlo ภายในกล่อง [min(points), ref]"""
-180      if not points:
-181          return 0.0
-182      rng = rng or random.Random(0)
-183      lo = [min(p[m] for p in points) for m in range(3)]
-184      box = 1.0
-185      for m in range(3):
-186          box *= max(ref[m] - lo[m], 1e-12)
-187      hit = 0
-188      for _ in range(samples):
-189          q = [rng.uniform(lo[m], ref[m]) for m in range(3)]
-190          if any(all(p[m] <= q[m] for m in range(3)) for p in points):
-191              hit += 1
-192      return box * hit / samples
-บรรทัด 178–179: ประกาศ hypervolume ประมาณปริมาตรที่ front ครอบ (แบบ minimization) ด้วยวิธี Monte Carlo ใช้เป็นตัวเทียบคุณภาพใน ➜ experiments/run_pareto_experiments.py
-บรรทัด 180–181: ไม่มีจุด คืน 0
-บรรทัด 182: ตัวสุ่มที่ตั้ง seed 0 เพื่อให้ผลซ้ำได้
-บรรทัด 183: มุมล่างของกล่องคือค่าต่ำสุดของแต่ละมิติ
-บรรทัด 184–186: คำนวณปริมาตรกล่องระหว่างมุมล่างกับจุดอ้างอิง ref
-บรรทัด 187–191: สุ่มจุดในกล่อง นับจุดที่ถูกครอบงำโดยคำตอบใดคำตอบหนึ่งในทุกมิติ
-บรรทัด 192: ปริมาตร = ปริมาตรกล่อง × สัดส่วนจุดที่ถูกครอบ
 
 ไฟล์ที่เชื่อมกับไฟล์นี้
 algorithm/greedy.py
