@@ -524,12 +524,18 @@ function sessionSettings() {
     start_date: d ? `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` : null,
     preferences: getPreferences(),
     locked: [...STATE.locked], excluded: [...STATE.excluded],
+    base_warn: STATE.selectedPkg && STATE.selectedPkg._base instanceof Set ? [...STATE.selectedPkg._base] : null,   // คำเตือนตั้งต้นของแผน ใช้ร่วมกันทุกเครื่อง ไม่งั้นแต่ละเครื่องตั้งต้นต่างกันแล้วเห็นคำเตือนไม่เหมือนกัน
   };
 }
+function applyBaseWarn(pkg, st) { if (pkg && st && Array.isArray(st.base_warn)) setHidden(pkg, '_base', new Set(st.base_warn)); return pkg; }
+
+// แผนจาก session อาจมี _base ที่ถูก serialize เป็น {} (จากรุ่นเก่า): ลบทิ้งเพื่อให้คำนวณคำเตือนตั้งต้นใหม่
+function cleanShared(p) { if (p && !(p._base instanceof Set)) delete p._base; return p; }
 
 function applySharedState(data, announce) {
-  STATE.selectedPkg = data.package;
+  STATE.selectedPkg = cleanShared(data.package);
   const st = data.settings || {};
+  applyBaseWarn(STATE.selectedPkg, st);
   STATE.locked = new Set(st.locked || []);
   STATE.excluded = new Set(st.excluded || []);
   STATE.session.version = data.version;
@@ -571,7 +577,13 @@ function startSessionPolling() {
       if (res.status === 404) { clearInterval(ss.timer); showToast('เซสชันหมดอายุแล้ว', 'error'); STATE.session = null; return; }
       if (!res.ok) return;
       const data = await res.json();
-      if (data.changed) applySharedState(data, 'เพื่อนแก้ไขแผน — อัปเดตให้แล้ว');
+      if (data.changed) {
+        try { applySharedState(data, 'เพื่อนแก้ไขแผน — อัปเดตให้แล้ว'); }
+        catch (e) {   // แสดงผลแผนจากเพื่อนไม่สำเร็จ: ต้องไม่เงียบ ไม่งั้นดูเหมือน "ไม่มีการอัปเดต"
+          console.error('applySharedState', e);
+          if (!ss.errShown) { ss.errShown = true; showToast(`รับแผนจากเพื่อนไม่สำเร็จ: ${e.message} (ลองรีเฟรชหน้า Ctrl+F5)`, 'error', 8000); }
+        }
+      }
     } catch (e) { /* เครือข่ายสะดุด: ลองใหม่รอบหน้า */ }
   }, 2000);
 }
@@ -592,7 +604,7 @@ async function pushSession() {
     } else if (res.ok) {
       ss.version = (await res.json()).version;
     }
-  } catch (e) { /* ออฟไลน์: เก็บไว้ในเครื่อง */ }
+  } catch (e) { console.warn('pushSession', e); /* ออฟไลน์: เก็บไว้ในเครื่อง */ }
   finally { ss.busy = false; }
 }
 
@@ -620,7 +632,7 @@ async function joinSession(id) {
     STATE.includeHotel = st.include_hotel !== false;
     STATE.session = {id: data.id, version: data.version, timer: null, busy: false};
     document.getElementById('detailPanel').style.display = 'block';
-    STATE.selectedPkg = data.package;
+    STATE.selectedPkg = applyBaseWarn(cleanShared(data.package), st);
     STATE.locked = new Set(st.locked || []); STATE.excluded = new Set(st.excluded || []);
     renderDetail(STATE.selectedPkg);
     setTimeout(() => {
@@ -666,7 +678,7 @@ function updateHistBtns() {
 function stepHistory(dir) {
   const n = HIST.idx + dir; if (n < 0 || n >= HIST.stack.length || !STATE.selectedPkg) return;
   HIST.idx = n; const e = HIST.stack[n], c = JSON.parse(JSON.stringify(e.pkg));
-  setHidden(c, '_orig', HIST.orig); c._base = HIST.base;
+  setHidden(c, '_orig', HIST.orig); if (HIST.base instanceof Set) setHidden(c, '_base', HIST.base);
   STATE.selectedPkg = c; STATE.locked = new Set(e.locked); STATE.excluded = new Set(e.excluded);
   HIST.applying = true;
   try { drawOnMap(c); renderDetail(c); } finally { HIST.applying = false; }
@@ -697,7 +709,7 @@ function uiWarnings(pkg, raw = false) {
   const key = w => `${w.id}:${w.type}`;
   if (raw) return out;
   // แผนที่ระบบสร้างเองมีการรอร้านเปิดตามปกติ จึงไม่เตือน: จำคำเตือนตั้งต้นของแผนไว้ (_base) แล้วแสดงเฉพาะที่เกิดใหม่หลังผู้ใช้แก้แผน
-  if (!pkg._base) { pkg._base = new Set(out.map(key)); return []; }
+  if (!(pkg._base instanceof Set)) { setHidden(pkg, '_base', new Set(out.map(key))); return []; }   // _base ต้องเป็น Set ที่ไม่ถูก serialize (ถ้าไปอยู่ใน JSON ของ session จะกลายเป็น {} แล้วเครื่องอื่นพัง)
   return out.filter(w => !pkg._base.has(key(w)));
 }
 
@@ -1677,11 +1689,12 @@ async function recomputeAndRefresh(rollback) {
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    data._base = STATE.selectedPkg._base;   // คำเตือนตั้งต้นของแผนเดิม
+    if (STATE.selectedPkg._base instanceof Set) setHidden(data, '_base', STATE.selectedPkg._base);   // คำเตือนตั้งต้นของแผนเดิม (ไม่ให้ถูก serialize)
     if (STATE.selectedPkg._orig) setHidden(data, '_orig', STATE.selectedPkg._orig);   // แผนตั้งต้นสำหรับปุ่มคืนค่าเดิม
     STATE.selectedPkg = data;
     drawOnMap(data);
     renderDetail(data);
+    pushSession();   // ส่งแผนที่ผู้ใช้แก้ (ลาก/สลับ/ลบ/เพิ่ม) ขึ้นเซสชัน ให้เครื่องอื่นเห็น (ถ้าไม่ได้แชร์จะไม่ทำอะไร)
     t.remove();
     if (uiWarnings(data).length) {
       showToast(`อัปเดตแล้ว · ${uiWarnings(data).length} คำเตือน (ดูการ์ดสีแดง)`, 'error', 5000);

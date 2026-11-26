@@ -1,6 +1,6 @@
 SPARSE / CROSS-PROVINCE EXPERIMENTS — trials=10, scenario=S3_Long_Premium
 nongbualamphu	POI=56	H=5	rest=24	Greedy=302.3	GA=303.0	Hybrid=306.4	valid=10/10	p=0.0139
-phichit	POI=43	H=6	rest=8	Greedy=252.3	GA=164.54	Hybrid=155.61	valid=10/10	p=0.7638
+phichit	POI=43	H=6	rest=8	Greedy=252.3	GA=164.54	Hybrid=180.78	valid=10/10	p=0.0521
 lamphun	POI=109	H=12	rest=50	Greedy=225.1	GA=241.36	Hybrid=308.07	valid=10/10	p=0.0001
 nakhonnayok	POI=97	H=9	rest=33	Greedy=281.2	GA=302.97	Hybrid=304.64	valid=10/10	p=0.0003
 singburi	POI=70	H=8	rest=24	Greedy=307.5	GA=304.45	Hybrid=304.88	valid=10/10	p=0.2469

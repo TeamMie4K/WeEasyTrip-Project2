@@ -59,7 +59,7 @@
      "min": 201.3,
      "max": 201.3
     },
-    "time_ms": 2.6,
+    "time_ms": 2.3,
     "valid": 1,
     "meals_ok": 0,
     "km_day": 154.0
@@ -72,7 +72,7 @@
      "min": 143.2,
      "max": 201.5
     },
-    "time_ms": 3238.08,
+    "time_ms": 3611.61,
     "valid": 10,
     "meals_ok": 0,
     "km_day": 138.0
@@ -80,17 +80,17 @@
    "Hybrid": {
     "n": 10,
     "score": {
-     "mean": 141.29,
-     "stdev": 21.89,
-     "min": 113.9,
-     "max": 179.5
+     "mean": 167.8,
+     "stdev": 18.03,
+     "min": 135.8,
+     "max": 200.7
     },
-    "time_ms": 348.07,
+    "time_ms": 363.18,
     "valid": 10,
     "meals_ok": 0,
-    "km_day": 132.2
+    "km_day": 142.5
    },
-   "hybrid_vs_ga_p": 0.9895056581351126
+   "hybrid_vs_ga_p": 0.5751422850731875
   },
   "lamphun": {
    "pois": 109,

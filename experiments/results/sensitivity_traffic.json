@@ -1,0 +1,134 @@
+{
+ "param": "traffic",
+ "base": 1.25,
+ "trials": 8,
+ "scenario": "S2_Medium_Standard",
+ "results": {
+  "1.0": {
+   "Greedy": {
+    "score": 227.85,
+    "km_day": 38.549,
+    "hours_day": 10.336666666666666,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 236.3,
+     "chiangmai": 231.6,
+     "krabi": 221.4,
+     "samui": 222.1
+    }
+   },
+   "GA": {
+    "score": 228.359375,
+    "km_day": 40.3375625,
+    "hours_day": 10.324135416666666,
+    "ok": 32,
+    "n": 32,
+    "per_prov": {
+     "phuket": 234.2875,
+     "chiangmai": 234.3,
+     "krabi": 220.575,
+     "samui": 224.275
+    }
+   },
+   "Hybrid": {
+    "score": 237.803125,
+    "km_day": 26.0048125,
+    "hours_day": 10.715947916666666,
+    "ok": 32,
+    "n": 32,
+    "per_prov": {
+     "phuket": 245.6,
+     "chiangmai": 244.875,
+     "krabi": 227.1625,
+     "samui": 233.575
+    }
+   },
+   "hybrid_vs_ga_p": 1.82066529432723e-05
+  },
+  "1.25": {
+   "Greedy": {
+    "score": 229.575,
+    "km_day": 39.1825,
+    "hours_day": 10.450666666666667,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 236.2,
+     "chiangmai": 233.6,
+     "krabi": 221.9,
+     "samui": 226.6
+    }
+   },
+   "GA": {
+    "score": 228.03125,
+    "km_day": 40.366,
+    "hours_day": 10.345229166666666,
+    "ok": 32,
+    "n": 32,
+    "per_prov": {
+     "phuket": 233.625,
+     "chiangmai": 235.2875,
+     "krabi": 220.65,
+     "samui": 222.5625
+    }
+   },
+   "Hybrid": {
+    "score": 238.115625,
+    "km_day": 26.851125,
+    "hours_day": 10.77865625,
+    "ok": 32,
+    "n": 32,
+    "per_prov": {
+     "phuket": 247.1,
+     "chiangmai": 244.26250000000002,
+     "krabi": 227.15,
+     "samui": 233.95
+    }
+   },
+   "hybrid_vs_ga_p": 1.16901546476782e-05
+  },
+  "1.5": {
+   "Greedy": {
+    "score": 228.55,
+    "km_day": 38.1135,
+    "hours_day": 10.498000000000001,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 236.3,
+     "chiangmai": 232.6,
+     "krabi": 221.9,
+     "samui": 223.4
+    }
+   },
+   "GA": {
+    "score": 228.903125,
+    "km_day": 40.5261875,
+    "hours_day": 10.416052083333334,
+    "ok": 32,
+    "n": 32,
+    "per_prov": {
+     "phuket": 235.85,
+     "chiangmai": 235.325,
+     "krabi": 220.1625,
+     "samui": 224.275
+    }
+   },
+   "Hybrid": {
+    "score": 237.93125,
+    "km_day": 26.3970625,
+    "hours_day": 10.718979166666667,
+    "ok": 32,
+    "n": 32,
+    "per_prov": {
+     "phuket": 245.475,
+     "chiangmai": 245.3,
+     "krabi": 226.8625,
+     "samui": 234.0875
+    }
+   },
+   "hybrid_vs_ga_p": 8.966802430639257e-05
+  }
+ }
+}

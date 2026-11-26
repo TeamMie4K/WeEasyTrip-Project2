@@ -152,6 +152,16 @@ python run_experiments.py
 - `stats.txt` — ตารางสรุปสถิติ (mean ± std, Kruskal-Wallis test)
 - `convergence.png` — กราฟ convergence ของ GA vs Hybrid vs Greedy
 
+### การทดสอบซอฟต์แวร์ (Project 2)
+
+```bash
+python -m unittest tests.test_system -v      # 26 กรณี: ฟังก์ชันพื้นฐาน, อัลกอริทึม, API (ราว 11 วินาที)
+python tests/sweep_provinces.py 6              # กวาดทดสอบ API ทุกจังหวัด 2,106 แผน (ราว 4 นาที)
+python docs/figures/make_figures.py          # สร้างแผนภาพประกอบรายงาน (docs/figures/fig_*.png)
+```
+
+การวิเคราะห์เพิ่มเติม: `experiments/run_sensitivity.py <dist|greedy|traffic|time>` (ความไวต่อพารามิเตอร์) และ `experiments/run_diagnose.py` (วินิจฉัยจังหวัดข้อมูลน้อยและความชอบ)
+
 ### API Endpoints (สำหรับนักพัฒนา)
 
 | Method | Endpoint | คำอธิบาย |

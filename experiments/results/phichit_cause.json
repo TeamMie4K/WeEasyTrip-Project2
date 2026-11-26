@@ -1,0 +1,86 @@
+{
+ "phichit": {
+  "restaurants": 8,
+  "current": {
+   "score": 141.29,
+   "sights": 2.34,
+   "meals": 1.6,
+   "short": 1.4,
+   "km_day": 132.23,
+   "obj": -84.97,
+   "valid": 10
+  },
+  "fixed": {
+   "score": 167.8,
+   "sights": 3.08,
+   "meals": 1.6,
+   "short": 1.4,
+   "km_day": 142.52,
+   "obj": -77.3,
+   "valid": 10
+  }
+ },
+ "chaiyaphum": {
+  "restaurants": 19,
+  "current": {
+   "score": 155.84,
+   "sights": 2.28,
+   "meals": 2,
+   "short": 0,
+   "km_day": 60.84,
+   "obj": 33.37,
+   "valid": 10
+  },
+  "fixed": {
+   "score": 155.84,
+   "sights": 2.28,
+   "meals": 2,
+   "short": 0,
+   "km_day": 60.84,
+   "obj": 33.37,
+   "valid": 10
+  }
+ },
+ "kalasin": {
+  "restaurants": 37,
+  "current": {
+   "score": 215.52,
+   "sights": 4,
+   "meals": 2,
+   "short": 0,
+   "km_day": 34.96,
+   "obj": 128.9,
+   "valid": 10
+  },
+  "fixed": {
+   "score": 215.52,
+   "sights": 4,
+   "meals": 2,
+   "short": 0,
+   "km_day": 34.96,
+   "obj": 128.9,
+   "valid": 10
+  }
+ },
+ "singburi": {
+  "restaurants": 24,
+  "current": {
+   "score": 219.18,
+   "sights": 4,
+   "meals": 2,
+   "short": 0,
+   "km_day": 22.98,
+   "obj": 152.97,
+   "valid": 10
+  },
+  "fixed": {
+   "score": 219.18,
+   "sights": 4,
+   "meals": 2,
+   "short": 0,
+   "km_day": 22.98,
+   "obj": 152.97,
+   "valid": 10
+  }
+ }
+}

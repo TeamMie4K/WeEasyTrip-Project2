@@ -1,0 +1,836 @@
+{
+ "part1": {
+  "phichit": {
+   "attractions": 35,
+   "restaurants": 8,
+   "meals_needed": 10,
+   "ceiling": 203.2,
+   "algo": {
+    "Greedy": {
+     "score": 201.3,
+     "km_day": 153.99,
+     "sights_day": 4,
+     "meals_day": 1.6,
+     "days_short_meals": 2,
+     "objective": -62.28
+    },
+    "GA": {
+     "score": 165.06,
+     "km_day": 130.04,
+     "sights_day": 3.0,
+     "meals_day": 1.6,
+     "days_short_meals": 1.4,
+     "objective": -58.32
+    },
+    "Hybrid": {
+     "score": 163.4,
+     "km_day": 134.07,
+     "sights_day": 2.96,
+     "meals_day": 1.6,
+     "days_short_meals": 1.2,
+     "objective": -68.02
+    }
+   }
+  },
+  "chaiyaphum": {
+   "attractions": 70,
+   "restaurants": 19,
+   "meals_needed": 10,
+   "ceiling": 226.39999999999998,
+   "algo": {
+    "Greedy": {
+     "score": 217.8,
+     "km_day": 173.97,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": -77.21
+    },
+    "GA": {
+     "score": 163.5,
+     "km_day": 98.4,
+     "sights_day": 2.52,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": -15.33
+    },
+    "Hybrid": {
+     "score": 148.26,
+     "km_day": 55.74,
+     "sights_day": 2.08,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 33.89
+    }
+   }
+  },
+  "kalasin": {
+   "attractions": 43,
+   "restaurants": 37,
+   "meals_needed": 10,
+   "ceiling": 228.10000000000002,
+   "algo": {
+    "Greedy": {
+     "score": 216.4,
+     "km_day": 45.52,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 116.85
+    },
+    "GA": {
+     "score": 216.1,
+     "km_day": 45.2,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 117.59
+    },
+    "Hybrid": {
+     "score": 215.42,
+     "km_day": 33.89,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 130.61
+    }
+   }
+  },
+  "singburi": {
+   "attractions": 46,
+   "restaurants": 24,
+   "meals_needed": 10,
+   "ceiling": 223.7,
+   "algo": {
+    "Greedy": {
+     "score": 218.1,
+     "km_day": 34.52,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 135.71
+    },
+    "GA": {
+     "score": 218.34,
+     "km_day": 43.25,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 122.86
+    },
+    "Hybrid": {
+     "score": 219.14,
+     "km_day": 22.86,
+     "sights_day": 4,
+     "meals_day": 2,
+     "days_short_meals": 0,
+     "objective": 153.13
+    }
+   }
+  }
+ },
+ "part2": [
+  {
+   "prov": "phuket",
+   "attractions": 115,
+   "liked_avail": 33,
+   "base_share": 0.3233333333333333,
+   "like_share": 0.37666666666666665,
+   "p_like": 0.0031727927861210656,
+   "sig": true
+  },
+  {
+   "prov": "chiangmai",
+   "attractions": 174,
+   "liked_avail": 54,
+   "base_share": 0.3133333333333333,
+   "like_share": 0.55,
+   "p_like": 0.000309684704389587,
+   "sig": true
+  },
+  {
+   "prov": "krabi",
+   "attractions": 95,
+   "liked_avail": 46,
+   "base_share": 0.43333333333333335,
+   "like_share": 0.65,
+   "p_like": 0.0003217427074189644,
+   "sig": true
+  },
+  {
+   "prov": "samui",
+   "attractions": 120,
+   "liked_avail": 41,
+   "base_share": 0.23,
+   "like_share": 0.52,
+   "p_like": 0.0003065228477605667,
+   "sig": true
+  },
+  {
+   "prov": "bangkok",
+   "attractions": 172,
+   "liked_avail": 52,
+   "base_share": 0.21666666666666667,
+   "like_share": 0.54,
+   "p_like": 0.000318496075898673,
+   "sig": true
+  },
+  {
+   "prov": "chonburi",
+   "attractions": 116,
+   "liked_avail": 12,
+   "base_share": 0.18333333333333335,
+   "like_share": 0.41333333333333333,
+   "p_like": 0.00029563251185049877,
+   "sig": true
+  },
+  {
+   "prov": "prachuapkhirikhan",
+   "attractions": 37,
+   "liked_avail": 10,
+   "base_share": 0.29666666666666663,
+   "like_share": 0.3,
+   "p_like": 0.15865525393145707,
+   "sig": false
+  },
+  {
+   "prov": "ayutthaya",
+   "attractions": 106,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "kanchanaburi",
+   "attractions": 53,
+   "liked_avail": 3,
+   "base_share": 0.12333333333333334,
+   "like_share": 0.15,
+   "p_like": 0.0023388674905236288,
+   "sig": true
+  },
+  {
+   "prov": "phangnga",
+   "attractions": 43,
+   "liked_avail": 10,
+   "base_share": 0.20333333333333334,
+   "like_share": 0.21481481481481482,
+   "p_like": 0.1705257430156663,
+   "sig": false
+  },
+  {
+   "prov": "chiangrai",
+   "attractions": 102,
+   "liked_avail": 24,
+   "base_share": 0.21333333333333335,
+   "like_share": 0.4,
+   "p_like": 0.00030026635541046905,
+   "sig": true
+  },
+  {
+   "prov": "suratthani",
+   "attractions": 25,
+   "liked_avail": 6,
+   "base_share": 0.25,
+   "like_share": 0.25272904483430797,
+   "p_like": 0.08985624743949988,
+   "sig": false
+  },
+  {
+   "prov": "nakhonratchasima",
+   "attractions": 75,
+   "liked_avail": 1,
+   "base_share": 0.0033333333333333335,
+   "like_share": 0.013333333333333334,
+   "p_like": 0.08985624743949988,
+   "sig": false
+  },
+  {
+   "prov": "khonkaen",
+   "attractions": 105,
+   "liked_avail": 2,
+   "base_share": 0.05,
+   "like_share": 0.05,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "udonthani",
+   "attractions": 51,
+   "liked_avail": 3,
+   "base_share": 0.15,
+   "like_share": 0.15,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "phetchaburi",
+   "attractions": 54,
+   "liked_avail": 4,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "rayong",
+   "attractions": 46,
+   "liked_avail": 8,
+   "base_share": 0.31666666666666665,
+   "like_share": 0.3333333333333333,
+   "p_like": 0.0477903522728147,
+   "sig": true
+  },
+  {
+   "prov": "sukhothai",
+   "attractions": 96,
+   "liked_avail": 5,
+   "base_share": 0.006666666666666667,
+   "like_share": 0.06333333333333334,
+   "p_like": 0.00031450998763217454,
+   "sig": true
+  },
+  {
+   "prov": "phitsanulok",
+   "attractions": 43,
+   "liked_avail": 4,
+   "base_share": 0.2,
+   "like_share": 0.2,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "songkhla",
+   "attractions": 74,
+   "liked_avail": 4,
+   "base_share": 0.11333333333333333,
+   "like_share": 0.15333333333333332,
+   "p_like": 0.002500084527981411,
+   "sig": true
+  },
+  {
+   "prov": "ubonratchathani",
+   "attractions": 66,
+   "liked_avail": 6,
+   "base_share": 0.14666666666666667,
+   "like_share": 0.22,
+   "p_like": 0.00037282963902473496,
+   "sig": true
+  },
+  {
+   "prov": "nan",
+   "attractions": 62,
+   "liked_avail": 1,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "lampang",
+   "attractions": 66,
+   "liked_avail": 8,
+   "base_share": 0.14333333333333334,
+   "like_share": 0.2,
+   "p_like": 0.0007660506977098094,
+   "sig": true
+  },
+  {
+   "prov": "chanthaburi",
+   "attractions": 72,
+   "liked_avail": 4,
+   "base_share": 0.04666666666666667,
+   "like_share": 0.05,
+   "p_like": 0.15865525393145707,
+   "sig": false
+  },
+  {
+   "prov": "phayao",
+   "attractions": 47,
+   "liked_avail": 7,
+   "base_share": 0.15,
+   "like_share": 0.15,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "mukdahan",
+   "attractions": 67,
+   "liked_avail": 7,
+   "base_share": 0.13333333333333333,
+   "like_share": 0.15,
+   "p_like": 0.012673659338734126,
+   "sig": true
+  },
+  {
+   "prov": "roiet",
+   "attractions": 47,
+   "liked_avail": 1,
+   "base_share": 0.05,
+   "like_share": 0.05,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "nongkhai",
+   "attractions": 117,
+   "liked_avail": 40,
+   "base_share": 0.15,
+   "like_share": 0.3766666666666667,
+   "p_like": 0.0003065228477605667,
+   "sig": true
+  },
+  {
+   "prov": "lamphun",
+   "attractions": 59,
+   "liked_avail": 4,
+   "base_share": 0.010175438596491228,
+   "like_share": 0.016842105263157894,
+   "p_like": 0.2993625348264234,
+   "sig": false
+  },
+  {
+   "prov": "nonthaburi",
+   "attractions": 96,
+   "liked_avail": 9,
+   "base_share": 0.12,
+   "like_share": 0.32,
+   "p_like": 0.00023522430645143535,
+   "sig": true
+  },
+  {
+   "prov": "phetchabun",
+   "attractions": 51,
+   "liked_avail": 17,
+   "base_share": 0.28367847723884876,
+   "like_share": 0.3538424492604059,
+   "p_like": 0.0005881072488719616,
+   "sig": true
+  },
+  {
+   "prov": "lopburi",
+   "attractions": 68,
+   "liked_avail": 4,
+   "base_share": 0.10201754385964913,
+   "like_share": 0.15656002751977985,
+   "p_like": 0.0003104786821633605,
+   "sig": true
+  },
+  {
+   "prov": "samutprakan",
+   "attractions": 108,
+   "liked_avail": 4,
+   "base_share": 0.006666666666666667,
+   "like_share": 0.07333333333333333,
+   "p_like": 0.0005339772161581458,
+   "sig": true
+  },
+  {
+   "prov": "samutsongkhram",
+   "attractions": 59,
+   "liked_avail": 3,
+   "base_share": 0.09333333333333334,
+   "like_share": 0.1,
+   "p_like": 0.07864960352514251,
+   "sig": false
+  },
+  {
+   "prov": "saraburi",
+   "attractions": 35,
+   "liked_avail": 6,
+   "base_share": 0.20105263157894737,
+   "like_share": 0.18333333333333335,
+   "p_like": 0.8485319633383251,
+   "sig": false
+  },
+  {
+   "prov": "trat",
+   "attractions": 26,
+   "liked_avail": 4,
+   "base_share": 0.05,
+   "like_share": 0.05,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "nakhonsithammarat",
+   "attractions": 58,
+   "liked_avail": 2,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "trang",
+   "attractions": 29,
+   "liked_avail": 2,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "maehongson",
+   "attractions": 26,
+   "liked_avail": 8,
+   "base_share": 0.21666666666666667,
+   "like_share": 0.23,
+   "p_like": 0.0227501319481792,
+   "sig": true
+  },
+  {
+   "prov": "loei",
+   "attractions": 22,
+   "liked_avail": 3,
+   "base_share": 0.1499484004127967,
+   "like_share": 0.15421052631578946,
+   "p_like": 0.0477903522728147,
+   "sig": true
+  },
+  {
+   "prov": "phrae",
+   "attractions": 62,
+   "liked_avail": 6,
+   "base_share": 0.0,
+   "like_share": 0.0033333333333333335,
+   "p_like": 0.15865525393145707,
+   "sig": false
+  },
+  {
+   "prov": "uttaradit",
+   "attractions": 63,
+   "liked_avail": 7,
+   "base_share": 0.15,
+   "like_share": 0.2,
+   "p_like": 0.00031450998763217454,
+   "sig": true
+  },
+  {
+   "prov": "kalasin",
+   "attractions": 43,
+   "liked_avail": 3,
+   "base_share": 0.05666666666666667,
+   "like_share": 0.08666666666666667,
+   "p_like": 0.016947426762344633,
+   "sig": true
+  },
+  {
+   "prov": "buriram",
+   "attractions": 21,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "yasothon",
+   "attractions": 22,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "sisaket",
+   "attractions": 56,
+   "liked_avail": 1,
+   "base_share": 0.05,
+   "like_share": 0.05,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "sakonnakhon",
+   "attractions": 35,
+   "liked_avail": 7,
+   "base_share": 0.15,
+   "like_share": 0.18,
+   "p_like": 0.001349898031630093,
+   "sig": true
+  },
+  {
+   "prov": "surin",
+   "attractions": 27,
+   "liked_avail": 3,
+   "base_share": 0.15,
+   "like_share": 0.15,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "nongbualamphu",
+   "attractions": 32,
+   "liked_avail": 4,
+   "base_share": 0.15,
+   "like_share": 0.15,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "kamphaengphet",
+   "attractions": 84,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "chainat",
+   "attractions": 48,
+   "liked_avail": 1,
+   "base_share": 0.05,
+   "like_share": 0.05,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "nakhonnayok",
+   "attractions": 64,
+   "liked_avail": 5,
+   "base_share": 0.05333333333333334,
+   "like_share": 0.12333333333333334,
+   "p_like": 0.0006703205586147392,
+   "sig": true
+  },
+  {
+   "prov": "nakhonpathom",
+   "attractions": 65,
+   "liked_avail": 1,
+   "base_share": 0.04,
+   "like_share": 0.05,
+   "p_like": 0.0416322583317752,
+   "sig": true
+  },
+  {
+   "prov": "nakhonsawan",
+   "attractions": 43,
+   "liked_avail": 2,
+   "base_share": 0.1,
+   "like_share": 0.1,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "pathumthani",
+   "attractions": 89,
+   "liked_avail": 3,
+   "base_share": 0.1,
+   "like_share": 0.12333333333333334,
+   "p_like": 0.016854695534768073,
+   "sig": true
+  },
+  {
+   "prov": "phichit",
+   "attractions": 35,
+   "liked_avail": 1,
+   "base_share": 0.06976072946661183,
+   "like_share": 0.07071262071262072,
+   "p_like": 0.3605515483808836,
+   "sig": false
+  },
+  {
+   "prov": "samutsakhon",
+   "attractions": 25,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "singburi",
+   "attractions": 46,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "suphanburi",
+   "attractions": 61,
+   "liked_avail": 4,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "uthaithani",
+   "attractions": 42,
+   "liked_avail": 3,
+   "base_share": 0.11385964912280702,
+   "like_share": 0.13035087719298247,
+   "p_like": 0.07650333324819984,
+   "sig": false
+  },
+  {
+   "prov": "chachoengsao",
+   "attractions": 57,
+   "liked_avail": 1,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "prachinburi",
+   "attractions": 34,
+   "liked_avail": 4,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "sakaeo",
+   "attractions": 49,
+   "liked_avail": 3,
+   "base_share": 0.016176470588235296,
+   "like_share": 0.01574074074074074,
+   "p_like": 0.5730383503564667,
+   "sig": false
+  },
+  {
+   "prov": "tak",
+   "attractions": 88,
+   "liked_avail": 13,
+   "base_share": 0.1437037037037037,
+   "like_share": 0.18666666666666668,
+   "p_like": 0.0041798898569932064,
+   "sig": true
+  },
+  {
+   "prov": "ratchaburi",
+   "attractions": 75,
+   "liked_avail": 4,
+   "base_share": 0.10971132897603486,
+   "like_share": 0.16456140350877194,
+   "p_like": 0.0003250121193590314,
+   "sig": true
+  },
+  {
+   "prov": "chumphon",
+   "attractions": 72,
+   "liked_avail": 16,
+   "base_share": 0.19666666666666668,
+   "like_share": 0.23333333333333334,
+   "p_like": 0.009446187005438042,
+   "sig": true
+  },
+  {
+   "prov": "narathiwat",
+   "attractions": 24,
+   "liked_avail": 4,
+   "base_share": 0.19236608678559142,
+   "like_share": 0.2003095975232198,
+   "p_like": 0.3247720996072242,
+   "sig": false
+  },
+  {
+   "prov": "phatthalung",
+   "attractions": 22,
+   "liked_avail": 5,
+   "base_share": 0.23204248366013072,
+   "like_share": 0.23981481481481481,
+   "p_like": 0.42822036299914995,
+   "sig": false
+  },
+  {
+   "prov": "ranong",
+   "attractions": 40,
+   "liked_avail": 9,
+   "base_share": 0.25956140350877194,
+   "like_share": 0.2793859649122807,
+   "p_like": 0.11521161138048908,
+   "sig": false
+  },
+  {
+   "prov": "satun",
+   "attractions": 76,
+   "liked_avail": 17,
+   "base_share": 0.32999999999999996,
+   "like_share": 0.35,
+   "p_like": 0.007152939217714824,
+   "sig": true
+  },
+  {
+   "prov": "yala",
+   "attractions": 19,
+   "liked_avail": 3,
+   "base_share": 0.1847093223254214,
+   "like_share": 0.19904028977558388,
+   "p_like": 0.12748727054922432,
+   "sig": false
+  },
+  {
+   "prov": "chaiyaphum",
+   "attractions": 70,
+   "liked_avail": 18,
+   "base_share": 0.17602038484391425,
+   "like_share": 0.2731746031746032,
+   "p_like": 0.005265441097420453,
+   "sig": true
+  },
+  {
+   "prov": "nakhonphanom",
+   "attractions": 35,
+   "liked_avail": 4,
+   "base_share": 0.1,
+   "like_share": 0.1,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "buengkan",
+   "attractions": 40,
+   "liked_avail": 6,
+   "base_share": 0.2866666666666667,
+   "like_share": 0.3,
+   "p_like": 0.051235217429874684,
+   "sig": false
+  },
+  {
+   "prov": "mahasarakham",
+   "attractions": 54,
+   "liked_avail": 0,
+   "base_share": 0.0,
+   "like_share": 0.0,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "amnatcharoen",
+   "attractions": 50,
+   "liked_avail": 4,
+   "base_share": 0.17302631578947367,
+   "like_share": 0.17889576883384933,
+   "p_like": 0.3042304119002585,
+   "sig": false
+  },
+  {
+   "prov": "angthong",
+   "attractions": 61,
+   "liked_avail": 1,
+   "base_share": 0.05,
+   "like_share": 0.05,
+   "p_like": NaN,
+   "sig": false
+  },
+  {
+   "prov": "pattani",
+   "attractions": 18,
+   "liked_avail": 3,
+   "base_share": 0.10600373482726423,
+   "like_share": 0.11679738562091503,
+   "p_like": 0.20369898048050283,
+   "sig": false
+  }
+ ]
+}

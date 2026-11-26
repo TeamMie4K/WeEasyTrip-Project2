@@ -530,7 +530,8 @@ def hybrid_solve(pois: List[Dict], hotel: Dict, days: int, budget: float,
         if all(sum(1 for p in day if p['category'] == 'restaurant') >= 2 for day in refined if day):
             break
         for d, day in enumerate(refined):   # วันที่แน่นจนไม่มีเวลาใส่มื้อ: ถอด attraction คะแนนต่ำสุดออกก่อนเติมมื้อ
-            if day and sum(1 for p in day if p['category'] == 'restaurant') < 2:
+            # ถอดสถานที่เพื่อเปิดเวลาให้มื้อ เฉพาะเมื่อมีร้านอาหารพอสำหรับทั้งทริป (ถ้าร้านไม่พอ การถอดไม่ช่วยให้ได้มื้อเพิ่มและเสียคะแนนเปล่า เช่น พิจิตร)
+            if day and sum(1 for p in day if p['category'] == 'restaurant') < 2 and sum(1 for p in pois if p['category'] == 'restaurant') >= 2 * days:
                 cands = [(i, p) for i, p in enumerate(day) if p['category'] != 'restaurant']
                 if cands:
                     refined[d] = [p for i, p in enumerate(day) if i != min(cands, key=lambda c: c[1]['score'])[0]]

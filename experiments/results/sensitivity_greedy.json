@@ -1,0 +1,68 @@
+{
+ "param": "greedy",
+ "base": 10.0,
+ "trials": 8,
+ "scenario": "S2_Medium_Standard",
+ "results": {
+  "0.0": {
+   "Greedy": {
+    "score": 235.05,
+    "km_day": 110.224,
+    "hours_day": 10.859,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 247.9,
+     "chiangmai": 235.1,
+     "krabi": 227.0,
+     "samui": 230.2
+    }
+   }
+  },
+  "10.0": {
+   "Greedy": {
+    "score": 229.575,
+    "km_day": 39.1825,
+    "hours_day": 10.450666666666667,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 236.2,
+     "chiangmai": 233.6,
+     "krabi": 221.9,
+     "samui": 226.6
+    }
+   }
+  },
+  "30.0": {
+   "Greedy": {
+    "score": 227.525,
+    "km_day": 33.0,
+    "hours_day": 10.308166666666667,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 233.8,
+     "chiangmai": 232.4,
+     "krabi": 220.2,
+     "samui": 223.7
+    }
+   }
+  },
+  "100.0": {
+   "Greedy": {
+    "score": 226.7,
+    "km_day": 26.464,
+    "hours_day": 10.317916666666667,
+    "ok": 4,
+    "n": 4,
+    "per_prov": {
+     "phuket": 233.6,
+     "chiangmai": 232.4,
+     "krabi": 219.3,
+     "samui": 221.5
+    }
+   }
+  }
+ }
+}

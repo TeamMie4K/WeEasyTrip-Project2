@@ -1,0 +1,896 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1792834538.420062,
+    "seen": 1792835148.3460526,
+    "ast_hash": "2d41b2fa3046dddf10bdc74805d7d121",
+    "semantic_hash": "2d41b2fa3046dddf10bdc74805d7d121"
+  },
+  "algorithm/genetic.py": {
+    "mtime": 1792854077.4557266,
+    "seen": 1792859390.078315,
+    "ast_hash": "236cc9d42d57d5820b9a4b42d7c66e04",
+    "semantic_hash": ""
+  },
+  "algorithm/greedy.py": {
+    "mtime": 1793082532.1698787,
+    "seen": 1793087170.476672,
+    "ast_hash": "8004d8ad7be6291fea141455f71317e9",
+    "semantic_hash": ""
+  },
+  "algorithm/hybrid.py": {
+    "mtime": 1793118495.6496508,
+    "seen": 1793122797.9468052,
+    "ast_hash": "4d679e778e33d7f271b966d3fe3ff5d4",
+    "semantic_hash": ""
+  },
+  "algorithm/utils.py": {
+    "mtime": 1793111210.956649,
+    "seen": 1793122797.9468052,
+    "ast_hash": "56dec13169526ae743d770f42654a853",
+    "semantic_hash": ""
+  },
+  "backend/main.py": {
+    "mtime": 1794148253.8643117,
+    "seen": 1794148349.8793802,
+    "ast_hash": "38ec75aea70f08e95fbf4e55c7036c2b",
+    "semantic_hash": ""
+  },
+  "data/fetch_pois_osm.py": {
+    "mtime": 1793999237.6266696,
+    "seen": 1794000078.122824,
+    "ast_hash": "510674d584644c30ee81f07176b49c61",
+    "semantic_hash": ""
+  },
+  "data/merge_pois.py": {
+    "mtime": 1792859370.8715794,
+    "seen": 1792859390.078315,
+    "ast_hash": "fb42b30b0fc2400488e00393d4149677",
+    "semantic_hash": ""
+  },
+  "data/phuket_pois_backup.json": {
+    "mtime": 1778407317.2565153,
+    "seen": 1792835148.3460526,
+    "ast_hash": "22afe35bf29b13f29707a42163f367c0",
+    "semantic_hash": "22afe35bf29b13f29707a42163f367c0"
+  },
+  "experiments/results/results.json": {
+    "mtime": 1778515523.6437485,
+    "seen": 1792835148.3460526,
+    "ast_hash": "3761f340a3e7370d1ff6e2d18cc90b95",
+    "semantic_hash": "3761f340a3e7370d1ff6e2d18cc90b95"
+  },
+  "experiments/run_experiments.py": {
+    "mtime": 1792854077.5234754,
+    "seen": 1792859390.078315,
+    "ast_hash": "eefcbeb99c6c4fd6c5fc97f98889ca33",
+    "semantic_hash": ""
+  },
+  "frontend/app.backup.js": {
+    "mtime": 1778825119.0502813,
+    "seen": 1792835148.3460526,
+    "ast_hash": "49a6e559d75637f11568a9f7cc8f7cef",
+    "semantic_hash": "49a6e559d75637f11568a9f7cc8f7cef"
+  },
+  "frontend/app.js": {
+    "mtime": 1794148253.8663135,
+    "seen": 1794148349.8793802,
+    "ast_hash": "997b16eeeac803ef2abb5c9c4b9980c6",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1793122783.4074283,
+    "seen": 1793122797.9468052,
+    "ast_hash": "895e4185050d86d533051161481d776c",
+    "semantic_hash": ""
+  },
+  "docs/problem_formulation.md": {
+    "mtime": 1778514944.4546652,
+    "seen": 1792835148.3460526,
+    "ast_hash": "e951fd8ac7dd7f7765c252b19dee9817",
+    "semantic_hash": "e951fd8ac7dd7f7765c252b19dee9817"
+  },
+  "experiments/results/stats.txt": {
+    "mtime": 1778515523.6477451,
+    "seen": 1792835148.3460526,
+    "ast_hash": "90fd69fe54d4e9921426b80215052a88",
+    "semantic_hash": "90fd69fe54d4e9921426b80215052a88"
+  },
+  "CS403_Report_68-2_33_pps-r1.pdf": {
+    "mtime": 1779825230.689026,
+    "seen": 1792835148.3460526,
+    "ast_hash": "902b4138c5bb5cdd5c1e18c75e35b4cd",
+    "semantic_hash": "902b4138c5bb5cdd5c1e18c75e35b4cd"
+  },
+  "experiments/results/convergence.png": {
+    "mtime": 1778515526.1748202,
+    "seen": 1792835148.3460526,
+    "ast_hash": "32e7727212d392bcec69d7ea8febb2da",
+    "semantic_hash": "32e7727212d392bcec69d7ea8febb2da"
+  },
+  "frontend/BG2.jpg": {
+    "mtime": 1778831388.0618637,
+    "seen": 1792835148.3460526,
+    "ast_hash": "13279d43721f05b50fdee65bf3bf87ac",
+    "semantic_hash": "13279d43721f05b50fdee65bf3bf87ac"
+  },
+  "frontend/index.html": {
+    "mtime": 1793999681.599113,
+    "seen": 1794000078.122824,
+    "ast_hash": "fa4026f3c9f648ffdfb544f1e3a253d5",
+    "semantic_hash": ""
+  },
+  ".claude/launch.json": {
+    "mtime": 1792836506.3775926,
+    "seen": 1792836765.9920268,
+    "ast_hash": "23b16c55b3fc0ec980fc29ae6749030f",
+    "semantic_hash": "23b16c55b3fc0ec980fc29ae6749030f"
+  },
+  "graphify-out/converted/CS403_Report_68-2_33_pps-r1_280c1df9.md": {
+    "mtime": 1792836686.8046932,
+    "seen": 1792836765.9920268,
+    "ast_hash": "ed8b074f810ad3c2651e58ba191cce6e",
+    "semantic_hash": "ed8b074f810ad3c2651e58ba191cce6e"
+  },
+  "data/provinces.json": {
+    "mtime": 1793950834.2040818,
+    "seen": 1793950862.2648613,
+    "ast_hash": "a8bca85f8ab957c41d226c05117baebc",
+    "semantic_hash": ""
+  },
+  "data/provinces/chiangmai.json": {
+    "mtime": 1793867757.9927285,
+    "seen": 1793950862.2648613,
+    "ast_hash": "2cdf4d05e31686d1fc0d138ee59641c9",
+    "semantic_hash": ""
+  },
+  "data/provinces/krabi.json": {
+    "mtime": 1793867758.0717766,
+    "seen": 1793950862.2648613,
+    "ast_hash": "96790e8938c05daaebece01a620bdb23",
+    "semantic_hash": ""
+  },
+  "data/provinces/phuket.json": {
+    "mtime": 1793867758.4861348,
+    "seen": 1793950862.2648613,
+    "ast_hash": "5ad79caa1f77cbce81e14cb9fbf13c71",
+    "semantic_hash": ""
+  },
+  "data/provinces/samui.json": {
+    "mtime": 1793867758.6295018,
+    "seen": 1793950862.2648613,
+    "ast_hash": "8f65103617df964c23795f9d7afa9f8f",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1792854087.0462403,
+    "seen": 1792859390.078315,
+    "ast_hash": "6557dd7908e7d77330b28804a64530cb",
+    "semantic_hash": ""
+  },
+  "docs/project2_plan.md": {
+    "mtime": 1794148342.079278,
+    "seen": 1794148349.8793802,
+    "ast_hash": "fbf799ea1da24602c67bfe2c27a3ee8e",
+    "semantic_hash": ""
+  },
+  "graphify-out/converted/CS403_Report_68-2_33_pps-r1 Project 2_ffdbec9c.md": {
+    "mtime": 1794055785.4149873,
+    "seen": 1794055788.9366562,
+    "ast_hash": "8dc456ddaffb429b79f84f1e51b85063",
+    "semantic_hash": ""
+  },
+  "data/apply_names.py": {
+    "mtime": 1792864827.798877,
+    "seen": 1792868453.2280078,
+    "ast_hash": "f215bced12c80c6eda4dca1297c60675",
+    "semantic_hash": ""
+  },
+  "data/name_translations.json": {
+    "mtime": 1792918100.1687467,
+    "seen": 1792921422.9918895,
+    "ast_hash": "6a6eb925893a400b0ebf145bf73aaa12",
+    "semantic_hash": ""
+  },
+  "experiments/results/province_results.json": {
+    "mtime": 1793120473.2262816,
+    "seen": 1793122797.9468052,
+    "ast_hash": "7801fa9f1483db3ff2543efd3b0c1e06",
+    "semantic_hash": ""
+  },
+  "experiments/run_province_experiments.py": {
+    "mtime": 1792998618.7302363,
+    "seen": 1793087170.476672,
+    "ast_hash": "19d263e80d648ad8fea3c320a704e794",
+    "semantic_hash": ""
+  },
+  "experiments/results/province_stats.txt": {
+    "mtime": 1793120473.2262816,
+    "seen": 1793122797.9468052,
+    "ast_hash": "6c4cf2345c9da264c552d34883ecf0c7",
+    "semantic_hash": ""
+  },
+  "data/calibrate_travel.py": {
+    "mtime": 1792905519.6935728,
+    "seen": 1792908368.5790856,
+    "ast_hash": "5153c973b4b8324aa7f6b5cd1d7f0110",
+    "semantic_hash": ""
+  },
+  "experiments/results/preference_results.json": {
+    "mtime": 1793116027.4594312,
+    "seen": 1793122797.9468052,
+    "ast_hash": "daf16f739ca37ae70d730ce6a6cee206",
+    "semantic_hash": ""
+  },
+  "experiments/run_preference_experiments.py": {
+    "mtime": 1792911615.1901426,
+    "seen": 1792912485.4552681,
+    "ast_hash": "9cce4b6ca20b1ad00d8f1f13e6c015b9",
+    "semantic_hash": ""
+  },
+  "experiments/results/preference_stats.txt": {
+    "mtime": 1793116027.460411,
+    "seen": 1793122797.9468052,
+    "ast_hash": "531d5a2b259723b4f106f0a18368b90a",
+    "semantic_hash": ""
+  },
+  "CS403_Report_68-2_33_pps-r1 Project 2.pdf": {
+    "mtime": 1792917236.7429197,
+    "seen": 1792917301.8465889,
+    "ast_hash": "4bca70f69afec0cbf3d3a3094057a7d1",
+    "semantic_hash": ""
+  },
+  "algorithm/ils.py": {
+    "mtime": 1793111351.5554357,
+    "seen": 1793122797.9468052,
+    "ast_hash": "dde1dc96b2a417f402b3da7f74a3cd46",
+    "semantic_hash": ""
+  },
+  "algorithm/pareto.py": {
+    "mtime": 1792939098.1407268,
+    "seen": 1792943911.2237508,
+    "ast_hash": "7c1066f050466b6f6aa875c359959318",
+    "semantic_hash": ""
+  },
+  "algorithm/rl.py": {
+    "mtime": 1792944328.2581408,
+    "seen": 1793087170.476672,
+    "ast_hash": "d9c97f859e86ce7f68c0f3338b5d84ae",
+    "semantic_hash": ""
+  },
+  "algorithm/rl_policy.json": {
+    "mtime": 1792944641.6571708,
+    "seen": 1793087170.476672,
+    "ast_hash": "05ddc95f4de40728123229e81f6ca3d1",
+    "semantic_hash": ""
+  },
+  "data/build_all_provinces.py": {
+    "mtime": 1793950713.4658418,
+    "seen": 1793950862.2648613,
+    "ast_hash": "40eca0a5dfeb8e9f0aa21e1f184c3b38",
+    "semantic_hash": ""
+  },
+  "data/thai_provinces.py": {
+    "mtime": 1792940679.3677213,
+    "seen": 1792943911.2237508,
+    "ast_hash": "a30b6a6b4b5893cfe20ae6a32caa5c76",
+    "semantic_hash": ""
+  },
+  "experiments/results/ils_results.json": {
+    "mtime": 1793118325.9074523,
+    "seen": 1793122797.9468052,
+    "ast_hash": "44024c9c47f20c6cee5d28ede330650c",
+    "semantic_hash": ""
+  },
+  "experiments/results/pareto_results.json": {
+    "mtime": 1793116416.948981,
+    "seen": 1793122797.9468052,
+    "ast_hash": "6f25c25dfef6bd2f7f214583de4ba495",
+    "semantic_hash": ""
+  },
+  "experiments/results/rl_results.json": {
+    "mtime": 1793117600.973026,
+    "seen": 1793122797.9468052,
+    "ast_hash": "a4f2ef2a5e0793b4814c7340b89b9605",
+    "semantic_hash": ""
+  },
+  "experiments/run_ils_experiments.py": {
+    "mtime": 1792942876.3102958,
+    "seen": 1792943911.2237508,
+    "ast_hash": "cbd1e10fa08ba51b489c644f8dd3ec72",
+    "semantic_hash": ""
+  },
+  "experiments/run_pareto_experiments.py": {
+    "mtime": 1792939305.760602,
+    "seen": 1792943911.2237508,
+    "ast_hash": "6ee6f8194d2a9b42713b6ea4aa5e8870",
+    "semantic_hash": ""
+  },
+  "experiments/run_rl_experiments.py": {
+    "mtime": 1792940081.7538967,
+    "seen": 1792943911.2237508,
+    "ast_hash": "a1759a616f94b4d24113bdf06cde502c",
+    "semantic_hash": ""
+  },
+  "experiments/train_rl.py": {
+    "mtime": 1792939671.4024744,
+    "seen": 1792943911.2237508,
+    "ast_hash": "03eb0631c4603ba8fa74837ba9a8b2c4",
+    "semantic_hash": ""
+  },
+  "experiments/results/ils_stats.txt": {
+    "mtime": 1793118325.9084573,
+    "seen": 1793122797.9468052,
+    "ast_hash": "adc1d10d8efd41eb58ec3dea2c7077ab",
+    "semantic_hash": ""
+  },
+  "experiments/results/pareto_stats.txt": {
+    "mtime": 1793116416.948981,
+    "seen": 1793122797.9468052,
+    "ast_hash": "f44eedc8792c565e497733bedfcfce82",
+    "semantic_hash": ""
+  },
+  "experiments/results/rl_stats.txt": {
+    "mtime": 1793117600.9740155,
+    "seen": 1793122797.9468052,
+    "ast_hash": "723a416a9037e9f362525ff8df4d44a0",
+    "semantic_hash": ""
+  },
+  "data/_missing_names.json": {
+    "mtime": 1793867758.9417462,
+    "seen": 1793950862.2648613,
+    "ast_hash": "3dedd725affd1dbefea0dda9541b8021",
+    "semantic_hash": ""
+  },
+  "data/provinces/ayutthaya.json": {
+    "mtime": 1793867757.9220586,
+    "seen": 1793950862.2648613,
+    "ast_hash": "7f78308b12b19ca92452e7253b1a14b5",
+    "semantic_hash": ""
+  },
+  "data/provinces/bangkok.json": {
+    "mtime": 1793867757.9301324,
+    "seen": 1793950862.2648613,
+    "ast_hash": "2cf14c07cdf6c4b76ab938b1d81457e7",
+    "semantic_hash": ""
+  },
+  "data/provinces/chiangrai.json": {
+    "mtime": 1793867758.0085354,
+    "seen": 1793950862.2648613,
+    "ast_hash": "22f50dd97809f8c7932beab13068ac14",
+    "semantic_hash": ""
+  },
+  "data/provinces/chonburi.json": {
+    "mtime": 1793867758.0085354,
+    "seen": 1793950862.2648613,
+    "ast_hash": "0c549282cc00431c914f90d96b163a8c",
+    "semantic_hash": ""
+  },
+  "data/provinces/kanchanaburi.json": {
+    "mtime": 1793867758.0399823,
+    "seen": 1793950862.2648613,
+    "ast_hash": "bdd32538e25298c99b11b563c676f9a1",
+    "semantic_hash": ""
+  },
+  "data/provinces/phangnga.json": {
+    "mtime": 1793867758.376383,
+    "seen": 1793950862.2648613,
+    "ast_hash": "aebd0386520354c01fce20fed8a284b5",
+    "semantic_hash": ""
+  },
+  "data/provinces/prachuapkhirikhan.json": {
+    "mtime": 1793867758.5017655,
+    "seen": 1793950862.2648613,
+    "ast_hash": "44d3f460bcc97441cb611d229ac9b827",
+    "semantic_hash": ""
+  },
+  "data/provinces_status.json": {
+    "mtime": 1793950834.2060843,
+    "seen": 1793950862.2648613,
+    "ast_hash": "45ace700d0f6820856baffff12a8836e",
+    "semantic_hash": ""
+  },
+  "experiments/run_all_realistic.sh": {
+    "mtime": 1793111525.040559,
+    "seen": 1793122797.9468052,
+    "ast_hash": "63dffba8e812c5c11d529eb903181093",
+    "semantic_hash": ""
+  },
+  "data/provinces/khonkaen.json": {
+    "mtime": 1793867758.0582583,
+    "seen": 1793950862.2648613,
+    "ast_hash": "d028397f7751f1f9c2674139ee9cd26f",
+    "semantic_hash": ""
+  },
+  "data/provinces/nakhonratchasima.json": {
+    "mtime": 1793867758.225582,
+    "seen": 1793950862.2648613,
+    "ast_hash": "1747e603a0ad37f0d9264ba90455e197",
+    "semantic_hash": ""
+  },
+  "data/provinces/phetchaburi.json": {
+    "mtime": 1794005976.105819,
+    "seen": 1794039206.2961566,
+    "ast_hash": "e455cf27f08ce36da3fba0c02374d4d0",
+    "semantic_hash": ""
+  },
+  "data/provinces/rayong.json": {
+    "mtime": 1793867758.5644548,
+    "seen": 1793950862.2648613,
+    "ast_hash": "00f022951232c25ea5c2c14c61a06b53",
+    "semantic_hash": ""
+  },
+  "data/provinces/suratthani.json": {
+    "mtime": 1793867758.8001034,
+    "seen": 1793950862.2648613,
+    "ast_hash": "4619a76cb2971b452184ea9746a9eb42",
+    "semantic_hash": ""
+  },
+  "data/provinces/trat.json": {
+    "mtime": 1793867758.863072,
+    "seen": 1793950862.2648613,
+    "ast_hash": "27a7d43e810b12cf99b17fb8b6977c38",
+    "semantic_hash": ""
+  },
+  "data/provinces/udonthani.json": {
+    "mtime": 1793867758.8793304,
+    "seen": 1793950862.2648613,
+    "ast_hash": "8fe45e182fcec3bd5feb3163324ed7bf",
+    "semantic_hash": ""
+  },
+  "data/sessions.json": {
+    "mtime": 1793856781.6752377,
+    "seen": 1793950862.2648613,
+    "ast_hash": "fb8119e020249d96bc01c18a35ccdf52",
+    "semantic_hash": ""
+  },
+  "data/provinces/amnatcharoen.json": {
+    "mtime": 1794000416.118027,
+    "seen": 1794039206.2961566,
+    "ast_hash": "bd06524ad2823cde10ed18fa3fc9b95e",
+    "semantic_hash": ""
+  },
+  "data/provinces/angthong.json": {
+    "mtime": 1793916562.539845,
+    "seen": 1793950862.2648613,
+    "ast_hash": "c4f7601bb7809075f62f094d06a787ce",
+    "semantic_hash": ""
+  },
+  "data/provinces/buengkan.json": {
+    "mtime": 1794007556.306513,
+    "seen": 1794039206.2961566,
+    "ast_hash": "25b6000bc230be8eb3393727c70f02f9",
+    "semantic_hash": ""
+  },
+  "data/provinces/buriram.json": {
+    "mtime": 1794014908.333277,
+    "seen": 1794039206.2961566,
+    "ast_hash": "0885c2a57b239e00b76264f5643fdc3c",
+    "semantic_hash": ""
+  },
+  "data/provinces/chachoengsao.json": {
+    "mtime": 1793867757.9457743,
+    "seen": 1793950862.2648613,
+    "ast_hash": "c7c05a489f1abcf54cde959f93541181",
+    "semantic_hash": ""
+  },
+  "data/provinces/chainat.json": {
+    "mtime": 1794026639.1782694,
+    "seen": 1794039206.2961566,
+    "ast_hash": "00ce11e69407773de03ec69b50ad4377",
+    "semantic_hash": ""
+  },
+  "data/provinces/chaiyaphum.json": {
+    "mtime": 1794004842.9307067,
+    "seen": 1794039206.2961566,
+    "ast_hash": "7c1ec161b572616d51171105b2df04a2",
+    "semantic_hash": ""
+  },
+  "data/provinces/chanthaburi.json": {
+    "mtime": 1793867757.9770904,
+    "seen": 1793950862.2648613,
+    "ast_hash": "5e9d55a99ec6b649178ff6f6f9862728",
+    "semantic_hash": ""
+  },
+  "data/provinces/chumphon.json": {
+    "mtime": 1794009448.274001,
+    "seen": 1794039206.2961566,
+    "ast_hash": "74886baaac13f1c147d351a18cfe8e09",
+    "semantic_hash": ""
+  },
+  "data/provinces/kalasin.json": {
+    "mtime": 1794038535.7892962,
+    "seen": 1794039206.2961566,
+    "ast_hash": "57f67c993a7eee97785a7d767563780c",
+    "semantic_hash": ""
+  },
+  "data/provinces/kamphaengphet.json": {
+    "mtime": 1793867758.0399823,
+    "seen": 1793950862.2648613,
+    "ast_hash": "31bbec1b4545de5d8132bee13df74e8c",
+    "semantic_hash": ""
+  },
+  "data/provinces/lampang.json": {
+    "mtime": 1793867758.0875046,
+    "seen": 1793950862.2648613,
+    "ast_hash": "269f89cad582f96d3cb4dcf869858425",
+    "semantic_hash": ""
+  },
+  "data/provinces/lamphun.json": {
+    "mtime": 1794008062.5059514,
+    "seen": 1794039206.2961566,
+    "ast_hash": "2d20b32c49d44c75dcc17c7f225acb80",
+    "semantic_hash": ""
+  },
+  "data/provinces/loei.json": {
+    "mtime": 1794012167.8643456,
+    "seen": 1794039206.2961566,
+    "ast_hash": "adad835d9409e4c2b061179d321cadd3",
+    "semantic_hash": ""
+  },
+  "data/provinces/lopburi.json": {
+    "mtime": 1793867758.1505046,
+    "seen": 1793950862.2648613,
+    "ast_hash": "997ab21572bc3aa877638f142ac614fd",
+    "semantic_hash": ""
+  },
+  "data/provinces/maehongson.json": {
+    "mtime": 1793867758.1661594,
+    "seen": 1793950862.2648613,
+    "ast_hash": "a3214527b01224fecc11d19924ed32bb",
+    "semantic_hash": ""
+  },
+  "data/provinces/mahasarakham.json": {
+    "mtime": 1793875941.3692348,
+    "seen": 1793950862.2648613,
+    "ast_hash": "9eda651e17d2aeb523af266abd3d7abd",
+    "semantic_hash": ""
+  },
+  "data/provinces/mukdahan.json": {
+    "mtime": 1793867758.1817,
+    "seen": 1793950862.2648613,
+    "ast_hash": "de39f8648ae3bfbc6cae386f072b6548",
+    "semantic_hash": ""
+  },
+  "data/provinces/nakhonnayok.json": {
+    "mtime": 1794012921.3219824,
+    "seen": 1794039206.2961566,
+    "ast_hash": "4d7c3bd08dfe4b4242d319cdb1c71cce",
+    "semantic_hash": ""
+  },
+  "data/provinces/nakhonpathom.json": {
+    "mtime": 1793867758.1973267,
+    "seen": 1793950862.2648613,
+    "ast_hash": "630b7b575db9a66656ea1fa1d0678842",
+    "semantic_hash": ""
+  },
+  "data/provinces/nakhonphanom.json": {
+    "mtime": 1794002697.097178,
+    "seen": 1794039206.2961566,
+    "ast_hash": "38584ea11be4bafd15fb1cdc426a2133",
+    "semantic_hash": ""
+  },
+  "data/provinces/nakhonsawan.json": {
+    "mtime": 1793867758.2350957,
+    "seen": 1793950862.2648613,
+    "ast_hash": "c4d33190c9db14f5d17da835d5921a1b",
+    "semantic_hash": ""
+  },
+  "data/provinces/nakhonsithammarat.json": {
+    "mtime": 1793867758.2507927,
+    "seen": 1793950862.2648613,
+    "ast_hash": "8bb5af0c70a7c00944de84e8bb4533c7",
+    "semantic_hash": ""
+  },
+  "data/provinces/nan.json": {
+    "mtime": 1793867758.2664306,
+    "seen": 1793950862.2648613,
+    "ast_hash": "f31c325dc7c9ab59907a2e329d12fbcf",
+    "semantic_hash": ""
+  },
+  "data/provinces/narathiwat.json": {
+    "mtime": 1793867758.282051,
+    "seen": 1793950862.2648613,
+    "ast_hash": "6be671cc15945ffd26e19247dd191961",
+    "semantic_hash": ""
+  },
+  "data/provinces/nongbualamphu.json": {
+    "mtime": 1794008785.6292396,
+    "seen": 1794039206.2961566,
+    "ast_hash": "29c83d489cecb124884dc2729ffb091e",
+    "semantic_hash": ""
+  },
+  "data/provinces/nongkhai.json": {
+    "mtime": 1793867758.3133075,
+    "seen": 1793950862.2648613,
+    "ast_hash": "d47fba39933f051f259b8f5b33a2aea1",
+    "semantic_hash": ""
+  },
+  "data/provinces/nonthaburi.json": {
+    "mtime": 1793867758.3449483,
+    "seen": 1793950862.2648613,
+    "ast_hash": "56b5039ea1752e0935593767a4f0332b",
+    "semantic_hash": ""
+  },
+  "data/provinces/pathumthani.json": {
+    "mtime": 1793867758.3743365,
+    "seen": 1793950862.2648613,
+    "ast_hash": "01489a40359074b7dcac5786f543878f",
+    "semantic_hash": ""
+  },
+  "data/provinces/pattani.json": {
+    "mtime": 1794001816.222042,
+    "seen": 1794039206.2961566,
+    "ast_hash": "d24e59b4bc30c9534cef33c66b880cc1",
+    "semantic_hash": ""
+  },
+  "data/provinces/phatthalung.json": {
+    "mtime": 1793867758.392025,
+    "seen": 1793950862.2648613,
+    "ast_hash": "3d0ef792b4a069117320b26e60344151",
+    "semantic_hash": ""
+  },
+  "data/provinces/phayao.json": {
+    "mtime": 1793867758.392025,
+    "seen": 1793950862.2648613,
+    "ast_hash": "2932d86ad7baddcd089224dbf95d4fe5",
+    "semantic_hash": ""
+  },
+  "data/provinces/phetchabun.json": {
+    "mtime": 1793867758.407721,
+    "seen": 1793950862.2648613,
+    "ast_hash": "46265f83effa228628732724bb96390f",
+    "semantic_hash": ""
+  },
+  "data/provinces/phichit.json": {
+    "mtime": 1794005689.7992454,
+    "seen": 1794039206.2961566,
+    "ast_hash": "35aee1ed02e3c0872d322186ccc3c2e4",
+    "semantic_hash": ""
+  },
+  "data/provinces/phitsanulok.json": {
+    "mtime": 1793867758.4548926,
+    "seen": 1793950862.2648613,
+    "ast_hash": "d17f49825424b53f78423b62399d2917",
+    "semantic_hash": ""
+  },
+  "data/provinces/phrae.json": {
+    "mtime": 1793867758.4548926,
+    "seen": 1793950862.2648613,
+    "ast_hash": "5381247c21faa9529994451a6b360491",
+    "semantic_hash": ""
+  },
+  "data/provinces/prachinburi.json": {
+    "mtime": 1793867758.5017655,
+    "seen": 1793950862.2648613,
+    "ast_hash": "698f3f8e2334e632e767c35da5eac233",
+    "semantic_hash": ""
+  },
+  "data/provinces/ranong.json": {
+    "mtime": 1793867758.5331137,
+    "seen": 1793950862.2648613,
+    "ast_hash": "d9eb727d8fdc0ad30fafaeaa3b1ec294",
+    "semantic_hash": ""
+  },
+  "data/provinces/ratchaburi.json": {
+    "mtime": 1793867758.5488107,
+    "seen": 1793950862.2648613,
+    "ast_hash": "88a891ab9ed61198f09208fcba4d8dbb",
+    "semantic_hash": ""
+  },
+  "data/provinces/roiet.json": {
+    "mtime": 1793867758.5800748,
+    "seen": 1793950862.2648613,
+    "ast_hash": "b7900eb406cb90d3e514d2e427a5a673",
+    "semantic_hash": ""
+  },
+  "data/provinces/sakaeo.json": {
+    "mtime": 1793999684.3777022,
+    "seen": 1794000078.122824,
+    "ast_hash": "7402eecede3b3f205a69420181a2356d",
+    "semantic_hash": ""
+  },
+  "data/provinces/sakonnakhon.json": {
+    "mtime": 1794014170.6024675,
+    "seen": 1794039206.2961566,
+    "ast_hash": "bfe07efba8956eb94c4545a1d33d3cf5",
+    "semantic_hash": ""
+  },
+  "data/provinces/samutprakan.json": {
+    "mtime": 1793867758.6588192,
+    "seen": 1793950862.2648613,
+    "ast_hash": "da0840fcaa1576af9d99d9857f874d8c",
+    "semantic_hash": ""
+  },
+  "data/provinces/samutsakhon.json": {
+    "mtime": 1793867758.674449,
+    "seen": 1793950862.2648613,
+    "ast_hash": "f2e9402ad6cc08531c82d8d9096534c5",
+    "semantic_hash": ""
+  },
+  "data/provinces/samutsongkhram.json": {
+    "mtime": 1794003212.874087,
+    "seen": 1794039206.2961566,
+    "ast_hash": "aadfce746ed31bf99819af6fdc5bed7c",
+    "semantic_hash": ""
+  },
+  "data/provinces/saraburi.json": {
+    "mtime": 1793867758.7056866,
+    "seen": 1793950862.2648613,
+    "ast_hash": "35f53b53f279d1335f8365a61bdd67fa",
+    "semantic_hash": ""
+  },
+  "data/provinces/satun.json": {
+    "mtime": 1793867758.7056866,
+    "seen": 1793950862.2648613,
+    "ast_hash": "bcc35a6ad9049e323b3634c712b38fa7",
+    "semantic_hash": ""
+  },
+  "data/provinces/singburi.json": {
+    "mtime": 1794033328.5267282,
+    "seen": 1794039206.2961566,
+    "ast_hash": "1efb31d09b0bb9e1bf12df925be377b0",
+    "semantic_hash": ""
+  },
+  "data/provinces/sisaket.json": {
+    "mtime": 1793867758.7532315,
+    "seen": 1793950862.2648613,
+    "ast_hash": "3f17aee9bc886aefd053b51f2aa747c6",
+    "semantic_hash": ""
+  },
+  "data/provinces/songkhla.json": {
+    "mtime": 1793867758.7532315,
+    "seen": 1793950862.2648613,
+    "ast_hash": "0fd325e1c3683eb00ee9fb3aa299e4c0",
+    "semantic_hash": ""
+  },
+  "data/provinces/sukhothai.json": {
+    "mtime": 1793867758.78447,
+    "seen": 1793950862.2648613,
+    "ast_hash": "9cc81d022b5922ee78592bf032e4c60d",
+    "semantic_hash": ""
+  },
+  "data/provinces/suphanburi.json": {
+    "mtime": 1793867758.78447,
+    "seen": 1793950862.2648613,
+    "ast_hash": "4b0a24aca8f4bfd19bd0b74b1d8dcd62",
+    "semantic_hash": ""
+  },
+  "data/provinces/surin.json": {
+    "mtime": 1794021179.900335,
+    "seen": 1794039206.2961566,
+    "ast_hash": "20909a90f89898c426b88915a03c3b6a",
+    "semantic_hash": ""
+  },
+  "data/provinces/tak.json": {
+    "mtime": 1793867758.83175,
+    "seen": 1793950862.2648613,
+    "ast_hash": "0618e1f6300861a499ed529cdb203224",
+    "semantic_hash": ""
+  },
+  "data/provinces/trang.json": {
+    "mtime": 1793867758.847461,
+    "seen": 1793950862.2648613,
+    "ast_hash": "a8501cfb48c8672eb061e9297363db77",
+    "semantic_hash": ""
+  },
+  "data/provinces/ubonratchathani.json": {
+    "mtime": 1793867758.863072,
+    "seen": 1793950862.2648613,
+    "ast_hash": "f575a065156829720677dc94c7a0700b",
+    "semantic_hash": ""
+  },
+  "data/provinces/uthaithani.json": {
+    "mtime": 1794010630.1042333,
+    "seen": 1794039206.2961566,
+    "ast_hash": "69157632a8f8c92f55794897770afc91",
+    "semantic_hash": ""
+  },
+  "data/provinces/uttaradit.json": {
+    "mtime": 1793867758.9101384,
+    "seen": 1793950862.2648613,
+    "ast_hash": "ec30ae07b872d67af7076c853521aee5",
+    "semantic_hash": ""
+  },
+  "data/provinces/yala.json": {
+    "mtime": 1793867758.931726,
+    "seen": 1793950862.2648613,
+    "ast_hash": "57244f01ec2234203bb397395ee9d76e",
+    "semantic_hash": ""
+  },
+  "data/provinces/yasothon.json": {
+    "mtime": 1793867758.9417462,
+    "seen": 1793950862.2648613,
+    "ast_hash": "f98b306ec648b5747b7836170ad9a799",
+    "semantic_hash": ""
+  },
+  "frontend/extras.js": {
+    "mtime": 1794148259.243819,
+    "seen": 1794148349.8793802,
+    "ast_hash": "788138e93923b5501486a138c1e9dde1",
+    "semantic_hash": ""
+  },
+  "experiments/make_results_json.py": {
+    "mtime": 1793999549.449579,
+    "seen": 1794000078.122824,
+    "ast_hash": "15d254bcf0cdcede7706d8455873a454",
+    "semantic_hash": ""
+  },
+  "experiments/run_sparse_experiments.py": {
+    "mtime": 1794053927.960564,
+    "seen": 1794055133.7191303,
+    "ast_hash": "4cf54711900d2f0e4f37b7d7e0fce4f9",
+    "semantic_hash": ""
+  },
+  "frontend/i18n.js": {
+    "mtime": 1794054069.0667815,
+    "seen": 1794055133.7191303,
+    "ast_hash": "2e6af2cd1b349ce0e9f97a8c9d6d3b74",
+    "semantic_hash": ""
+  },
+  "frontend/results.json": {
+    "mtime": 1793999549.608937,
+    "seen": 1794000078.122824,
+    "ast_hash": "f09dedada8e0ce5e88053422540333f9",
+    "semantic_hash": ""
+  },
+  "render.yaml": {
+    "mtime": 1793999348.8422885,
+    "seen": 1794000078.122824,
+    "ast_hash": "5f5695d7d1c47792cd988a8e901907c8",
+    "semantic_hash": ""
+  },
+  "docs/deploy.md": {
+    "mtime": 1793999990.457019,
+    "seen": 1794000078.122824,
+    "ast_hash": "eb4322f1f4de9cf1cf232691a4f45348",
+    "semantic_hash": ""
+  },
+  "frontend/results.html": {
+    "mtime": 1793999585.2112253,
+    "seen": 1794000078.122824,
+    "ast_hash": "b2d28150dda25780cf1be125b820b63c",
+    "semantic_hash": ""
+  },
+  "requirements.txt": {
+    "mtime": 1793999348.7603295,
+    "seen": 1794000078.122824,
+    "ast_hash": "56606e5fca99fdce5fb43a97e143f4ec",
+    "semantic_hash": ""
+  },
+  "experiments/results/sparse_results.json": {
+    "mtime": 1794039155.118245,
+    "seen": 1794039206.2961566,
+    "ast_hash": "b111939d1e98f8b01958b842ba2091bf",
+    "semantic_hash": ""
+  },
+  "experiments/results/sparse_stats.txt": {
+    "mtime": 1794039155.1192443,
+    "seen": 1794039206.2961566,
+    "ast_hash": "8acb42b8b6f1ba9c8a72e52e64132f5e",
+    "semantic_hash": ""
+  },
+  "experiments/results/sparse_results_S2.json": {
+    "mtime": 1794054494.5080526,
+    "seen": 1794055133.7191303,
+    "ast_hash": "d714a8d468d42d2fa12e3d7f7d519938",
+    "semantic_hash": ""
+  },
+  "experiments/results/sparse_results_S3.json": {
+    "mtime": 1794055089.7128859,
+    "seen": 1794055133.7191303,
+    "ast_hash": "6d031a2ac6d3f36eb470234fa275d84d",
+    "semantic_hash": ""
+  },
+  "experiments/results/sparse_stats_S2.txt": {
+    "mtime": 1794054494.5090537,
+    "seen": 1794055133.7191303,
+    "ast_hash": "3310ea78efa307bb9f881625b14a1a00",
+    "semantic_hash": ""
+  },
+  "experiments/results/sparse_stats_S3.txt": {
+    "mtime": 1794055089.7139027,
+    "seen": 1794055133.7191303,
+    "ast_hash": "ca4b9cd3337692624a7bf5e0298d8ee3",
+    "semantic_hash": ""
+  }
+}
