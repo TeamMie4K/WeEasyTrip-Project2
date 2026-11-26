@@ -152,12 +152,12 @@ function initBudgetValidation() {
 // ธีม (Dark / Light)
 // ============================================================
 function initTheme() {
-  const saved = localStorage.getItem('theme') || 'dark';
+  const saved = localStorage.getItem('theme') || 'light';   // เครื่องใหม่ (ยังไม่เคยเลือก) เริ่มด้วยธีมสว่าง
   document.documentElement.dataset.theme = saved;
 }
 
 function toggleTheme() {
-  const cur = document.documentElement.dataset.theme || 'dark';
+  const cur = document.documentElement.dataset.theme || 'light';
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = next;
   localStorage.setItem('theme', next);

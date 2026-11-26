@@ -83,7 +83,7 @@
   <div class="note">แผนที่ผิดข้อจำกัดนับเป็นคะแนน 0 · ทุกตัวเลขรันภายใต้กติกา 6 จุดต่อวัน (เที่ยว 4 + อาหาร 2) · Greedy เป็นวิธีกำหนดแน่นอนจึงรันครั้งเดียวต่อชุด · รายละเอียดเต็ม วิธีทดลอง และข้อจำกัด อยู่ในรายงานบทที่ 4</div>
 </main>
 <script>
-try { document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {}
+try { document.documentElement.dataset.theme = localStorage.getItem('theme') || 'light'; } catch (e) {}
 const TH = {phuket:'ภูเก็ต', chiangmai:'เชียงใหม่', krabi:'กระบี่', samui:'เกาะสมุย', nongbualamphu:'หนองบัวลำภู', phichit:'พิจิตร', lamphun:'ลำพูน', nakhonnayok:'นครนายก', singburi:'สิงห์บุรี', kalasin:'กาฬสินธุ์', chaiyaphum:'ชัยภูมิ', loei:'เลย'};
 const $ = id => document.getElementById(id), name = s => TH[s] || s;
 const fmtP = p => p < 0.0001 ? '<0.0001' : p.toFixed(4), avg = a => a.reduce((s, x) => s + x, 0) / a.length;
