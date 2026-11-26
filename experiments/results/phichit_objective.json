@@ -1,0 +1,110 @@
+{
+ "phichit": {
+  "Greedy": {
+   "score": 201.1,
+   "km_day": 153.08,
+   "hours_day": 10.74,
+   "sights_day": 4,
+   "meals_day": 1.6,
+   "short_days": 1.6,
+   "obj_score": 201.1,
+   "obj_dist": -229.63,
+   "obj_time": -32.23,
+   "objective": -60.76,
+   "valid": 10
+  },
+  "GA": {
+   "score": 168.64,
+   "km_day": 137.99,
+   "hours_day": 9.56,
+   "sights_day": 3.1,
+   "meals_day": 1.6,
+   "short_days": 1.5,
+   "obj_score": 168.64,
+   "obj_dist": -206.99,
+   "obj_time": -28.69,
+   "objective": -67.04,
+   "valid": 10
+  },
+  "Hybrid": {
+   "score": 167.8,
+   "km_day": 142.52,
+   "hours_day": 10.44,
+   "sights_day": 3.08,
+   "meals_day": 1.6,
+   "short_days": 1.4,
+   "obj_score": 167.8,
+   "obj_dist": -213.78,
+   "obj_time": -31.33,
+   "objective": -77.3,
+   "valid": 10
+  },
+  "Hybrid_noILS": {
+   "score": 162.76,
+   "km_day": 142.31,
+   "hours_day": 10.43,
+   "sights_day": 2.94,
+   "meals_day": 1.6,
+   "short_days": 1.4,
+   "obj_score": 162.76,
+   "obj_dist": -213.47,
+   "obj_time": -31.3,
+   "objective": -82.01,
+   "valid": 10
+  }
+ },
+ "chaiyaphum": {
+  "Greedy": {
+   "score": 215.62,
+   "km_day": 165.07,
+   "hours_day": 11.13,
+   "sights_day": 3.94,
+   "meals_day": 2,
+   "short_days": 0,
+   "obj_score": 215.62,
+   "obj_dist": -247.6,
+   "obj_time": -33.4,
+   "objective": -65.38,
+   "valid": 10
+  },
+  "GA": {
+   "score": 160.91,
+   "km_day": 89.41,
+   "hours_day": 10.36,
+   "sights_day": 2.44,
+   "meals_day": 2,
+   "short_days": 0,
+   "obj_score": 160.91,
+   "obj_dist": -134.12,
+   "obj_time": -31.08,
+   "objective": -4.29,
+   "valid": 10
+  },
+  "Hybrid": {
+   "score": 155.84,
+   "km_day": 60.84,
+   "hours_day": 10.4,
+   "sights_day": 2.28,
+   "meals_day": 2,
+   "short_days": 0,
+   "obj_score": 155.84,
+   "obj_dist": -91.27,
+   "obj_time": -31.2,
+   "objective": 33.37,
+   "valid": 10
+  },
+  "Hybrid_noILS": {
+   "score": 142.86,
+   "km_day": 61.49,
+   "hours_day": 10.36,
+   "sights_day": 1.94,
+   "meals_day": 2,
+   "short_days": 0,
+   "obj_score": 142.86,
+   "obj_dist": -92.23,
+   "obj_time": -31.09,
+   "objective": 19.54,
+   "valid": 10
+  }
+ }
+}

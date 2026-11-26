@@ -28,10 +28,12 @@ experiments/run_experiments.py  — การทดลองของ Project 1:
 experiments/run_ils_experiments.py  — การทดลอง ILS: Hybrid เทียบ Hybrid+ILS
 experiments/run_pareto_experiments.py  — การทดลอง Pareto: NSGA-II เทียบ Hybrid แบบถ่วงน้ำหนัก
 experiments/run_phichit_cause.py  — ทดสอบสาเหตุที่ Hybrid แพ้ในพิจิตร
+experiments/run_phichit_objective.py  — ตรวจค่าเป้าหมายของ Hybrid ในพิจิตร
 experiments/run_preference_cause.py  — ทดสอบสาเหตุที่ความชอบไม่เพิ่มสัดส่วน
 experiments/run_preference_experiments.py  — การทดลองความชอบของผู้ใช้ (เฟส 3)
 experiments/run_province_experiments.py  — การทดลองหลักบทที่ 4: เปรียบเทียบอัลกอริทึมใน 4 จังหวัด และจำลองผู้ใช้แก้แผน
 experiments/run_rl_experiments.py  — การทดลอง RL: คุณภาพ seed และ Hybrid ที่ใช้ RL seed
+experiments/run_seed_penalty_check.py  — ตรวจผลของค่าปรับระยะของ Greedy seed
 experiments/run_sensitivity.py  — วิเคราะห์ความไวของพารามิเตอร์
 experiments/run_sparse_experiments.py  — การทดลองจังหวัดข้อมูลน้อย (sparse)
 experiments/train_rl.py  — ฝึกนโยบาย RL ในสภาพแวดล้อมจำลอง

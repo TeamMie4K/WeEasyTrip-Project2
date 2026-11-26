@@ -1,0 +1,122 @@
+{
+ "phichit": {
+  "10.0": {
+   "score": 167.8,
+   "km_day": 142.5,
+   "objective": -77.3,
+   "valid": 10
+  },
+  "50.0": {
+   "score": 189.9,
+   "km_day": 135.3,
+   "objective": -43.9,
+   "valid": 10
+  },
+  "200.0": {
+   "score": 182.7,
+   "km_day": 127.9,
+   "objective": -39.7,
+   "valid": 10
+  }
+ },
+ "chaiyaphum": {
+  "10.0": {
+   "score": 155.8,
+   "km_day": 60.8,
+   "objective": 33.4,
+   "valid": 10
+  },
+  "50.0": {
+   "score": 160.7,
+   "km_day": 63.3,
+   "objective": 34.9,
+   "valid": 10
+  },
+  "200.0": {
+   "score": 170.2,
+   "km_day": 71.1,
+   "objective": 32.4,
+   "valid": 10
+  }
+ },
+ "phuket": {
+  "10.0": {
+   "score": 246.9,
+   "km_day": 15.8,
+   "objective": 189.7,
+   "valid": 10
+  },
+  "50.0": {
+   "score": 243.6,
+   "km_day": 13.3,
+   "objective": 190.5,
+   "valid": 10
+  },
+  "200.0": {
+   "score": 244.4,
+   "km_day": 14.2,
+   "objective": 189.9,
+   "valid": 10
+  }
+ },
+ "chiangmai": {
+  "10.0": {
+   "score": 244.3,
+   "km_day": 17.1,
+   "objective": 187.7,
+   "valid": 10
+  },
+  "50.0": {
+   "score": 244.7,
+   "km_day": 17.3,
+   "objective": 187.7,
+   "valid": 10
+  },
+  "200.0": {
+   "score": 244.5,
+   "km_day": 17.2,
+   "objective": 187.7,
+   "valid": 10
+  }
+ },
+ "krabi": {
+  "10.0": {
+   "score": 226.9,
+   "km_day": 36.1,
+   "objective": 140.1,
+   "valid": 10
+  },
+  "50.0": {
+   "score": 224.1,
+   "km_day": 24.8,
+   "objective": 154.5,
+   "valid": 10
+  },
+  "200.0": {
+   "score": 223.8,
+   "km_day": 23.9,
+   "objective": 155.9,
+   "valid": 10
+  }
+ },
+ "samui": {
+  "10.0": {
+   "score": 233.2,
+   "km_day": 37.2,
+   "objective": 145.4,
+   "valid": 10
+  },
+  "50.0": {
+   "score": 232.2,
+   "km_day": 35.3,
+   "objective": 147.3,
+   "valid": 10
+  },
+  "200.0": {
+   "score": 228.8,
+   "km_day": 31.6,
+   "objective": 149.8,
+   "valid": 10
+  }
+ }
+}
