@@ -144,15 +144,15 @@
     "semantic_hash": ""
   },
   "docs/project2_plan.md": {
-    "mtime": 1795672154.2009814,
-    "seen": 1795672181.517114,
-    "ast_hash": "d0a2607502f80d8631d7e01609068f62",
+    "mtime": 1795674899.576895,
+    "seen": 1795674927.044512,
+    "ast_hash": "8ec1dd1a8077e7371e865f0827ca511e",
     "semantic_hash": ""
   },
   "graphify-out/converted/CS403_Report_68-2_33_pps-r1 Project 2_ffdbec9c.md": {
-    "mtime": 1795671186.4944694,
-    "seen": 1795671226.4736996,
-    "ast_hash": "b76df262641044457ade27d6fbf8371b",
+    "mtime": 1795674902.7069595,
+    "seen": 1795674927.044512,
+    "ast_hash": "ed4cb86dd791d8246ce97e563c5ebf8c",
     "semantic_hash": ""
   },
   "data/apply_names.py": {
@@ -1542,9 +1542,9 @@
     "semantic_hash": ""
   },
   "graphify-out/converted/INDEX_4ab13f18.md": {
-    "mtime": 1795672157.034255,
-    "seen": 1795672181.517114,
-    "ast_hash": "8decb6fbf694c13a586ab833e42562ab",
+    "mtime": 1795674903.4148412,
+    "seen": 1795674927.044512,
+    "ast_hash": "f1b50e807baa289ab7a4dae62cf7c952",
     "semantic_hash": ""
   },
   "graphify-out/converted/algorithm__genetic.py_2dd46721.md": {
@@ -2007,6 +2007,54 @@
     "mtime": 1795672173.4566166,
     "seen": 1795672181.517114,
     "ast_hash": "22d85699762ae0b7dc258725561a4d0b",
+    "semantic_hash": ""
+  },
+  "experiments/results/phichit_objective.json": {
+    "mtime": 1795674045.8096268,
+    "seen": 1795674927.044512,
+    "ast_hash": "575f63ceeccda2cf361878e988ae01ba",
+    "semantic_hash": ""
+  },
+  "experiments/results/seed_penalty_check.json": {
+    "mtime": 1795674824.6416197,
+    "seen": 1795674927.044512,
+    "ast_hash": "3a4ecb27bfba45772e35a6b30c17b486",
+    "semantic_hash": ""
+  },
+  "experiments/run_phichit_objective.py": {
+    "mtime": 1795674884.6743932,
+    "seen": 1795674927.044512,
+    "ast_hash": "0eda39cf0165604aa8d4ad99365c43ed",
+    "semantic_hash": ""
+  },
+  "experiments/run_seed_penalty_check.py": {
+    "mtime": 1795674649.2190053,
+    "seen": 1795674927.044512,
+    "ast_hash": "91cff2b3a3be8f9cd66976b8f1f03716",
+    "semantic_hash": ""
+  },
+  "docs/code-manual/spec/experiments__run_phichit_objective.py.txt": {
+    "mtime": 1795674885.2632248,
+    "seen": 1795674927.044512,
+    "ast_hash": "4188a213ac0e2aad664f12ea8b997b7c",
+    "semantic_hash": ""
+  },
+  "docs/code-manual/spec/experiments__run_seed_penalty_check.py.txt": {
+    "mtime": 1795674885.6415336,
+    "seen": 1795674927.044512,
+    "ast_hash": "98d4069c9b7634ed41b5521d0df7210c",
+    "semantic_hash": ""
+  },
+  "graphify-out/converted/experiments__run_phichit_objective.py_7dc1c3c8.md": {
+    "mtime": 1795674911.4966736,
+    "seen": 1795674927.044512,
+    "ast_hash": "76392e5ccef3327d0e2ab4f5c6649d99",
+    "semantic_hash": ""
+  },
+  "graphify-out/converted/experiments__run_seed_penalty_check.py_493918d7.md": {
+    "mtime": 1795674912.4144213,
+    "seen": 1795674927.044512,
+    "ast_hash": "ddbd46d219597c6d2a8935562a6f5e32",
     "semantic_hash": ""
   }
 }

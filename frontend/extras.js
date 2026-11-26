@@ -13,18 +13,25 @@
 
   // แบนเนอร์ประจำจังหวัด: ใช้ img/provinces/<slug>.jpg (ภาพถ่ายถ้ามี) ไม่งั้นใช้ .svg ที่สร้างอัตโนมัติ; สลับด้วย cross-fade
   let bannerSlug = 'phuket';
+  let FOCUS = {};   // ตำแหน่งโฟกัสของภาพแต่ละจังหวัด {slug: [x%, y%]} ให้เห็นสถานที่สำคัญเมื่อภาพถูกครอปเป็นแถบกว้าง
+  const FOCUS_READY = fetch('img/provinces/focus.json', {cache: 'no-cache'}).then(r => r.ok ? r.json() : {}).then(j => { FOCUS = j; }).catch(() => {});
+  function setHeroLabel(base) {   // ป้ายชื่อจังหวัดบนแบนเนอร์ (ภูเก็ตใช้ภาพเดิมแต่ต้องมีป้ายชื่อเหมือนจังหวัดอื่น)
+    const lbl = document.querySelector('.hero-label'); if (lbl) lbl.textContent = (STATE.provinces[base]?.name_en || 'Your Travel Services');
+  }
   function setBanner(slug) {
-    const base = slug.split('+')[0]; if (base === bannerSlug) return; bannerSlug = base;
+    const base = slug.split('+')[0]; setHeroLabel(base);
+    if (base === bannerSlug) return; bannerSlug = base;
     const hero = document.querySelector('.hero-visual'), old = hero?.querySelector('.hero-bg'); if (!hero || !old) return;
     const cands = base === 'phuket' ? ['BG2.jpg'] : [`img/provinces/${base}.jpg`, `img/provinces/${base}.svg`];
-    const apply = url => {
+    const apply = async url => {
+      await FOCUS_READY;
       if (bannerSlug !== base) return;   // ผู้ใช้เปลี่ยนจังหวัดไปแล้ว
       const nu = document.createElement('div'); nu.className = 'hero-bg'; nu.style.backgroundImage = `url('${url}')`; nu.style.opacity = '0';
+      if (FOCUS[base] && url.endsWith('.jpg')) nu.style.backgroundPosition = `${FOCUS[base][0]}% ${FOCUS[base][1]}%`;
       old.after(nu); requestAnimationFrame(() => requestAnimationFrame(() => { nu.style.opacity = '1'; }));
       setTimeout(() => hero.querySelectorAll('.hero-bg').forEach(e => { if (e !== nu) e.remove(); }), 700);
     };
     (function tryNext(i) { if (i >= cands.length) return; const im = new Image(); im.onload = () => apply(cands[i]); im.onerror = () => tryNext(i + 1); im.src = cands[i]; })(0);
-    const lbl = document.querySelector('.hero-label'); if (lbl) lbl.textContent = (STATE.provinces[base]?.name_en || 'Your Travel Services');
   }
 
   const origProvinceChange = onProvinceChange;
@@ -39,6 +46,7 @@
   loadProvinces = async function () {
     await origLoadProvinces();
     baseSlug = getProvince();
+    setHeroLabel(baseSlug);
     updateHint();
   };
 
